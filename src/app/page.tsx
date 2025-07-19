@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HorizScroll from "@/components/HorizScroll5";
 import CardsScroll from "@/components/CardsScroll3";
+import { Camera, ChevronDown } from "lucide-react";
 
 export default function Home() {
   return (
@@ -57,6 +58,12 @@ export default function Home() {
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
         </p> */}
+        <div className="relative z-10 mx-auto flex flex-col items-center text-center select-none">
+          <p className="font-ITCGaramondN text-2xl leading-tight text-white">
+            Scroll
+          </p>
+          <ChevronDown color="white" />
+        </div>
       </section>
 
       <section className="text-primary px-4 md:px-8">
