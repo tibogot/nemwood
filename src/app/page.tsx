@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </div>
       </section> */}
-      <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8 md:py-20">
+      <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/hero2.webp"
