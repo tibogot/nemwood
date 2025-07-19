@@ -104,7 +104,7 @@ export default function Navigation() {
     tl.to(
       menuRef.current,
       {
-        height: window.innerWidth >= 768 ? "50vh" : "100vh",
+        height: window.innerWidth >= 768 ? "50svh" : "100svh",
         duration: 0.8,
         ease: "power3.inOut",
       },

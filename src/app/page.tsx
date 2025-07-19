@@ -86,9 +86,9 @@ export default function Home() {
         </div>
       </section>
 
-      <HorizScroll />
+      {/* <HorizScroll /> */}
 
-      <section className="mx-auto py-40 text-center">
+      <section className="mx-auto py-20 text-center md:py-40">
         <h1 className="font-ITCGaramondN text-primary mb-6 text-6xl">
           Creativity to design
         </h1>

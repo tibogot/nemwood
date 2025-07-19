@@ -15,8 +15,8 @@ function CardsScroll() {
       toggleActions: "play reverse play reverse",
     };
 
-    const leftXValues = [-600, -700, -600];
-    const rightXValues = [600, 700, 600];
+    const leftXValues = [-800, -900, -800];
+    const rightXValues = [800, 900, 800];
     const leftRotationValues = [-30, -20, -35];
     const rightRotationValues = [30, 20, 35];
     const yValues = [100, -150, -400];
@@ -35,6 +35,7 @@ function CardsScroll() {
             scrub: true,
             onUpdate: (self) => {
               const progress = self.progress;
+              // Restored Y translation for nice stacking effect
               cardLeft.style.transform = `translateX(${progress * leftXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * leftRotationValues[index]}deg)`;
             },
           },
@@ -51,6 +52,7 @@ function CardsScroll() {
             scrub: true,
             onUpdate: (self) => {
               const progress = self.progress;
+              // Restored Y translation for nice stacking effect
               cardRight.style.transform = `translateX(${progress * rightXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * rightRotationValues[index]}deg)`;
             },
           },
@@ -69,6 +71,17 @@ function CardsScroll() {
       duration: 0.5,
       ease: "power1.out",
       scrollTrigger: scrollTriggerSettings,
+    });
+
+    // Animate the main text content to stay centered relative to the moving cards
+    gsap.to(".main-content", {
+      y: -100, // Adjust this value to fine-tune the centering
+      scrollTrigger: {
+        trigger: ".main",
+        start: "top center",
+        end: "150% bottom",
+        scrub: true,
+      },
     });
 
     // Cleanup function
@@ -108,9 +121,9 @@ function CardsScroll() {
     <div>
       <section className="main relative flex h-[150vh] w-full flex-col items-center justify-center overflow-hidden text-center">
         <div className="main-content absolute top-1/2 flex w-full -translate-y-1/2 flex-col items-center justify-center">
-          <div className="logo">
-            <img src="/logonav.svg" alt="" />
-          </div>
+          {/* <div className="logo">
+            <img src="/logonav2.svg" alt="" />
+          </div> */}
           <div className="copy font-ITCGaramondN text-primary flex flex-col items-center justify-center text-6xl leading-tight">
             <div className="line">
               <p>Meubles en bois sur mesure</p>
