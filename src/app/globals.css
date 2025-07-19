@@ -15,9 +15,10 @@
   --font-HelveticaNow: var(--font-HelveticaNow);
 }
 @theme {
-  --color-primary: #89402c;
+  --color-primary: #504630;
   --color-secondary: #fffcf5;
   --color-tertiary: #504630;
+  --color-accent: #89402c;
 }
 
 /* .line {

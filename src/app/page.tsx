@@ -1,19 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import HorizScroll from "@/components/HorizScroll4";
-import CardsScroll from "@/components/CardsScroll";
+import CardsScroll from "@/components/CardsScroll2";
 
 export default function Home() {
   return (
     <div className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="relative flex h-screen items-center justify-center px-4 md:px-8">
+      {/* <section className="relative flex h-screen items-center justify-center px-4 md:px-8">
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/nemohero.webp"
           alt="Hero Image"
-          width={1600}
-          height={800}
+          // placeholder="blur"
+          fill
+          sizes="100vw"
+          quality={100}
+          // width={1600}
+          // height={800}
           priority
         />
         <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
@@ -27,12 +31,38 @@ export default function Home() {
             cutting-edge technology.
           </p>
         </div>
+      </section> */}
+      <section className="relative flex h-screen flex-col items-center justify-between px-4 py-20 md:px-8">
+        <Image
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/images/hero2.webp"
+          alt="Hero Image"
+          fill
+          sizes="100vw"
+          quality={100}
+          priority
+        />
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+        <Image
+          className="relative z-10 h-auto w-full"
+          src="/logonew2.svg"
+          alt="Logo"
+          width={1200} // use a large width for SVG
+          height={300} // adjust height proportionally
+          quality={100}
+          priority
+        />
+        <p className="font-HelveticaNow relative z-10 text-center text-xl text-white md:w-1/3">
+          Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
+          partenaire privilégié pour la création de meubles sur mesure en
+          Belgique.{" "}
+        </p>
       </section>
 
-      <section className="px-4 text-[#89402C] md:px-8">
+      <section className="text-primary px-4 md:px-8">
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-40 text-center">
-          <h1 className="font-ITCGaramondN mb-6 text-6xl text-[#89402C]">
+          <h1 className="font-ITCGaramondN mb-6 text-6xl">
             Meubles en bois sur mesure
           </h1>
           <p className="font-HelveticaNow mx-auto text-lg leading-tight md:w-1/3">
@@ -45,10 +75,10 @@ export default function Home() {
         <div className="flex w-full justify-center pb-20">
           <div className="relative w-full md:w-4/5" style={{ height: "800px" }}>
             <Image
-              src="https://picsum.photos/1600/800?random=2"
+              src="/images/nem1.png"
               alt="Random from Picsum"
               fill
-              className="object-cover"
+              className="rounded-sm object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
               priority
             />
@@ -65,14 +95,14 @@ export default function Home() {
       </section>
       <CardsScroll />
 
-      <section className="cardo z-10 flex flex-col gap-8 px-4 py-12 text-[#FFFCF5] md:flex-row md:gap-6 md:px-8">
+      <section className="cardo text-secondary z-10 flex flex-col gap-8 px-4 py-12 md:flex-row md:gap-6 md:px-8">
         <div className="relative min-h-[300px] w-full overflow-hidden rounded-sm md:h-[600px]">
           <Image
             src="https://picsum.photos/600/400?random=1"
             alt="Custom Furniture"
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
             priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -88,7 +118,7 @@ export default function Home() {
             alt="Artisan Craftsmanship"
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
             priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -104,7 +134,7 @@ export default function Home() {
             alt="Sustainable Materials"
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
             priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -114,7 +144,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="mx-auto py-20 text-center text-[#504630]">
+      <section className="text-secondary mx-auto py-20 text-center">
         <h1 className="font-ITCGaramondN mb-6 text-6xl">
           Creativity to design
         </h1>
@@ -140,7 +170,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="px:4 mx-auto py-40 text-center text-[#504630] md:px-8">
+      <section className="px:4 text-primary mx-auto py-40 text-center md:px-8">
         <h1 className="font-ITCGaramondN text-5xl md:text-8xl">
           Info@nemwood.com
         </h1>

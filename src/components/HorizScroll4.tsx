@@ -44,22 +44,22 @@ const HorizScroll: React.FC = () => {
       });
 
       // Parallax effect for images - they move at a different speed
-      const images = gsap.utils.toArray<HTMLElement>(".parallax-image");
-      images.forEach((image, index) => {
-        gsap.to(image, {
-          x: -60, // Lower parallax movement to avoid gaps
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: `+=${scrollDistance}`,
-            scrub: 2, // Different scrub value for parallax effect
-            invalidateOnRefresh: true,
-            //@ts-ignore
-            normalizeScroll: true,
-          },
-        });
-      });
+      // const images = gsap.utils.toArray<HTMLElement>(".parallax-image");
+      // images.forEach((image, index) => {
+      //   gsap.to(image, {
+      //     x: -60, // Lower parallax movement to avoid gaps
+      //     ease: "none",
+      //     scrollTrigger: {
+      //       trigger: containerRef.current,
+      //       start: "top top",
+      //       end: `+=${scrollDistance}`,
+      //       scrub: 2, // Different scrub value for parallax effect
+      //       invalidateOnRefresh: true,
+      //       //@ts-ignore
+      //       normalizeScroll: true,
+      //     },
+      //   });
+      // });
 
       // Cleanup function is handled by useGSAP
     },
@@ -69,7 +69,7 @@ const HorizScroll: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="h-screen w-full overflow-hidden text-[#89402C]"
+      className="text-primary h-screen w-full overflow-hidden"
     >
       <div ref={scrollerRef} className="flex h-full" style={{ width: "400vw" }}>
         {/* Section 1 */}
@@ -96,6 +96,7 @@ const HorizScroll: React.FC = () => {
               width={1000}
               height={800}
               className="parallax-image h-full w-[160%] object-cover"
+              priority
             />
           </div>
         </div>
@@ -124,6 +125,7 @@ const HorizScroll: React.FC = () => {
               width={1000}
               height={800}
               className="parallax-image h-full w-[160%] object-cover"
+              priority
             />
           </div>
         </div>

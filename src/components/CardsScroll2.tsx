@@ -15,8 +15,8 @@ function CardsScroll() {
       toggleActions: "play reverse play reverse",
     };
 
-    const leftXValues = [-800, -900, -400];
-    const rightXValues = [800, 900, 400];
+    const leftXValues = [-800, -900, -800];
+    const rightXValues = [800, 900, 800];
     const leftRotationValues = [-30, -20, -35];
     const rightRotationValues = [30, 20, 35];
     const yValues = [100, -150, -400];
@@ -111,16 +111,16 @@ function CardsScroll() {
           <div className="logo">
             <img src="/logonav.svg" alt="" />
           </div>
-          <div className="copy font-ITCGaramondN text-primary m-8 flex flex-col items-center justify-center text-5xl leading-tight">
+          <div className="copy font-ITCGaramondN text-primary flex flex-col items-center justify-center text-6xl leading-tight">
             <div className="line">
               <p>Meubles en bois sur mesure</p>
             </div>
-            <div className="line">
+            {/* <div className="line">
               <p>Lorem ipsum dolor sit amet</p>
             </div>
             <div className="line">
               <p>Delve into the world of custom wood furniture</p>
-            </div>
+            </div> */}
           </div>
         </div>
         {generateRows()}

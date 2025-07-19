@@ -250,14 +250,14 @@ export default function Navigation() {
     <>
       <nav
         ref={menuRef}
-        className="fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/50 bg-[#89402C] select-none"
+        className="bg-secondary fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/50 select-none"
       >
         <div className="h-16 px-4 md:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <Image
-                src="/logonav.svg"
+                src="/logonav2.svg"
                 alt="Logo"
                 width={32}
                 height={32}
@@ -268,7 +268,7 @@ export default function Navigation() {
             {/* Burger Menu Button - Now visible on all screen sizes */}
             <button
               onClick={toggleMenu}
-              className="relative flex h-8 w-8 cursor-pointer flex-col items-center justify-center text-[#FFFCF5] transition-colors duration-200 focus:outline-none"
+              className="text-primary relative flex h-8 w-8 cursor-pointer flex-col items-center justify-center transition-colors duration-200 focus:outline-none"
               aria-label="Toggle menu"
             >
               <div
@@ -295,7 +295,7 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className="font-ITCGaramondN block text-4xl text-[#FFFCF5] md:text-8xl"
+                  className="font-ITCGaramondN text-primary block text-4xl md:text-8xl"
                   onClick={handleLinkClick}
                   style={{ visibility: "hidden" }}
                 >
