@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import HorizScroll from "@/components/HorizScroll4";
-import CardsScroll from "@/components/CardsScroll2";
+import CardsScroll from "@/components/CardsScroll3";
 
 export default function Home() {
   return (
@@ -73,7 +73,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex w-full justify-center pb-20">
-          <div className="relative w-full md:w-4/5" style={{ height: "800px" }}>
+          <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
               src="/images/nem1.png"
               alt="Random from Picsum"
