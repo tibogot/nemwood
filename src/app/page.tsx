@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import HorizScroll from "@/components/HorizScroll4";
+import HorizScroll from "@/components/HorizScroll5";
 import CardsScroll from "@/components/CardsScroll3";
 
 export default function Home() {
@@ -52,11 +52,11 @@ export default function Home() {
           quality={100}
           priority
         />
-        <p className="font-HelveticaNow relative z-10 text-center text-xl leading-tight text-white md:w-1/4">
+        {/* <p className="font-HelveticaNow relative z-10 text-center text-xl leading-tight text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
-        </p>
+        </p> */}
       </section>
 
       <section className="text-primary px-4 md:px-8">
@@ -86,7 +86,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <HorizScroll /> */}
+      <HorizScroll />
 
       <section className="mx-auto py-20 text-center md:py-40">
         <h1 className="font-ITCGaramondN text-primary mb-6 text-6xl">
