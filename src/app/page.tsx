@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </div>
       </section> */}
-      <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 py-20 md:px-8">
+      <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8 md:py-20">
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/hero2.webp"
@@ -52,7 +52,7 @@ export default function Home() {
           quality={100}
           priority
         />
-        <p className="font-HelveticaNow relative z-10 text-center text-xl text-white md:w-1/3">
+        <p className="font-HelveticaNow relative z-10 text-center text-xl leading-tight text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
