@@ -56,7 +56,7 @@ export default function Home() {
           priority
         />
         {/* <AnimatedText> */}
-        <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
+        <p className="font-NHD relative z-10 text-center text-base leading-tight text-balance text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
