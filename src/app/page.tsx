@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import HorizScroll from "@/components/HorizScroll5";
+import HorizScroll from "@/components/HorizScroll6";
 import CardsScroll from "@/components/CardsScroll5";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Testimonial from "@/components/Testimonial";
