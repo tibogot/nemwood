@@ -13,6 +13,7 @@
   --font-ITCGaramondN: var(--font-ITCGaramondStdLtNarrow);
   --font-ITCGaramondNI: var(--font-ITCGaramondStdLtNarrowIta);
   --font-HelveticaNow: var(--font-HelveticaNow);
+  --font-NHD: var(--font-neue-haas-display);
 }
 @theme {
   --color-primary: #504630;

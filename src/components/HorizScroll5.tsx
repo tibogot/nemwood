@@ -19,25 +19,25 @@ const HorizScroll: React.FC = () => {
       title: "Escaliers",
       description:
         "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
-      image: "https://picsum.photos/1000/800?random=1",
+      image: "/images/stairs.webp",
     },
     {
       title: "Garde-robes",
       description:
         "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
-      image: "https://picsum.photos/1000/800?random=2",
+      image: "/images/wardrobe.webp",
     },
     {
       title: "Tables",
       description:
         "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
-      image: "https://picsum.photos/1000/800?random=3",
+      image: "/images/table.webp",
     },
     {
       title: "Cuisines",
       description:
         "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
-      image: "https://picsum.photos/1000/800?random=4",
+      image: "/images/kitchen.webp",
     },
   ];
 
@@ -135,7 +135,7 @@ const HorizScroll: React.FC = () => {
             >
               <div className="flex h-full w-1/2 flex-col justify-between pt-30 pb-20 pl-4 md:pl-8">
                 <div>
-                  <p className="font-HelveticaNow text-lg leading-tight">
+                  <p className="font-HelveticaNow text-primary/70 text-sm leading-tight">
                     ABOUT
                   </p>
                   <h2 className="font-ITCGaramondN mt-8 mb-4 text-8xl">

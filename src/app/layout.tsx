@@ -52,6 +52,18 @@ const HelveticaNow = localFont({
   display: "swap",
 });
 
+const neueHaasDisplay = localFont({
+  src: [
+    {
+      path: "../fonts/NeueHaasDisplay-Roman.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-neue-haas-display",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Nemwood – Fabricant de meubles en bois sur mesure en Belgique ",
   description:
@@ -67,7 +79,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
       >
         <LenisProvider>
           <ScrollToTop />
