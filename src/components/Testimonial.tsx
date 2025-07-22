@@ -90,7 +90,7 @@ export default function Testimonial() {
           sizes="(max-width: 768px) 100vw, 80vw"
           priority
         />
-        <h1 className="font-ITCGaramondN text-secondary relative text-8xl">
+        <h1 className="font-ITCGaramondN text-secondary relative text-6xl md:text-8xl">
           Testimonials
         </h1>
         <div className="absolute inset-0 flex items-center justify-center">

@@ -128,7 +128,7 @@ export default function Home() {
               <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
               </h4>
-              <h1 className="font-ITCGaramondN mt-8 text-6xl leading-none md:max-w-xl">
+              <h1 className="font-ITCGaramondN mt-8 text-4xl leading-none md:max-w-xl md:text-6xl">
                 Designing experiences that resonate and scale
               </h1>
             </AnimatedText>
