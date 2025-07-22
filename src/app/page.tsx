@@ -36,8 +36,8 @@ export default function Home() {
           </p>
         </div>
       </section> */}
-      <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        <Image
+      <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
+        {/* <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/herobg3.webp"
           alt="Hero Image"
@@ -46,10 +46,10 @@ export default function Home() {
           quality={100}
           priority
         />
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div> */}
         <Image
           className="relative z-10 h-auto w-full"
-          src="/logonew2.svg"
+          src="/logonew1.svg"
           alt="Logo"
           width={1200} // use a large width for SVG
           height={300} // adjust height proportionally
@@ -57,7 +57,7 @@ export default function Home() {
           priority
         />
         {/* <AnimatedText> */}
-        <p className="font-NHD relative z-10 text-center text-sm leading-tight text-white uppercase md:w-1/4">
+        <p className="font-NHD text-primary relative z-10 text-center text-sm leading-tight uppercase md:w-1/4">
           Mobilier sur mesure
         </p>
         {/* <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
