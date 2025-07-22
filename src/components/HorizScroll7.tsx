@@ -90,7 +90,7 @@ const HorizScroll: React.FC = () => {
           {sections.map((section, index) => (
             <div
               key={index}
-              className="group relative cursor-pointer overflow-hidden rounded-xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl"
+              className="group relative cursor-pointer overflow-hidden rounded-sm bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl"
             >
               {/* Image at the top */}
               <div className="aspect-[4/3] w-full overflow-hidden">
