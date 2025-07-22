@@ -57,11 +57,14 @@ export default function Home() {
           priority
         />
         {/* <AnimatedText> */}
-        <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
+        <p className="font-NHD relative z-10 text-center text-sm leading-tight text-white uppercase md:w-1/4">
+          Mobilier sur mesure
+        </p>
+        {/* <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
-        </p>
+        </p> */}
         {/* </AnimatedText> */}
 
         {/* <p className="font-HelveticaNow relative z-10 text-center text-xl leading-tight text-white md:w-1/4">
@@ -80,7 +83,7 @@ export default function Home() {
       <section className="text-primary section2 px-4 md:px-8">
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-40 text-center">
-          <AnimatedText delay={0.3} stagger={0.3}>
+          <AnimatedText delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mb-6 text-6xl">
               Meubles en bois <br /> sur mesure
             </h1>

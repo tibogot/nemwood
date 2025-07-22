@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,9 +80,17 @@ export default function Testimonial() {
     <>
       <section
         ref={containerRef}
-        className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-30 text-white md:px-8"
+        className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-20 text-white md:px-8"
       >
-        <h1 className="font-ITCGaramondN text-primary text-6xl">
+        <Image
+          src="/images/testimonial.webp"
+          alt="Random from Picsum"
+          fill
+          className="rounded-sm object-cover"
+          sizes="(max-width: 768px) 100vw, 80vw"
+          priority
+        />
+        <h1 className="font-ITCGaramondN text-secondary relative text-8xl">
           Testimonials
         </h1>
         <div className="absolute inset-0 flex items-center justify-center">

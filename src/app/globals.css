@@ -22,6 +22,10 @@
   --color-accent: #89402c;
 }
 
+h3 {
+  @apply font-ITCGaramondN text-4xl md:text-8xl;
+}
+
 /* .line {
   position: relative;
   margin: 0.5em 0;

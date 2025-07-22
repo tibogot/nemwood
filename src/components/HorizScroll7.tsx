@@ -100,8 +100,8 @@ const HorizScroll: React.FC = () => {
                   width={1000}
                   height={800}
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  // priority={index === 0}
-                  priority
+                  priority={index === 0}
+                  // priority
                 />
               </div>
 
@@ -142,9 +142,9 @@ const HorizScroll: React.FC = () => {
                   <p className="font-HelveticaNow text-primary/70 text-sm leading-tight">
                     ABOUT
                   </p>
-                  <h2 className="font-ITCGaramondN mt-8 mb-4 text-8xl">
+                  <h3 className="font-ITCGaramondN mt-8 mb-4 text-8xl">
                     {section.title}
-                  </h2>
+                  </h3>
                 </div>
                 <p className="font-HelveticaNow w-1/2 text-lg leading-tight">
                   {section.description}
