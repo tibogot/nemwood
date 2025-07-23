@@ -125,16 +125,34 @@ export default function Home() {
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
-              <h4 className="font-HelveticaNow text-primary/70 text-sm">
+              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
-              </h4>
+              </h4> */}
               <h1 className="font-ITCGaramondN mt-8 text-4xl leading-none md:max-w-xl md:text-6xl">
                 Designing experiences that resonate and scale
               </h1>
             </AnimatedText>
+            <p className="font-HelveticaNow mt-8 text-lg">
+              Vous cherchez un artisan menuisier en Belgique pour créer des
+              meubles en bois sur mesure ? <br />
+              Nemwood est spécialisé dans la fabrication artisanale de tables,
+              chaises, garde-robes, escaliers et même de décors pour le cinéma.
+              Vous cherchez un artisan menuisier en Belgique pour créer des
+              meubles en bois sur mesure ? <br />
+              Nemwood est spécialisé dans la fabrication artisanale de tables,
+              chaises, garde-robes, escaliers et même de décors pour le cinéma.
+            </p>
+            <button className="font-HelveticaNow mt-10">
+              <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                <span>Read more</span>
+                <div className="mt-0.5 ml-1">
+                  <ArrowRight size={18} strokeWidth={1.5} />
+                </div>
+              </div>
+            </button>
           </div>
         </div>
-        <div className="right flex flex-col items-end text-left md:w-1/2">
+        {/* <div className="right flex flex-col items-end text-left md:w-1/2">
           <div className="md:w-3/4">
             <AnimatedText>
               <h4 className="font-HelveticaNow text-primary/70 invisible text-sm">
@@ -162,7 +180,7 @@ export default function Home() {
               </div>
             </button>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <HorizScroll />
