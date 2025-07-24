@@ -175,7 +175,7 @@ function CardsScroll() {
             </p>
             <p
               ref={descriptionRef}
-              className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight text-balance md:max-w-2xl"
+              className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-2xl"
             >
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la

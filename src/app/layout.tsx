@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navigation from "@/components/Navigation3";
+import Navigation from "@/components/Navigation4";
 import Footer from "@/components/Footer2";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
