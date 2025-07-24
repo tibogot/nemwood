@@ -83,7 +83,7 @@ export default function Home() {
 
       <section className="text-primary section2 px-4 md:px-8">
         {/* <div className="py-40"></div> */}
-        <div className="mx-auto py-40 text-center">
+        <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mb-6 text-6xl">
               Meubles en bois <br /> sur mesure
