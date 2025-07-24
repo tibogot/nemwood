@@ -1,5 +1,9 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import client from "@/sanityClient";
+
 import HorizScroll from "@/components/HorizScroll7";
 import CardsScroll from "@/components/CardsScroll5";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -7,8 +11,30 @@ import Testimonial from "@/components/Testimonial";
 import AnimatedText from "@/components/AnimatedText2";
 import BlurryTextReveal from "@/components/TextReveal";
 import ReverseCards from "@/components/ReverseCards2";
+import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const posts = await client.fetch(
+        `*[_type == "post"]|order(_createdAt desc)[0...3]{
+          _id,
+          title,
+          slug,
+          mainImage {
+            asset->{url}
+          },
+          publishedAt,
+          body
+        }`,
+      );
+      setBlogPosts(posts);
+    }
+    fetchPosts();
+  }, []);
+
   return (
     <div className="wrapper bg-secondary">
       {/* Hero Section */}
@@ -263,6 +289,23 @@ export default function Home() {
       </section> */}
 
       <Testimonial />
+      {/* Blog Previews Section */}
+      <section className="px-4 py-10 md:px-8 md:py-20">
+        <div className="flex w-full flex-col items-center">
+          <h2 className="font-NHD text-gray-800">Events</h2>
+        </div>
+
+        <ul className="mt-20 flex list-none flex-col gap-8 p-0 md:flex-row md:justify-center md:gap-6">
+          {blogPosts.map((post) => (
+            <BlogPreview key={post._id} post={post} />
+          ))}
+        </ul>
+        <div className="mt-6">
+          <Link href="/blog" className="font-medium underline">
+            See all blog posts
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
