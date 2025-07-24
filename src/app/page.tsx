@@ -123,7 +123,7 @@ export default function Home() {
         </div> */}
       </section>
       <ReverseCards />
-      <section className="text-primary flex w-full flex-col px-4 py-20 pb-40 md:flex-row md:px-8">
+      <section className="text-primary flex w-full flex-col px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
