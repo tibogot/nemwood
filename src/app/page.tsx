@@ -290,7 +290,7 @@ export default function Home() {
 
       <Testimonial />
       {/* Blog Previews Section */}
-      <section className="px-4 py-10 md:px-8 md:py-20">
+      {/* <section className="px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col items-center">
           <h2 className="font-NHD text-gray-800">Events</h2>
         </div>
@@ -305,7 +305,7 @@ export default function Home() {
             See all blog posts
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
