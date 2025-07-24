@@ -6,6 +6,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import Testimonial from "@/components/Testimonial";
 import AnimatedText from "@/components/AnimatedText2";
 import BlurryTextReveal from "@/components/TextReveal";
+import ReverseCards from "@/components/ReverseCards2";
 
 export default function Home() {
   return (
@@ -37,19 +38,19 @@ export default function Home() {
         </div>
       </section> */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        {/* <Image
+        <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/herobg3.webp"
+          src="/images/nemward.webp"
           alt="Hero Image"
           fill
           sizes="100vw"
           quality={100}
           priority
         />
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div> */}
+        {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div> */}
         <Image
           className="relative z-10 h-auto w-full"
-          src="/logonew1.svg"
+          src="/logonew2.svg"
           alt="Logo"
           width={1200} // use a large width for SVG
           height={300} // adjust height proportionally
@@ -57,7 +58,7 @@ export default function Home() {
           priority
         />
         {/* <AnimatedText> */}
-        <p className="font-NHD text-primary relative z-10 text-center text-sm leading-tight uppercase md:w-1/4">
+        <p className="font-NHD text-secondary relative z-10 text-center text-sm leading-tight uppercase md:w-1/4">
           Mobilier sur mesure
         </p>
         {/* <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
@@ -108,7 +109,7 @@ export default function Home() {
           </p> */}
         </div>
 
-        <div className="flex w-full justify-center pb-20">
+        {/* <div className="flex w-full justify-center pb-20">
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
               src="/images/nem1.png"
@@ -119,8 +120,9 @@ export default function Home() {
               priority
             />
           </div>
-        </div>
+        </div> */}
       </section>
+      <ReverseCards />
       <section className="text-primary flex w-full flex-col px-4 py-20 pb-40 md:flex-row md:px-8">
         <div className="left md:w-1/2">
           <div>

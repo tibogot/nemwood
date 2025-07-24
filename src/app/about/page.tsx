@@ -109,14 +109,14 @@ export default function About() {
         </AnimatedText>
       </section>
       <section className="flex h-svh w-full items-center justify-center bg-amber-100 px-4 md:px-8">
-        <div className="h-[600px] w-[400px] bg-amber-400 select-none">
+        <div className="h-[600px] w-[400px] select-none">
           <Image
             src="/images/loft.webp"
             alt=""
             width={1000}
             height={800}
             priority
-            className="h-full w-full object-cover"
+            className="h-full w-full rounded-sm object-cover"
           />
         </div>
       </section>
