@@ -244,7 +244,7 @@ function ReverseCards() {
     <div>
       <section
         ref={sectionRef}
-        className="text-primary border-b-primary flex h-[600px] w-full flex-col gap-10 overflow-hidden border-b border-solid px-4 pt-0 pb-8 md:h-[600px] md:flex-row md:px-8 md:pb-20"
+        className="text-primary border-b-primary flex w-full flex-col gap-10 overflow-hidden border-b border-solid px-4 pt-0 pb-8 md:h-[600px] md:flex-row md:px-8 md:pb-20"
       >
         {/* Left Card */}
         <div
