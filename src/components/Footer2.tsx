@@ -97,7 +97,7 @@ export default function Footer() {
           </div>
 
           {/* Legal Links */}
-          <div className="flex flex-col space-y-2 text-left md:flex-row md:space-y-0 md:space-x-6 md:text-right">
+          <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
             <Link
               href="/mentions-legales"
               className="transition-opacity hover:opacity-70"
