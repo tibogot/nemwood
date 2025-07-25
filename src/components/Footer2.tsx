@@ -48,7 +48,7 @@ export default function Footer() {
                   href="/about"
                   className="text-xl transition-opacity hover:opacity-70 md:text-lg"
                 >
-                  0474 65 74 97
+                  0489 33 05 44
                 </Link>
               </li>
               <li>

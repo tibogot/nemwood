@@ -8,7 +8,7 @@ import HorizScroll from "@/components/HorizScroll7";
 import CardsScroll from "@/components/CardsScroll5";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Testimonial from "@/components/Testimonial";
-import AnimatedText from "@/components/AnimatedText2";
+import AnimatedText from "@/components/AnimatedText3";
 import BlurryTextReveal from "@/components/TextReveal";
 import ReverseCards from "@/components/ReverseCards2";
 import BlogPreview from "@/components/BlogPreview";
@@ -83,16 +83,16 @@ export default function Home() {
           quality={100}
           priority
         />
-        {/* <AnimatedText> */}
-        <p className="font-NHD text-secondary relative z-10 text-center text-sm leading-tight uppercase md:w-1/4">
-          Mobilier sur mesure
-        </p>
-        {/* <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
+        <AnimatedText isHero={true} duration={1.2}>
+          <p className="font-NHD text-secondary relative z-10 max-w-2xl text-center text-sm uppercase">
+            Mobilier sur mesure
+          </p>
+          {/* <p className="font-NHD relative z-10 text-center text-base leading-tight text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
           partenaire privilégié pour la création de meubles sur mesure en
           Belgique.{" "}
         </p> */}
-        {/* </AnimatedText> */}
+        </AnimatedText>
 
         {/* <p className="font-HelveticaNow relative z-10 text-center text-xl leading-tight text-white md:w-1/4">
           Découvrez l'excellence de l'artisanat du bois avec Nemwood, votre
@@ -290,9 +290,11 @@ export default function Home() {
 
       <Testimonial />
       {/* Blog Previews Section */}
-      {/* <section className="px-4 py-10 md:px-8 md:py-20">
+      <section className="px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col items-center">
-          <h2 className="font-NHD text-gray-800">Events</h2>
+          <h2 className="font-ITCGaramondN text-primary text-8xl">
+            Actualités
+          </h2>
         </div>
 
         <ul className="mt-20 flex list-none flex-col gap-8 p-0 md:flex-row md:justify-center md:gap-6">
@@ -305,7 +307,7 @@ export default function Home() {
             See all blog posts
           </Link>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
