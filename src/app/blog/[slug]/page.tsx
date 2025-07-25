@@ -26,8 +26,8 @@ export default async function BlogPostPage(props: any) {
   if (!post) return notFound();
 
   return (
-    <main className="mx-auto mt-12 mb-24 max-w-3xl rounded-2xl bg-white px-4 py-40 shadow-lg">
-      <h1 className="font-PPItalic mb-4 text-center text-4xl leading-tight text-gray-900 md:text-6xl">
+    <main className="bg-secondary text-primary px-4 py-40 md:px-8">
+      <h1 className="font-ITCGaramondN mb-4 text-center text-4xl leading-tight md:text-6xl">
         {post.title}
       </h1>
       {post.publishedAt && (
@@ -39,10 +39,10 @@ export default async function BlogPostPage(props: any) {
         <img
           src={post.mainImage.asset.url}
           alt={post.title}
-          className="mx-auto mb-8 max-h-[420px] w-full rounded-xl object-cover"
+          className="mb-8 max-h-[620px] w-full rounded-sm object-cover"
         />
       )}
-      <div className="prose prose-lg font-NHD mx-auto max-w-none text-gray-800">
+      <div className="prose prose-lg font-NHD max-w-2xl">
         <PortableText value={post.body} />
       </div>
     </main>

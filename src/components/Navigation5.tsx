@@ -28,6 +28,7 @@ export default function Navigation() {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Contact", href: "/contact" },
+    { name: "Blog", href: "/blog" },
   ];
 
   // Store split text instances for cleanup
