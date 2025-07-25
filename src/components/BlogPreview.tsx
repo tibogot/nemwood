@@ -28,7 +28,7 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
     <li className="text-primary mb-10 w-full flex-1 md:mb-0 md:w-1/3">
       <Link href={`/blog/${post.slug.current}`} className="group block h-full">
         <div className="flex h-full flex-col items-stretch overflow-hidden">
-          <div className="relative flex h-48 w-full items-center justify-center overflow-hidden md:h-56">
+          <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden">
             <img
               src={imageUrl}
               alt={post.title}

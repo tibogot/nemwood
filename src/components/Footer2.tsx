@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary text-primary font-NHD relative flex min-h-svh w-full flex-col px-4 py-8 md:h-svh md:px-8">
       {/* Top Section */}
-      <div className="flex flex-1 flex-col md:flex-row">
+      <div className="flex flex-1 flex-col md:flex-row md:gap-8">
         {/* Left Side - Navigation */}
         <div className="left flex w-full flex-col md:w-1/2">
           <div className="relative mt-20 h-full w-full">
