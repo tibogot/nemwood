@@ -45,7 +45,7 @@ export default function Footer() {
               <h4 className="mb-4 font-semibold">CONTACT</h4>
               <li>
                 <Link
-                  href="/about"
+                  href="#"
                   className="text-xl transition-opacity hover:opacity-70 md:text-lg"
                 >
                   0489 33 05 44
@@ -53,7 +53,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/collections"
+                  href="#"
                   className="text-xl transition-opacity hover:opacity-70 md:text-lg"
                 >
                   nemwood@gmail.be
@@ -97,7 +97,7 @@ export default function Footer() {
           </div>
 
           {/* Legal Links */}
-          <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
+          {/* <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
             <Link
               href="/mentions-legales"
               className="transition-opacity hover:opacity-70"
@@ -113,7 +113,7 @@ export default function Footer() {
             <Link href="/cgv" className="transition-opacity hover:opacity-70">
               CGV
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
