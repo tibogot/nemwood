@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation5";
 import Footer from "@/components/Footer2";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import SimplePageTransition from "@/components/SimplePageTransition";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const geistSans = Geist({
@@ -85,7 +86,9 @@ export default function RootLayout({
           <ScrollToTop />
           {/* <ScrollProgress /> */}
           <Navigation />
+          {/* <SimplePageTransition> */}
           <main className="">{children}</main>
+          {/* </SimplePageTransition> */}
           <Footer />
         </LenisProvider>
       </body>

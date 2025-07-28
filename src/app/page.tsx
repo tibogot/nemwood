@@ -39,7 +39,7 @@ export default function Home() {
     <div className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        <Image
+        {/* <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/nemward.webp"
           alt="Hero Image"
@@ -47,8 +47,18 @@ export default function Home() {
           sizes="100vw"
           quality={100}
           priority
-        />
-        {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div> */}
+        /> */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          // poster="/hero-poster.jpg" // Fallback image
+        >
+          <source src="/images/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
         <Image
           className="relative z-10 h-auto w-full"
           src="/logonew2.svg"
@@ -71,6 +81,23 @@ export default function Home() {
           <ChevronDown color="white" />
         </div> */}
       </section>
+
+      {/* <div className="relative h-screen overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          // poster="/hero-poster.jpg" // Fallback image
+        >
+          <source src="/images/hero.mp4" type="video/mp4" />
+        </video>
+
+        <div className="relative z-10 flex h-full items-center justify-center">
+          <h1 className="text-6xl font-bold text-white">Your Hero Title</h1>
+        </div>
+      </div> */}
 
       <section className="text-primary section2 px-4 md:px-8">
         {/* <div className="py-40"></div> */}
