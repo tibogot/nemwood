@@ -132,7 +132,7 @@ const BlurryTextReveal: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="text-primary mx-auto -mt-80 w-full px-4 py-40 text-center md:px-8 md:py-60"
+      className="text-primary mx-auto w-full px-4 py-40 text-center md:px-8 md:py-40"
     >
       <h1
         ref={titleRef}
