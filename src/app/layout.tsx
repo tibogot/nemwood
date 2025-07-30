@@ -7,6 +7,7 @@ import Footer from "@/components/Footer2";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import SimplePageTransition from "@/components/SimplePageTransition";
+import { ThemeProvider } from "@/components/ThemeProvider";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const geistSans = Geist({
@@ -82,15 +83,17 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
       >
-        <LenisProvider>
-          <ScrollToTop />
-          {/* <ScrollProgress /> */}
-          <Navigation />
-          {/* <SimplePageTransition> */}
-          <main className="">{children}</main>
-          {/* </SimplePageTransition> */}
-          <Footer />
-        </LenisProvider>
+        <ThemeProvider>
+          <LenisProvider>
+            <ScrollToTop />
+            {/* <ScrollProgress /> */}
+            <Navigation />
+            {/* <SimplePageTransition> */}
+            <main className="">{children}</main>
+            {/* </SimplePageTransition> */}
+            <Footer />
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -26,8 +26,8 @@ export default async function BlogPostPage(props: any) {
   if (!post) return notFound();
 
   return (
-    <main className="bg-secondary text-primary px-4 py-40 md:px-8">
-      <h1 className="font-ITCGaramondN mb-4 text-center text-4xl leading-tight md:text-6xl">
+    <main className="bg-secondary text-primary px-4 md:px-8">
+      <h1 className="font-ITCGaramondN mx-auto mb-4 max-w-2xl py-60 text-center text-6xl md:text-8xl">
         {post.title}
       </h1>
       {post.publishedAt && (

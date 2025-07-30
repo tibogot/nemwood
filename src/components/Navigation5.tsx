@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
+import ThemeToggle from "./ThemeToggle";
 
 // Register the SplitText plugin
 gsap.registerPlugin(SplitText);
@@ -482,24 +483,30 @@ export default function Navigation() {
               />
             </Link>
 
-            {/* Burger Menu Button - Much thinner lines */}
-            <button
-              onClick={toggleMenu}
-              className={`text-primary relative flex h-10 w-10 cursor-pointer flex-col items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none md:h-8 md:w-8 ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-            >
-              <div
-                ref={burgerLine1Ref}
-                className="absolute h-px w-7 rounded-full bg-current transition-colors duration-200 md:w-8"
-              />
-              <div
-                ref={burgerLine2Ref}
-                className="absolute h-px w-7 rounded-full bg-current transition-colors duration-200 md:w-8"
-              />
-            </button>
+            {/* Right side - Theme Toggle and Burger Menu */}
+            <div className="flex items-center gap-4">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
+              {/* Burger Menu Button - Much thinner lines */}
+              <button
+                onClick={toggleMenu}
+                className={`text-primary relative flex h-10 w-10 cursor-pointer flex-col items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none md:h-8 md:w-8 ${
+                  isMenuOpen ? "rotate-180" : ""
+                }`}
+                aria-label="Toggle menu"
+                aria-expanded={isMenuOpen}
+              >
+                <div
+                  ref={burgerLine1Ref}
+                  className="absolute h-px w-7 rounded-full bg-current transition-colors duration-200 md:w-8"
+                />
+                <div
+                  ref={burgerLine2Ref}
+                  className="absolute h-px w-7 rounded-full bg-current transition-colors duration-200 md:w-8"
+                />
+              </button>
+            </div>
           </div>
         </div>
 

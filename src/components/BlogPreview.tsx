@@ -48,7 +48,7 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
                 {post.title}
               </h5>
 
-              <div className="font-NHD mb-2 line-clamp-3 text-base md:text-lg">
+              <div className="font-NHD mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
                 {post.body && <PortableText value={post.body.slice(0, 1)} />}
               </div>
             </div>

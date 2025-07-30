@@ -20,21 +20,19 @@ export default async function BlogPage() {
 
   return (
     <>
-      <main className="text-primary bg-secondary px-4 md:px-8">
-        <div className="mx-auto py-40 text-center">
+      <main className="text-primary bg-secondary px-4 pb-20 md:px-8">
+        <div className="mx-auto py-60 text-center">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-6xl">
-              Latest news & updates
+            <h1 className="font-ITCGaramondN mb-6 text-8xl">
+              Nos dernières actualités
             </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? Nemwood est spécialisé dans la
-              fabrication artisanale de tables, chaises, garde-robes, escaliers
-              et même de décors pour le cinéma.
+              Découvrez nos dernières actualités et conseils pour améliorer
+              votre intérieur.
             </p>
           </AnimatedText>
         </div>
-        <ul className="mt-8 grid gap-10 md:grid-cols-3">
+        <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-6">
           {posts.map((post: any) => (
             <li key={post._id} className="flex flex-col overflow-hidden">
               <Link href={`/blog/${post.slug.current}`} className="group block">
@@ -59,7 +57,7 @@ export default async function BlogPage() {
                       {post.title}
                     </h5>
 
-                    <div className="font-NHD mb-2 line-clamp-3 text-base md:text-lg">
+                    <div className="font-NHD mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
                       {post.body && (
                         <PortableText value={post.body.slice(0, 1)} />
                       )}
@@ -74,7 +72,7 @@ export default async function BlogPage() {
           ))}
         </ul>
       </main>
-      <section className="relative mt-30 h-svh w-full bg-amber-100">
+      <section className="bg-secondary relative h-svh w-full">
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/nemward.webp"
