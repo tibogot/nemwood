@@ -185,7 +185,7 @@ export default function Home() {
       </section>
       <CardsScroll />
 
-      <section className="text-primary flex w-full flex-col gap-20 px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
+      {/* <section className="text-primary flex w-full flex-col gap-20 px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
         <div className="left relative h-[400px] md:h-[700px] md:w-1/2">
           <Image
             src="/images/nem1.png"
@@ -197,9 +197,7 @@ export default function Home() {
           />
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="right flex flex-col justify-between md:h-[700px] md:w-1/2">
-          {/* Top Content */}
           <div>
             <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
               Designing experiences that resonate and scale
@@ -212,7 +210,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Bottom Button */}
           <div className="mt-10">
             <button className="font-HelveticaNow">
               <div className="border-primary hover:bg-primary hover:text-secondary inline-flex items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
@@ -224,9 +221,9 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-40">
+      <section className="pb-80">
         <BlurryTextReveal />
       </section>
 
