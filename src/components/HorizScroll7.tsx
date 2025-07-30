@@ -16,24 +16,28 @@ const HorizScroll: React.FC = () => {
   // Data for sections
   const sections = [
     {
+      number: "1/4",
       title: "Escaliers",
       description:
         "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale.",
       image: "/images/stairs.webp",
     },
     {
+      number: "2/4",
       title: "Garde-robes",
       description:
         "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
       image: "/images/wardrobe.webp",
     },
     {
+      number: "3/4",
       title: "Tables",
       description:
         "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.",
       image: "/images/table.webp",
     },
     {
+      number: "4/4",
       title: "Cuisines",
       description:
         "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
@@ -140,7 +144,7 @@ const HorizScroll: React.FC = () => {
               <div className="flex h-full w-1/2 flex-col justify-between pt-30 pb-20 pl-4 md:pl-8">
                 <div>
                   <p className="font-HelveticaNow text-primary/70 text-sm leading-tight">
-                    ABOUT
+                    {section.number}
                   </p>
                   <h3 className="font-ITCGaramondN mt-8 mb-4 text-8xl">
                     {section.title}
