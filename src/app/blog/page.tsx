@@ -23,7 +23,7 @@ export default async function BlogPage() {
       <main className="text-primary bg-secondary px-4 pb-20 md:px-8">
         <div className="mx-auto py-60 text-center">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-8xl">
+            <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
               Nos dernières actualités
             </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
@@ -53,7 +53,7 @@ export default async function BlogPage() {
                         {new Date(post.publishedAt).toLocaleDateString()}
                       </p>
                     )}
-                    <h5 className="font-ITCGaramondN mb-2 text-2xl leading-tight md:text-4xl">
+                    <h5 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
                       {post.title}
                     </h5>
 

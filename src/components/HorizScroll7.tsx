@@ -112,7 +112,7 @@ const HorizScroll: React.FC = () => {
               {/* Content below the image */}
               <div className="mt-6">
                 <p className="font-HelveticaNow text-primary/70 mb-3 text-xs tracking-wider uppercase">
-                  ABOUT
+                  {section.number}
                 </p>
                 <h2 className="font-ITCGaramondN text-primary mb-4 text-5xl leading-tight">
                   {section.title}
