@@ -82,29 +82,12 @@ export default function Home() {
         </div> */}
       </section>
 
-      {/* <div className="relative h-screen overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          // poster="/hero-poster.jpg" // Fallback image
-        >
-          <source src="/images/hero.mp4" type="video/mp4" />
-        </video>
-
-        <div className="relative z-10 flex h-full items-center justify-center">
-          <h1 className="text-6xl font-bold text-white">Your Hero Title</h1>
-        </div>
-      </div> */}
-
       <section className="text-primary section2 px-4 md:px-8">
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-6xl">
-              Meubles en bois <br /> sur mesure
+            <h1 className="font-ITCGaramondN mb-6 text-7xl">
+              Meubles en bois sur mesure
             </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
               Vous cherchez un artisan menuisier en Belgique pour créer des
@@ -141,18 +124,18 @@ export default function Home() {
                 FROM IDEA TO IMPACT
               </h4> */}
               <h1 className="font-ITCGaramondN mt-8 text-4xl leading-none md:max-w-xl md:text-6xl">
-                Designing experiences that resonate and scale
+                Fabrication artisanale par Nemwood
               </h1>
             </AnimatedText>
-            <p className="font-HelveticaNow mt-8 text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? <br />
-              Nemwood est spécialisé dans la fabrication artisanale de tables,
-              chaises, garde-robes, escaliers et même de décors pour le cinéma.
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? <br />
-              Nemwood est spécialisé dans la fabrication artisanale de tables,
-              chaises, garde-robes, escaliers et même de décors pour le cinéma.
+            <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
+              Chez Nemwood, chaque meuble est une œuvre unique. Spécialisés dans
+              la fabrication de mobilier en bois sur mesure en Belgique, nous
+              mettons notre savoir-faire artisanal au service de vos projets,
+              qu’il s’agisse d’aménager une cuisine, un salon, un escalier ou
+              tout autre espace de vie. Nous utilisons exclusivement du bois
+              massif durable, travaillé à la main avec passion pour créer des
+              pièces uniques, durables et parfaitement adaptées à vos
+              besoins.{" "}
             </p>
             <button className="font-HelveticaNow mt-10">
               <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
@@ -164,6 +147,25 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <div className="left flex flex-col items-center justify-center text-center md:w-1/2">
+          <div className="w-full md:max-w-xl">
+            {[
+              "Un artisanat de haute qualité",
+              "Bois massif & éco-responsabilité",
+              "Solutions Personnalisées",
+              "Design & fonctionnalité",
+            ].map((text, index) => (
+              <div key={index} className="border-primary/50 mt-4 border-t pt-4">
+                <div className="flex items-center justify-start gap-3">
+                  <span className="text-primary relative top-[1px] text-3xl leading-none">
+                    •
+                  </span>
+                  <p className="font-HelveticaNow text-left text-lg">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <HorizScroll />
@@ -173,51 +175,47 @@ export default function Home() {
           Creativity to design
         </h1> */}
         <AnimatedText>
-          <p className="font-HelveticaNow mx-auto text-lg leading-tight md:w-1/3">
-            Vous cherchez un artisan menuisier en Belgique pour créer des
-            meubles en bois sur mesure ? Nemwood est spécialisé dans la
-            fabrication artisanale de tables, chaises, garde-robes, escaliers et
-            même de décors pour le cinéma.
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            Basés en Belgique, nous valorisons le travail du bois local, la
+            précision des finitions, et un accompagnement sur-mesure tout au
+            long du projet. Chaque meuble est conçu en étroite collaboration
+            avec nos clients, pour répondre parfaitement à leurs attentes.
           </p>
         </AnimatedText>
       </section>
       <CardsScroll />
 
       <section className="text-primary flex w-full flex-col gap-20 px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
-        <div className="left relative h-[400px] md:h-[600px] md:w-1/2">
-          <div>
-            <Image
-              src="/images/nem1.png"
-              alt="Random from Picsum"
-              fill
-              className="rounded-sm object-cover"
-              sizes="(max-width: 768px) 100vw, 80vw"
-              priority
-            />
-          </div>
+        <div className="left relative h-[400px] md:h-[700px] md:w-1/2">
+          <Image
+            src="/images/nem1.png"
+            alt="Random from Picsum"
+            fill
+            className="rounded-sm object-cover"
+            sizes="(max-width: 768px) 100vw, 80vw"
+            priority
+          />
         </div>
-        <div className="right md:w-1/2">
+
+        {/* RIGHT SIDE */}
+        <div className="right flex flex-col justify-between md:h-[700px] md:w-1/2">
+          {/* Top Content */}
           <div>
-            <AnimatedText>
-              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
-                FROM IDEA TO IMPACT
-              </h4> */}
-              <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
-                Designing experiences that resonate and scale
-              </h1>
-            </AnimatedText>
-            {/* <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
+            <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
+              Designing experiences that resonate and scale
+            </h1>
+            <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? <br />
               Nemwood est spécialisé dans la fabrication artisanale de tables,
               chaises, garde-robes, escaliers et même de décors pour le cinéma.
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? <br />
-              Nemwood est spécialisé dans la fabrication artisanale de tables,
-              chaises, garde-robes, escaliers et même de décors pour le cinéma.
-            </p> */}
-            <button className="font-HelveticaNow mt-10">
-              <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+            </p>
+          </div>
+
+          {/* Bottom Button */}
+          <div className="mt-10">
+            <button className="font-HelveticaNow">
+              <div className="border-primary hover:bg-primary hover:text-secondary inline-flex items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
                 <span>Read more</span>
                 <div className="mt-0.5 ml-1">
                   <ArrowRight size={18} strokeWidth={1.5} />

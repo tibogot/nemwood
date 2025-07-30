@@ -80,7 +80,7 @@ export default function Testimonial() {
     <>
       <section
         ref={containerRef}
-        className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-20 text-white md:px-8"
+        className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-30 text-white md:px-8"
       >
         <Image
           src="/images/testimonial.webp"
@@ -90,9 +90,9 @@ export default function Testimonial() {
           sizes="(max-width: 768px) 100vw, 80vw"
           priority
         />
-        <h1 className="font-ITCGaramondN text-secondary relative text-6xl md:text-8xl">
-          Testimonials
-        </h1>
+        {/* <h1 className="font-ITCGaramondN text-secondary relative text-6xl md:text-8xl">
+          Témoignages clients
+        </h1> */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
             {testimonials.map((testimonial, i) => (
