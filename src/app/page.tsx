@@ -86,7 +86,7 @@ export default function Home() {
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-7xl">
+            <h1 className="font-ITCGaramondN mb-6 text-5xl md:text-7xl">
               Meubles en bois sur mesure
             </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
@@ -147,7 +147,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="left flex flex-col items-center justify-center text-center md:w-1/2">
+        <div className="left mt-8 flex flex-col items-center justify-center text-center md:mt-0 md:w-1/2">
           <div className="w-full md:max-w-xl">
             {[
               "Un artisanat de haute qualité",
