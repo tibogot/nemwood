@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Logo from "./Logo";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -390,13 +391,10 @@ export default function Navigation() {
               href="/"
               className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
             >
-              <Image
-                src="/logofooter.svg"
-                alt="Logo"
+              <Logo
                 width={48}
                 height={48}
-                className="h-8 w-8 md:h-10 md:w-10"
-                priority
+                className="text-primary h-8 w-8 md:h-10 md:w-10"
               />
             </Link>
 

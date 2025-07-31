@@ -242,7 +242,10 @@ export default function Home() {
           ))}
         </ul>
         <div className="mt-6">
-          <Link href="/blog" className="font-medium underline">
+          <Link
+            href="/blog"
+            className="font-HelveticaNow text-primary font-medium underline"
+          >
             See all blog posts
           </Link>
         </div>

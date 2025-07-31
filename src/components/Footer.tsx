@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -74,13 +75,11 @@ export default function Footer() {
         <div className="flex flex-col space-y-4 text-sm text-gray-600 md:flex-row md:items-end md:justify-between md:space-y-0">
           <div className="flex flex-col space-y-3 md:flex-row md:items-end md:space-y-0 md:space-x-6">
             {/* Logo in bottom section */}
-            <div className="relative h-16 w-16 md:h-24 md:w-24">
-              <Image
-                src="/logofooter.svg"
-                alt="Logo"
-                fill
-                className="object-contain"
-                priority
+            <div className="h-16 w-16 md:h-24 md:w-24">
+              <Logo
+                width={96}
+                height={96}
+                className="text-primary h-full w-full"
               />
             </div>
             <div className="flex flex-col space-y-1">

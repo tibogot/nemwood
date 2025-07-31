@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Navigation5";
-import Footer from "@/components/Footer2";
+import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import SimplePageTransition from "@/components/SimplePageTransition";

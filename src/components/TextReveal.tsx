@@ -27,94 +27,99 @@ const BlurryTextReveal: React.FC = () => {
       const setupAnimation = () => {
         if (!titleRef.current || !sectionRef.current) return;
 
-        // Use GSAP's premium SplitText plugin if available
-        if (typeof SplitText !== "undefined") {
-          splitInstance = new SplitText(titleRef.current, {
-            type: "chars, words",
-            charsClass: "char",
-            wordsClass: "word",
-          }) as unknown as SplitTextInstance;
+        // Wait for fonts to load before initializing SplitText
+        document.fonts.ready.then(() => {
+          // Use GSAP's premium SplitText plugin if available
+          if (typeof SplitText !== "undefined") {
+            splitInstance = new SplitText(titleRef.current, {
+              type: "chars, words",
+              charsClass: "char",
+              wordsClass: "word",
+            }) as unknown as SplitTextInstance;
 
-          // Initial state
-          gsap.set(splitInstance.chars, {
-            filter: "blur(20px)",
-            opacity: 0,
-            y: 50,
-            rotateX: -90,
-            transformOrigin: "0% 50% -50",
-          });
+            // Initial state
+            gsap.set(splitInstance.chars, {
+              filter: "blur(20px)",
+              opacity: 0,
+              y: 50,
+              rotateX: -90,
+              transformOrigin: "0% 50% -50",
+            });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 80%",
-              end: "bottom 60%",
-              scrub: 1.2,
-            },
-          });
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                end: "bottom 60%",
+                scrub: 1.2,
+              },
+            });
 
-          tl.to(splitInstance.chars, {
-            filter: "blur(0px)",
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            stagger: {
-              amount: 1.5,
-              from: "start",
-            },
-            duration: 2,
-            ease: "power3.out",
-          });
-        } else {
-          // Fallback: manual character splitting
-          const text = titleRef.current;
-          const textContent = text.innerHTML;
+            tl.to(splitInstance.chars, {
+              filter: "blur(0px)",
+              opacity: 1,
+              y: 0,
+              rotateX: 0,
+              stagger: {
+                amount: 1.5,
+                from: "start",
+              },
+              duration: 2,
+              ease: "power3.out",
+            });
+          } else {
+            // Fallback: manual character splitting
+            const text = titleRef.current;
+            if (!text) return;
 
-          const chars = textContent
-            .split("")
-            .map((char: string) =>
-              char === " "
-                ? '<span class="char"> </span>'
-                : `<span class="char" style="display: inline-block;">${char}</span>`,
-            )
-            .join("");
+            const textContent = text.innerHTML;
 
-          text.innerHTML = chars;
+            const chars = textContent
+              .split("")
+              .map((char: string) =>
+                char === " "
+                  ? '<span class="char"> </span>'
+                  : `<span class="char" style="display: inline-block;">${char}</span>`,
+              )
+              .join("");
 
-          const charElements = text.querySelectorAll(
-            ".char",
-          ) as NodeListOf<HTMLElement>;
+            text.innerHTML = chars;
 
-          gsap.set(charElements, {
-            filter: "blur(20px)",
-            opacity: 0,
-            y: 50,
-            rotateX: -90,
-            transformOrigin: "0% 50% -50",
-          });
+            const charElements = text.querySelectorAll(
+              ".char",
+            ) as NodeListOf<HTMLElement>;
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 80%",
-              end: "bottom 60%",
-              scrub: 1.2,
-            },
-          });
+            gsap.set(charElements, {
+              filter: "blur(20px)",
+              opacity: 0,
+              y: 50,
+              rotateX: -90,
+              transformOrigin: "0% 50% -50",
+            });
 
-          tl.to(charElements, {
-            filter: "blur(0px)",
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            stagger: {
-              amount: 1.5,
-              from: "start",
-            },
-            duration: 2,
-            ease: "power3.out",
-          });
-        }
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                end: "bottom 60%",
+                scrub: 1.2,
+              },
+            });
+
+            tl.to(charElements, {
+              filter: "blur(0px)",
+              opacity: 1,
+              y: 0,
+              rotateX: 0,
+              stagger: {
+                amount: 1.5,
+                from: "start",
+              },
+              duration: 2,
+              ease: "power3.out",
+            });
+          }
+        });
       };
 
       setupAnimation();
@@ -136,7 +141,7 @@ const BlurryTextReveal: React.FC = () => {
     >
       <h1
         ref={titleRef}
-        className="font-ITCGaramondN mx-auto text-6xl md:w-3/4 md:text-9xl"
+        className="font-ITCGaramondN mx-auto max-w-6xl text-6xl md:text-9xl"
       >
         Créons quelque chose
         <span className="font-ITCGaramondNI"> d'incroyable</span> ensemble
