@@ -265,14 +265,15 @@ function ReverseCards() {
 
           {/* Text over Image */}
           <div className="z-10 mt-auto p-6 text-left text-white">
-            <h2
+            <h3
               ref={leftTitleRef}
               className="font-ITCGaramondN text-5xl leading-tight"
             >
-              Lights
-            </h2>
+              Aménagements intérieurs
+            </h3>
             <p ref={leftDescRef} className="font-NHD text-sm">
-              This is a small description for the left card.
+              Créations sur mesure pour optimiser et embellir vos espaces de
+              vie.
             </p>
             <button ref={leftButtonRef} className="font-HelveticaNow mt-4">
               <div className="border-secondary hover:border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
@@ -304,14 +305,15 @@ function ReverseCards() {
 
           {/* Text over Image */}
           <div className="z-10 mt-auto p-6 text-left text-white">
-            <h2
+            <h3
               ref={rightTitleRef}
               className="font-ITCGaramondN text-5xl leading-tight"
             >
-              Tables
-            </h2>
+              Mobilier design
+            </h3>
             <p ref={rightDescRef} className="font-NHD text-sm">
-              This is a small description for the left card.
+              Tables, chaises et meubles d'exception façonnés dans notre atelier
+              belge.{" "}
             </p>
             <button ref={rightButtonRef} className="font-HelveticaNow mt-4">
               <div className="border-secondary hover:border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">

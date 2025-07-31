@@ -30,9 +30,31 @@
   --color-accent: #89402c;
 }
 
-h3 {
-  @apply font-ITCGaramondN text-4xl md:text-8xl;
+@layer base {
+  h1 {
+    @apply font-ITCGaramondN text-5xl md:text-7xl;
+  }
+
+  h2 {
+    @apply font-ITCGaramondN text-4xl md:text-6xl;
+  }
+
+  h3 {
+    @apply font-ITCGaramondN text-3xl font-medium md:text-5xl;
+  }
+
+  /* p {
+    @apply text-base leading-relaxed text-neutral-800;
+  } */
+
+  /* a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  } */
 }
+
+/* h3 {
+  @apply font-ITCGaramondN text-4xl md:text-8xl;
+} */
 
 /* .line {
   position: relative;

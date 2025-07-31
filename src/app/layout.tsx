@@ -67,9 +67,23 @@ const neueHaasDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Nemwood – Fabricant de meubles en bois sur mesure en Belgique ",
+  title: "Nemwood | Meubles en bois sur mesure en Belgique - Artisan menuisier",
   description:
-    "Nemwood est un artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure.",
+    "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
+  keywords: [
+    "menuisier belgique",
+    "meubles bois sur mesure",
+    "escaliers bois belgique",
+    "garde-robe sur mesure",
+    "table bois massif",
+    "cuisine bois belgique",
+  ],
+  openGraph: {
+    title: "Nemwood - Meubles en bois sur mesure en Belgique",
+    description: "Fabrication artisanale de meubles en bois massif sur mesure.",
+    type: "website",
+    locale: "fr_BE",
+  },
 };
 
 export default function RootLayout({
@@ -78,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}

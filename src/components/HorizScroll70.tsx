@@ -5,8 +5,6 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +18,6 @@ const HorizScroll: React.FC = () => {
     {
       number: "1/4",
       title: "Escaliers",
-      slug: "escaliers",
       description:
         "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale.",
       image: "/images/stairs.webp",
@@ -28,7 +25,6 @@ const HorizScroll: React.FC = () => {
     {
       number: "2/4",
       title: "Garde-robes",
-      slug: "garde-robes",
       description:
         "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
       image: "/images/wardrobe.webp",
@@ -36,7 +32,6 @@ const HorizScroll: React.FC = () => {
     {
       number: "3/4",
       title: "Tables",
-      slug: "tables",
       description:
         "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.",
       image: "/images/table.webp",
@@ -44,7 +39,6 @@ const HorizScroll: React.FC = () => {
     {
       number: "4/4",
       title: "Cuisines",
-      slug: "cuisines",
       description:
         "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
       image: "/images/kitchen.webp",
@@ -156,21 +150,9 @@ const HorizScroll: React.FC = () => {
                     {section.title}
                   </h3>
                 </div>
-                <div>
-                  <p className="font-HelveticaNow mb-6 w-1/2 text-lg leading-tight">
-                    {section.description}
-                  </p>
-                  <Link href={`/services/${section.slug}`}>
-                    <button className="font-HelveticaNow">
-                      <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                        <span>En savoir plus</span>
-                        <div className="mt-0.5 ml-1">
-                          <ArrowRight size={18} strokeWidth={1.5} />
-                        </div>
-                      </div>
-                    </button>
-                  </Link>
-                </div>
+                <p className="font-HelveticaNow w-1/2 text-lg leading-tight">
+                  {section.description}
+                </p>
               </div>
 
               <div className="group h-full w-1/2 cursor-pointer overflow-hidden">

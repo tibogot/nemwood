@@ -168,19 +168,19 @@ function CardsScroll() {
           className="main-content absolute top-1/2 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8"
           ref={mainContentRef}
         >
-          <div className="copy font-ITCGaramondN text-primary flex flex-col items-center justify-center text-6xl">
-            <p ref={titleRef}>
-              Meubles en bois <br />
-              sur mesure
-            </p>
+          <div className="copy text-primary flex flex-col items-center justify-center">
+            <h3 ref={titleRef}>
+              Nos spécialités <br />
+              artisanales
+            </h3>
             <p
               ref={descriptionRef}
               className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-2xl"
             >
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? Nemwood est spécialisé dans la
-              fabrication artisanale de tables, chaises, garde-robes, escaliers
-              et même de décors pour le cinéma.
+              Découvrez notre gamme complète : escaliers sur mesure, garde-robes
+              personnalisées, tables uniques et cuisines en bois massif. Chaque
+              création est pensée pour s'harmoniser parfaitement avec votre
+              intérieur.
             </p>
           </div>
         </div>

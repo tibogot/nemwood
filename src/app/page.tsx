@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="wrapper bg-secondary">
+    <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* <Image
@@ -68,12 +68,13 @@ export default function Home() {
           quality={100}
           priority
         />
-        <AnimatedText isHero={true} duration={1.2}>
-          <p className="font-NHD relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
-            Mobilier sur mesure
-          </p>
-        </AnimatedText>
-
+        <header className="hero-header">
+          <AnimatedText isHero={true} duration={1.2}>
+            <p className="font-NHD relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
+              Mobilier sur mesure en Belgique
+            </p>
+          </AnimatedText>
+        </header>
         {/* <div className="relative z-10 mx-auto flex flex-col items-center text-center select-none">
           <p className="font-ITCGaramondN text-2xl leading-tight text-white">
             Scroll
@@ -86,9 +87,7 @@ export default function Home() {
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-5xl md:text-7xl">
-              Meubles en bois sur mesure
-            </h1>
+            <h1 className="mb-6">Meubles en bois sur mesure</h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la
@@ -96,7 +95,7 @@ export default function Home() {
               et même de décors pour le cinéma.
             </p>
             <p className="font-HelveticaNow text-primary/70 mx-auto mt-4 max-w-2xl text-sm leading-tight">
-              Operating since 2016.
+              En activité depuis 2016 en Belgique.{" "}
             </p>
           </AnimatedText>
         </div>
@@ -120,12 +119,12 @@ export default function Home() {
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
-              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
-                FROM IDEA TO IMPACT
-              </h4> */}
-              <h1 className="font-ITCGaramondN mt-8 text-4xl leading-none md:max-w-xl md:text-6xl">
+              <h4 className="font-HelveticaNow text-primary/70 text-sm">
+                A PROPOS
+              </h4>
+              <h2 className="mt-8 md:max-w-xl">
                 Fabrication artisanale par Nemwood
-              </h1>
+              </h2>
             </AnimatedText>
             <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
               Chez Nemwood, chaque meuble est une œuvre unique. Spécialisés dans
@@ -139,7 +138,7 @@ export default function Home() {
             </p>
             <button className="font-HelveticaNow mt-10">
               <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                <span>Read more</span>
+                <span>En savoir plus</span>
                 <div className="mt-0.5 ml-1">
                   <ArrowRight size={18} strokeWidth={1.5} />
                 </div>
@@ -213,7 +212,7 @@ export default function Home() {
           <div className="mt-10">
             <button className="font-HelveticaNow">
               <div className="border-primary hover:bg-primary hover:text-secondary inline-flex items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                <span>Read more</span>
+                <span>En savoir plus</span>
                 <div className="mt-0.5 ml-1">
                   <ArrowRight size={18} strokeWidth={1.5} />
                 </div>
@@ -246,10 +245,10 @@ export default function Home() {
             href="/blog"
             className="font-HelveticaNow text-primary font-medium underline"
           >
-            See all blog posts
+            Voir tous les articles
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
