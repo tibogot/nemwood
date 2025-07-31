@@ -72,7 +72,7 @@ export default function Footer() {
 
       {/* Bottom Copyright Section */}
       <div className="mt-8 border-t border-gray-300 pt-6 md:border-none md:pt-4">
-        <div className="flex flex-col space-y-4 text-sm text-gray-600 md:flex-row md:items-end md:justify-between md:space-y-0">
+        <div className="flex flex-row space-y-4 text-sm text-gray-600 md:flex-row md:items-end md:justify-between md:space-y-0">
           <div className="flex flex-col space-y-3 md:flex-row md:items-end md:space-y-0 md:space-x-6">
             {/* Logo in bottom section */}
             <div className="h-16 w-16 md:h-24 md:w-24">
@@ -82,17 +82,17 @@ export default function Footer() {
                 className="text-primary h-full w-full"
               />
             </div>
-            <div className="flex flex-col space-y-1">
+            <div className="mt-4 flex flex-col space-y-1">
               <span>© 2025 Tous droits réservés</span>
-              <div className="flex flex-col space-y-1">
+              {/* <div className="flex flex-col space-y-1">
                 <span>+33 1 23 45 67 89</span>
                 <span>contact@exemple.fr</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Legal Links */}
-          <div className="flex flex-col space-y-2 text-left md:flex-row md:space-y-0 md:space-x-6 md:text-right">
+          <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
             <Link
               href="/mentions-legales"
               className="transition-opacity hover:opacity-70"

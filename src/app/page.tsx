@@ -231,7 +231,7 @@ export default function Home() {
       {/* Blog Previews Section */}
       <section className="px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col items-center">
-          <h2 className="font-ITCGaramondN text-primary text-8xl">
+          <h2 className="font-ITCGaramondN text-primary text-6xl md:text-8xl">
             Actualités
           </h2>
         </div>
