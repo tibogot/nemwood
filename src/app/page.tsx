@@ -69,7 +69,7 @@ export default function Home() {
           priority
         />
         <AnimatedText isHero={true} duration={1.2}>
-          <p className="font-NHD text-secondary relative z-10 max-w-2xl text-center text-sm uppercase">
+          <p className="font-NHD relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
             Mobilier sur mesure
           </p>
         </AnimatedText>

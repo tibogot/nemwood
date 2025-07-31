@@ -8,9 +8,9 @@ export default function Footer() {
       {/* Top Section */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Left Side - Navigation */}
-        <div className="left flex w-full flex-col md:w-1/2">
+        {/* <div className="left flex w-full flex-col md:w-1/2">
           <nav className="mt-8 mb-8 md:mt-20">
-            {/* <ul className="space-y-2 md:space-y-1">
+            <ul className="space-y-2 md:space-y-1">
               <li>
                 <Link
                   href="/about"
@@ -43,9 +43,9 @@ export default function Footer() {
                   Boutique
                 </Link>
               </li>
-            </ul> */}
+            </ul>
           </nav>
-        </div>
+        </div> */}
 
         {/* Right Side - Content */}
         <div className="right flex w-full flex-col md:w-1/2">
