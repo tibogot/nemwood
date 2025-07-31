@@ -171,17 +171,17 @@ function CardsScroll() {
           ref={mainContentRef}
         >
           <div className="copy text-primary flex flex-col items-center justify-center">
-            <div className="mb-8 h-16 w-16 md:h-24 md:w-24">
+            {/* <div className="mb-8 h-16 w-16 md:h-24 md:w-24">
               <Logo
                 width={96}
                 height={96}
                 className="text-primary h-full w-full"
               />
-            </div>
-            {/* <h3 ref={titleRef}>
+            </div> */}
+            <h3 ref={titleRef}>
               Nos spécialités <br />
               artisanales
-            </h3> */}
+            </h3>
             <p
               ref={descriptionRef}
               className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-lg"
@@ -191,14 +191,16 @@ function CardsScroll() {
               création est pensée pour s'harmoniser parfaitement avec votre
               intérieur.
             </p>
-            <button className="font-HelveticaNow mt-10">
-              <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                <span>En savoir plus</span>
-                <div className="mt-0.5 ml-1">
-                  <ArrowRight size={18} strokeWidth={1.5} />
+            <Link href="/services">
+              <button className="font-HelveticaNow mt-10">
+                <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                  <span>En savoir plus</span>
+                  <div className="mt-0.5 ml-1">
+                    <ArrowRight size={18} strokeWidth={1.5} />
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
         {generateRows()}

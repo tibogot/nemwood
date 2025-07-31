@@ -136,14 +136,16 @@ export default function Home() {
               pièces uniques, durables et parfaitement adaptées à vos
               besoins.{" "}
             </p>
-            <button className="font-HelveticaNow mt-10">
-              <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                <span>En savoir plus</span>
-                <div className="mt-0.5 ml-1">
-                  <ArrowRight size={18} strokeWidth={1.5} />
+            <Link href="/about">
+              <button className="font-HelveticaNow mt-10">
+                <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                  <span>En savoir plus</span>
+                  <div className="mt-0.5 ml-1">
+                    <ArrowRight size={18} strokeWidth={1.5} />
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
         <div className="left mt-8 flex flex-col items-center justify-center text-center md:mt-0 md:w-1/2">

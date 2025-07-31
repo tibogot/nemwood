@@ -139,13 +139,13 @@ const BlurryTextReveal: React.FC = () => {
       ref={sectionRef}
       className="text-primary mx-auto w-full px-4 text-center md:px-8"
     >
-      <h1
+      <span
         ref={titleRef}
         className="font-ITCGaramondN mx-auto max-w-6xl text-6xl md:text-9xl"
       >
         Créons quelque chose
         <span className="font-ITCGaramondNI"> d'incroyable</span> ensemble
-      </h1>
+      </span>
     </section>
   );
 };

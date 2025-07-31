@@ -49,10 +49,10 @@ export default function Footer() {
 
         {/* Right Side - Content */}
         <div className="right flex w-full flex-col md:w-1/2">
-          <h1 className="font-ITCGaramondN mt-8 mb-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
+          <h5 className="font-ITCGaramondN mt-8 mb-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
             Chaque pièce est réalisée à la main, dans un souci de qualité, de
             durabilité et de design unique.
-          </h1>
+          </h5>
 
           {/* Newsletter Subscription */}
           <div className="mt-6 md:mt-8">
