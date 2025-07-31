@@ -10,18 +10,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    name: "Sophie Dubois",
-    text: `L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle.`,
+    name: "Rachel Bornstein",
+    text: `Oyom has been shaped by kindred spirits, a community of sorts, all seekers themselves, with a deep desire to create and experience a healthier world.`,
     image: "https://picsum.photos/id/1011/400/300",
   },
   {
-    name: "Marc Lefevre",
-    text: `Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité.`,
+    name: "James Carter",
+    text: `This community changed my life! It's like a warm hug for the soul.`,
     image: "https://picsum.photos/id/1027/400/300",
   },
   {
-    name: "Claire Martinez",
-    text: `Des garde-robes parfaitement intégrées qui optimisent notre espace. Le savoir-faire traditionnel au service du design contemporain.`,
+    name: "Lena Smith",
+    text: `A place of growth, healing, and connection.`,
     image: "https://picsum.photos/id/1005/400/300",
   },
 ];
@@ -98,28 +98,21 @@ export default function Testimonial() {
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-2xl md:h-[450px] md:w-[350px]"
+                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[450px] w-[350px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-2xl"
                 style={{ zIndex: i + 1 }}
               >
-                {/* Main content - blockquote takes up most space */}
-                <div className="flex flex-1 items-center justify-center">
-                  <blockquote className="font-NHD text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
-                    <span className="font-NHD text-5xl">“</span>
-                    {testimonial.text}
-                    <span className="font-NHD inline-block align-top text-5xl leading-none">
-                      “
-                    </span>
-                  </blockquote>
-                </div>
-
-                {/* Bottom section with profile image and name */}
-                <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
+                <div className="flex-1">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="border-primary/20 h-12 w-12 rounded-full border-2 object-cover md:h-14 md:w-14"
+                    className="h-48 w-full rounded-sm object-cover"
                   />
-                  <p className="font-NHD text-primary text-center text-xs tracking-wide uppercase md:text-sm">
+                  <blockquote className="font-NHD text-primary mt-6 text-center text-lg leading-tight">
+                    “ {testimonial.text} “
+                  </blockquote>
+                </div>
+                <div className="mt-4 border-t pt-4">
+                  <p className="font-NHD text-primary text-center text-sm uppercase">
                     {testimonial.name}
                   </p>
                 </div>
