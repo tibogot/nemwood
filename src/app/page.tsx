@@ -61,7 +61,7 @@ export default function Home() {
         <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
         <Image
           className="relative z-10 h-auto w-full"
-          src="/logonew2.svg"
+          src="/logonew4.svg"
           alt="Logo"
           width={1200} // use a large width for SVG
           height={300} // adjust height proportionally

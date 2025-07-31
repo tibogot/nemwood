@@ -93,6 +93,15 @@ export default function Testimonial() {
         {/* <h1 className="font-ITCGaramondN text-secondary relative text-6xl md:text-8xl">
           Témoignages clients
         </h1> */}
+        <Image
+          className="relative h-auto w-full"
+          src="/logonew4.svg"
+          alt="Logo"
+          width={1200} // use a large width for SVG
+          height={300} // adjust height proportionally
+          quality={100}
+          priority
+        />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
             {testimonials.map((testimonial, i) => (

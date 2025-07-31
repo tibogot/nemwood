@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Logo from "./Logo";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -169,19 +171,34 @@ function CardsScroll() {
           ref={mainContentRef}
         >
           <div className="copy text-primary flex flex-col items-center justify-center">
-            <h3 ref={titleRef}>
+            <div className="mb-8 h-16 w-16 md:h-24 md:w-24">
+              <Logo
+                width={96}
+                height={96}
+                className="text-primary h-full w-full"
+              />
+            </div>
+            {/* <h3 ref={titleRef}>
               Nos spécialités <br />
               artisanales
-            </h3>
+            </h3> */}
             <p
               ref={descriptionRef}
-              className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-2xl"
+              className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-lg"
             >
               Découvrez notre gamme complète : escaliers sur mesure, garde-robes
               personnalisées, tables uniques et cuisines en bois massif. Chaque
               création est pensée pour s'harmoniser parfaitement avec votre
               intérieur.
             </p>
+            <button className="font-HelveticaNow mt-10">
+              <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                <span>En savoir plus</span>
+                <div className="mt-0.5 ml-1">
+                  <ArrowRight size={18} strokeWidth={1.5} />
+                </div>
+              </div>
+            </button>
           </div>
         </div>
         {generateRows()}
