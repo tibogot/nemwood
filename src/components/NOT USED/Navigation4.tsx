@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -15,6 +15,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const burgerLine1Ref = useRef<HTMLDivElement>(null);
@@ -427,6 +428,7 @@ export default function Navigation() {
                 ? "flex-col items-center justify-center space-y-8"
                 : "flex-row gap-8 md:gap-16"
             }`}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {navItems.map((item, index) => (
               <div
@@ -435,13 +437,19 @@ export default function Navigation() {
                   menuItemsRef.current[index] = el;
                 }}
                 className="group relative"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <Link
                   href={item.href}
-                  className={`font-ITCGaramondN text-primary hover:text-primary/50 block transition-all duration-300 ${
+                  className={`font-ITCGaramondN block transition-all duration-300 ${
                     isMobile
                       ? "text-center text-5xl sm:text-6xl"
                       : "text-4xl md:text-6xl lg:text-8xl"
+                  } ${
+                    hoveredIndex !== null && hoveredIndex !== index
+                      ? "text-primary/50"
+                      : "text-primary"
                   }`}
                   onClick={handleLinkClick}
                   style={{

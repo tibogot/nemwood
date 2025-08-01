@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import AnimatedText from "@/components/AnimatedText2";
+import AnimatedText from "@/components/NOT USED/AnimatedText2";
 
 export default function About() {
   return (
