@@ -27,9 +27,11 @@ export default async function BlogPostPage(props: any) {
 
   return (
     <main className="bg-secondary text-primary px-4 md:px-8">
-      <h1 className="font-ITCGaramondN mx-auto mb-4 max-w-2xl py-60 text-center text-6xl md:text-8xl">
-        {post.title}
-      </h1>
+      <div className="mx-auto py-60 text-center">
+        <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
+          {post.title}
+        </h1>
+      </div>
       {post.publishedAt && (
         <p className="mb-6 text-center text-sm text-gray-400">
           {new Date(post.publishedAt).toLocaleDateString()}
