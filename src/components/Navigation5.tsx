@@ -509,11 +509,11 @@ export default function Navigation() {
         </div>
 
         {/* Menu Content */}
-        <div className="flex h-full items-center px-4 py-8 md:items-end md:px-8 md:py-16">
+        <div className="flex h-full px-4 py-8 md:items-end md:px-8 md:py-16">
           <div
             className={`flex w-full ${
               isMobile
-                ? "flex-col items-center justify-center space-y-8"
+                ? "h-full flex-col items-center justify-center space-y-8"
                 : "flex-row gap-8 md:gap-16"
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
