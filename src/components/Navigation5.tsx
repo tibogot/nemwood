@@ -223,7 +223,7 @@ export default function Navigation() {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
-    const menuHeight = isMobile ? "100svh" : "60svh";
+    const menuHeight = isMobile ? "100vh" : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
