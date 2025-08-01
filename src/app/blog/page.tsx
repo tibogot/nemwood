@@ -20,7 +20,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <main className="text-primary bg-secondary px-4 pb-20 md:px-8">
+      <main className="text-primary bg-secondary px-4 md:px-8">
         <div className="mx-auto py-60 text-center">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
