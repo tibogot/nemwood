@@ -223,7 +223,7 @@ export default function Navigation() {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
-    const menuHeight = isMobile ? "100vh" : "60vh";
+    const menuHeight = isMobile ? "100svh" : "60svh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
@@ -509,7 +509,9 @@ export default function Navigation() {
         </div>
 
         {/* Menu Content */}
-        <div className="flex h-full px-4 py-8 md:items-end md:px-8 md:py-16">
+        <div
+          className={`flex h-full px-4 py-8 md:items-end md:px-8 md:py-16 ${isMobile ? "absolute inset-x-0 top-16 bottom-0" : ""}`}
+        >
           <div
             className={`flex w-full ${
               isMobile
