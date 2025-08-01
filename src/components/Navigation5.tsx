@@ -223,7 +223,7 @@ export default function Navigation() {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
-    const menuHeight = isMobile ? "100svh" : "60svh";
+    const menuHeight = isMobile ? "100vh" : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
@@ -466,7 +466,7 @@ export default function Navigation() {
         ref={menuRef}
         className="bg-secondary fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/30 backdrop-blur-sm select-none md:pb-8"
       >
-        <div className="h-16 px-4 md:px-8">
+        <div className="relative z-10 h-16 px-4 md:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo - Much Larger */}
             <Link
@@ -510,7 +510,7 @@ export default function Navigation() {
 
         {/* Menu Content */}
         <div
-          className={`flex h-full px-4 py-8 md:items-end md:px-8 md:py-16 ${isMobile ? "absolute inset-x-0 top-16 bottom-0" : ""}`}
+          className={`flex h-full px-4 md:items-end md:px-8 md:py-16 ${isMobile ? "absolute inset-0 py-0" : "py-8"}`}
         >
           <div
             className={`flex w-full ${
