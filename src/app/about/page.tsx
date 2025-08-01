@@ -17,7 +17,7 @@ export default function About() {
                 A propos
               </h3>
             </AnimatedText>
-            <p className="font-HelveticaNow pt-60 text-lg md:max-w-xl">
+            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la
               fabrication artisanale de tables, chaises, garde-robes, escaliers
@@ -74,7 +74,7 @@ export default function About() {
                 A propos
               </h3>
             </AnimatedText>
-            <p className="font-HelveticaNow pt-60 text-lg md:max-w-xl">
+            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la
               fabrication artisanale de tables, chaises, garde-robes, escaliers

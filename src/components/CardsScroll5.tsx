@@ -178,13 +178,13 @@ function CardsScroll() {
                 className="text-primary h-full w-full"
               />
             </div> */}
-            <h3 ref={titleRef}>
+            <h3 className="text-5xl md:text-7xl" ref={titleRef}>
               Nos spécialités <br />
               artisanales
             </h3>
             <p
               ref={descriptionRef}
-              className="font-HelveticaNow mx-auto mt-8 text-lg leading-tight md:max-w-lg"
+              className="font-HelveticaNow mx-auto mt-8 text-lg md:max-w-lg"
             >
               Découvrez notre gamme complète : escaliers sur mesure, garde-robes
               personnalisées, tables uniques et cuisines en bois massif. Chaque
