@@ -123,9 +123,19 @@ const HorizScroll: React.FC = () => {
                 <h3 className="font-ITCGaramondN text-primary mb-4 text-5xl leading-tight">
                   {section.title}
                 </h3>
-                <p className="font-HelveticaNow text-primary/80 text-base leading-relaxed">
+                <p className="font-HelveticaNow text-primary/80 mb-6 text-base leading-relaxed">
                   {section.description}
                 </p>
+                <Link href={`/services/${section.slug}`}>
+                  <button className="font-HelveticaNow">
+                    <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                      <span>En savoir plus</span>
+                      <div className="mt-0.5 ml-1">
+                        <ArrowRight size={18} strokeWidth={1.5} />
+                      </div>
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

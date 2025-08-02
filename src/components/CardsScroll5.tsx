@@ -14,12 +14,21 @@ function CardsScroll() {
   const mainContentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const mainRef = useRef<HTMLElement>(null); // Add ref for main section
+
+  // Store ScrollTrigger instances for proper cleanup
+  const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
+  const splitTextInstancesRef = useRef<any[]>([]);
 
   useEffect(() => {
+    let cleanup: (() => void) | null = null;
+
     // Wait for fonts to load before splitting
     document.fonts.ready.then(() => {
+      if (!mainRef.current) return; // Early return if component unmounted
+
       const scrollTriggerSettings = {
-        trigger: ".main",
+        trigger: mainRef.current, // Use ref instead of class selector
         start: "top 25%",
         toggleActions: "play reverse play reverse",
       };
@@ -35,36 +44,32 @@ function CardsScroll() {
         const cardLeft = row.querySelector(".card-left");
         const cardRight = row.querySelector(".card-right");
 
-        if (cardLeft) {
-          gsap.to(cardLeft, {
-            x: leftXValues[index],
-            scrollTrigger: {
-              trigger: ".main",
-              start: "top center",
-              end: "150% bottom",
-              scrub: true,
-              onUpdate: (self) => {
-                const progress = self.progress;
-                cardLeft.style.transform = `translateX(${progress * leftXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * leftRotationValues[index]}deg)`;
-              },
+        if (cardLeft && mainRef.current) {
+          const leftST = ScrollTrigger.create({
+            trigger: mainRef.current, // Use ref instead of class selector
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              cardLeft.style.transform = `translateX(${progress * leftXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * leftRotationValues[index]}deg)`;
             },
           });
+          scrollTriggersRef.current.push(leftST);
         }
 
-        if (cardRight) {
-          gsap.to(cardRight, {
-            x: rightXValues[index],
-            scrollTrigger: {
-              trigger: ".main",
-              start: "top center",
-              end: "150% bottom",
-              scrub: true,
-              onUpdate: (self) => {
-                const progress = self.progress;
-                cardRight.style.transform = `translateX(${progress * rightXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * rightRotationValues[index]}deg)`;
-              },
+        if (cardRight && mainRef.current) {
+          const rightST = ScrollTrigger.create({
+            trigger: mainRef.current, // Use ref instead of class selector
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              cardRight.style.transform = `translateX(${progress * rightXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * rightRotationValues[index]}deg)`;
             },
           });
+          scrollTriggersRef.current.push(rightST);
         }
       });
 
@@ -75,29 +80,32 @@ function CardsScroll() {
       if (titleRef.current) {
         titleSplit = SplitText.create(titleRef.current, {
           type: "lines",
-          mask: "lines", // Use built-in mask instead of clip-path
+          mask: "lines",
           autoSplit: true,
           onSplit: (self: any) => {
-            // Animate lines using the mask
-            return gsap.from(self.lines, {
+            const tl = gsap.from(self.lines, {
               yPercent: 100,
               stagger: 0.15,
               duration: 0.8,
               ease: "power2.out",
               scrollTrigger: scrollTriggerSettings,
             });
+            if (tl.scrollTrigger) {
+              scrollTriggersRef.current.push(tl.scrollTrigger);
+            }
+            return tl;
           },
         });
+        splitTextInstancesRef.current.push(titleSplit);
       }
 
       if (descriptionRef.current) {
         descriptionSplit = SplitText.create(descriptionRef.current, {
           type: "lines",
-          mask: "lines", // Use built-in mask instead of clip-path
+          mask: "lines",
           autoSplit: true,
           onSplit: (self: any) => {
-            // Animate lines with delay using the mask
-            return gsap.from(self.lines, {
+            const tl = gsap.from(self.lines, {
               yPercent: 100,
               stagger: 0.1,
               duration: 0.6,
@@ -105,37 +113,52 @@ function CardsScroll() {
               delay: 0.4,
               scrollTrigger: scrollTriggerSettings,
             });
+            if (tl.scrollTrigger) {
+              scrollTriggersRef.current.push(tl.scrollTrigger);
+            }
+            return tl;
           },
         });
+        splitTextInstancesRef.current.push(descriptionSplit);
       }
 
-      // Animate the main text content to stay centered relative to the moving cards
-      gsap.to(".main-content", {
-        y: -100,
-        scrollTrigger: {
-          trigger: ".main",
+      // Animate the main text content
+      if (mainContentRef.current && mainRef.current) {
+        const mainContentST = ScrollTrigger.create({
+          trigger: mainRef.current, // Use ref instead of class selector
           start: "top center",
           end: "150% bottom",
           scrub: true,
-        },
-      });
-
-      // Cleanup function
-      return () => {
-        // Kill all ScrollTriggers
-        ScrollTrigger.getAll().forEach((trigger) => {
-          trigger.kill();
+          animation: gsap.to(mainContentRef.current, {
+            y: -100,
+            ease: "none",
+          }),
         });
+        scrollTriggersRef.current.push(mainContentST);
+      }
+    });
 
-        // Properly clean up SplitText instances
-        if (titleSplit) {
-          titleSplit.revert();
+    // Cleanup function that works regardless of font loading
+    cleanup = () => {
+      // Kill only the ScrollTriggers created by this component
+      scrollTriggersRef.current.forEach((trigger) => {
+        if (trigger && trigger.kill) {
+          trigger.kill();
         }
-        if (descriptionSplit) {
-          descriptionSplit.revert();
+      });
+      scrollTriggersRef.current = [];
+
+      // Properly clean up SplitText instances
+      splitTextInstancesRef.current.forEach((splitInstance) => {
+        if (splitInstance && splitInstance.revert) {
+          splitInstance.revert();
         }
-      };
-    }); // End of document.fonts.ready.then()
+      });
+      splitTextInstancesRef.current = [];
+    };
+
+    // Return cleanup function
+    return cleanup;
   }, []);
 
   const generateRows = () => {
@@ -165,19 +188,15 @@ function CardsScroll() {
 
   return (
     <div>
-      <section className="main relative flex w-full flex-col items-center justify-center overflow-hidden text-center">
+      <section
+        ref={mainRef} // Add ref to main section
+        className="main relative flex w-full flex-col items-center justify-center overflow-hidden text-center"
+      >
         <div
           className="main-content absolute top-1/2 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8"
           ref={mainContentRef}
         >
           <div className="copy text-primary flex flex-col items-center justify-center">
-            {/* <div className="mb-8 h-16 w-16 md:h-24 md:w-24">
-              <Logo
-                width={96}
-                height={96}
-                className="text-primary h-full w-full"
-              />
-            </div> */}
             <h3 className="text-5xl md:text-7xl" ref={titleRef}>
               Nos spécialités <br />
               artisanales
