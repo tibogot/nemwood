@@ -26,7 +26,7 @@ export default async function BlogPostPage(props: any) {
   if (!post) return notFound();
 
   return (
-    <main className="bg-secondary text-primary px-4 md:px-8">
+    <main className="bg-secondary text-primary px-4 pb-20 md:px-8">
       <div className="mx-auto py-60 text-center">
         <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
           {post.title}
@@ -44,7 +44,7 @@ export default async function BlogPostPage(props: any) {
           className="mb-8 max-h-[620px] w-full rounded-sm object-cover"
         />
       )}
-      <div className="prose prose-lg font-NHD max-w-2xl">
+      <div className="font-NHD max-w-2xl text-xl">
         <PortableText value={post.body} />
       </div>
     </main>

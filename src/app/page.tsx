@@ -41,7 +41,7 @@ export default function Home() {
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/nemward.webp"
+          src="/images/nemwardrobe7.webp"
           alt="Hero Image"
           fill
           sizes="100vw"
@@ -58,7 +58,7 @@ export default function Home() {
         >
           <source src="/images/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div>
         <Image
           className="relative z-10 h-auto w-full"
           src="/logonew4.svg"

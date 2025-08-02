@@ -74,7 +74,7 @@ export default async function BlogPage() {
       </main>
       <section className="bg-secondary relative h-svh w-full">
         <Image
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 mt-10 h-full w-full object-cover md:mt-20"
           src="/images/nemward.webp"
           alt="Hero Image"
           fill
