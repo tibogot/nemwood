@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Logo from "./Logo";

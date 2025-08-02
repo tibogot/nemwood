@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ArrowRight } from "lucide-react";
 
 // Register ScrollTrigger plugin

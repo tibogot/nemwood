@@ -73,3 +73,44 @@
   background: var(--background);
   color: var(--foreground);
 } */
+
+/* VIEW TRANSITIONS - Layered page transitions */
+::view-transition-old(root) {
+  animation: fadeAndScale 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+::view-transition-new(root) {
+  animation: slideInFromBottom 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes fadeAndScale {
+  to {
+    transform: scale(0.95);
+    opacity: 0.4;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Custom transitions for specific elements */
+::view-transition-group(root) {
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Fallback for browsers that don't support view transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

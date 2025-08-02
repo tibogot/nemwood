@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

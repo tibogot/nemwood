@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { PortableText } from "@portabletext/react";
 
 interface BlogPreviewProps {

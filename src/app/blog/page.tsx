@@ -2,7 +2,7 @@ import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export default async function BlogPage() {
   const posts = await client.fetch(
