@@ -76,17 +76,17 @@
 
 /* VIEW TRANSITIONS - Layered page transitions */
 ::view-transition-old(root) {
-  animation: fadeAndScale 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation: moveUpAndDarken 0.8s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
 ::view-transition-new(root) {
-  animation: slideInFromBottom 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation: slideInFromBottom 0.8s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-@keyframes fadeAndScale {
+@keyframes moveUpAndDarken {
   to {
-    transform: scale(0.95);
-    opacity: 0.4;
+    transform: translateY(-180px);
+    filter: brightness(0.3);
   }
 }
 
@@ -104,7 +104,7 @@
 /* Custom transitions for specific elements */
 ::view-transition-group(root) {
   animation-duration: 0.8s;
-  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
 /* Fallback for browsers that don't support view transitions */
