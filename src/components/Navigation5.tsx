@@ -3,7 +3,7 @@
 import { Link } from "next-view-transitions";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Logo from "./Logo";
+import Logo from "./Logo2";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -267,19 +267,8 @@ export default function Navigation() {
       0.1,
     );
 
-    // 4. Logo fade animation on mobile
-    if (isMobile && logoRef.current) {
-      tl.to(
-        logoRef.current,
-        {
-          opacity: 0.3,
-          scale: 0.8,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        0.2,
-      );
-    }
+    // 4. Logo fade animation on mobile - REMOVED
+    // Logo now stays unchanged when menu opens
 
     // 5. Show menu items container with enhanced stagger
     tl.to(
@@ -355,19 +344,8 @@ export default function Navigation() {
       0.2,
     );
 
-    // 3. Restore logo on mobile
-    if (isMobile && logoRef.current) {
-      tl.to(
-        logoRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        0.3,
-      );
-    }
+    // 3. Restore logo on mobile - REMOVED
+    // Logo now stays unchanged when menu closes
 
     // 4. Hide overlay on mobile
     if (isMobile) {
@@ -474,11 +452,7 @@ export default function Navigation() {
               href="/"
               className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
             >
-              <Logo
-                width={48}
-                height={48}
-                className="text-primary h-8 w-8 md:h-10 md:w-10"
-              />
+              <Logo width={150} height={52} className="text-primary" />
             </Link>
 
             {/* Right side - Theme Toggle and Burger Menu */}
