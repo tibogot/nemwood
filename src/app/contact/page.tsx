@@ -23,33 +23,29 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <div className="bg-secondary">
+    <div className="bg-secondary text-primary">
       {/* Hero Section */}
-      <section className="text-primary px-4 pt-40 pb-20 md:px-8">
-        <div className="">
-          <AnimatedText isHero delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 max-w-4xl text-5xl leading-tight md:text-7xl">
-              Parlons de votre projet
-            </h1>
-            <p className="font-HelveticaNow mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-              Chaque création commence par une conversation. Partagez-nous votre
-              vision et découvrons ensemble comment donner vie à vos idées en
-              bois.
-            </p>
-          </AnimatedText>
+      <section className="px-4 py-20 md:px-8 md:py-64">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="mb-6 text-5xl md:text-7xl">Contactez-nous</h1>
+          <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+            Chaque création commence par une conversation. Partagez-nous votre
+            vision et découvrons ensemble comment donner vie à vos idées en
+            bois.
+          </p>
         </div>
       </section>
 
       {/* Main Contact Section */}
       <section className="px-4 pb-20 md:px-8">
         <div className="">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-8">
             {/* Left Side - Image and Info */}
             <div className="space-y-8">
               <div className="relative h-[400px] overflow-hidden rounded-sm md:h-[600px]">
                 <Image
                   className="object-cover transition-transform duration-700 hover:scale-105"
-                  src="/images/nemward.webp"
+                  src="/images/stairs.webp"
                   alt="Atelier Nemwood - Artisan menuisier au travail"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
