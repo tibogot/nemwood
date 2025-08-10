@@ -5,15 +5,26 @@ import AnimatedText from "@/components/NOT USED/AnimatedText2";
 
 export default function About() {
   return (
-    <div className="wrapper bg-secondary">
-      <section className="text-primary border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 pt-40 pb-20 md:flex-row md:px-8">
+    <div className="wrapper bg-secondary text-primary">
+      <section className="px-4 py-20 md:px-8 md:py-64">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="mb-6 text-5xl md:text-7xl">A propos</h1>
+          <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+            Vous cherchez un artisan menuisier en Belgique pour créer des
+            meubles en bois sur mesure ? Nemwood est spécialisé dans la
+            fabrication artisanale de tables, chaises, garde-robes, escaliers et
+            même de décors pour le cinéma.
+          </p>
+        </div>
+      </section>
+      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 pb-20 md:flex-row md:px-8 md:pb-40">
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
-              <h4 className="font-HelveticaNow text-primary/70 text-sm">
+              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
-              </h4>
-              <h3 className="font-ITCGaramondN mt-8 text-6xl leading-none md:max-w-xl">
+              </h4> */}
+              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
                 A propos
               </h3>
             </AnimatedText>
@@ -67,10 +78,10 @@ export default function About() {
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
-              <h4 className="font-HelveticaNow text-primary/70 text-sm">
+              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
-              </h4>
-              <h3 className="font-ITCGaramondN mt-8 text-6xl leading-none md:max-w-xl">
+              </h4> */}
+              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
                 A propos
               </h3>
             </AnimatedText>

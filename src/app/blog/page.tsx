@@ -21,7 +21,7 @@ export default async function BlogPage() {
   return (
     <>
       <main className="text-primary bg-secondary px-4 md:px-8">
-        <div className="mx-auto py-60 text-center">
+        <section className="mx-auto py-20 text-center md:py-64">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
               Nos dernières actualités
@@ -31,7 +31,7 @@ export default async function BlogPage() {
               votre intérieur.
             </p>
           </AnimatedText>
-        </div>
+        </section>
         <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-6">
           {posts.map((post: any) => (
             <li key={post._id} className="flex flex-col overflow-hidden">

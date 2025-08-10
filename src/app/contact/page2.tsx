@@ -39,9 +39,9 @@ export default function Contact() {
       {/* Main Contact Section */}
       <section className="px-4 pb-20 md:px-8 md:pb-40">
         <div className="">
-          <div className="flex w-full flex-col gap-10 md:flex-row">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-8">
             {/* Left Side - Image and Info */}
-            <div className="space-y-8 md:w-1/2">
+            <div className="space-y-8">
               <div className="relative h-[400px] overflow-hidden rounded-sm md:h-[600px]">
                 <Image
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -53,66 +53,132 @@ export default function Contact() {
                   priority
                 />
               </div>
+
+              {/* Contact Info */}
+              <div className="text-primary space-y-6">
+                <h3 className="font-ITCGaramondN text-3xl md:text-4xl">
+                  Nos coordonnées
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Mail className="text-primary/70 h-5 w-5 flex-shrink-0" />
+                    <a
+                      href="mailto:hello@nemwood.be"
+                      className="font-HelveticaNow hover:text-primary/80 transition-colors"
+                    >
+                      hello@nemwood.be
+                    </a>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <Phone className="text-primary/70 h-5 w-5 flex-shrink-0" />
+                    <a
+                      href="tel:+32123456789"
+                      className="font-HelveticaNow hover:text-primary/80 transition-colors"
+                    >
+                      +32 123 45 67 89
+                    </a>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <MapPin className="text-primary/70 h-5 w-5 flex-shrink-0" />
+                    <span className="font-HelveticaNow">Belgique</span>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <Clock className="text-primary/70 h-5 w-5 flex-shrink-0" />
+                    <div className="font-HelveticaNow">
+                      <p>Lun - Ven: 8h - 18h</p>
+                      <p className="text-primary/70">Sam: Sur rendez-vous</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="text-primary md:w-1/2">
-              <div className=" ">
-                {/* <h2 className="font-ITCGaramondN mb-6 text-4xl md:text-5xl">
+            <div className="text-primary">
+              <div className="bg-primary/5 rounded-sm p-8 md:p-10">
+                <h2 className="font-ITCGaramondN mb-6 text-3xl md:text-4xl">
                   Demande de devis
                 </h2>
                 <p className="font-HelveticaNow text-primary/80 mb-8">
                   Remplissez ce formulaire et nous vous recontacterons sous 24h
                   pour discuter de votre projet.
-                </p> */}
+                </p>
 
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
+                      <label
+                        htmlFor="firstName"
+                        className="font-HelveticaNow mb-2 block text-sm font-medium"
+                      >
+                        Prénom *
+                      </label>
                       <input
                         type="text"
                         id="firstName"
                         name="firstName"
                         required
-                        className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
+                        className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
                         placeholder="Votre prénom"
                       />
                     </div>
 
                     <div>
+                      <label
+                        htmlFor="lastName"
+                        className="font-HelveticaNow mb-2 block text-sm font-medium"
+                      >
+                        Nom *
+                      </label>
                       <input
                         type="text"
                         id="lastName"
                         name="lastName"
                         required
-                        className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
+                        className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
                         placeholder="Votre nom"
                       />
                     </div>
                   </div>
 
                   <div>
+                    <label
+                      htmlFor="email"
+                      className="font-HelveticaNow mb-2 block text-sm font-medium"
+                    >
+                      Email *
+                    </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
+                      className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
                       placeholder="votre@email.com"
                     />
                   </div>
 
                   <div>
+                    <label
+                      htmlFor="phone"
+                      className="font-HelveticaNow mb-2 block text-sm font-medium"
+                    >
+                      Téléphone
+                    </label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
+                      className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
                       placeholder="+32 123 45 67 89"
                     />
                   </div>
 
-                  {/* <div>
+                  <div>
                     <label
                       htmlFor="projectType"
                       className="font-HelveticaNow mb-2 block text-sm font-medium"
@@ -133,9 +199,9 @@ export default function Contact() {
                       <option value="bibliotheque">Bibliothèque</option>
                       <option value="autre">Autre projet</option>
                     </select>
-                  </div> */}
+                  </div>
 
-                  {/* <div>
+                  <div>
                     <label
                       htmlFor="budget"
                       className="font-HelveticaNow mb-2 block text-sm font-medium"
@@ -153,27 +219,33 @@ export default function Contact() {
                       <option value="5000-10000">5 000€ - 10 000€</option>
                       <option value="10000+">Plus de 10 000€</option>
                     </select>
-                  </div> */}
+                  </div>
 
                   <div>
+                    <label
+                      htmlFor="message"
+                      className="font-HelveticaNow mb-2 block text-sm font-medium"
+                    >
+                      Décrivez votre projet *
+                    </label>
                     <textarea
                       id="message"
                       name="message"
                       required
                       rows={6}
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full resize-none border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
+                      className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full resize-none rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
                       placeholder="Décrivez votre projet en détail : dimensions, style souhaité, contraintes particulières, délais..."
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="border-primary text-primary font-HelveticaNow hover:bg-primary hover:text-secondary cursor-pointer border px-8 py-2 font-medium transition-colors duration-300"
+                    className="bg-primary text-secondary font-HelveticaNow hover:bg-primary/90 w-full rounded-sm px-6 py-4 font-medium transition-colors duration-300"
                   >
                     Envoyer ma demande
                   </button>
 
-                  <p className="font-HelveticaNow text-primary/60 text-left text-sm">
+                  <p className="font-HelveticaNow text-primary/60 text-center text-sm">
                     En soumettant ce formulaire, vous acceptez d'être contacté
                     par notre équipe concernant votre projet.
                   </p>
@@ -185,7 +257,7 @@ export default function Contact() {
       </section>
 
       {/* Why Choose Us Section */}
-      {/* <section className="border-primary/20 border-t px-4 py-20 md:px-8">
+      <section className="border-primary/20 border-t px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl text-center">
           <AnimatedText>
             <h2 className="font-ITCGaramondN text-primary mb-12 text-4xl md:text-5xl">
@@ -225,7 +297,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
