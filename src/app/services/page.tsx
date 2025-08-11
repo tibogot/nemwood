@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import ParallaxImage from "@/components/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Services de menuiserie sur mesure en Belgique | Nemwood",
@@ -55,8 +56,15 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Full Width Image Section with Parallax */}
+      <ParallaxImage
+        src="/images/nemwardrobe7.webp"
+        alt="Nemwood craftsmanship showcase"
+        speed={1.5}
+      />
+
       {/* Services Grid */}
-      <section className="px-4 pb-20 md:px-8 md:pb-40">
+      <section className="px-4 py-20 md:px-8 md:py-40">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
             {services.map((service, index) => (

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import AnimatedText from "@/components/AnimatedText3";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import ParallaxImage from "@/components/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
@@ -112,49 +113,6 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* <div>
-                    <label
-                      htmlFor="projectType"
-                      className="font-HelveticaNow mb-2 block text-sm font-medium"
-                    >
-                      Type de projet *
-                    </label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      required
-                      className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
-                    >
-                      <option value="">Sélectionnez un type de projet</option>
-                      <option value="table">Table sur mesure</option>
-                      <option value="cuisine">Cuisine équipée</option>
-                      <option value="escalier">Escalier</option>
-                      <option value="garde-robe">Garde-robe</option>
-                      <option value="bibliotheque">Bibliothèque</option>
-                      <option value="autre">Autre projet</option>
-                    </select>
-                  </div> */}
-
-                  {/* <div>
-                    <label
-                      htmlFor="budget"
-                      className="font-HelveticaNow mb-2 block text-sm font-medium"
-                    >
-                      Budget approximatif
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      className="border-primary/20 bg-secondary focus:ring-primary/20 focus:border-primary/40 w-full rounded-sm border px-4 py-3 transition-colors focus:ring-2 focus:outline-none"
-                    >
-                      <option value="">Sélectionnez une fourchette</option>
-                      <option value="1000-3000">1 000€ - 3 000€</option>
-                      <option value="3000-5000">3 000€ - 5 000€</option>
-                      <option value="5000-10000">5 000€ - 10 000€</option>
-                      <option value="10000+">Plus de 10 000€</option>
-                    </select>
-                  </div> */}
-
                   <div>
                     <textarea
                       id="message"
@@ -183,49 +141,32 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      {/* Why Choose Us Section */}
-      {/* <section className="border-primary/20 border-t px-4 py-20 md:px-8">
-        <div className="mx-auto max-w-7xl text-center">
-          <AnimatedText>
-            <h2 className="font-ITCGaramondN text-primary mb-12 text-4xl md:text-5xl">
-              Pourquoi choisir Nemwood ?
-            </h2>
-          </AnimatedText>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="text-primary">
-              <h3 className="font-ITCGaramondN mb-4 text-2xl">
-                Artisanat traditionnel
-              </h3>
-              <p className="font-HelveticaNow text-primary/80">
-                Techniques ancestrales combinées aux outils modernes pour une
-                qualité exceptionnelle.
-              </p>
-            </div>
-
-            <div className="text-primary">
-              <h3 className="font-ITCGaramondN mb-4 text-2xl">
-                Sur mesure uniquement
-              </h3>
-              <p className="font-HelveticaNow text-primary/80">
-                Chaque pièce est conçue spécifiquement pour votre espace et vos
-                besoins.
-              </p>
-            </div>
-
-            <div className="text-primary">
-              <h3 className="font-ITCGaramondN mb-4 text-2xl">
-                Accompagnement complet
-              </h3>
-              <p className="font-HelveticaNow text-primary/80">
-                De la conception à l'installation, nous vous accompagnons à
-                chaque étape.
-              </p>
-            </div>
-          </div>
+      <section className="px-4 md:px-8">
+        <p className="font-HelveticaNow text-primary max-w-xl text-lg">
+          Oyom has been shaped by kindred spirits, a community of sorts, all
+          seekers themselves, with a deep desire to create and experience a
+          healthier world: physically, emotionally, spiritually. It is within
+          this small corner of the world that Oyom exists as the crowned jewel
+          of Kaiya,
+        </p>
+      </section>
+      <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
+        <div className="text-center">
+          <h2 className="font-ITCGaramondN text-4xl md:text-6xl lg:text-9xl">
+            Info@nemwood.com
+          </h2>
+          <h2 className="font-ITCGaramondN mt-4 text-4xl md:text-6xl lg:text-9xl">
+            0474 65 74 97
+          </h2>
         </div>
-      </section> */}
+      </section>
+
+      {/* Full Width Image Section with Parallax */}
+      <ParallaxImage
+        src="/images/nemohero.webp"
+        alt="Nemwood artisan woodworking"
+        speed={1.5}
+      />
     </div>
   );
 }

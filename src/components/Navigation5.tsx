@@ -3,7 +3,7 @@
 import { Link } from "next-view-transitions";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Logo from "./Logo2";
+import Logo from "./Logo3";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -451,8 +451,9 @@ export default function Navigation() {
               ref={logoRef}
               href="/"
               className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
+              style={{ transform: "translateY(-4px)" }}
             >
-              <Logo width={150} height={52} className="text-primary" />
+              <Logo width={120} height={52} className="text-primary" />
             </Link>
 
             {/* Right side - Theme Toggle and Burger Menu */}

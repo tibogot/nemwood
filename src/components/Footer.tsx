@@ -1,6 +1,6 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Logo from "./Logo2";
+import Logo from "./Logo3";
 
 export default function Footer() {
   return (
@@ -79,7 +79,7 @@ export default function Footer() {
               className="flex items-end"
               style={{ transform: "translateY(16px)" }}
             >
-              <Logo width={150} height={52} className="text-primary" />
+              <Logo width={220} height={52} className="text-primary" />
             </div>
             <div className="mt-4 flex flex-col space-y-1 md:mt-0">
               <span>© 2025 Tous droits réservés</span>

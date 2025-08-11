@@ -2,6 +2,8 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/NOT USED/AnimatedText2";
+import ParallaxImage from "@/components/ParallaxImage";
+import StickyStackScroll from "@/components/StickyStackScroll";
 
 export default function About() {
   return (
@@ -17,7 +19,15 @@ export default function About() {
           </p>
         </div>
       </section>
-      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 pb-20 md:flex-row md:px-8 md:pb-40">
+
+      {/* Full Width Image Section with Parallax */}
+      <ParallaxImage
+        src="/images/wardrobe.webp"
+        alt="Nemwood woodworking craftsmanship"
+        speed={1.5}
+      />
+
+      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
         <div className="left md:w-1/2">
           <div>
             <AnimatedText>
@@ -62,7 +72,7 @@ export default function About() {
           </p>
         </AnimatedText>
       </section>
-      <section className="relative flex h-[100svh] flex-col items-center justify-between bg-amber-200 pt-20 pb-10">
+      {/* <section className="relative flex h-[100svh] flex-col items-center justify-between bg-amber-200 pt-20 pb-10">
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/loft.webp"
@@ -72,8 +82,8 @@ export default function About() {
           quality={100}
           priority
         />
-        {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div> */}
-      </section>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>
+      </section> */}
       <section className="text-primary border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 pt-40 pb-20 md:flex-row-reverse md:px-8">
         <div className="left md:w-1/2">
           <div>
@@ -119,6 +129,10 @@ export default function About() {
           </p>
         </AnimatedText>
       </section>
+
+      {/* Sticky Stack Scroll Section */}
+      <StickyStackScroll />
+
       <section className="flex h-svh w-full items-center justify-center bg-amber-100 px-4 md:px-8">
         <div className="h-[600px] w-[400px] select-none">
           <Image
