@@ -19,6 +19,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const isTransitioning = useRef(false);
   const isMounted = useRef(false);
   const pathLengthRef = useRef<number | null>(null);
+  const isInitialLoad = useRef(true);
 
   useEffect(() => {
     const createBlocks = () => {
@@ -48,6 +49,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
             strokeDasharray: length,
             strokeDashoffset: length,
             fill: "transparent",
+            stroke: "currentColor",
           });
         } catch (error) {
           console.warn("PageTransition: Error setting up logo path:", error);
@@ -55,7 +57,12 @@ export default function PageTransition({ children }: PageTransitionProps) {
       }
     }
 
-    revealPage();
+    // Show loading animation on initial load, quick reveal on navigation
+    if (isInitialLoad.current) {
+      initialLoadSequence();
+    } else {
+      revealPage();
+    }
     isMounted.current = true;
 
     const handleRouteChange = (url: string) => {
@@ -142,6 +149,61 @@ export default function PageTransition({ children }: PageTransitionProps) {
         duration: 0.25,
         ease: "power2.inOut",
       });
+  };
+
+  const initialLoadSequence = () => {
+    // Start with everything visible (blocks covering screen)
+    gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
+    gsap.set(logoOverlayRef.current, { opacity: 1 });
+
+    const logoPath = logoRef.current?.querySelector("path");
+    if (logoPath && pathLengthRef.current !== null) {
+      gsap.set(logoPath, {
+        strokeDashoffset: pathLengthRef.current,
+        fill: "transparent",
+      });
+
+      // Initial loading sequence with logo animation
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isTransitioning.current = false;
+          isInitialLoad.current = false; // Mark that initial load is complete
+        },
+      });
+
+      // 1. Show logo drawing animation
+      tl.to(logoPath, {
+        strokeDashoffset: 0,
+        duration: 1.5,
+        ease: "power2.inOut",
+        delay: 0.5, // Small delay before logo starts
+      })
+        // 2. Hide logo overlay
+        .to(
+          logoOverlayRef.current,
+          {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.inOut",
+          },
+          "+=0.3",
+        )
+        // 3. Reveal page by sliding blocks away
+        .to(
+          blocksRef.current,
+          {
+            scaleX: 0,
+            duration: 0.6,
+            stagger: 0.03,
+            ease: "power2.out",
+            transformOrigin: "right",
+          },
+          "-=0.1",
+        );
+    } else {
+      // Fallback if logo path isn't available
+      revealPage();
+    }
   };
 
   const revealPage = () => {
