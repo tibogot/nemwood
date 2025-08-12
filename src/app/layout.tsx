@@ -98,16 +98,16 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
       >
-        <PageTransition>
-          <ThemeProvider>
+        <ThemeProvider>
+          <PageTransition>
             <LenisProvider>
               <ScrollToTop />
               <Navigation />
               <main className="">{children}</main>
               <Footer />
             </LenisProvider>
-          </ThemeProvider>
-        </PageTransition>
+          </PageTransition>
+        </ThemeProvider>
       </body>
     </html>
   );
