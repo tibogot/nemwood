@@ -17,27 +17,20 @@ function Card1() {
       <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
-          <div className="flex w-full items-start md:w-1/12">
-            <span className="text-sm leading-none">01</span>
+          <div className="flex w-full items-start pt-2 md:w-1/12">
+            <span className="text-sm leading-none font-light">01</span>
           </div>
 
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Deep Specialization
-              </h2>
+              <h2 className="text-4xl leading-none font-light">Planning</h2>
 
               <div className="mt-12" />
 
-              <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                With decades of combined experience, Stack’s specialists have
-                unmatched insight into their sectors. By leveraging extensive
-                industry relationships and AI-powered applied research, our
-                teams systematically uncover emerging opportunities and critical
-                market challenges. We then partner with the innovators best
-                positioned to address these issues, ensuring they generate
-                meaningful, lasting value.{" "}
+              <p className="max-w-lg text-lg leading-relaxed">
+                Creating an ordered timeline of events, staffing the project and
+                determining the necessary materials and equipments.
               </p>
             </div>
 
@@ -72,31 +65,23 @@ function Card1() {
 function Card2() {
   return (
     <div className="card relative w-full" id="card-2">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-20 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
-          <div className="flex w-full items-start md:w-1/12">
-            <span className="text-sm leading-none">02</span>
+          <div className="flex w-full items-start pt-2 md:w-1/12">
+            <span className="text-sm leading-none font-light">02</span>
           </div>
 
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Modular Portfolio Construction
-              </h2>
+              <h2 className="text-4xl leading-none font-light">Design</h2>
 
               <div className="mt-12" />
 
-              <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Every Stack fund operates as a standardized modular building
-                block, empowering LPs to design custom private-market portfolios
-                aligned precisely to their strategic priorities. Rather than
-                selecting managers, LPs choose sectors—assembling targeted
-                exposures to meet exact investment goals. This modular approach
-                delivers clarity, precision, and tailored control, redefining
-                portfolio construction as an intentional, sector-driven
-                allocation strategy.
+              <p className="max-w-lg text-lg leading-relaxed">
+                We work hard to develop innovative and cost-effective solutions
+                for our client both public and private.
               </p>
             </div>
 
@@ -131,30 +116,24 @@ function Card2() {
 function Card3() {
   return (
     <div className="card relative w-full" id="card-3">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-40 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
-          <div className="flex w-full items-start md:w-1/12">
-            <span className="text-sm leading-none">03</span>
+          <div className="flex w-full items-start pt-2 md:w-1/12">
+            <span className="text-sm leading-none font-light">03</span>
           </div>
 
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Institutional-Grade Infrastructure
-              </h2>
+              <h2 className="text-4xl leading-none font-light">Operation</h2>
 
               <div className="mt-12" />
 
-              <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Stack’s scalable digital-first and AI-powered operational
-                infrastructure ensures every fund benefits from uniformity in
-                processes, compliance, reporting, and risk management. By
-                centralizing and standardizing these operational elements across
-                all funds, Stack delivers consistency and reliability, allowing
-                partners to focus solely on their core strategic
-                objectives.{" "}
+              <p className="max-w-lg text-lg leading-relaxed">
+                We emphasize on a broad spectrum of services, competences,
+                processes and tools to assure the built environment will perform
+                the functions for which a facility was designed and constructed.
               </p>
             </div>
 
@@ -189,21 +168,21 @@ function Card3() {
 function Card4() {
   return (
     <div className="card relative w-full" id="card-4">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-60 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
-          <div className="flex w-full items-start md:w-1/12">
-            <span className="text-sm leading-none">04</span>
+          <div className="flex w-full items-start pt-2 md:w-1/12">
+            <span className="text-sm leading-none font-light">04</span>
           </div>
 
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">Construction</h2>
+              <h2 className="text-4xl leading-none font-light">Construction</h2>
 
               <div className="mt-12" />
 
-              <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
+              <p className="max-w-lg text-lg leading-relaxed">
                 Innovative execution methods to deliver safe, high quality
                 project is the foundation of our business and success.
               </p>
@@ -303,78 +282,65 @@ export default function HomeCard() {
       lenis.on("scroll", handleScroll);
 
       // Desktop settings only
-      const startPosition = "top 20%";
+      const startPosition = "top 35%";
       const endPosition = "top 30%";
       // Stop pinning when cards have stacked enough - before outro reaches top
       const cardEndPosition = "top 50%";
       const yOffset = 8;
 
-      // Remove intro pinning to avoid interference with card pinning
-      // const introPinCtx = gsap.context(() => {
-      //   ScrollTrigger.create({
-      //     trigger: cards[0],
-      //     start: startPosition,
-      //     endTrigger: cards[cards.length - 1],
-      //     end: endPosition,
-      //     pin: ".intro",
-      //     pinSpacing: false,
-      //     scroller: document.body,
-      //   });
-      // });
-
-      // PIN: Pin the first card during the entire animation
-      const firstCardPinCtx = gsap.context(() => {
+      // Create a context for the intro pin
+      const introPinCtx = gsap.context(() => {
         ScrollTrigger.create({
           trigger: cards[0],
           start: startPosition,
           endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[0], // Pin the first card
+          end: endPosition,
+          pin: ".intro",
           pinSpacing: false,
           scroller: document.body,
         });
       });
 
-      // PIN: Pin the second card when it reaches the first card
-      const secondCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[1],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[1], // Pin the second card too
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+      // Array to store all card animation contexts
+      const cardContexts: gsap.Context[] = [];
 
-      // PIN: Pin the third card
-      const thirdCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[2],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[2], // Pin the third card
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+      cards.forEach((card, index) => {
+        const isLastCard = index === cards.length - 1;
+        const cardInner = card.querySelector(".card-inner") as HTMLElement;
 
-      // PIN: Pin the fourth card
-      const fourthCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[3],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[3], // Pin the fourth card
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+        if (!isLastCard && cardInner) {
+          // Pin each card except the last one
+          const pinCtx = gsap.context(() => {
+            ScrollTrigger.create({
+              trigger: card,
+              start: startPosition,
+              endTrigger: cards[cards.length - 1], // End when last card starts
+              end: "top 35%", // Stop pinning when last card reaches start position
+              pin: true,
+              pinSpacing: false,
+              scroller: document.body,
+            });
+          });
 
-      // No more GSAP animations needed - all cards are positioned with CSS and pinned
+          // Create stacking animation - move card up slightly
+          const animCtx = gsap.context(() => {
+            gsap.to(cardInner, {
+              y: `-${(cards.length - index - 1) * yOffset}vh`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: startPosition,
+                endTrigger: cards[cards.length - 1],
+                end: "top 35%",
+                scrub: true,
+                scroller: document.body,
+              },
+            });
+          });
+
+          cardContexts.push(pinCtx, animCtx);
+        }
+      });
 
       // Refresh ScrollTrigger after setup with proper timing
       ScrollTrigger.refresh();
@@ -392,11 +358,8 @@ export default function HomeCard() {
         }
 
         // Clean up all contexts
-        // introPinCtx.revert(); // Commented out since we removed intro pinning
-        firstCardPinCtx.revert();
-        secondCardPinCtx.revert();
-        thirdCardPinCtx.revert();
-        fourthCardPinCtx.revert();
+        introPinCtx.revert();
+        cardContexts.forEach((ctx) => ctx.revert());
       };
     },
     {
@@ -441,12 +404,12 @@ export default function HomeCard() {
         </div>
         <div className="w-full text-base md:flex md:text-lg lg:text-xl">
           <div className="left md:w-3/4">
-            {/* <p className="font-HelveticaNow text-primary/80 mt-8 md:mt-14 md:w-1/2">
+            <p className="font-HelveticaNow text-primary/80 mt-8 md:mt-14 md:w-1/2">
               At COAN West Africa Limited, our mission extends beyond
               construction – we are nation builders committed to creating
               sustainable infrastructure that enhances quality of life, promotes
               economic development, and connects communities across Nigeria.
-            </p> */}
+            </p>
           </div>
           <div className="right mt-6 md:mt-0 md:w-1/2">
             {/* <Copy>

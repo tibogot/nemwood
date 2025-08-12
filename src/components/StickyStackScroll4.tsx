@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
+import AnimatedText from "./AnimatedText3";
 // import Copy from "../components/Copy1";
 // import Button from "../components/Buttons";
 
@@ -72,7 +73,7 @@ function Card1() {
 function Card2() {
   return (
     <div className="card relative w-full" id="card-2">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-20 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
           <div className="flex w-full items-start md:w-1/12">
@@ -131,7 +132,7 @@ function Card2() {
 function Card3() {
   return (
     <div className="card relative w-full" id="card-3">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-40 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
           <div className="flex w-full items-start md:w-1/12">
@@ -189,7 +190,7 @@ function Card3() {
 function Card4() {
   return (
     <div className="card relative w-full" id="card-4">
-      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:translate-y-60 md:transform md:px-8 md:py-6">
+      <div className="card-inner bg-secondary text-primary border-primary/30 h-[600px] w-full overflow-hidden border-t px-4 py-4 md:h-[600px] md:px-8 md:py-6">
         <div className="flex h-full w-full flex-col md:flex-row">
           {/* Number */}
           <div className="flex w-full items-start md:w-1/12">
@@ -309,72 +310,59 @@ export default function HomeCard() {
       const cardEndPosition = "top 50%";
       const yOffset = 8;
 
-      // Remove intro pinning to avoid interference with card pinning
-      // const introPinCtx = gsap.context(() => {
-      //   ScrollTrigger.create({
-      //     trigger: cards[0],
-      //     start: startPosition,
-      //     endTrigger: cards[cards.length - 1],
-      //     end: endPosition,
-      //     pin: ".intro",
-      //     pinSpacing: false,
-      //     scroller: document.body,
-      //   });
-      // });
-
-      // PIN: Pin the first card during the entire animation
-      const firstCardPinCtx = gsap.context(() => {
+      // Create a context for the intro pin
+      const introPinCtx = gsap.context(() => {
         ScrollTrigger.create({
           trigger: cards[0],
           start: startPosition,
           endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[0], // Pin the first card
+          end: endPosition,
+          pin: ".intro",
           pinSpacing: false,
           scroller: document.body,
         });
       });
 
-      // PIN: Pin the second card when it reaches the first card
-      const secondCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[1],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[1], // Pin the second card too
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+      // Array to store all card animation contexts
+      const cardContexts: gsap.Context[] = [];
 
-      // PIN: Pin the third card
-      const thirdCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[2],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[2], // Pin the third card
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+      cards.forEach((card, index) => {
+        const isLastCard = index === cards.length - 1;
+        const cardInner = card.querySelector(".card-inner") as HTMLElement;
 
-      // PIN: Pin the fourth card
-      const fourthCardPinCtx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: cards[3],
-          start: startPosition,
-          endTrigger: cards[cards.length - 1],
-          end: "top 20%",
-          pin: cards[3], // Pin the fourth card
-          pinSpacing: false,
-          scroller: document.body,
-        });
-      });
+        if (!isLastCard && cardInner) {
+          // Pin each card except the last one
+          const pinCtx = gsap.context(() => {
+            ScrollTrigger.create({
+              trigger: card,
+              start: startPosition,
+              endTrigger: cards[cards.length - 1], // End when last card starts
+              end: "top 20%", // Stop pinning when last card reaches start position
+              pin: true,
+              pinSpacing: false,
+              scroller: document.body,
+            });
+          });
 
-      // No more GSAP animations needed - all cards are positioned with CSS and pinned
+          // Create stacking animation - move card up slightly
+          const animCtx = gsap.context(() => {
+            gsap.to(cardInner, {
+              y: `-${(cards.length - index - 1) * yOffset}vh`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: startPosition,
+                endTrigger: cards[cards.length - 1],
+                end: "top 20%",
+                scrub: true,
+                scroller: document.body,
+              },
+            });
+          });
+
+          cardContexts.push(pinCtx, animCtx);
+        }
+      });
 
       // Refresh ScrollTrigger after setup with proper timing
       ScrollTrigger.refresh();
@@ -392,11 +380,8 @@ export default function HomeCard() {
         }
 
         // Clean up all contexts
-        // introPinCtx.revert(); // Commented out since we removed intro pinning
-        firstCardPinCtx.revert();
-        secondCardPinCtx.revert();
-        thirdCardPinCtx.revert();
-        fourthCardPinCtx.revert();
+        introPinCtx.revert();
+        cardContexts.forEach((ctx) => ctx.revert());
       };
     },
     {
@@ -407,14 +392,14 @@ export default function HomeCard() {
 
   return (
     <div className="overflow-x-hidden" ref={container}>
-      <section className="intro min-h-[40vh] px-4 pt-10 pb-14 md:flex md:min-h-[50vh] md:px-10 md:pb-30">
+      {/* <section className="intro min-h-[40vh] px-4 pt-10 pb-14 md:flex md:min-h-[50vh] md:px-10 md:pb-30">
         <div className="left md:w-3/4">
           <h4 className="text-accent text-base md:text-lg">Services</h4>
           <h2 className="font-ITCGaramondN mt-4 w-full text-2xl md:w-3/4 md:text-3xl lg:text-4xl">
             Develop comprehensive solutions for each project
           </h2>
         </div>
-        {/* <div className="right mt-6 md:mt-0 md:w-1/2">
+        <div className="right mt-6 md:mt-0 md:w-1/2">
           <p className="font-HelveticaNow text-primary/80 mt-6 text-lg text-balance md:mt-14 md:w-3/4 md:text-xl">
             COAN West Africa Limited offers a complete spectrum of engineering
             and construction services designed to meet the diverse
@@ -422,7 +407,20 @@ export default function HomeCard() {
             approach ensures seamless project delivery from conception to
             completion.
           </p>
-        </div> */}
+        </div>
+      </section> */}
+      <section className="text-primary intro mx-auto px-4 py-30 text-center md:px-8">
+        <h1 className="font-ITCGaramondN mb-6 text-6xl">
+          Creativity to design
+        </h1>
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:w-1/2">
+            Vous cherchez un artisan menuisier en Belgique pour créer des
+            meubles en bois sur mesure ? Nemwood est spécialisé dans la
+            fabrication artisanale de tables, chaises, garde-robes, escaliers et
+            même de décors pour le cinéma.
+          </p>
+        </AnimatedText>
       </section>
 
       <section className="cards relative space-y-0 md:space-y-0">
@@ -431,25 +429,26 @@ export default function HomeCard() {
         <Card3 />
         <Card4 />
       </section>
-
-      <section className="outro min-h-[40vh] px-4 py-10 md:min-h-[50vh] md:px-10 md:pb-30">
-        <div className="md:w-3/4">
-          <h4 className="text-accent text-base md:text-lg">Notre mission</h4>
-          <h2 className="font-ITCGaramondN mt-4 w-full text-2xl md:w-3/4 md:text-3xl lg:text-4xl">
-            Transforming Communities Through Superior Infrastructure
-          </h2>
-        </div>
-        <div className="w-full text-base md:flex md:text-lg lg:text-xl">
-          <div className="left md:w-3/4">
-            {/* <p className="font-HelveticaNow text-primary/80 mt-8 md:mt-14 md:w-1/2">
-              At COAN West Africa Limited, our mission extends beyond
-              construction – we are nation builders committed to creating
-              sustainable infrastructure that enhances quality of life, promotes
-              economic development, and connects communities across Nigeria.
-            </p> */}
+      {false && (
+        <section className="outro min-h-[40vh] px-4 py-10 md:min-h-[50vh] md:px-10 md:pb-30">
+          <div className="md:w-3/4">
+            <h4 className="text-accent text-base md:text-lg">Notre mission</h4>
+            <h2 className="font-ITCGaramondN mt-4 w-full text-2xl md:w-3/4 md:text-3xl lg:text-4xl">
+              Transforming Communities Through Superior Infrastructure
+            </h2>
           </div>
-          <div className="right mt-6 md:mt-0 md:w-1/2">
-            {/* <Copy>
+          <div className="w-full text-base md:flex md:text-lg lg:text-xl">
+            <div className="left md:w-3/4">
+              <p className="font-HelveticaNow text-primary/80 mt-8 md:mt-14 md:w-1/2">
+                At COAN West Africa Limited, our mission extends beyond
+                construction – we are nation builders committed to creating
+                sustainable infrastructure that enhances quality of life,
+                promotes economic development, and connects communities across
+                Nigeria.
+              </p>
+            </div>
+            <div className="right mt-6 md:mt-0 md:w-1/2">
+              {/* <Copy>
               <p className="mt-8 w-full text-lg md:mt-14 md:text-xl">
                 To be the most trusted and innovative construction company in
                 West Africa, setting new standards for quality, sustainability,
@@ -460,28 +459,29 @@ export default function HomeCard() {
               </p>
               <br />
             </Copy> */}
+            </div>
           </div>
-        </div>
-        <div className="center-banner bg-secondary mt-8 rounded-sm md:mt-16">
-          <div className="imgwrapper relative flex h-[300px] w-full items-center justify-center rounded-sm bg-amber-200 bg-[url(/images/testimonial.webp)] bg-cover bg-center text-white md:h-[400px]">
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 px-4"></div>
+          <div className="center-banner bg-secondary mt-8 rounded-sm md:mt-16">
+            <div className="imgwrapper relative flex h-[300px] w-full items-center justify-center rounded-sm bg-amber-200 bg-[url(/images/testimonial.webp)] bg-cover bg-center text-white md:h-[400px]">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 px-4"></div>
 
-            <div className="flex flex-col items-center justify-center px-4 text-center">
-              <h5 className="font-ITCGaramondN text-3xl md:w-3/4 md:text-5xl">
-                Nemwood, artisan menuisier en Belgique
-              </h5>
+              <div className="flex flex-col items-center justify-center px-4 text-center">
+                <h5 className="font-ITCGaramondN text-3xl md:w-3/4 md:text-5xl">
+                  Nemwood, artisan menuisier en Belgique
+                </h5>
 
-              {/* <div className="relative z-50 flex justify-center">
+                {/* <div className="relative z-50 flex justify-center">
                 <a href="/contact" className="relative z-50">
                   <Button variant="withArrow" className="mt-10">
                     Contact us
                   </Button>
                 </a>
               </div> */}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
