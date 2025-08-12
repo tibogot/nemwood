@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Logo from "./Logo3";
@@ -36,46 +36,21 @@ export default function Navigation() {
   // Store split text instances for cleanup
   const splitTextInstances = useRef<SplitText[]>([]);
 
-  // Enhanced font loading detection
+  // Simplified font loading detection
   useEffect(() => {
     const checkFontsLoaded = async () => {
       try {
         if (document.fonts && document.fonts.ready) {
           await document.fonts.ready;
-
-          // Additional check to ensure ITCGaramondN is specifically loaded
-          if (document.fonts.check) {
-            const fontChecks = [
-              "1em ITCGaramondN",
-              '1em "ITC Garamond Narrow"', // fallback name
-            ];
-
-            let fontFound = false;
-            for (const fontCheck of fontChecks) {
-              if (document.fonts.check(fontCheck)) {
-                fontFound = true;
-                break;
-              }
-            }
-
-            if (fontFound) {
-              // Wait a bit more to ensure rendering is complete
-              setTimeout(() => setFontsLoaded(true), 150);
-            } else {
-              // Fallback - wait longer if font isn't detected
-              setTimeout(() => setFontsLoaded(true), 500);
-            }
-          } else {
-            // Fallback for browsers without font.check
-            setTimeout(() => setFontsLoaded(true), 300);
-          }
+          // Reduced delay for faster initialization
+          setTimeout(() => setFontsLoaded(true), 50);
         } else {
           // Fallback for browsers that don't support document.fonts
-          setTimeout(() => setFontsLoaded(true), 500);
+          setTimeout(() => setFontsLoaded(true), 100);
         }
       } catch (error) {
         console.warn("Font loading detection failed, using fallback:", error);
-        setTimeout(() => setFontsLoaded(true), 500);
+        setTimeout(() => setFontsLoaded(true), 100);
       }
     };
 

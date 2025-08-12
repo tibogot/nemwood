@@ -6,9 +6,10 @@ import Navigation from "@/components/Navigation5";
 import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import SimplePageTransition from "@/components/SimplePageTransition";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ViewTransitions } from "next-view-transitions";
 import PageTransition from "@/components/PageTransition2";
-
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const geistSans = Geist({
@@ -93,22 +94,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body
-        suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
-      >
-        <PageTransition>
+    <ViewTransitions>
+      <html lang="fr">
+        <body
+          suppressHydrationWarning
+          className={`${geistSans.variable} ${geistMono.variable} ${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
+        >
+          {/* <PageTransition> */}
           <ThemeProvider>
             <LenisProvider>
               <ScrollToTop />
+              {/* <ScrollProgress /> */}
               <Navigation />
+              {/* <SimplePageTransition> */}
               <main className="">{children}</main>
+              {/* </SimplePageTransition> */}
               <Footer />
             </LenisProvider>
           </ThemeProvider>
-        </PageTransition>
-      </body>
-    </html>
+          {/* </PageTransition> */}
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

@@ -74,43 +74,45 @@
   color: var(--foreground);
 } */
 
-/* VIEW TRANSITIONS - Layered page transitions */
-::view-transition-old(root) {
-  animation: moveUpAndDarken 0.8s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 1000;
+  display: flex;
+  pointer-events: none;
 }
 
-::view-transition-new(root) {
-  animation: slideInFromBottom 0.8s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+.transition-block {
+  flex: 1;
+  height: 100%;
+  background-color: #222;
+  transform: scaleX(0);
+  transform-origin: left;
 }
 
-@keyframes moveUpAndDarken {
-  to {
-    transform: translateY(-180px);
-    filter: brightness(0.3);
-  }
+.logo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  pointer-events: none;
+  opacity: 0;
 }
 
-@keyframes slideInFromBottom {
-  from {
-    transform: translateY(100%);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Custom transitions for specific elements */
-::view-transition-group(root) {
-  animation-duration: 0.8s;
-  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
-
-/* Fallback for browsers that don't support view transitions */
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-  }
+.logo-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
