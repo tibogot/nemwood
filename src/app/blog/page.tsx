@@ -3,6 +3,7 @@ import client from "@/sanityClient";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
+import ParallaxImage from "@/components/ParallaxImage";
 
 export default async function BlogPage() {
   const posts = await client.fetch(
@@ -73,14 +74,10 @@ export default async function BlogPage() {
         </ul>
       </main>
       <section className="bg-secondary relative h-svh w-full">
-        <Image
-          className="absolute inset-0 mt-10 h-full w-full object-cover md:mt-20"
-          src="/images/nemward.webp"
-          alt="Hero Image"
-          fill
-          sizes="100vw"
-          quality={100}
-          priority
+        <ParallaxImage
+          src="/images/nemohero.webp"
+          alt="Nemwood artisan woodworking"
+          speed={1.5}
         />
       </section>
     </>
