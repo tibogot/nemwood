@@ -22,7 +22,7 @@ export default async function BlogPage() {
   return (
     <>
       <main className="text-primary bg-secondary px-4 md:px-8">
-        <section className="mx-auto py-20 text-center md:py-64">
+        <section className="mx-auto py-40 text-center md:py-64">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
               Nos dernières actualités

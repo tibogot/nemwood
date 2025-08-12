@@ -45,7 +45,7 @@ export default function ServicesPage() {
   return (
     <main className="bg-secondary text-primary">
       {/* Hero Section */}
-      <section className="px-4 py-20 md:px-8 md:py-64">
+      <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="mb-6 text-5xl md:text-7xl">Nos Services</h1>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
