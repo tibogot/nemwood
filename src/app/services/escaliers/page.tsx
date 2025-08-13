@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 

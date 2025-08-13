@@ -87,7 +87,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
         gsap.to(blocksRef.current, {
           scaleX: 0,
           duration: 0.4,
-          stagger: 0.02,
+          stagger: 0.02, // Restored to the cool working timing
           ease: "power2.out",
           transformOrigin: "right",
           onComplete: () => {
@@ -139,7 +139,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
         tl.to(blocksRef.current, {
           scaleX: 1,
           duration: 0.4,
-          stagger: 0.02,
+          stagger: 0.02, // Restored to the cool working timing
           ease: "power2.out",
           transformOrigin: "left",
         })

@@ -2,7 +2,7 @@ import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import ParallaxImage from "@/components/ParallaxImage";
 
 export default async function BlogPage() {
