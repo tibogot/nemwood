@@ -35,7 +35,9 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         for (let i = 0; i < 20; i++) {
           const block = document.createElement("div");
-          block.className = "transition-block";
+          // Using Tailwind classes for styling
+          block.className = "flex-1 h-full bg-[#222]";
+          // Set initial transform state via GSAP instead of CSS class
           overlayRef.current.appendChild(block);
           blocksRef.current.push(block);
         }
@@ -234,13 +236,40 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
   return (
     <div ref={containerRef}>
-      <div ref={overlayRef} className="transition-overlay"></div>
-      <div ref={logoOverlayRef} className="logo-overlay">
-        <div className="logo-container">
+      <div
+        ref={overlayRef}
+        className="pointer-events-none fixed inset-0 z-[1000] flex"
+      />
+      <div
+        ref={logoOverlayRef}
+        className="pointer-events-none fixed inset-0 z-[1000] flex items-center justify-center bg-[#222] opacity-0"
+      >
+        <div className="text-primary flex h-[200px] w-[200px] items-center justify-center p-5">
           <Logo ref={logoRef} />
         </div>
       </div>
       {children}
+
+      {/* Component-specific styles that can't be handled by Tailwind */}
+      <style jsx>{`
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: rgba(80, 70, 48, 0.3);
+          border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(80, 70, 48, 0.5);
+        }
+      `}</style>
     </div>
   );
 }
