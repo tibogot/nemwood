@@ -13,8 +13,7 @@ const Logo = forwardRef((props, ref) => {
     >
       <path
         d="M2 0.999999L33.8572 54.7016L64.234 6.81841L73.6491 35.8214L95.3511 16.971L120.665 82.25L126.468 16.971"
-        stroke="currentColor"
-        className="text-white"
+        stroke="white"
         strokeWidth="3"
       />
     </svg>

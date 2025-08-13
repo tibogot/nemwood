@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "./Logo4";
-import { useRef, ReactNode, useCallback } from "react";
+import { useRef, ReactNode, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -25,130 +25,77 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const isMounted = useRef(false);
   const pathLengthRef = useRef<number | null>(null);
   const isInitialLoad = useRef(true);
-  const currentTimeline = useRef<gsap.core.Timeline | null>(null);
-  const linkListenersRef = useRef<Map<HTMLAnchorElement, (e: Event) => void>>(
-    new Map(),
-  );
 
-  // Cleanup function for timelines
-  const cleanupTimeline = useCallback(() => {
-    if (currentTimeline.current) {
-      currentTimeline.current.kill();
-      currentTimeline.current = null;
-    }
-  }, []);
+  // Ensure SVG is properly initialized after mount
+  useEffect(() => {
+    console.log("PageTransition: useEffect triggered");
+    console.log("PageTransition: logoRef.current:", !!logoRef.current);
+    console.log(
+      "PageTransition: isInitialLoad.current:",
+      isInitialLoad.current,
+    );
 
-  // Safe router navigation with error handling
-  const safeRouterPush = useCallback(
-    (url: string) => {
-      try {
-        router.push(url);
-      } catch (error) {
-        console.error("PageTransition: Router navigation failed:", error);
-        // Fallback to window navigation
-        window.location.href = url;
-      }
-    },
-    [router],
-  );
-
-  useGSAP(
-    () => {
-      const createBlocks = () => {
-        if (!overlayRef.current) return;
-
-        // Clear existing blocks and timeline
-        cleanupTimeline();
-        overlayRef.current.innerHTML = "";
-        blocksRef.current = [];
-
-        const blockCount = Math.min(
-          20,
-          Math.max(10, Math.floor(window.innerWidth / 100)),
-        );
-
-        for (let i = 0; i < blockCount; i++) {
-          const block = document.createElement("div");
-          block.className = "flex-1 h-full bg-[#222] will-change-transform";
-          block.style.backfaceVisibility = "hidden"; // Optimize for animations
-          overlayRef.current.appendChild(block);
-          blocksRef.current.push(block);
-        }
-      };
-
-      // Initialize logo path with better error handling
-      const initializeLogoPath = () => {
-        if (!logoRef.current) return false;
-
-        const path = logoRef.current.querySelector("path");
-        if (!path) return false;
-
+    if (logoRef.current && isInitialLoad.current) {
+      const path = logoRef.current.querySelector("path");
+      console.log("PageTransition: Path element found in useEffect:", !!path);
+      if (path && pathLengthRef.current === null) {
         try {
-          // Force the SVG to be laid out/painted first
-          logoRef.current.getBoundingClientRect();
-
           const length = path.getTotalLength();
+          console.log("PageTransition: Path length in useEffect:", length);
           pathLengthRef.current = length;
-
-          // Use GSAP.set for better performance
           gsap.set(path, {
             strokeDasharray: length,
             strokeDashoffset: length,
             fill: "transparent",
             stroke: "currentColor",
           });
-
-          // Force another reflow to ensure properties are applied
-          path.getBoundingClientRect();
-
-          return true;
+          console.log("PageTransition: SVG setup complete in useEffect");
         } catch (error) {
-          console.warn("PageTransition: Error initializing logo path:", error);
-          return false;
+          console.warn(
+            "PageTransition: Error setting up logo path in useEffect:",
+            error,
+          );
+        }
+      }
+    }
+  }, []);
+
+  useGSAP(
+    () => {
+      const createBlocks = () => {
+        if (!overlayRef.current) return;
+        overlayRef.current.innerHTML = "";
+        blocksRef.current = [];
+
+        for (let i = 0; i < 20; i++) {
+          const block = document.createElement("div");
+          // Using Tailwind classes for styling
+          block.className = "flex-1 h-full bg-[#222]";
+          // Set initial transform state via GSAP instead of CSS class
+          overlayRef.current.appendChild(block);
+          blocksRef.current.push(block);
         }
       };
 
-      // Animation functions with better error handling
+      // Define animation functions
       const revealPage = () => {
-        if (!blocksRef.current.length) return;
+        gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
 
-        cleanupTimeline();
-
-        gsap.set(blocksRef.current, {
-          scaleX: 1,
-          transformOrigin: "right",
-          force3D: true,
-        });
-        //@ts-ignore
-        currentTimeline.current = gsap.to(blocksRef.current, {
+        gsap.to(blocksRef.current, {
           scaleX: 0,
           duration: 0.4,
           stagger: 0.02,
           ease: "power2.out",
           transformOrigin: "right",
-          force3D: true,
           onComplete: () => {
             isTransitioning.current = false;
-            currentTimeline.current = null;
-          },
-          onInterrupt: () => {
-            isTransitioning.current = false;
-            currentTimeline.current = null;
           },
         });
       };
 
       const initialLoadSequence = () => {
-        if (!blocksRef.current.length) return;
-
-        cleanupTimeline();
-
-        // Set initial states
-        gsap.set(blocksRef.current, {
-          scaleX: 1,
-          transformOrigin: "right",
-          force3D: true,
-        });
+        // Start with everything visible (blocks covering screen)
+        gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
         gsap.set(logoOverlayRef.current, { opacity: 1 });
 
         const logoPath = logoRef.current?.querySelector("path");
@@ -158,26 +105,22 @@ export default function PageTransition({ children }: PageTransitionProps) {
             fill: "transparent",
           });
 
-          // Create timeline with better error handling
-          currentTimeline.current = gsap.timeline({
+          // Initial loading sequence with logo animation
+          const tl = gsap.timeline({
             onComplete: () => {
               isTransitioning.current = false;
-              isInitialLoad.current = false;
-              currentTimeline.current = null;
-            },
-            onInterrupt: () => {
-              isTransitioning.current = false;
-              currentTimeline.current = null;
+              isInitialLoad.current = false; // Mark that initial load is complete
             },
           });
 
-          currentTimeline.current
-            .to(logoPath, {
-              strokeDashoffset: 0,
-              duration: 1.5,
-              ease: "power2.inOut",
-              delay: 0.5,
-            })
+          // 1. Show logo drawing animation
+          tl.to(logoPath, {
+            strokeDashoffset: 0,
+            duration: 1.5,
+            ease: "power2.inOut",
+            delay: 0.8, // Increased delay to ensure SVG is fully ready
+          })
+            // 2. Hide logo overlay
             .to(
               logoOverlayRef.current,
               {
@@ -187,6 +130,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
               },
               "+=0.3",
             )
+            // 3. Reveal page by sliding blocks away
             .to(
               blocksRef.current,
               {
@@ -195,7 +139,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
                 stagger: 0.03,
                 ease: "power2.out",
                 transformOrigin: "right",
-                force3D: true,
               },
               "-=0.1",
             );
@@ -206,94 +149,61 @@ export default function PageTransition({ children }: PageTransitionProps) {
       };
 
       const coverPage = (url: string) => {
-        // Validate required elements
-        const requiredElements = [
-          logoRef.current,
-          logoOverlayRef.current,
-          blocksRef.current.length > 0,
-        ];
+        console.log("PageTransition: coverPage called for URL:", url);
+        console.log(
+          "PageTransition: pathLengthRef.current:",
+          pathLengthRef.current,
+        );
 
-        if (!requiredElements.every(Boolean)) {
+        if (
+          !logoRef.current ||
+          !logoOverlayRef.current ||
+          !blocksRef.current.length
+        ) {
           console.warn(
-            "PageTransition: Required elements not available, using fallback navigation",
+            "PageTransition: Required refs not available, skipping transition",
           );
-          safeRouterPush(url);
+          router.push(url);
           return;
         }
 
-        const logoPath = logoRef.current!.querySelector("path");
-        if (!logoPath) {
+        const logoPath = logoRef.current.querySelector("path");
+        if (!logoPath || pathLengthRef.current === null) {
           console.warn(
-            "PageTransition: Logo path not found, using fallback navigation",
+            "PageTransition: Logo path not found or not initialized, skipping transition",
           );
-          safeRouterPush(url);
+          router.push(url);
           return;
         }
 
-        // Re-initialize logo path to ensure it's in the correct state
-        let pathLength = pathLengthRef.current;
-        if (pathLength === null) {
-          try {
-            pathLength = logoPath.getTotalLength();
-            pathLengthRef.current = pathLength;
-          } catch (error) {
-            console.warn(
-              "PageTransition: Could not get path length, using fallback navigation",
-            );
-            safeRouterPush(url);
-            return;
-          }
-        }
+        console.log("PageTransition: Logo path found, starting animation");
 
-        // Ensure the path is properly set up for animation
+        const tl = gsap.timeline({
+          onComplete: () => router.push(url),
+        });
+
+        // Always ensure the logo path is properly set up before animation
         gsap.set(logoPath, {
-          strokeDasharray: pathLength,
-          stroke: "currentColor",
+          strokeDashoffset: pathLengthRef.current,
           fill: "transparent",
         });
 
-        // Force a reflow to ensure the properties are applied before animation
-        logoPath.getBoundingClientRect();
-
-        cleanupTimeline();
-
-        currentTimeline.current = gsap.timeline({
-          onComplete: () => {
-            safeRouterPush(url);
-            currentTimeline.current = null;
-          },
-          onInterrupt: () => {
-            safeRouterPush(url);
-            currentTimeline.current = null;
-          },
-        });
-
-        currentTimeline.current
-          .to(blocksRef.current, {
-            scaleX: 1,
-            duration: 0.4,
-            stagger: 0.02,
-            ease: "power2.out",
-            transformOrigin: "left",
-            force3D: true,
-          })
+        tl.to(blocksRef.current, {
+          scaleX: 1,
+          duration: 0.4,
+          stagger: 0.02,
+          ease: "power2.out",
+          transformOrigin: "left",
+        })
           .set(logoOverlayRef.current, { opacity: 1 }, "-=0.2")
-          .set(
-            logoPath,
-            {
-              strokeDashoffset: pathLength,
-              fill: "transparent",
-            },
-            "-=0.25",
-          )
           .to(
             logoPath,
             {
               strokeDashoffset: 0,
-              duration: 2,
+              duration: 1.5,
               ease: "power2.inOut",
             },
-            "-=0.5",
+            "-=0.3",
           )
           .to(logoOverlayRef.current, {
             opacity: 0,
@@ -302,88 +212,93 @@ export default function PageTransition({ children }: PageTransitionProps) {
           });
       };
 
-      // Initialize everything with better error handling
-      try {
-        createBlocks();
+      // Initialize everything
+      createBlocks();
 
-        // Set initial block states
-        if (blocksRef.current.length > 0) {
-          gsap.set(blocksRef.current, {
-            scaleX: 0,
-            transformOrigin: "left",
-            force3D: true,
-          });
-        }
+      gsap.set(blocksRef.current, { scaleX: 0, transformOrigin: "left" });
 
-        // Initialize logo
-        initializeLogoPath();
-
-        // Run appropriate animation sequence
-        if (isInitialLoad.current) {
-          initialLoadSequence();
+      // Ensure SVG path is properly set up before proceeding
+      const setupLogoPath = () => {
+        console.log("PageTransition: setupLogoPath called");
+        if (logoRef.current) {
+          const path = logoRef.current.querySelector("path");
+          if (path) {
+            try {
+              const length = path.getTotalLength();
+              console.log(
+                "PageTransition: SVG path length calculated:",
+                length,
+              );
+              pathLengthRef.current = length;
+              gsap.set(path, {
+                strokeDasharray: length,
+                strokeDashoffset: length,
+                fill: "transparent",
+                stroke: "currentColor",
+              });
+              console.log("PageTransition: SVG path setup complete");
+              return true;
+            } catch (error) {
+              console.warn(
+                "PageTransition: Error setting up logo path:",
+                error,
+              );
+              return false;
+            }
+          } else {
+            console.log("PageTransition: No path element found in SVG");
+          }
         } else {
-          revealPage();
+          console.log("PageTransition: logoRef.current is null");
         }
+        return false;
+      };
 
-        isMounted.current = true;
-      } catch (error) {
-        console.error("PageTransition: Initialization failed:", error);
-        isMounted.current = true; // Still mark as mounted to prevent issues
-      }
+      // Wait for SVG to be ready, then proceed with animation
+      const initializeAnimation = () => {
+        if (setupLogoPath()) {
+          // Show loading animation on initial load, quick reveal on navigation
+          if (isInitialLoad.current) {
+            initialLoadSequence();
+          } else {
+            revealPage();
+          }
+          isMounted.current = true;
+        } else {
+          // Retry after a short delay if SVG isn't ready
+          setTimeout(initializeAnimation, 50);
+        }
+      };
 
-      // Enhanced link handling with better cleanup
+      // Start initialization
+      initializeAnimation();
+
+      const handleRouteChange = (url: string) => {
+        if (isTransitioning.current || !isMounted.current) return;
+        isTransitioning.current = true;
+        coverPage(url);
+      };
+
       const handleLinkClick = (e: Event) => {
         e.preventDefault();
         const target = e.currentTarget as HTMLAnchorElement;
-
-        try {
-          const url = new URL(target.href).pathname;
-          if (url !== pathname && !isTransitioning.current) {
-            isTransitioning.current = true;
-            coverPage(url);
-          }
-        } catch (error) {
-          console.error("PageTransition: Link handling failed:", error);
-          // Fallback to default navigation
-          window.location.href = target.href;
+        const url = new URL(target.href).pathname;
+        if (url !== pathname) {
+          handleRouteChange(url);
         }
       };
 
-      // Improved link listener management
-      const updateLinkListeners = () => {
-        // Clean up existing listeners
-        linkListenersRef.current.forEach((listener, link) => {
-          link.removeEventListener("click", listener);
-        });
-        linkListenersRef.current.clear();
+      const links =
+        document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]');
+      links.forEach((link) => {
+        link.addEventListener("click", handleLinkClick);
+      });
 
-        // Add new listeners
-        const links =
-          document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]');
-        links.forEach((link) => {
-          const listener = (e: Event) => handleLinkClick(e);
-          link.addEventListener("click", listener);
-          linkListenersRef.current.set(link, listener);
-        });
-      };
-
-      // Set up link listeners with a slight delay to catch dynamically added links
-      updateLinkListeners();
-      const linkUpdateTimer = setTimeout(updateLinkListeners, 100);
-
-      // Cleanup function
       return () => {
-        clearTimeout(linkUpdateTimer);
         isMounted.current = false;
-
-        // Clean up timeline
-        cleanupTimeline();
-
-        // Clean up link listeners
-        linkListenersRef.current.forEach((listener, link) => {
-          link.removeEventListener("click", listener);
+        links.forEach((link) => {
+          link.removeEventListener("click", handleLinkClick);
         });
-        linkListenersRef.current.clear();
       };
     },
     { scope: containerRef, dependencies: [router, pathname] },
@@ -394,14 +309,12 @@ export default function PageTransition({ children }: PageTransitionProps) {
       <div
         ref={overlayRef}
         className="pointer-events-none fixed inset-0 z-[1000] flex"
-        style={{ willChange: "transform" }}
       />
       <div
         ref={logoOverlayRef}
         className="pointer-events-none fixed inset-0 z-[1000] flex items-center justify-center bg-[#222] opacity-0"
-        style={{ willChange: "opacity" }}
       >
-        <div className="text-primary flex h-[200px] w-[200px] items-center justify-center p-5">
+        <div className="flex h-[200px] w-[200px] items-center justify-center p-5">
           <Logo ref={logoRef} />
         </div>
       </div>
