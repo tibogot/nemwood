@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
+import AnimatedText from "@/components/AnimatedText3";
 
 export const metadata: Metadata = {
   title: "Services de menuiserie sur mesure en Belgique | Nemwood",
@@ -47,12 +48,14 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-5xl md:text-7xl">Nos Services</h1>
-          <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-            Découvrez notre gamme complète de services de menuiserie sur mesure
-            en Belgique. Chaque création est pensée pour s'harmoniser
-            parfaitement avec votre intérieur.
-          </p>
+          <AnimatedText isHero delay={0.0} stagger={0.3}>
+            <h1 className="mb-6 text-5xl md:text-7xl">Nos Services</h1>
+            <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+              Découvrez notre gamme complète de services de menuiserie sur
+              mesure en Belgique. Chaque création est pensée pour s'harmoniser
+              parfaitement avec votre intérieur.
+            </p>
+          </AnimatedText>
         </div>
       </section>
 

@@ -92,9 +92,35 @@ function AnimatedText({
     checkFontsLoaded();
   }, [isHero]);
 
+  // Add CSS to prevent FOUC - ensure text is hidden until GSAP takes control
+  useEffect(() => {
+    const styleId = "animated-text-fouc-prevention";
+
+    // Check if style already exists
+    if (!document.getElementById(styleId)) {
+      const styleElement = document.createElement("style");
+      styleElement.id = styleId;
+      styleElement.textContent = `
+        .animated-text-wrapper {
+          overflow: hidden;
+        }
+        
+        /* Hide text until animation is ready */
+        .animated-text-wrapper.fouc-prevent {
+          visibility: hidden !important;
+          opacity: 0 !important;
+        }
+      `;
+      document.head.appendChild(styleElement);
+    }
+  }, []);
+
   useGSAP(
     () => {
       if (!wrapperRef.current || !fontsReady) return;
+
+      // Add FOUC prevention class initially
+      wrapperRef.current.classList.add("fouc-prevent");
 
       const createSplitTextInstances = () => {
         // Clean up existing instances
@@ -113,10 +139,10 @@ function AnimatedText({
 
         children.forEach((child, index) => {
           try {
-            // Ensure the element is visible and properly rendered
+            // Hide the original text element to prevent FOUC
             gsap.set(child, {
-              visibility: "visible",
-              opacity: 1,
+              visibility: "hidden",
+              opacity: 0,
             });
 
             // Force a reflow to ensure the element is fully rendered
@@ -132,41 +158,60 @@ function AnimatedText({
             if (split && split.lines && split.lines.length > 0) {
               splitRefs.current.push(split);
 
+              // Set initial state to prevent FOUC
+              gsap.set(split.lines, {
+                yPercent: 100,
+                autoAlpha: 0, // This prevents FOUC by setting visibility: hidden initially
+              });
+
+              console.log(
+                `AnimatedText: Set initial state for ${split.lines.length} lines`,
+              );
+
               // For hero text, use immediate animation without ScrollTrigger
               if (isHero) {
-                gsap.fromTo(
-                  split.lines,
-                  {
-                    yPercent: 100,
-                  },
-                  {
-                    yPercent: 0,
-                    stagger,
-                    duration,
-                    ease,
-                    delay: delay + index * 0.1, // Add slight delay between multiple children
-                  },
-                );
+                // Remove FOUC prevention class and make element visible for hero text
+                if (wrapperRef.current) {
+                  wrapperRef.current.classList.remove("fouc-prevent");
+                }
+                gsap.set(child, { visibility: "visible", opacity: 1 });
+
+                gsap.to(split.lines, {
+                  yPercent: 0,
+                  autoAlpha: 1, // Reveal with autoAlpha for smooth transition
+                  stagger,
+                  duration,
+                  ease,
+                  delay: delay + index * 0.1, // Add slight delay between multiple children
+                });
               } else {
-                // Regular scroll-triggered animation
-                gsap.fromTo(
-                  split.lines,
-                  {
-                    yPercent: 100,
-                  },
-                  {
-                    yPercent: 0,
-                    stagger,
-                    duration,
-                    ease,
-                    delay,
-                    scrollTrigger: {
-                      trigger: trigger || child,
-                      start,
-                      toggleActions,
-                      refreshPriority: -1, // Lower priority for better performance
+                // Regular scroll-triggered animation - use a more reliable trigger strategy
+                const animation = gsap.to(split.lines, {
+                  yPercent: 0,
+                  autoAlpha: 1, // Reveal with autoAlpha for smooth transition
+                  stagger,
+                  duration,
+                  ease,
+                  delay: delay + 0.3, // Small delay to ensure page transition is complete
+                  scrollTrigger: {
+                    trigger: trigger || wrapperRef.current || child,
+                    start: "top 80%", // More reliable start position
+                    toggleActions: "play none none reverse",
+                    refreshPriority: -1, // Lower priority for better performance
+                    onEnter: () => {
+                      // Remove FOUC prevention class and make element visible
+                      if (wrapperRef.current) {
+                        wrapperRef.current.classList.remove("fouc-prevent");
+                      }
+                      gsap.set(child, { visibility: "visible", opacity: 1 });
+                      // Ensure animation plays when entering viewport
+                      console.log("ScrollTrigger entered for AnimatedText");
                     },
                   },
+                });
+
+                console.log(
+                  `AnimatedText: Created animation for ${split.lines.length} lines`,
                 );
               }
             } else {
@@ -225,12 +270,7 @@ function AnimatedText({
   return (
     <div
       ref={wrapperRef}
-      className={className}
-      style={{
-        // Hide text until fonts are ready and SplitText is created (unless it's hero text)
-        visibility: fontsReady || isHero ? "visible" : "hidden",
-        opacity: fontsReady || isHero ? 1 : 0,
-      }}
+      className={`animated-text-wrapper fouc-prevent ${className}`}
     >
       {children}
     </div>

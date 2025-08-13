@@ -8,11 +8,13 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import ThemeToggle from "./ThemeToggle";
+import { usePathname } from "next/navigation";
 
 // Register the SplitText plugin
 gsap.registerPlugin(SplitText);
 
 export default function Navigation() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -422,14 +424,29 @@ export default function Navigation() {
         <div className="relative z-10 h-16 px-4 md:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo - Much Larger */}
-            <Link
-              ref={logoRef}
-              href="/"
-              className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
-              style={{ transform: "translateY(-4px)" }}
-            >
-              <Logo width={120} height={52} className="text-primary" />
-            </Link>
+            {pathname === "/" ? (
+              // Disabled logo for home page - using Link but disabled
+              <Link
+                ref={logoRef}
+                href="#"
+                className="pointer-events-none flex cursor-default items-center space-x-2 transition-all duration-300"
+                style={{ transform: "translateY(-4px)" }}
+                title="You are currently on the home page"
+                onClick={(e) => e.preventDefault()}
+              >
+                <Logo width={120} height={52} className="text-primary" />
+              </Link>
+            ) : (
+              // Active logo for other pages
+              <Link
+                ref={logoRef}
+                href="/"
+                className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
+                style={{ transform: "translateY(-4px)" }}
+              >
+                <Logo width={120} height={52} className="text-primary" />
+              </Link>
+            )}
 
             {/* Right side - Theme Toggle and Burger Menu */}
             <div className="flex items-center gap-4">
@@ -470,41 +487,66 @@ export default function Navigation() {
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            {navItems.map((item, index) => (
-              <div
-                key={item.name}
-                ref={(el) => {
-                  menuItemsRef.current[index] = el;
-                }}
-                className="group relative"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`font-ITCGaramondN block transition-all duration-300 ${
-                    isMobile
-                      ? "text-center text-5xl sm:text-6xl"
-                      : "text-4xl md:text-6xl lg:text-8xl"
-                  } ${
-                    hoveredIndex !== null && hoveredIndex !== index
-                      ? "text-primary/50"
-                      : "text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                  style={{
-                    visibility:
-                      fontsLoaded && splitTextReady ? "visible" : "hidden",
-                    opacity: fontsLoaded && splitTextReady ? 1 : 0,
+            {navItems.map((item, index) => {
+              const isCurrentPage = pathname === item.href;
+              return (
+                <div
+                  key={item.name}
+                  ref={(el) => {
+                    menuItemsRef.current[index] = el;
                   }}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  {item.name}
-                </Link>
+                  {isCurrentPage ? (
+                    // Disabled link for current page - using Link but disabled
+                    <Link
+                      href="#"
+                      className={`font-ITCGaramondN block cursor-default transition-all duration-300 ${
+                        isMobile
+                          ? "text-center text-5xl sm:text-6xl"
+                          : "text-4xl md:text-6xl lg:text-8xl"
+                      } text-primary/30 pointer-events-none line-through`}
+                      style={{
+                        visibility:
+                          fontsLoaded && splitTextReady ? "visible" : "hidden",
+                        opacity: fontsLoaded && splitTextReady ? 1 : 0,
+                      }}
+                      title="You are currently on this page"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    // Active link for other pages
+                    <Link
+                      href={item.href}
+                      className={`font-ITCGaramondN block transition-all duration-300 ${
+                        isMobile
+                          ? "text-center text-5xl sm:text-6xl"
+                          : "text-4xl md:text-6xl lg:text-8xl"
+                      } ${
+                        hoveredIndex !== null && hoveredIndex !== index
+                          ? "text-primary/50"
+                          : "text-primary"
+                      }`}
+                      onClick={handleLinkClick}
+                      style={{
+                        visibility:
+                          fontsLoaded && splitTextReady ? "visible" : "hidden",
+                        opacity: fontsLoaded && splitTextReady ? 1 : 0,
+                      }}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
 
-                {/* Hover underline effect */}
-                {/* <div className="bg-primary/50 absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 group-hover:w-full" /> */}
-              </div>
-            ))}
+                  {/* Hover underline effect */}
+                  {/* <div className="bg-primary/50 absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 group-hover:w-full" /> */}
+                </div>
+              );
+            })}
           </div>
         </div>
       </nav>
