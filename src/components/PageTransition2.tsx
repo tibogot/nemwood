@@ -24,18 +24,13 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const isTransitioning = useRef(false);
   const isMounted = useRef(false);
   const pathLengthRef = useRef<number | null>(null);
-  const isInitialLoad = useRef(true);
 
   // Ensure SVG is properly initialized after mount
   useEffect(() => {
     console.log("PageTransition: useEffect triggered");
     console.log("PageTransition: logoRef.current:", !!logoRef.current);
-    console.log(
-      "PageTransition: isInitialLoad.current:",
-      isInitialLoad.current,
-    );
 
-    if (logoRef.current && isInitialLoad.current) {
+    if (logoRef.current) {
       const path = logoRef.current.querySelector("path");
       console.log("PageTransition: Path element found in useEffect:", !!path);
       if (path && pathLengthRef.current === null) {
@@ -91,69 +86,14 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         gsap.to(blocksRef.current, {
           scaleX: 0,
-          duration: 0.8, // Slower animation for better visual effect
-          stagger: 0.03, // Slightly slower stagger for smoother sequence
+          duration: 0.4,
+          stagger: 0.02,
           ease: "power2.out",
           transformOrigin: "right",
           onComplete: () => {
             isTransitioning.current = false;
           },
         });
-      };
-
-      const initialLoadSequence = () => {
-        // Start with everything visible (blocks covering screen)
-        gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
-        gsap.set(logoOverlayRef.current, { opacity: 1 });
-
-        const logoPath = logoRef.current?.querySelector("path");
-        if (logoPath && pathLengthRef.current !== null) {
-          gsap.set(logoPath, {
-            strokeDashoffset: pathLengthRef.current,
-            fill: "transparent",
-          });
-
-          // Initial loading sequence with logo animation
-          const tl = gsap.timeline({
-            onComplete: () => {
-              isTransitioning.current = false;
-              isInitialLoad.current = false; // Mark that initial load is complete
-            },
-          });
-
-          // 1. Show logo drawing animation
-          tl.to(logoPath, {
-            strokeDashoffset: 0,
-            duration: 1.5,
-            ease: "power2.inOut",
-            delay: 0.8, // Increased delay to ensure SVG is fully ready
-          })
-            // 2. Hide logo overlay
-            .to(
-              logoOverlayRef.current,
-              {
-                opacity: 0,
-                duration: 0.3,
-                ease: "power2.inOut",
-              },
-              "+=0.3",
-            )
-            // 3. Reveal page by sliding blocks away
-            .to(
-              blocksRef.current,
-              {
-                scaleX: 0,
-                duration: 1.0, // Slower animation for better visual effect
-                stagger: 0.04, // Slightly slower stagger for smoother sequence
-                ease: "power2.out",
-                transformOrigin: "right",
-              },
-              "-=0.1",
-            );
-        } else {
-          // Fallback if logo path isn't available
-          revealPage();
-        }
       };
 
       const coverPage = (url: string) => {
@@ -198,10 +138,10 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         tl.to(blocksRef.current, {
           scaleX: 1,
-          duration: 0.8, // Slower animation for better visual effect
-          stagger: 0.03, // Slightly slower stagger for smoother sequence
+          duration: 0.4,
+          stagger: 0.02,
           ease: "power2.out",
-          transformOrigin: "right",
+          transformOrigin: "left",
         })
           .set(logoOverlayRef.current, { opacity: 1 }, "-=0.2")
           .to(
@@ -262,24 +202,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
         return false;
       };
 
-      // Wait for SVG to be ready, then proceed with animation
-      const initializeAnimation = () => {
-        if (setupLogoPath()) {
-          // Show loading animation on initial load, quick reveal on navigation
-          if (isInitialLoad.current) {
-            initialLoadSequence();
-          } else {
-            revealPage();
-          }
-          isMounted.current = true;
-        } else {
-          // Retry after a short delay if SVG isn't ready
-          setTimeout(initializeAnimation, 50);
-        }
-      };
-
-      // Start initialization
-      initializeAnimation();
+      // Simple initialization like the working version
+      if (setupLogoPath()) {
+        revealPage();
+        isMounted.current = true;
+      }
 
       const handleRouteChange = (url: string) => {
         if (isTransitioning.current || !isMounted.current) return;
