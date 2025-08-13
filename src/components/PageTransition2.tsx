@@ -69,9 +69,17 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         for (let i = 0; i < 20; i++) {
           const block = document.createElement("div");
-          // Using Tailwind classes for styling
-          block.className = "flex-1 h-full bg-[#222]";
-          // Set initial transform state via GSAP instead of CSS class
+          // Using inline styles to ensure perfect block positioning with slight overlap
+          block.style.cssText = `
+            flex: 1;
+            height: 100%;
+            background-color: #222;
+            min-width: 0;
+            transform-origin: left;
+            box-sizing: border-box;
+            width: calc(100% + 2px); /* Slight overlap to prevent gaps */
+            margin-right: -2px; /* Compensate for the extra width */
+          `;
           overlayRef.current.appendChild(block);
           blocksRef.current.push(block);
         }
@@ -83,8 +91,8 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         gsap.to(blocksRef.current, {
           scaleX: 0,
-          duration: 0.4,
-          stagger: 0.02,
+          duration: 0.8, // Slower animation for better visual effect
+          stagger: 0.03, // Slightly slower stagger for smoother sequence
           ease: "power2.out",
           transformOrigin: "right",
           onComplete: () => {
@@ -135,8 +143,8 @@ export default function PageTransition({ children }: PageTransitionProps) {
               blocksRef.current,
               {
                 scaleX: 0,
-                duration: 0.6,
-                stagger: 0.03,
+                duration: 1.0, // Slower animation for better visual effect
+                stagger: 0.04, // Slightly slower stagger for smoother sequence
                 ease: "power2.out",
                 transformOrigin: "right",
               },
@@ -190,10 +198,10 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
         tl.to(blocksRef.current, {
           scaleX: 1,
-          duration: 0.4,
-          stagger: 0.02,
+          duration: 0.8, // Slower animation for better visual effect
+          stagger: 0.03, // Slightly slower stagger for smoother sequence
           ease: "power2.out",
-          transformOrigin: "left",
+          transformOrigin: "right",
         })
           .set(logoOverlayRef.current, { opacity: 1 }, "-=0.2")
           .to(
@@ -308,7 +316,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
     <div ref={containerRef}>
       <div
         ref={overlayRef}
-        className="pointer-events-none fixed inset-0 z-[1000] flex"
+        className="pointer-events-none fixed inset-0 z-[1000] flex overflow-hidden"
       />
       <div
         ref={logoOverlayRef}
@@ -323,22 +331,22 @@ export default function PageTransition({ children }: PageTransitionProps) {
       {/* Component-specific styles that can't be handled by Tailwind */}
       <style jsx>{`
         /* Custom scrollbar for webkit browsers */
-        ::-webkit-scrollbar {
-          width: 6px;
-        }
+        // ::-webkit-scrollbar {
+        //   width: 6px;
+        // }
 
-        ::-webkit-scrollbar-track {
-          background: transparent;
-        }
+        // ::-webkit-scrollbar-track {
+        //   background: transparent;
+        // }
 
-        ::-webkit-scrollbar-thumb {
-          background: rgba(80, 70, 48, 0.3);
-          border-radius: 3px;
-        }
+        // ::-webkit-scrollbar-thumb {
+        //   background: rgba(80, 70, 48, 0.3);
+        //   border-radius: 3px;
+        // }
 
-        ::-webkit-scrollbar-thumb:hover {
-          background: rgba(80, 70, 48, 0.5);
-        }
+        // ::-webkit-scrollbar-thumb:hover {
+        //   background: rgba(80, 70, 48, 0.5);
+        // }
       `}</style>
     </div>
   );
