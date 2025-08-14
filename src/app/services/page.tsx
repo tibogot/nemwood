@@ -60,11 +60,17 @@ export default function ServicesPage() {
       </section>
 
       {/* Full Width Image Section with Parallax */}
-      <ParallaxImage
-        src="/images/nemwardrobe7.webp"
-        alt="Nemwood craftsmanship showcase"
-        speed={1.5}
-      />
+      <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+        <Image
+          src="/images/nemwardrobe7.webp"
+          alt="Nemwood craftsmanship showcase"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          quality={95}
+          priority
+        />
+      </ParallaxImage>
 
       {/* Services Grid */}
       <section className="px-4 py-20 md:px-8 md:py-40">

@@ -74,11 +74,17 @@ export default async function BlogPage() {
         </ul>
       </main>
       <section className="bg-secondary relative h-svh w-full">
-        <ParallaxImage
-          src="/images/nemohero.webp"
-          alt="Nemwood artisan woodworking"
-          speed={1.5}
-        />
+        <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+          <Image
+            src="/images/nemohero.webp"
+            alt="Nemwood artisan woodworking"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            quality={95}
+            priority
+          />
+        </ParallaxImage>
       </section>
     </>
   );

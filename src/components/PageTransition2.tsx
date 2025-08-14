@@ -27,16 +27,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
   // Ensure SVG is properly initialized after mount
   useEffect(() => {
-    console.log("PageTransition: useEffect triggered");
-    console.log("PageTransition: logoRef.current:", !!logoRef.current);
-
     if (logoRef.current) {
       const path = logoRef.current.querySelector("path");
-      console.log("PageTransition: Path element found in useEffect:", !!path);
       if (path && pathLengthRef.current === null) {
         try {
           const length = path.getTotalLength();
-          console.log("PageTransition: Path length in useEffect:", length);
           pathLengthRef.current = length;
           gsap.set(path, {
             strokeDasharray: length,
@@ -44,7 +39,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
             fill: "transparent",
             stroke: "currentColor",
           });
-          console.log("PageTransition: SVG setup complete in useEffect");
         } catch (error) {
           console.warn(
             "PageTransition: Error setting up logo path in useEffect:",
@@ -97,12 +91,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
       };
 
       const coverPage = (url: string) => {
-        console.log("PageTransition: coverPage called for URL:", url);
-        console.log(
-          "PageTransition: pathLengthRef.current:",
-          pathLengthRef.current,
-        );
-
         if (
           !logoRef.current ||
           !logoOverlayRef.current ||
@@ -123,8 +111,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
           router.push(url);
           return;
         }
-
-        console.log("PageTransition: Logo path found, starting animation");
 
         const tl = gsap.timeline({
           onComplete: () => router.push(url),
@@ -167,16 +153,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
       // Ensure SVG path is properly set up before proceeding
       const setupLogoPath = () => {
-        console.log("PageTransition: setupLogoPath called");
         if (logoRef.current) {
           const path = logoRef.current.querySelector("path");
           if (path) {
             try {
               const length = path.getTotalLength();
-              console.log(
-                "PageTransition: SVG path length calculated:",
-                length,
-              );
               pathLengthRef.current = length;
               gsap.set(path, {
                 strokeDasharray: length,
@@ -184,7 +165,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
                 fill: "transparent",
                 stroke: "currentColor",
               });
-              console.log("PageTransition: SVG path setup complete");
               return true;
             } catch (error) {
               console.warn(
@@ -193,11 +173,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
               );
               return false;
             }
-          } else {
-            console.log("PageTransition: No path element found in SVG");
           }
-        } else {
-          console.log("PageTransition: logoRef.current is null");
         }
         return false;
       };

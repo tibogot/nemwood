@@ -23,11 +23,17 @@ export default function About() {
       </section>
 
       {/* Full Width Image Section with Parallax */}
-      <ParallaxImage
-        src="/images/wardrobe.webp"
-        alt="Nemwood woodworking craftsmanship"
-        speed={1.5}
-      />
+      <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+        <Image
+          src="/images/wardrobe.webp"
+          alt="Nemwood woodworking craftsmanship"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          quality={95}
+          priority
+        />
+      </ParallaxImage>
 
       <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
         <div className="left md:w-1/2">
@@ -57,7 +63,7 @@ export default function About() {
           </div>
         </div>
         <div className="right flex flex-col items-end text-left md:w-1/2">
-          <div className="h-[600px] w-full bg-amber-400 select-none">
+          <div className="h-[400px] w-full bg-amber-400 select-none md:h-[600px]">
             <Image
               src="/images/kitchen.webp"
               alt=""
@@ -143,17 +149,18 @@ export default function About() {
       {/* Sticky Stack Scroll Section */}
       <StickyStackScroll />
 
-      <section className="flex w-full flex-col items-center justify-center px-4 py-60 md:px-8">
-        <div className="h-[600px] w-[400px] select-none">
+      <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-64">
+        <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
           <Image
             src="/images/loft.webp"
             alt=""
-            width={1000}
-            height={800}
+            fill
+            className="rounded-sm object-cover"
+            sizes="100vw"
+            quality={95}
             priority
-            className="h-full w-full rounded-sm object-cover"
           />
-        </div>
+        </ParallaxImage>
         <h1 className="font-ITCGaramondN mt-12 mb-6 text-5xl">
           Creativity to design
         </h1>

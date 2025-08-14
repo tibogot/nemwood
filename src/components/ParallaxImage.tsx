@@ -1,27 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef, ReactNode } from "react";
 
 interface ParallaxImageProps {
-  src: string;
-  alt: string;
-  className?: string;
+  children: ReactNode;
   speed?: number;
+  className?: string;
 }
 
 export default function ParallaxImage({
-  src,
-  alt,
-  className = "",
+  children,
   speed = 0.5,
+  className = "",
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || !imageRef.current) return;
+      if (!containerRef.current || !contentRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
       const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
@@ -32,7 +29,7 @@ export default function ParallaxImage({
           (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
         const parallaxOffset = (scrollProgress - 0.5) * 100 * speed;
 
-        imageRef.current.style.transform = `translateY(${parallaxOffset}px)`;
+        contentRef.current.style.transform = `translateY(${parallaxOffset}px)`;
       }
     };
 
@@ -42,25 +39,10 @@ export default function ParallaxImage({
   }, [speed]);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative h-[100svh] w-full overflow-hidden"
-    >
-      <div
-        ref={imageRef}
-        className="absolute inset-0 h-[120%] w-full"
-        style={{ top: "-10%" }}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className={`object-cover ${className}`}
-          sizes="100vw"
-          quality={95}
-          priority
-        />
+    <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
+      <div ref={contentRef} className="h-full w-full">
+        {children}
       </div>
-    </section>
+    </div>
   );
 }

@@ -7,8 +7,6 @@ import { ScrollTrigger } from "gsap/all";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
 import AnimatedText from "./AnimatedText3";
-// import Copy from "../components/Copy1";
-// import Button from "../components/Buttons";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -32,7 +30,7 @@ function Card1() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                With decades of combined experience, Stack’s specialists have
+                With decades of combined experience, Stack's specialists have
                 unmatched insight into their sectors. By leveraging extensive
                 industry relationships and AI-powered applied research, our
                 teams systematically uncover emerging opportunities and critical
@@ -40,17 +38,6 @@ function Card1() {
                 positioned to address these issues, ensuring they generate
                 meaningful, lasting value.{" "}
               </p>
-            </div>
-
-            {/* Mobile Image */}
-            <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
-              <Image
-                src="/images/kitchen.webp"
-                alt="Cuisine sur mesure"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
             </div>
           </div>
 
@@ -100,17 +87,6 @@ function Card2() {
                 allocation strategy.
               </p>
             </div>
-
-            {/* Mobile Image */}
-            <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
-              <Image
-                src="/images/stairs.webp"
-                alt="Escaliers sur mesure"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
           </div>
 
           {/* Desktop Image */}
@@ -149,7 +125,7 @@ function Card3() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Stack’s scalable digital-first and AI-powered operational
+                Stack's scalable digital-first and AI-powered operational
                 infrastructure ensures every fund benefits from uniformity in
                 processes, compliance, reporting, and risk management. By
                 centralizing and standardizing these operational elements across
@@ -157,17 +133,6 @@ function Card3() {
                 partners to focus solely on their core strategic
                 objectives.{" "}
               </p>
-            </div>
-
-            {/* Mobile Image */}
-            <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
-              <Image
-                src="/images/wardrobe.webp"
-                alt="Garde-robes sur mesure"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
             </div>
           </div>
 
@@ -208,17 +173,6 @@ function Card4() {
                 Innovative execution methods to deliver safe, high quality
                 project is the foundation of our business and success.
               </p>
-            </div>
-
-            {/* Mobile Image */}
-            <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
-              <Image
-                src="/images/table.webp"
-                alt="Tables en bois massif"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
             </div>
           </div>
 
@@ -423,7 +377,128 @@ export default function HomeCard() {
         </AnimatedText>
       </section>
 
-      <section className="cards relative space-y-0 md:space-y-0">
+      {/* Mobile Layout */}
+      <section className="text-primary block w-full py-8 md:hidden">
+        <div className="space-y-8 px-4">
+          {/* Card 1 */}
+          <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
+            <span className="text-sm leading-none">01</span>
+            <h2 className="mt-4 text-4xl leading-none">Deep Specialization</h2>
+            <div className="mt-8" />
+            <p className="font-HelveticaNow text-lg leading-relaxed">
+              With decades of combined experience, Stack's specialists have
+              unmatched insight into their sectors. By leveraging extensive
+              industry relationships and AI-powered applied research, our teams
+              systematically uncover emerging opportunities and critical market
+              challenges. We then partner with the innovators best positioned to
+              address these issues, ensuring they generate meaningful, lasting
+              value.
+            </p>
+            <div className="mt-8">
+              <div className="h-[400px] w-full overflow-hidden rounded-sm">
+                <Image
+                  src="/images/kitchen.webp"
+                  alt="Cuisine sur mesure"
+                  width={1000}
+                  height={400}
+                  className="h-full w-full object-cover"
+                  style={{ width: "100%", height: "100%" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
+            <span className="text-sm leading-none">02</span>
+            <h2 className="mt-4 text-4xl leading-none">
+              Modular Portfolio Construction
+            </h2>
+            <div className="mt-8" />
+            <p className="font-HelveticaNow text-lg leading-relaxed">
+              Every Stack fund operates as a standardized modular building
+              block, empowering LPs to design custom private-market portfolios
+              aligned precisely to their strategic priorities. Rather than
+              selecting managers, LPs choose sectors—assembling targeted
+              exposures to meet exact investment goals. This modular approach
+              delivers clarity, precision, and tailored control, redefining
+              portfolio construction as an intentional, sector-driven allocation
+              strategy.
+            </p>
+            <div className="mt-8">
+              <div className="h-[400px] w-full overflow-hidden rounded-sm">
+                <Image
+                  src="/images/stairs.webp"
+                  alt="Escaliers sur mesure"
+                  width={1000}
+                  height={400}
+                  className="h-full w-full object-cover"
+                  style={{ width: "100%", height: "100%" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
+            <span className="text-sm leading-none">03</span>
+            <h2 className="mt-4 text-4xl leading-none">
+              Institutional-Grade Infrastructure
+            </h2>
+            <div className="mt-8" />
+            <p className="font-HelveticaNow text-lg leading-relaxed">
+              Stack's scalable digital-first and AI-powered operational
+              infrastructure ensures every fund benefits from uniformity in
+              processes, compliance, reporting, and risk management. By
+              centralizing and standardizing these operational elements across
+              all funds, Stack delivers consistency and reliability, allowing
+              partners to focus solely on their core strategic objectives.
+            </p>
+            <div className="mt-8">
+              <div className="h-[400px] w-full overflow-hidden rounded-sm">
+                <Image
+                  src="/images/wardrobe.webp"
+                  alt="Garde-robes sur mesure"
+                  width={1000}
+                  height={400}
+                  className="h-full w-full object-cover"
+                  style={{ width: "100%", height: "100%" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
+            <span className="text-sm leading-none">04</span>
+            <h2 className="mt-4 text-4xl leading-none">Construction</h2>
+            <div className="mt-8" />
+            <p className="font-HelveticaNow text-lg leading-relaxed">
+              Innovative execution methods to deliver safe, high quality project
+              is the foundation of our business and success.
+            </p>
+            <div className="mt-8">
+              <div className="h-[400px] w-full overflow-hidden rounded-sm">
+                <Image
+                  src="/images/table.webp"
+                  alt="Tables en bois massif"
+                  width={1000}
+                  height={400}
+                  className="h-full w-full object-cover"
+                  style={{ width: "100%", height: "100%" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Desktop Layout */}
+      <section className="cards relative hidden space-y-0 md:block md:space-y-0">
         <Card1 />
         <Card2 />
         <Card3 />

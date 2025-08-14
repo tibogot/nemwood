@@ -164,10 +164,6 @@ function AnimatedText({
                 autoAlpha: 0, // This prevents FOUC by setting visibility: hidden initially
               });
 
-              console.log(
-                `AnimatedText: Set initial state for ${split.lines.length} lines`,
-              );
-
               // For hero text, use immediate animation without ScrollTrigger
               if (isHero) {
                 // Remove FOUC prevention class and make element visible for hero text
@@ -205,14 +201,9 @@ function AnimatedText({
                       }
                       gsap.set(child, { visibility: "visible", opacity: 1 });
                       // Ensure animation plays when entering viewport
-                      console.log("ScrollTrigger entered for AnimatedText");
                     },
                   },
                 });
-
-                console.log(
-                  `AnimatedText: Created animation for ${split.lines.length} lines`,
-                );
               }
             } else {
               console.warn(
