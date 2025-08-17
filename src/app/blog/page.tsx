@@ -54,9 +54,9 @@ export default async function BlogPage() {
                         {new Date(post.publishedAt).toLocaleDateString()}
                       </p>
                     )}
-                    <h5 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
+                    <h2 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
                       {post.title}
-                    </h5>
+                    </h2>
 
                     <div className="font-NHD mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
                       {post.body && (
