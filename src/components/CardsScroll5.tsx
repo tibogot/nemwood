@@ -82,6 +82,7 @@ function CardsScroll() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
           onSplit: (self: any) => {
             const tl = gsap.from(self.lines, {
               yPercent: 100,
@@ -104,6 +105,7 @@ function CardsScroll() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
           onSplit: (self: any) => {
             const tl = gsap.from(self.lines, {
               yPercent: 100,

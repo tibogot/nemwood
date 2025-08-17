@@ -113,6 +113,7 @@ function ReverseCards() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
         });
 
         tl.from(
@@ -132,6 +133,7 @@ function ReverseCards() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
         });
 
         tl.from(
@@ -152,6 +154,7 @@ function ReverseCards() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
         });
 
         tl.from(
@@ -171,6 +174,7 @@ function ReverseCards() {
           type: "lines",
           mask: "lines",
           autoSplit: true,
+          aria: "none", // Disable automatic aria-label addition
         });
 
         tl.from(
