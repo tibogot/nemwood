@@ -35,6 +35,7 @@ const BlurryTextReveal: React.FC = () => {
               type: "chars, words",
               charsClass: "char",
               wordsClass: "word",
+              aria: "none", // Disable automatic aria-label addition
             }) as unknown as SplitTextInstance;
 
             // Initial state

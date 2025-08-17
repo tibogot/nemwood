@@ -41,7 +41,7 @@ export default function Home() {
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/nemwardrobe7.webp"
+          src="/images/oth1 2.webp"
           alt="Hero Image"
           fill
           sizes="100vw"
@@ -53,12 +53,13 @@ export default function Home() {
           muted
           loop
           playsInline
+          aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
           // poster="/hero-poster.jpg" // Fallback image
         >
           <source src="/images/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div>
+        {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
         <Image
           className="relative z-10 h-auto w-full"
           src="/logonew4.svg"
@@ -67,6 +68,7 @@ export default function Home() {
           height={300} // adjust height proportionally
           quality={100}
           priority
+          fetchPriority="high"
         />
         <header className="hero-header">
           <AnimatedText isHero={true} duration={1.2}>

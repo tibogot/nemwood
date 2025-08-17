@@ -152,6 +152,7 @@ function AnimatedText({
               type: "lines",
               mask: "lines",
               autoSplit: true,
+              aria: "none", // Disable automatic aria-label addition
             });
 
             // Verify the split was successful
