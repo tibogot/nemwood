@@ -170,14 +170,14 @@ function CardsScroll() {
         <div className="row m-4 flex w-full justify-center gap-4" key={i}>
           <div className="card card-left h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <img
-              src={`/img-${2 * i - 1}.jpg`}
+              src={`/img-${2 * i - 1}.webp`}
               alt=""
               className="h-full w-full object-cover"
             />
           </div>
           <div className="card card-right h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <img
-              src={`/img-${2 * i}.jpg`}
+              src={`/img-${2 * i}.webp`}
               alt=""
               className="h-full w-full object-cover"
             />

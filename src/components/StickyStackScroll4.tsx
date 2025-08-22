@@ -363,7 +363,7 @@ export default function HomeCard() {
           </p>
         </div>
       </section> */}
-      <section className="text-primary intro mx-auto px-4 py-30 text-center md:px-8">
+      <section className="text-primary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
         <h1 className="font-ITCGaramondN mb-6 text-6xl">
           Creativity to design
         </h1>
