@@ -176,6 +176,7 @@ function CardsScroll() {
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"
+              loading="lazy"
             />
           </div>
           <div className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
@@ -185,6 +186,7 @@ function CardsScroll() {
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>,

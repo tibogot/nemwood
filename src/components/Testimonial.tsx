@@ -88,7 +88,8 @@ export default function Testimonial() {
           fill
           className="rounded-sm object-cover"
           sizes="(max-width: 768px) 100vw, 80vw"
-          priority
+          // priority
+          loading="lazy"
         />
         {/* <h1 className="font-ITCGaramondN text-secondary relative text-6xl md:text-8xl">
           Témoignages clients

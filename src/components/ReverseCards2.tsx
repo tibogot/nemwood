@@ -263,7 +263,7 @@ function ReverseCards() {
               width={1000}
               height={800}
               className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-110"
-              priority
+              loading="lazy"
             />
           </div>
 
@@ -303,7 +303,7 @@ function ReverseCards() {
               width={1000}
               height={800}
               className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-110"
-              priority
+              loading="lazy"
             />
           </div>
 
