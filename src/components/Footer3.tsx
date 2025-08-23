@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Big text at the top */}
           <h1 className="font-ITCGaramondN mt-8 mb-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
             Chaque pièce est réalisée à la main, dans un souci de qualité, de
-            durabilité et de design unique.
+            durabilité et de design unique
           </h1>
 
           {/* Newsletter Subscription */}
