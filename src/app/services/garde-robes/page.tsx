@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { generateMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = {
-  title: "Garde-robes en bois sur mesure en Belgique | Nemwood",
-  description:
-    "Fabrication de garde-robes et dressings en bois massif sur mesure en Belgique. Solutions de rangement personnalisées.",
-};
+export const metadata: Metadata = generateMetadata(
+  "Garde-robes en bois sur mesure en Belgique | Nemwood",
+  "Fabrication de garde-robes et dressings en bois massif sur mesure en Belgique. Solutions de rangement personnalisées.",
+  "/images/wardrobe.webp",
+  "https://nemwood.be/services/garde-robes",
+);
 
 export default function GardeRobesPage() {
   return (

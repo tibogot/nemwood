@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import StickyStackScroll from "@/components/StickyStackScroll4";
+import { generateMetadata } from "@/app/metadata";
+
+export const metadata: Metadata = generateMetadata(
+  "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
+  "Découvrez Nemwood, artisan menuisier belge spécialisé dans la fabrication de meubles en bois sur mesure : tables, garde-robes, escaliers et cuisines.",
+  "/images/wardrobe.webp",
+  "https://nemwood.be/about",
+);
 
 export default function About() {
   return (

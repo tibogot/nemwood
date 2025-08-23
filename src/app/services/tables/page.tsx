@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { generateMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = {
-  title: "Tables en bois sur mesure en Belgique | Nemwood",
-  description:
-    "Fabrication de tables en bois massif sur mesure en Belgique. Tables à manger, tables basses, bureaux uniques et durables.",
-};
+export const metadata: Metadata = generateMetadata(
+  "Tables en bois sur mesure en Belgique | Nemwood",
+  "Fabrication de tables en bois massif sur mesure en Belgique. Tables à manger, tables basses, bureaux uniques et durables.",
+  "/images/table.webp",
+  "https://nemwood.be/services/tables",
+);
 
 export default function TablesPage() {
   return (

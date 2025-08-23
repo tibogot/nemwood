@@ -8,6 +8,7 @@ import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition2";
+import { metadata as homepageMetadata } from "./page-metadata";
 
 // import ScrollProgress from "@/components/ScrollProgress";
 
@@ -67,25 +68,7 @@ const neueHaasDisplay = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Nemwood | Meubles en bois sur mesure en Belgique - Artisan menuisier",
-  description:
-    "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
-  keywords: [
-    "menuisier belgique",
-    "meubles bois sur mesure",
-    "escaliers bois belgique",
-    "garde-robe sur mesure",
-    "table bois massif",
-    "cuisine bois belgique",
-  ],
-  openGraph: {
-    title: "Nemwood - Meubles en bois sur mesure en Belgique",
-    description: "Fabrication artisanale de meubles en bois massif sur mesure.",
-    type: "website",
-    locale: "fr_BE",
-  },
-};
+export const metadata: Metadata = homepageMetadata;
 
 export default function RootLayout({
   children,

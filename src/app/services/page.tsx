@@ -4,12 +4,14 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
+import { generateMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = {
-  title: "Services de menuiserie sur mesure en Belgique | Nemwood",
-  description:
-    "Découvrez nos services de menuiserie : escaliers, garde-robes, tables et cuisines en bois sur mesure. Artisanat belge de qualité.",
-};
+export const metadata: Metadata = generateMetadata(
+  "Services de menuiserie sur mesure en Belgique | Nemwood",
+  "Découvrez nos services de menuiserie : escaliers, garde-robes, tables et cuisines en bois sur mesure. Artisanat belge de qualité.",
+  "/images/nemwardrobe7.webp",
+  "https://nemwood.be/services",
+);
 
 export default function ServicesPage() {
   const services = [

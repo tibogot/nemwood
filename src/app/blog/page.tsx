@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import ParallaxImage from "@/components/ParallaxImage";
+import { generateMetadata } from "@/app/metadata";
+
+export const metadata: Metadata = generateMetadata(
+  "Blog Nemwood - Actualités et conseils menuiserie | Nemwood",
+  "Découvrez nos dernières actualités et conseils pour améliorer votre intérieur. Conseils d'experts en menuiserie sur mesure.",
+  "/images/nemohero.webp",
+  "https://nemwood.be/blog",
+);
 
 export default async function BlogPage() {
   const posts = await client.fetch(

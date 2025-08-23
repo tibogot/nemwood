@@ -3,24 +3,14 @@ import AnimatedText from "@/components/AnimatedText3";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
+import { generateMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
-  description:
-    "Contactez Nemwood pour vos projets de menuiserie sur mesure en Belgique. Spécialiste en tables, escaliers, garde-robes et cuisines. Devis gratuit et conseil personnalisé.",
-  keywords:
-    "contact menuisier belgique, devis menuiserie, artisan bois sur mesure, consultation menuiserie, nemwood contact",
-  openGraph: {
-    title: "Contact Nemwood | Menuisier Artisan en Belgique",
-    description:
-      "Contactez notre équipe d'artisans menuisiers pour discuter de votre projet sur mesure. Devis gratuit et conseil personnalisé.",
-    type: "website",
-    locale: "fr_BE",
-  },
-  alternates: {
-    canonical: "/contact",
-  },
-};
+export const metadata: Metadata = generateMetadata(
+  "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
+  "Contactez Nemwood pour vos projets de menuiserie sur mesure en Belgique. Spécialiste en tables, escaliers, garde-robes et cuisines. Devis gratuit et conseil personnalisé.",
+  "/images/stairs.webp",
+  "https://nemwood.be/contact",
+);
 
 export default function Contact() {
   return (

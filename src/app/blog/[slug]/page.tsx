@@ -1,7 +1,44 @@
+import type { Metadata } from "next";
 import client from "../../../sanityClient";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import AnimatedText from "@/components/AnimatedText3";
+import { generateMetadata } from "@/app/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await client.fetch(
+    `*[_type == "post" && slug.current == $slug][0]{
+      title,
+      body,
+      mainImage {
+        asset->{url}
+      },
+      publishedAt
+    }`,
+    { slug },
+  );
+
+  if (!post) return generateMetadata();
+
+  // Extract first paragraph for description
+  const firstParagraph = post.body?.[0]?.children?.[0]?.text || "";
+  const description =
+    firstParagraph.length > 160
+      ? firstParagraph.substring(0, 160) + "..."
+      : firstParagraph;
+
+  return generateMetadata(
+    `${post.title} | Blog Nemwood`,
+    description,
+    post.mainImage?.asset?.url || "/images/nemohero.webp",
+    `https://nemwood.be/blog/${slug}`,
+  );
+}
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(
