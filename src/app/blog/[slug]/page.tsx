@@ -3,7 +3,7 @@ import client from "../../../sanityClient";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import AnimatedText from "@/components/AnimatedText3";
-import { generateMetadata } from "@/app/metadata";
+import { generateMetadata as generatePageMetadata } from "@/app/metadata";
 
 export async function generateMetadata({
   params,
@@ -23,7 +23,7 @@ export async function generateMetadata({
     { slug },
   );
 
-  if (!post) return generateMetadata();
+  if (!post) return generatePageMetadata();
 
   // Extract first paragraph for description
   const firstParagraph = post.body?.[0]?.children?.[0]?.text || "";
@@ -32,7 +32,7 @@ export async function generateMetadata({
       ? firstParagraph.substring(0, 160) + "..."
       : firstParagraph;
 
-  return generateMetadata(
+  return generatePageMetadata(
     `${post.title} | Blog Nemwood`,
     description,
     post.mainImage?.asset?.url || "/images/nemohero.webp",
