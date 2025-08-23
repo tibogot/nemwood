@@ -36,6 +36,7 @@ export function generateMetadata(
   url?: string,
 ): Metadata {
   return {
+    metadataBase: new URL(siteMetadata.url),
     title: title || siteMetadata.title,
     description: description || siteMetadata.description,
     keywords: siteMetadata.keywords,

@@ -47,7 +47,7 @@ export default function CuisinesPage() {
                 alt="Cuisine en bois sur mesure"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="350px md:500px"
                 priority
               />
             </div>
