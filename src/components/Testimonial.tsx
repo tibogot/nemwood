@@ -12,17 +12,17 @@ const testimonials = [
   {
     name: "Sophie Dubois",
     text: `L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle.`,
-    image: "https://picsum.photos/id/1011/400/300",
+    image: "/images/profile-1.webp",
   },
   {
     name: "Marc Lefevre",
     text: `Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité.`,
-    image: "https://picsum.photos/id/1027/400/300",
+    image: "/images/profile-2.webp",
   },
   {
     name: "Claire Martinez",
     text: `Des garde-robes parfaitement intégrées qui optimisent notre espace. Le savoir-faire traditionnel au service du design contemporain.`,
-    image: "https://picsum.photos/id/1005/400/300",
+    image: "/images/profile-3.webp",
   },
 ];
 
@@ -114,21 +114,36 @@ export default function Testimonial() {
                 {/* Main content - blockquote takes up most space */}
                 <div className="flex flex-1 items-center justify-center">
                   <blockquote className="font-NHD text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
-                    <span className="font-NHD text-5xl">“</span>
+                    <span className="font-NHD text-5xl">"</span>
                     {testimonial.text}
                     <span className="font-NHD inline-block align-top text-5xl leading-none">
-                      “
+                      "
                     </span>
                   </blockquote>
                 </div>
 
                 {/* Bottom section with profile image and name */}
                 <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="border-primary/20 h-12 w-12 rounded-full border-2 object-cover md:h-14 md:w-14"
-                  />
+                  <div className="relative h-12 w-12 md:h-14 md:w-14">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      fill
+                      className="border-primary/20 rounded-full border-2 object-cover"
+                      sizes="(max-width: 768px) 48px, 56px"
+                      quality={85}
+                      onError={(e) => {
+                        // Fallback to a default avatar if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const fallback = document.createElement("div");
+                        fallback.className =
+                          "border-primary/20 h-12 w-12 md:h-14 md:w-14 rounded-full border-2 bg-primary/10 flex items-center justify-center";
+                        fallback.innerHTML = `<span class="text-primary text-xs font-bold">${testimonial.name.charAt(0)}</span>`;
+                        target.parentNode?.appendChild(fallback);
+                      }}
+                    />
+                  </div>
                   <p className="font-NHD text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                     {testimonial.name}
                   </p>
