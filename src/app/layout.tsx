@@ -12,16 +12,6 @@ import { metadata as homepageMetadata } from "./page-metadata";
 
 // import ScrollProgress from "@/components/ScrollProgress";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
 const ITCGaramondStdLtNarrow = localFont({
   src: [
     {
@@ -56,17 +46,17 @@ const HelveticaNow = localFont({
   display: "swap",
 });
 
-const neueHaasDisplay = localFont({
-  src: [
-    {
-      path: "../fonts/NeueHaasDisplay-Roman.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-neue-haas-display",
-  display: "swap",
-});
+// const neueHaasDisplay = localFont({
+//   src: [
+//     {
+//       path: "../fonts/NeueHaasDisplay-Roman.ttf",
+//       weight: "400",
+//       style: "normal",
+//     },
+//   ],
+//   variable: "--font-neue-haas-display",
+//   display: "swap",
+// });
 
 export const metadata: Metadata = homepageMetadata;
 
@@ -79,7 +69,7 @@ export default function RootLayout({
     <html lang="fr">
       <body
         suppressHydrationWarning
-        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} ${neueHaasDisplay.variable} antialiased`}
+        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} antialiased`}
       >
         <ThemeProvider>
           <PageTransition>

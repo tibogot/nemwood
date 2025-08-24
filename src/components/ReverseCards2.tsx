@@ -315,7 +315,7 @@ function ReverseCards() {
             >
               Mobilier design
             </h3>
-            <p ref={rightDescRef} className="font-NHD text-sm">
+            <p ref={rightDescRef} className="font-HelveticaNow text-sm">
               Tables, chaises et meubles d'exception façonnés dans notre atelier
               belge.{" "}
             </p>

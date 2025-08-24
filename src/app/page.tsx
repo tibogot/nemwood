@@ -72,7 +72,7 @@ export default function Home() {
         />
         <header className="hero-header">
           <AnimatedText isHero={true} duration={1.2}>
-            <p className="font-NHD relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
+            <p className="font-HelveticaNow relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
               Mobilier sur mesure en Belgique
             </p>
           </AnimatedText>

@@ -4,48 +4,10 @@ import Logo from "./Logo3";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-primary font-NHD relative flex min-h-svh w-full flex-col px-4 py-8 md:h-svh md:px-8">
+    <footer className="bg-secondary text-primary font-HelveticaNow relative flex min-h-svh w-full flex-col px-4 py-8 md:h-svh md:px-8">
       {/* Top Section */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Left Side - Navigation */}
-        {/* <div className="left flex w-full flex-col md:w-1/2">
-          <nav className="mt-8 mb-8 md:mt-20">
-            <ul className="space-y-2 md:space-y-1">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-xl transition-opacity hover:opacity-70 md:text-lg"
-                >
-                  À propos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections"
-                  className="text-xl transition-opacity hover:opacity-70 md:text-lg"
-                >
-                  Collections
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-xl transition-opacity hover:opacity-70 md:text-lg"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/boutique"
-                  className="text-xl transition-opacity hover:opacity-70 md:text-lg"
-                >
-                  Boutique
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div> */}
 
         {/* Right Side - Content */}
         <div className="right flex w-full flex-col md:w-1/2">
@@ -67,6 +29,55 @@ export default function Footer() {
               </button>
             </div>
           </div>
+
+          {/* Contact and Social Columns */}
+          <div className="mt-24 flex flex-col gap-8 md:flex-row md:gap-24">
+            {/* CONTACT Column */}
+            <div className="flex flex-col">
+              <h3 className="text-primary font-HelveticaNow mb-4 text-xl font-semibold">
+                CONTACT
+              </h3>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="tel:+33123456789"
+                  className="hover:text-primary font-HelveticaNow cursor-pointer text-xl text-gray-700 transition-colors"
+                >
+                  +33 1 23 45 67 89
+                </Link>
+                <Link
+                  href="mailto:contact@nemwood.com"
+                  className="hover:text-primary font-HelveticaNow cursor-pointer text-xl text-gray-700 transition-colors"
+                >
+                  contact@nemwood.com
+                </Link>
+              </div>
+            </div>
+
+            {/* SOCIAL Column */}
+            <div className="flex flex-col">
+              <h3 className="font-HelveticaNow text-primary mb-4 text-xl font-semibold">
+                SOCIAL
+              </h3>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="https://instagram.com/nemwood"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary font-HelveticaNow text-xl text-gray-700 transition-colors"
+                >
+                  Instagram
+                </Link>
+                <Link
+                  href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary font-HelveticaNow text-xl text-gray-700 transition-colors"
+                >
+                  Facebook
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -77,11 +88,11 @@ export default function Footer() {
             {/* Logo in bottom section */}
             <div
               className="flex items-end"
-              style={{ transform: "translateY(16px)" }}
+              style={{ transform: "translateY(4px)" }}
             >
               <Logo width={220} height={52} className="text-primary" />
             </div>
-            <div className="mt-4 flex flex-col space-y-1 md:mt-0">
+            <div className="mt-4 flex flex-col space-y-1 md:mt-4">
               <span>© 2025 Tous droits réservés</span>
               {/* <div className="flex flex-col space-y-1">
                 <span>+33 1 23 45 67 89</span>
@@ -91,7 +102,7 @@ export default function Footer() {
           </div>
 
           {/* Legal Links */}
-          <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
+          {/* <div className="invisible flex flex-col space-y-2 text-left md:visible md:flex-row md:space-y-0 md:space-x-6 md:text-right">
             <Link
               href="/mentions-legales"
               className="transition-opacity hover:opacity-70"
@@ -107,7 +118,7 @@ export default function Footer() {
             <Link href="/cgv" className="transition-opacity hover:opacity-70">
               CGV
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

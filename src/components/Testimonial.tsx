@@ -113,10 +113,10 @@ export default function Testimonial() {
               >
                 {/* Main content - blockquote takes up most space */}
                 <div className="flex flex-1 items-center justify-center">
-                  <blockquote className="font-NHD text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
-                    <span className="font-NHD text-5xl">"</span>
+                  <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
+                    <span className="font-HelveticaNow text-5xl">"</span>
                     {testimonial.text}
-                    <span className="font-NHD inline-block align-top text-5xl leading-none">
+                    <span className="font-HelveticaNow inline-block align-top text-5xl leading-none">
                       "
                     </span>
                   </blockquote>
@@ -144,7 +144,7 @@ export default function Testimonial() {
                       }}
                     />
                   </div>
-                  <p className="font-NHD text-primary text-center text-xs tracking-wide uppercase md:text-sm">
+                  <p className="font-HelveticaNow text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                     {testimonial.name}
                   </p>
                 </div>
