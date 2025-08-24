@@ -483,7 +483,7 @@ export default function Navigation() {
             className={`flex w-full ${
               isMobile
                 ? "h-full flex-col items-center justify-center space-y-8"
-                : "flex-row items-end gap-8 md:gap-16"
+                : "flex-row items-start justify-start gap-2 md:gap-8"
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -495,7 +495,7 @@ export default function Navigation() {
                   ref={(el) => {
                     menuItemsRef.current[index] = el;
                   }}
-                  className="group relative"
+                  className="group relative flex-shrink-0"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -512,7 +512,7 @@ export default function Navigation() {
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
                         fontSize: isMobile
                           ? undefined
-                          : "clamp(32px, 6vw, 120px)",
+                          : "clamp(40px, 6vw, 120px)",
                       }}
                       title="You are currently on this page"
                       onClick={(e) => e.preventDefault()}
@@ -537,7 +537,7 @@ export default function Navigation() {
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
                         fontSize: isMobile
                           ? undefined
-                          : "clamp(32px, 6vw, 120px)",
+                          : "clamp(40px, 6vw, 120px)",
                       }}
                     >
                       {item.name}
@@ -575,19 +575,44 @@ export default function Navigation() {
         /* Ensure navigation items don't wrap */
         .group {
           white-space: nowrap;
+          overflow: hidden;
+        }
+
+        /* Ensure text stays within container bounds */
+        .font-ITCGaramondN a {
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         /* Truly responsive text that scales with screen width - using !important to override Tailwind */
         @media (min-width: 768px) {
           .font-ITCGaramondN a {
-            font-size: clamp(32px, 6vw, 120px) !important;
+            font-size: clamp(40px, 6vw, 120px) !important;
           }
         }
 
         /* Alternative approach - target the navigation container directly */
         @media (min-width: 768px) {
           .desktop-nav .font-ITCGaramondN a {
-            font-size: clamp(32px, 6vw, 120px) !important;
+            font-size: clamp(40px, 6vw, 120px) !important;
+          }
+        }
+
+        /* Desktop navigation layout improvements */
+        @media (min-width: 768px) {
+          .desktop-nav .flex-row {
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
+            width: fit-content !important;
+          }
+
+          .desktop-nav .group {
+            margin-right: clamp(0.5rem, 1vw, 1rem);
+          }
+
+          .desktop-nav .group:last-child {
+            margin-right: 0;
           }
         }
 
