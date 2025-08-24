@@ -419,7 +419,7 @@ export default function Navigation() {
 
       <nav
         ref={menuRef}
-        className="bg-secondary fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/30 backdrop-blur-sm select-none md:pb-8"
+        className="bg-secondary desktop-nav fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/30 backdrop-blur-sm select-none md:pb-8"
       >
         <div className="relative z-10 h-16 px-4 md:px-8">
           <div className="flex h-16 items-center justify-between">
@@ -483,7 +483,7 @@ export default function Navigation() {
             className={`flex w-full ${
               isMobile
                 ? "h-full flex-col items-center justify-center space-y-8"
-                : "flex-row gap-8 md:gap-16"
+                : "flex-row items-end gap-8 md:gap-16"
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -504,14 +504,15 @@ export default function Navigation() {
                     <Link
                       href="#"
                       className={`font-ITCGaramondN block cursor-default transition-all duration-300 ${
-                        isMobile
-                          ? "text-center text-5xl sm:text-6xl"
-                          : "text-4xl md:text-6xl lg:text-8xl"
+                        isMobile ? "text-center text-5xl sm:text-6xl" : ""
                       } text-primary/30 pointer-events-none line-through`}
                       style={{
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
+                        fontSize: isMobile
+                          ? undefined
+                          : "clamp(32px, 6vw, 120px)",
                       }}
                       title="You are currently on this page"
                       onClick={(e) => e.preventDefault()}
@@ -523,9 +524,7 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={`font-ITCGaramondN block transition-all duration-300 ${
-                        isMobile
-                          ? "text-center text-5xl sm:text-6xl"
-                          : "text-4xl md:text-6xl lg:text-8xl"
+                        isMobile ? "text-center text-5xl sm:text-6xl" : ""
                       } ${
                         hoveredIndex !== null && hoveredIndex !== index
                           ? "text-primary/50"
@@ -536,6 +535,9 @@ export default function Navigation() {
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
+                        fontSize: isMobile
+                          ? undefined
+                          : "clamp(32px, 6vw, 120px)",
                       }}
                     >
                       {item.name}
@@ -563,6 +565,30 @@ export default function Navigation() {
         /* Ensure fonts are loaded before showing text */
         .font-ITCGaramondN {
           font-display: block;
+        }
+
+        /* Prevent SplitText characters from wrapping */
+        .font-ITCGaramondN a {
+          white-space: nowrap;
+        }
+
+        /* Ensure navigation items don't wrap */
+        .group {
+          white-space: nowrap;
+        }
+
+        /* Truly responsive text that scales with screen width - using !important to override Tailwind */
+        @media (min-width: 768px) {
+          .font-ITCGaramondN a {
+            font-size: clamp(32px, 6vw, 120px) !important;
+          }
+        }
+
+        /* Alternative approach - target the navigation container directly */
+        @media (min-width: 768px) {
+          .desktop-nav .font-ITCGaramondN a {
+            font-size: clamp(32px, 6vw, 120px) !important;
+          }
         }
 
         /* Smooth scrolling for mobile */
