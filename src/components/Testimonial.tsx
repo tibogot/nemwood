@@ -114,10 +114,10 @@ export default function Testimonial() {
                 {/* Main content - blockquote takes up most space */}
                 <div className="flex flex-1 items-center justify-center">
                   <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
-                    <span className="font-HelveticaNow text-5xl">"</span>
+                    <span className="font-HelveticaNow text-5xl">“</span>
                     {testimonial.text}
                     <span className="font-HelveticaNow inline-block align-top text-5xl leading-none">
-                      "
+                      “
                     </span>
                   </blockquote>
                 </div>
