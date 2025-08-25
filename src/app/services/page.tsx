@@ -10,7 +10,7 @@ export const metadata: Metadata = generateMetadata(
   "Services de menuiserie sur mesure en Belgique | Nemwood",
   "Découvrez nos services de menuiserie : escaliers, garde-robes, tables et cuisines en bois sur mesure. Artisanat belge de qualité.",
   "/images/nemwardrobe7.webp",
-  "https://nemwood.be/services",
+  "https://www.nemwood.be/services",
 );
 
 export default function ServicesPage() {

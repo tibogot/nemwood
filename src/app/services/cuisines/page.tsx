@@ -8,7 +8,7 @@ export const metadata: Metadata = generateMetadata(
   "Cuisines en bois sur mesure en Belgique | Nemwood",
   "Fabrication de cuisines en bois massif sur mesure en Belgique. Aménagements cuisine personnalisés, meubles de cuisine artisanaux.",
   "/images/kitchen.webp",
-  "https://nemwood.be/services/cuisines",
+  "https://www.nemwood.be/services/cuisines",
 );
 
 export default function CuisinesPage() {

@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
   "Découvrez Nemwood, artisan menuisier belge spécialisé dans la fabrication de meubles en bois sur mesure : tables, garde-robes, escaliers et cuisines.",
   "/images/wardrobe.webp",
-  "https://nemwood.be/about",
+  "https://www.nemwood.be/about",
 );
 
 export default function About() {

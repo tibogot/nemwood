@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "Blog Nemwood - Actualités et conseils menuiserie | Nemwood",
   "Découvrez nos dernières actualités et conseils pour améliorer votre intérieur. Conseils d'experts en menuiserie sur mesure.",
   "/images/nemohero.webp",
-  "https://nemwood.be/blog",
+  "https://www.nemwood.be/blog",
 );
 
 export default async function BlogPage() {

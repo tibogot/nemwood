@@ -8,7 +8,7 @@ export const metadata: Metadata = generateMetadata(
   "Escaliers en bois sur mesure en Belgique | Nemwood",
   "Fabrication d'escaliers en bois massif sur mesure en Belgique. Artisanat traditionnel, finitions personnalisées. Devis gratuit.",
   "/images/stairs.webp",
-  "https://nemwood.be/services/escaliers",
+  "https://www.nemwood.be/services/escaliers",
 );
 
 export default function EscaliersPage() {

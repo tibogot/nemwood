@@ -16,7 +16,7 @@ export const siteMetadata = {
   creator: "Nemwood",
   publisher: "Nemwood",
   robots: "index, follow",
-  url: "https://nemwood.be", // Replace with your actual domain
+  url: "https://www.nemwood.be", // Updated to include www
   siteName: "Nemwood",
   locale: "fr_BE",
   image: "/images/nem1.png", // Replace with your preferred image
@@ -34,7 +34,11 @@ export function generateMetadata(
   description?: string,
   image?: string,
   url?: string,
+  canonical?: string,
 ): Metadata {
+  // Generate canonical URL if not provided
+  const canonicalUrl = canonical || url || siteMetadata.url;
+
   return {
     metadataBase: new URL(siteMetadata.url),
     title: title || siteMetadata.title,
@@ -44,6 +48,10 @@ export function generateMetadata(
     creator: siteMetadata.creator,
     publisher: siteMetadata.publisher,
     robots: siteMetadata.robots,
+    // Add canonical URL
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: title || "Nemwood - Meubles en bois sur mesure en Belgique",
       description:

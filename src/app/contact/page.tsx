@@ -9,7 +9,7 @@ export const metadata: Metadata = generateMetadata(
   "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
   "Contactez Nemwood pour vos projets de menuiserie sur mesure en Belgique. Spécialiste en tables, escaliers, garde-robes et cuisines. Devis gratuit et conseil personnalisé.",
   "/images/stairs.webp",
-  "https://nemwood.be/contact",
+  "https://www.nemwood.be/contact",
 );
 
 export default function Contact() {

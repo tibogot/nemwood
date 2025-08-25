@@ -8,7 +8,7 @@ export const metadata: Metadata = generateMetadata(
   "Tables en bois sur mesure en Belgique | Nemwood",
   "Fabrication de tables en bois massif sur mesure en Belgique. Tables à manger, tables basses, bureaux uniques et durables.",
   "/images/table.webp",
-  "https://nemwood.be/services/tables",
+  "https://www.nemwood.be/services/tables",
 );
 
 export default function TablesPage() {

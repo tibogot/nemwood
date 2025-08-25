@@ -36,7 +36,7 @@ export async function generateMetadata({
     `${post.title} | Blog Nemwood`,
     description,
     post.mainImage?.asset?.url || "/images/nemohero.webp",
-    `https://nemwood.be/blog/${slug}`,
+    `https://www.nemwood.be/blog/${slug}`,
   );
 }
 

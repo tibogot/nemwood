@@ -8,7 +8,7 @@ export const metadata: Metadata = generateMetadata(
   "Garde-robes en bois sur mesure en Belgique | Nemwood",
   "Fabrication de garde-robes et dressings en bois massif sur mesure en Belgique. Solutions de rangement personnalisées.",
   "/images/wardrobe.webp",
-  "https://nemwood.be/services/garde-robes",
+  "https://www.nemwood.be/services/garde-robes",
 );
 
 export default function GardeRobesPage() {
