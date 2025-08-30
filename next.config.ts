@@ -14,38 +14,12 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
-    optimizeCss: true,
-    webpackBuildWorker: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
   poweredByHeader: false,
   compress: true,
-  swcMinify: true,
-  // Optimize bundle splitting
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Optimize chunk splitting for production
-      config.optimization.splitChunks = {
-        chunks: "all",
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-          common: {
-            name: "common",
-            minChunks: 2,
-            chunks: "all",
-            enforce: true,
-          },
-        },
-      };
-    }
-    return config;
-  },
 };
 
 export default nextConfig;

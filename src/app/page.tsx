@@ -7,54 +7,33 @@ import client from "@/sanityClient";
 import HorizScroll from "@/components/HorizScroll7";
 import CardsScroll from "@/components/CardsScroll5";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import Testimonial from "@/components/Testimonial";
 import AnimatedText from "@/components/AnimatedText3";
+import BlurryTextReveal from "@/components/TextReveal";
 import ReverseCards from "@/components/ReverseCards2";
-
-// Lazy load non-critical components
-import dynamic from "next/dynamic";
-
-const Testimonial = dynamic(() => import("@/components/Testimonial"), {
-  loading: () => <div className="h-96" />, // Placeholder while loading
-  ssr: false, // Disable SSR for this component
-});
-
-const BlurryTextReveal = dynamic(() => import("@/components/TextReveal"), {
-  loading: () => <div className="h-32" />, // Placeholder while loading
-  ssr: false,
-});
-
-const BlogPreview = dynamic(() => import("@/components/BlogPreview"), {
-  loading: () => <div className="h-64" />, // Placeholder while loading
-  ssr: false,
-});
+import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [secondImageVisible, setSecondImageVisible] = useState(false);
 
   useEffect(() => {
-    // Defer blog posts loading to improve initial page load
-    const timer = setTimeout(async () => {
-      try {
-        const posts = await client.fetch(
-          `*[_type == "post"]|order(_createdAt desc)[0...3]{
-            _id,
-            title,
-            slug,
-            mainImage {
-              asset->{url}
-            },
-            publishedAt,
-            body
-          }`,
-        );
-        setBlogPosts(posts);
-      } catch (error) {
-        console.error("Failed to fetch blog posts:", error);
-      }
-    }, 2000); // Delay by 2 seconds to prioritize LCP
-
-    return () => clearTimeout(timer);
+    async function fetchPosts() {
+      const posts = await client.fetch(
+        `*[_type == "post"]|order(_createdAt desc)[0...3]{
+          _id,
+          title,
+          slug,
+          mainImage {
+            asset->{url}
+          },
+          publishedAt,
+          body
+        }`,
+      );
+      setBlogPosts(posts);
+    }
+    fetchPosts();
   }, []);
 
   useEffect(() => {
