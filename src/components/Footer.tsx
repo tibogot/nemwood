@@ -40,16 +40,16 @@ export default function Footer() {
               <h3 className="text-primary font-HelveticaNow mb-4 text-xl font-semibold">
                 CONTACT
               </h3>
-              <div className="flex flex-col space-y-1">
+              <div className="text-primary flex flex-col space-y-1">
                 <Link
                   href="tel:+33123456789"
-                  className="hover:text-primary font-HelveticaNow cursor-pointer text-xl text-gray-700 transition-colors"
+                  className="font-HelveticaNow text-primary cursor-pointer text-xl transition-colors"
                 >
                   +32 489 33 05 44
                 </Link>
                 <Link
                   href="mailto:contact@nemwood.com"
-                  className="hover:text-primary font-HelveticaNow cursor-pointer text-xl text-gray-700 transition-colors"
+                  className="text-primary font-HelveticaNow cursor-pointer text-xl transition-colors"
                 >
                   contact@nemwood.com
                 </Link>
@@ -66,7 +66,7 @@ export default function Footer() {
                   href="https://instagram.com/nemwood"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-primary font-HelveticaNow text-xl text-gray-700 transition-colors"
+                  className="hover:text-primary font-HelveticaNow text-primary text-xl transition-colors"
                 >
                   Instagram
                 </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
                   href="https://www.facebook.com/p/NemwOod-100063674583109/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-primary font-HelveticaNow text-xl text-gray-700 transition-colors"
+                  className="hover:text-primary font-HelveticaNow text-primary text-xl transition-colors"
                 >
                   Facebook
                 </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
 
       {/* Bottom Copyright Section */}
       <div className="mt-8 border-t border-gray-300 pt-6 md:border-none md:pt-4">
-        <div className="flex flex-row space-y-4 text-sm text-gray-600 md:flex-row md:items-end md:justify-between md:space-y-0">
+        <div className="text-primary flex flex-row space-y-4 text-sm md:flex-row md:items-end md:justify-between md:space-y-0">
           <div className="flex flex-col space-y-3 md:flex-row md:items-baseline md:space-y-0 md:space-x-6">
             {/* Logo in bottom section */}
             <div
