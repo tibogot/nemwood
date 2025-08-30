@@ -49,6 +49,12 @@ body {
   contain: layout style paint;
 }
 
+/* Hide hero text visually while keeping it for LCP */
+.hero-text {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
 /* Optimize image loading */
 img {
   max-width: 100%;
