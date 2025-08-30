@@ -269,12 +269,12 @@ function ReverseCards() {
 
           {/* Text over Image */}
           <div className="z-10 mt-auto p-6 text-left text-white">
-            <h3
+            <h2
               ref={leftTitleRef}
               className="font-ITCGaramondN text-5xl leading-tight"
             >
               Aménagements intérieurs
-            </h3>
+            </h2>
             <p ref={leftDescRef} className="font-NHD text-sm">
               Créations sur mesure pour optimiser et embellir vos espaces de
               vie.
@@ -309,12 +309,12 @@ function ReverseCards() {
 
           {/* Text over Image */}
           <div className="z-10 mt-auto p-6 text-left text-white">
-            <h3
+            <h2
               ref={rightTitleRef}
               className="font-ITCGaramondN text-5xl leading-tight"
             >
               Mobilier design
-            </h3>
+            </h2>
             <p ref={rightDescRef} className="font-HelveticaNow text-sm">
               Tables, chaises et meubles d'exception façonnés dans notre atelier
               belge.{" "}
