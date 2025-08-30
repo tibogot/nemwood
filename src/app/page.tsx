@@ -61,54 +61,21 @@ export default function Home() {
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
+      <section className="hero-section bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* Critical hero content for immediate LCP */}
-        <div
-          className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center"
-          style={{
-            opacity: 1,
-            visibility: "visible",
-            transform: "none",
-            animation: "none",
-            transition: "none",
-          }}
-        >
-          <h1
-            className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl"
-            style={{
-              opacity: 1,
-              visibility: "visible",
-              transform: "none",
-              animation: "none",
-              transition: "none",
-            }}
-          >
-            Nemwood
-          </h1>
-          <p
-            className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl"
-            style={{
-              opacity: 1,
-              visibility: "visible",
-              transform: "none",
-              animation: "none",
-              transition: "none",
-            }}
-          >
-            Mobilier sur mesure en Belgique
-          </p>
-        </div>
 
-        {/* Fallback image for immediate LCP */}
+        {/* Hero background image - PRIMARY LCP ELEMENT */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/iso2.webp"
-          alt="Hero Background"
+          alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
           quality={90}
           priority
           fetchPriority="high"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
         {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
         {/* <Image
@@ -140,7 +107,18 @@ export default function Home() {
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h1 className="mb-6">Meubles en bois sur mesure</h1>
+            <h1
+              className="mb-6"
+              style={{
+                opacity: 1,
+                visibility: "visible",
+                transform: "none",
+                animation: "none",
+                transition: "none",
+              }}
+            >
+              Meubles en bois sur mesure
+            </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la

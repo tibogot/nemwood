@@ -17,6 +17,7 @@ body {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
+  contain: layout style paint;
 }
 
 /* Ensure hero text is immediately visible */
@@ -24,6 +25,28 @@ body {
   opacity: 1 !important;
   visibility: visible !important;
   animation: none !important;
+  contain: layout style paint;
+}
+
+/* Force LCP element to be always visible */
+.hero-text h1,
+.hero-text p {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Ensure hero image is treated as LCP element */
+.hero-section img {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Optimize LCP calculation */
+.hero-section {
+  contain: layout style paint;
 }
 
 /* Optimize image loading */
