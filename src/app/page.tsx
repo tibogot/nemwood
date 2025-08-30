@@ -63,6 +63,41 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* Critical hero content for immediate LCP */}
+        <div
+          className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center"
+          style={{
+            opacity: 1,
+            visibility: "visible",
+            transform: "none",
+            animation: "none",
+            transition: "none",
+          }}
+        >
+          <h1
+            className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl"
+            style={{
+              opacity: 1,
+              visibility: "visible",
+              transform: "none",
+              animation: "none",
+              transition: "none",
+            }}
+          >
+            Nemwood
+          </h1>
+          <p
+            className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl"
+            style={{
+              opacity: 1,
+              visibility: "visible",
+              transform: "none",
+              animation: "none",
+              transition: "none",
+            }}
+          >
+            Mobilier sur mesure en Belgique
+          </p>
+        </div>
 
         {/* Fallback image for immediate LCP */}
         <Image
