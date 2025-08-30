@@ -39,7 +39,7 @@ export default function Home() {
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        <Image
+        {/* <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/iso2.webp"
           alt="Hero Image"
@@ -47,8 +47,8 @@ export default function Home() {
           sizes="100vw"
           quality={100}
           priority
-        />
-        {/* <video
+        /> */}
+        <video
           autoPlay
           muted
           loop
@@ -58,7 +58,7 @@ export default function Home() {
           // poster="/hero-poster.jpg" // Fallback image
         >
           <source src="/images/hero.mp4" type="video/mp4" />
-        </video> */}
+        </video>
         {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
         {/* <Image
           className="relative z-10 h-auto w-full"
