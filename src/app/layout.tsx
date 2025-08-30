@@ -22,6 +22,8 @@ const ITCGaramondStdLtNarrow = localFont({
   ],
   variable: "--font-ITCGaramondStdLtNarrow",
   display: "swap",
+  preload: true,
+  fallback: ["serif"],
 });
 const ITCGaramondStdLtNarrowIta = localFont({
   src: [
@@ -33,6 +35,8 @@ const ITCGaramondStdLtNarrowIta = localFont({
   ],
   variable: "--font-ITCGaramondStdLtNarrowIta",
   display: "swap",
+  preload: true,
+  fallback: ["serif"],
 });
 const HelveticaNow = localFont({
   src: [
@@ -44,6 +48,8 @@ const HelveticaNow = localFont({
   ],
   variable: "--font-HelveticaNow",
   display: "swap",
+  preload: true,
+  fallback: ["sans-serif"],
 });
 
 // const neueHaasDisplay = localFont({

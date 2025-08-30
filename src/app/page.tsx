@@ -15,6 +15,8 @@ import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -39,15 +41,17 @@ export default function Home() {
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        {/* <Image
+        {/* Fallback image for immediate LCP */}
+        <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/iso2.webp"
-          alt="Hero Image"
+          alt="Hero Background"
           fill
           sizes="100vw"
-          quality={100}
+          quality={90}
           priority
-        /> */}
+          fetchPriority="high"
+        />
         <video
           autoPlay
           muted
@@ -55,7 +59,11 @@ export default function Home() {
           playsInline
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
-          // poster="/hero-poster.jpg" // Fallback image
+          poster="/images/iso2.webp"
+          preload="metadata"
+          onLoadStart={() => setVideoLoaded(false)}
+          onCanPlay={() => setVideoLoaded(true)}
+          onError={() => setVideoError(true)}
         >
           <source src="/images/hero.mp4" type="video/mp4" />
         </video>
@@ -78,7 +86,7 @@ export default function Home() {
           </AnimatedText>
         </header> */}
         {/* <div className="relative z-10 mx-auto flex flex-col items-center text-center select-none">
-          <p className="font-ITCGaramondN text-2xl leading-tight text-white">
+          <p className="font-HelveticaNow text-2xl leading-tight text-white">
             Scroll
           </p>
           <ChevronDown color="white" />
