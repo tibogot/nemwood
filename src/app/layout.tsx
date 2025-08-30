@@ -82,9 +82,17 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="/images/nem1.png"
-          as="image"
-          type="image/png"
+          href="/fonts/ITCGaramondStd-LtNarrow.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/helvetica-now-display.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
         />
       </head>
       <body

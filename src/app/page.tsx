@@ -15,6 +15,7 @@ import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [secondImageVisible, setSecondImageVisible] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -33,6 +34,28 @@ export default function Home() {
       setBlogPosts(posts);
     }
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setSecondImageVisible(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    const secondImageElement = document.querySelector(
+      ".second-image-container",
+    );
+    if (secondImageElement) {
+      observer.observe(secondImageElement);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -131,18 +154,19 @@ export default function Home() {
         </div>
 
         {/*Big Image - Optimized for LCP */}
-        <div className="flex w-full justify-center pb-20">
+        <div className="second-image-container flex w-full justify-center pb-20">
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
-            <Image
-              src="/images/nem1.png"
-              alt="Nemwood furniture showcase"
-              fill
-              className="rounded-sm object-cover"
-              sizes="(max-width: 768px) 100vw, 80vw"
-              priority
-              fetchPriority="high"
-              quality={90}
-            />
+            {secondImageVisible && (
+              <Image
+                src="/images/nem1.png"
+                alt="Nemwood furniture showcase"
+                fill
+                className="rounded-sm object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
+                loading="lazy"
+                quality={90}
+              />
+            )}
           </div>
         </div>
       </section>
