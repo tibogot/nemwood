@@ -74,26 +74,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link
-          rel="preload"
-          href="/images/iso2.webp"
-          as="image"
-          type="image/webp"
-        />
-        <link
-          rel="preload"
-          href="/fonts/ITCGaramondStd-LtNarrow.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/helvetica-now-display.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
+        {/* Next.js automatically handles font preloading and optimization */}
       </head>
       <body
         suppressHydrationWarning
