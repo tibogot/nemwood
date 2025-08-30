@@ -97,6 +97,8 @@ function Card2() {
               fill
               className="object-cover"
               sizes="50vw"
+              loading="lazy"
+              fetchPriority="auto"
             />
           </div>
         </div>
@@ -144,6 +146,8 @@ function Card3() {
               fill
               className="object-cover"
               sizes="50vw"
+              loading="lazy"
+              fetchPriority="auto"
             />
           </div>
         </div>
@@ -184,6 +188,8 @@ function Card4() {
               fill
               className="object-cover"
               sizes="50vw"
+              loading="lazy"
+              fetchPriority="auto"
             />
           </div>
         </div>

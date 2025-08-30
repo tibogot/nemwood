@@ -111,7 +111,8 @@ const HorizScroll: React.FC = () => {
                   height={800}
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   priority={index === 0}
-                  // priority
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                 />
               </div>
 
@@ -191,6 +192,8 @@ const HorizScroll: React.FC = () => {
                   height={800}
                   className="parallax-image h-full w-[160%] object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                 />
               </div>
             </div>
