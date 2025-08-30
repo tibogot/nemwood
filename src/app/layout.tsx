@@ -73,6 +73,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <link
+          rel="preload"
+          href="/images/iso2.webp"
+          as="image"
+          type="image/webp"
+        />
+      </head>
       <body
         suppressHydrationWarning
         className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} antialiased`}

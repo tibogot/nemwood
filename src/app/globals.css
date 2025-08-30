@@ -12,6 +12,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Critical hero section styles for immediate LCP */
+.hero-critical {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Ensure hero text is immediately visible */
+.hero-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+}
+
 /* Optimize image loading */
 img {
   max-width: 100%;

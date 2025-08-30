@@ -15,8 +15,7 @@ import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -35,12 +34,29 @@ export default function Home() {
       setBlogPosts(posts);
     }
     fetchPosts();
+
+    // Delay video loading to ensure LCP is captured by the image
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
+        {/* Critical hero content for immediate LCP */}
+        <div className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center">
+          <h1 className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl">
+            Nemwood
+          </h1>
+          <p className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl">
+            Mobilier sur mesure en Belgique
+          </p>
+        </div>
+
         {/* Fallback image for immediate LCP */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
@@ -52,21 +68,20 @@ export default function Home() {
           priority
           fetchPriority="high"
         />
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-          poster="/images/iso2.webp"
-          preload="metadata"
-          onLoadStart={() => setVideoLoaded(false)}
-          onCanPlay={() => setVideoLoaded(true)}
-          onError={() => setVideoError(true)}
-        >
-          <source src="/images/hero.mp4" type="video/mp4" />
-        </video>
+        {showVideo && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+            poster="/images/iso2.webp"
+            preload="metadata"
+          >
+            <source src="/images/hero.mp4" type="video/mp4" />
+          </video>
+        )}
         {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
         {/* <Image
           className="relative z-10 h-auto w-full"
