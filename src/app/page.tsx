@@ -39,16 +39,16 @@ export default function Home() {
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        {/* <Image
+        <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/oth1 2.webp"
+          src="/images/iso2.webp"
           alt="Hero Image"
           fill
           sizes="100vw"
           quality={100}
           priority
-        /> */}
-        <video
+        />
+        {/* <video
           autoPlay
           muted
           loop
@@ -58,9 +58,9 @@ export default function Home() {
           // poster="/hero-poster.jpg" // Fallback image
         >
           <source src="/images/hero.mp4" type="video/mp4" />
-        </video>
+        </video> */}
         {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
-        <Image
+        {/* <Image
           className="relative z-10 h-auto w-full"
           src="/logonew4.svg"
           alt="Logo"
@@ -69,14 +69,14 @@ export default function Home() {
           quality={100}
           priority
           fetchPriority="high"
-        />
-        <header className="hero-header">
+        /> */}
+        {/* <header className="hero-header">
           <AnimatedText isHero={true} duration={1.2}>
             <p className="font-HelveticaNow relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
               Mobilier sur mesure en Belgique
             </p>
           </AnimatedText>
-        </header>
+        </header> */}
         {/* <div className="relative z-10 mx-auto flex flex-col items-center text-center select-none">
           <p className="font-ITCGaramondN text-2xl leading-tight text-white">
             Scroll

@@ -11,9 +11,12 @@ export default function Footer() {
 
         {/* Right Side - Content */}
         <div className="right flex w-full flex-col md:w-1/2">
-          <p className="font-ITCGaramondN mt-8 mb-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
-            Chaque pièce est réalisée à la main, dans un souci de qualité, de
-            durabilité et de design unique.
+          <p className="font-ITCGaramondN mt-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
+            Inscrivez-vous à notre newsletter
+          </p>
+          <p className="font-HelveticaNow mt-4 max-w-xl text-left text-lg">
+            En soumettant ce formulaire, vous acceptez d'être contacté par notre
+            équipe concernant votre projet.
           </p>
 
           {/* Newsletter Subscription */}
@@ -42,7 +45,7 @@ export default function Footer() {
                   href="tel:+33123456789"
                   className="hover:text-primary font-HelveticaNow cursor-pointer text-xl text-gray-700 transition-colors"
                 >
-                  +33 1 23 45 67 89
+                  +32 489 33 05 44
                 </Link>
                 <Link
                   href="mailto:contact@nemwood.com"

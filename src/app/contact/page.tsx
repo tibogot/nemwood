@@ -145,10 +145,10 @@ export default function Contact() {
       <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
         <div className="text-center">
           <h2 className="font-ITCGaramondN text-4xl md:text-6xl lg:text-9xl">
-            Info@nemwood.com
+            contact@nemwood.com
           </h2>
           <h2 className="font-ITCGaramondN mt-4 text-4xl md:text-6xl lg:text-9xl">
-            0474 65 74 97
+            0489 33 05 44
           </h2>
         </div>
       </section>
