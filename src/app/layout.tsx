@@ -80,6 +80,12 @@ export default function RootLayout({
           as="image"
           type="image/webp"
         />
+        <link
+          rel="preload"
+          href="/images/nem1.png"
+          as="image"
+          type="image/png"
+        />
       </head>
       <body
         suppressHydrationWarning

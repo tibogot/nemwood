@@ -15,7 +15,6 @@ import BlogPreview from "@/components/BlogPreview";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
-  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -34,13 +33,6 @@ export default function Home() {
       setBlogPosts(posts);
     }
     fetchPosts();
-
-    // Delay video loading to ensure LCP is captured by the image
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -48,11 +40,38 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
         {/* Critical hero content for immediate LCP */}
-        <div className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center">
-          <h1 className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl">
+        <div
+          className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center"
+          style={{
+            opacity: 1,
+            visibility: "visible",
+            transform: "none",
+            animation: "none",
+            transition: "none",
+          }}
+        >
+          <h1
+            className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl"
+            style={{
+              opacity: 1,
+              visibility: "visible",
+              transform: "none",
+              animation: "none",
+              transition: "none",
+            }}
+          >
             Nemwood
           </h1>
-          <p className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl">
+          <p
+            className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl"
+            style={{
+              opacity: 1,
+              visibility: "visible",
+              transform: "none",
+              animation: "none",
+              transition: "none",
+            }}
+          >
             Mobilier sur mesure en Belgique
           </p>
         </div>
@@ -68,20 +87,6 @@ export default function Home() {
           priority
           fetchPriority="high"
         />
-        {showVideo && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover"
-            poster="/images/iso2.webp"
-            preload="metadata"
-          >
-            <source src="/images/hero.mp4" type="video/mp4" />
-          </video>
-        )}
         {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
         {/* <Image
           className="relative z-10 h-auto w-full"
@@ -125,19 +130,21 @@ export default function Home() {
           </AnimatedText>
         </div>
 
-        {/*Big Image */}
-        {/* <div className="flex w-full justify-center pb-20">
+        {/*Big Image - Optimized for LCP */}
+        <div className="flex w-full justify-center pb-20">
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
               src="/images/nem1.png"
-              alt="Random from Picsum"
+              alt="Nemwood furniture showcase"
               fill
               className="rounded-sm object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
               priority
+              fetchPriority="high"
+              quality={90}
             />
           </div>
-        </div> */}
+        </div>
       </section>
       <ReverseCards />
       <section className="text-primary flex w-full flex-col px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
