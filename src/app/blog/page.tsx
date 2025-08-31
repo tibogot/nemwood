@@ -7,6 +7,9 @@ import Link from "next/link";
 import ParallaxImage from "@/components/ParallaxImage";
 import { generateMetadata } from "@/app/metadata";
 
+// Force revalidation every 60 seconds (optional)
+export const revalidate = 60;
+
 export const metadata: Metadata = generateMetadata(
   "Blog Nemwood - Actualités et conseils menuiserie | Nemwood",
   "Découvrez nos dernières actualités et conseils pour améliorer votre intérieur. Conseils d'experts en menuiserie sur mesure.",
@@ -15,6 +18,7 @@ export const metadata: Metadata = generateMetadata(
 );
 
 export default async function BlogPage() {
+  // Force fresh data - no caching
   const posts = await client.fetch(
     `*[_type == "post"]|order(_createdAt desc){
       _id,
@@ -26,6 +30,8 @@ export default async function BlogPage() {
       publishedAt,
       body
     }`,
+    {},
+    { cache: "no-store" }, // Force fresh data every time
   );
 
   return (
