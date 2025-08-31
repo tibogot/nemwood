@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Navigation5";
@@ -8,6 +7,7 @@ import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition2";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const ITCGaramondStdLtNarrow = localFont({
@@ -219,6 +219,9 @@ export default function RootLayout({
           property="og:see_also"
           content="https://www.facebook.com/p/NemwOod-100063674583109/"
         />
+
+        {/* Google Analytics Component */}
+        <GoogleAnalytics />
       </head>
       <body
         suppressHydrationWarning
