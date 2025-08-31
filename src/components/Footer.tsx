@@ -48,10 +48,10 @@ export default function Footer() {
                   +32 489 33 05 44
                 </Link>
                 <Link
-                  href="mailto:contact@nemwood.com"
+                  href="mailto:contact@nemwood.be"
                   className="text-primary font-HelveticaNow cursor-pointer text-xl transition-colors"
                 >
-                  contact@nemwood.com
+                  contact@nemwood.be
                 </Link>
               </div>
             </div>

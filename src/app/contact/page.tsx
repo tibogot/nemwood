@@ -145,7 +145,7 @@ export default function Contact() {
       <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
         <div className="text-center">
           <h2 className="font-ITCGaramondN text-4xl md:text-6xl lg:text-9xl">
-            contact@nemwood.com
+            contact@nemwood.be
           </h2>
           <h2 className="font-ITCGaramondN mt-4 text-4xl md:text-6xl lg:text-9xl">
             0489 33 05 44
