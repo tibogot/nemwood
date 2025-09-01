@@ -520,13 +520,13 @@ export default function Navigation() {
         >
           {/* Contact and Social Info - Top on Desktop Only */}
           {!isMobile && (
-            <div className="pt-8 md:pt-12">
+            <div className="pt-8 md:pt-0">
               <div className="flex flex-col gap-4 md:flex-row md:gap-12">
                 {/* CONTACT Column */}
                 <div className="flex flex-col">
-                  <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                  {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
                     Contact
-                  </h3>
+                  </h3> */}
                   <div className="flex flex-col space-y-1">
                     <Link
                       href="tel:+32489330544"
@@ -545,9 +545,9 @@ export default function Navigation() {
 
                 {/* SOCIAL Column */}
                 <div className="flex flex-col">
-                  <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                  {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
                     Social
-                  </h3>
+                  </h3> */}
                   <div className="flex flex-col space-y-1">
                     <Link
                       href="https://instagram.com/nemwood"
