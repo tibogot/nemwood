@@ -76,10 +76,11 @@ export default function Navigation() {
     if (!isMobile) return;
 
     const handleViewportChange = () => {
-      // Force a reflow to update viewport calculations
+      // Update menu height to current viewport height when open
       if (menuRef.current && isMenuOpen) {
-        const currentHeight = menuRef.current.style.height;
-        menuRef.current.style.height = currentHeight;
+        gsap.set(menuRef.current, {
+          height: `${window.innerHeight}px`,
+        });
       }
     };
 
@@ -233,7 +234,8 @@ export default function Navigation() {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
-    const menuHeight = isMobile ? "100svh" : "60vh";
+    // Use current viewport height for mobile to adapt to browser bar show/hide
+    const menuHeight = isMobile ? `${window.innerHeight}px` : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
