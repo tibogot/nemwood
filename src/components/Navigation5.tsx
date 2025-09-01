@@ -71,6 +71,39 @@ export default function Navigation() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Handle mobile viewport changes (address bar show/hide)
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleViewportChange = () => {
+      // Force a reflow to update viewport calculations
+      if (menuRef.current && isMenuOpen) {
+        const currentHeight = menuRef.current.style.height;
+        menuRef.current.style.height = currentHeight;
+      }
+    };
+
+    // Listen for viewport changes
+    window.addEventListener("resize", handleViewportChange);
+    window.addEventListener("orientationchange", handleViewportChange);
+
+    // Also listen for visual viewport changes (more reliable for mobile)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleViewportChange);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("orientationchange", handleViewportChange);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange,
+        );
+      }
+    };
+  }, [isMobile, isMenuOpen]);
+
   // Prevent body scroll when menu is open on mobile
   useEffect(() => {
     if (isMobile && isMenuOpen) {
@@ -200,7 +233,7 @@ export default function Navigation() {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
-    const menuHeight = isMobile ? "100vh" : "60vh";
+    const menuHeight = isMobile ? "100svh" : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {

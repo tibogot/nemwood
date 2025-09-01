@@ -5,6 +5,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure proper viewport handling on mobile */
+@supports (height: 100svh) {
+  .mobile-menu {
+    height: 100svh;
+  }
+}
+
+/* Fallback for browsers that don't support svh */
+@supports not (height: 100svh) {
+  .mobile-menu {
+    height: 100vh;
+  }
+}
+
 body {
   font-display: swap;
   text-rendering: optimizeSpeed;
