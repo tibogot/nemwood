@@ -61,46 +61,8 @@ export default function Home() {
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="hero-section bg-secondary relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8">
-        {/* Critical hero content for immediate LCP */}
-        <div
-          className="hero-critical hero-text relative z-20 flex h-full flex-col items-center justify-center text-center"
-          style={{
-            opacity: 1,
-            visibility: "visible",
-            transform: "none",
-            animation: "none",
-            transition: "none",
-          }}
-        >
-          {/* Critical LCP element - always visible for PageSpeed */}
-          <h1
-            className="font-ITCGaramondN mb-4 text-4xl text-white md:text-6xl"
-            style={{
-              opacity: 1,
-              visibility: "visible",
-              transform: "none",
-              animation: "none",
-              transition: "none",
-            }}
-          >
-            Nemwood
-          </h1>
-          <p
-            className="font-HelveticaNow max-w-2xl text-lg text-white md:text-xl"
-            style={{
-              opacity: 1,
-              visibility: "visible",
-              transform: "none",
-              animation: "none",
-              transition: "none",
-            }}
-          >
-            Mobilier sur mesure en Belgique
-          </p>
-        </div>
-
-        {/* Hero background image - PRIMARY LCP ELEMENT */}
+      <section className="relative flex h-[100svh] flex-col items-center justify-center px-4 md:px-8">
+        {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/iso2.webp"
@@ -109,34 +71,12 @@ export default function Home() {
           sizes="100vw"
           quality={90}
           priority
-          fetchPriority="high"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
-        {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-30"></div> */}
-        {/* <Image
-          className="relative z-10 h-auto w-full"
-          src="/logonew4.svg"
-          alt="Logo"
-          width={1200} // use a large width for SVG
-          height={300} // adjust height proportionally
-          quality={100}
-          priority
-          fetchPriority="high"
-        /> */}
-        {/* <header className="hero-header">
-          <AnimatedText isHero={true} duration={1.2}>
-            <p className="font-HelveticaNow relative z-10 max-w-2xl text-center text-sm text-[#fffcf5] uppercase">
-              Mobilier sur mesure en Belgique
-            </p>
-          </AnimatedText>
-        </header> */}
-        {/* <div className="relative z-10 mx-auto flex flex-col items-center text-center select-none">
-          <p className="font-HelveticaNow text-2xl leading-tight text-white">
-            Scroll
-          </p>
-          <ChevronDown color="white" />
-        </div> */}
+
+        {/* Simple LCP text */}
+        <h1 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
+          Meubles en bois sur mesure
+        </h1>
       </section>
 
       <section className="text-primary section2 px-4 md:px-8">

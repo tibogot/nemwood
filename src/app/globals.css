@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Critical CSS for LCP optimization */
 html {
   scroll-behavior: smooth;
 }
@@ -24,49 +23,6 @@ body {
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Critical hero section styles for immediate LCP */
-.hero-critical {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  contain: layout style paint;
-}
-
-/* Ensure hero text is immediately visible */
-.hero-text {
-  opacity: 1 !important;
-  visibility: visible !important;
-  animation: none !important;
-  contain: layout style paint;
-}
-
-/* Force LCP element to be always visible */
-.hero-text h1,
-.hero-text p {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Ensure hero image is treated as LCP element */
-.hero-section img {
-  contain: layout style paint;
-  will-change: auto;
-}
-
-/* Optimize LCP calculation */
-.hero-section {
-  contain: layout style paint;
-}
-
-/* Hide hero text visually while keeping it for LCP */
-.hero-text {
-  color: transparent !important;
-  text-shadow: none !important;
 }
 
 /* Optimize image loading */
