@@ -477,13 +477,71 @@ export default function Navigation() {
 
         {/* Menu Content */}
         <div
-          className={`flex h-full px-4 md:items-end md:px-8 md:py-16 ${isMobile ? "absolute inset-0 py-0" : "py-8"}`}
+          className={`flex h-full px-4 md:px-8 ${
+            isMobile
+              ? "absolute inset-0 flex-col justify-between py-0"
+              : "flex-col justify-between py-8"
+          }`}
         >
+          {/* Contact and Social Info - Top on Desktop Only */}
+          {!isMobile && (
+            <div className="pt-8 md:pt-12">
+              <div className="flex flex-col gap-4 md:flex-row md:gap-12">
+                {/* CONTACT Column */}
+                <div className="flex flex-col">
+                  <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                    Contact
+                  </h3>
+                  <div className="flex flex-col space-y-1">
+                    <Link
+                      href="tel:+32489330544"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      +32 489 33 05 44
+                    </Link>
+                    <Link
+                      href="mailto:contact@nemwood.be"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      contact@nemwood.be
+                    </Link>
+                  </div>
+                </div>
+
+                {/* SOCIAL Column */}
+                <div className="flex flex-col">
+                  <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                    Social
+                  </h3>
+                  <div className="flex flex-col space-y-1">
+                    <Link
+                      href="https://instagram.com/nemwood"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      Instagram
+                    </Link>
+                    <Link
+                      href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      Facebook
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Navigation Links - Centered on Mobile, Bottom on Desktop */}
           <div
             className={`flex w-full ${
               isMobile
-                ? "h-full flex-col items-center justify-center space-y-8"
-                : "flex-row items-start justify-start gap-2 md:gap-8"
+                ? "flex-1 flex-col items-center justify-center space-y-8"
+                : "flex-row items-end justify-start gap-2 pb-8 md:gap-8"
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -523,7 +581,7 @@ export default function Navigation() {
                     // Active link for other pages
                     <Link
                       href={item.href}
-                      className={`font-ITCGaramondN block transition-all duration-300 ${
+                      className={`font-ITCGaramondN block cursor-pointer transition-all duration-300 ${
                         isMobile ? "text-center text-5xl sm:text-6xl" : ""
                       } ${
                         hoveredIndex !== null && hoveredIndex !== index
@@ -550,6 +608,53 @@ export default function Navigation() {
               );
             })}
           </div>
+
+          {/* Contact and Social Info - Bottom on Mobile Only */}
+          {isMobile && (
+            <div className="pb-8">
+              <div className="flex flex-col gap-4">
+                {/* CONTACT Column */}
+                <div className="flex flex-col">
+                  <div className="flex flex-col space-y-1">
+                    <Link
+                      href="tel:+32489330544"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      +32 489 33 05 44
+                    </Link>
+                    <Link
+                      href="mailto:contact@nemwood.be"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      contact@nemwood.be
+                    </Link>
+                  </div>
+                </div>
+
+                {/* SOCIAL Column */}
+                <div className="flex flex-col">
+                  <div className="flex flex-col space-y-1">
+                    <Link
+                      href="https://instagram.com/nemwood"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      Instagram
+                    </Link>
+                    <Link
+                      href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    >
+                      Facebook
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
