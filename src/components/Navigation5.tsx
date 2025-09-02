@@ -575,7 +575,7 @@ export default function Navigation() {
           <div
             className={`flex w-full ${
               isMobile
-                ? "flex-1 flex-col items-center justify-center space-y-8 py-8"
+                ? "flex-1 flex-col items-center justify-center space-y-6 py-4"
                 : "flex-row items-end justify-start gap-2 pb-8 md:gap-8"
             }`}
             onMouseLeave={() => setHoveredIndex(null)}
