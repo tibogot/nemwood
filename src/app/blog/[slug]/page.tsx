@@ -6,6 +6,8 @@ import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata as generatePageMetadata } from "@/app/metadata";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
+import Link from "next/link";
+import ShareButtons from "@/components/ShareButtons";
 
 // Force revalidation every 60 seconds to match blog page
 export const revalidate = 60;
@@ -84,6 +86,89 @@ const portableTextComponents = {
       );
     },
   },
+  block: {
+    // Handle normal paragraphs with proper spacing
+    normal: ({ children }: any) => (
+      <p className="mb-4 leading-relaxed">{children}</p>
+    ),
+    // Handle headings
+    h1: ({ children }: any) => (
+      <h1 className="font-ITCGaramondN mt-8 mb-6 text-4xl font-bold">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }: any) => (
+      <h2 className="font-ITCGaramondN mt-6 mb-4 text-3xl font-bold">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: any) => (
+      <h3 className="font-ITCGaramondN mt-5 mb-3 text-2xl font-bold">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }: any) => (
+      <h4 className="font-ITCGaramondN mt-4 mb-2 text-xl font-bold">
+        {children}
+      </h4>
+    ),
+    // Handle blockquotes
+    blockquote: ({ children }: any) => (
+      <blockquote className="border-primary border-l-4 pl-4 text-gray-600 italic">
+        {children}
+      </blockquote>
+    ),
+  },
+  marks: {
+    // Handle text formatting
+    strong: ({ children }: any) => (
+      <strong className="font-bold">{children}</strong>
+    ),
+    em: ({ children }: any) => <em className="italic">{children}</em>,
+    code: ({ children }: any) => (
+      <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-sm">
+        {children}
+      </code>
+    ),
+    // Handle links
+    link: ({ children, value }: any) => (
+      <a
+        href={value?.href}
+        target={value?.blank ? "_blank" : "_self"}
+        rel={value?.blank ? "noopener noreferrer" : undefined}
+        className="text-primary hover:text-primary/70 underline transition-colors"
+      >
+        {children}
+      </a>
+    ),
+    // Handle strikethrough
+    strike: ({ children }: any) => (
+      <span className="line-through">{children}</span>
+    ),
+    // Handle underline
+    underline: ({ children }: any) => (
+      <span className="underline">{children}</span>
+    ),
+  },
+  list: {
+    // Handle bullet lists
+    bullet: ({ children }: any) => (
+      <ul className="mb-4 ml-6 list-disc space-y-2">{children}</ul>
+    ),
+    // Handle numbered lists
+    number: ({ children }: any) => (
+      <ol className="mb-4 ml-6 list-decimal space-y-2">{children}</ol>
+    ),
+  },
+  listItem: {
+    // Handle list items
+    bullet: ({ children }: any) => (
+      <li className="leading-relaxed">{children}</li>
+    ),
+    number: ({ children }: any) => (
+      <li className="leading-relaxed">{children}</li>
+    ),
+  },
 };
 
 export default async function BlogPostPage(props: any) {
@@ -95,11 +180,52 @@ export default async function BlogPostPage(props: any) {
       mainImage {
         asset->{url}
       },
-      publishedAt
+      publishedAt,
+      _createdAt
     }`,
     { slug: params.slug },
     { cache: "no-store" }, // Force fresh data every time
   );
+
+  // Fetch previous, next, and related posts
+  const [prevPost, nextPost, relatedPosts] = await Promise.all([
+    client.fetch(
+      `*[_type == "post" && _createdAt < $createdAt]|order(_createdAt desc)[0]{
+        title,
+        slug,
+        mainImage {
+          asset->{url}
+        },
+        publishedAt
+      }`,
+      { createdAt: post._createdAt },
+      { cache: "no-store" },
+    ),
+    client.fetch(
+      `*[_type == "post" && _createdAt > $createdAt]|order(_createdAt asc)[0]{
+        title,
+        slug,
+        mainImage {
+          asset->{url}
+        },
+        publishedAt
+      }`,
+      { createdAt: post._createdAt },
+      { cache: "no-store" },
+    ),
+    client.fetch(
+      `*[_type == "post" && slug.current != $currentSlug]|order(_createdAt desc)[0...3]{
+        title,
+        slug,
+        mainImage {
+          asset->{url}
+        },
+        publishedAt
+      }`,
+      { currentSlug: params.slug },
+      { cache: "no-store" },
+    ),
+  ]);
 
   if (!post) return notFound();
 
@@ -126,6 +252,131 @@ export default async function BlogPostPage(props: any) {
       )}
       <div className="font-HelveticaNow mx-auto mt-20 max-w-6xl text-xl">
         <PortableText value={post.body} components={portableTextComponents} />
+      </div>
+
+      {/* Share Buttons */}
+      <ShareButtons
+        title={post.title}
+        url={`https://www.nemwood.be/blog/${params.slug}`}
+      />
+
+      {/* Related Articles Section */}
+      {relatedPosts && relatedPosts.length > 0 && (
+        <div className="mx-auto mt-16 max-w-6xl">
+          <div className="border-t border-gray-200 pt-8">
+            <h2 className="font-ITCGaramondN mb-8 text-center text-3xl md:text-4xl">
+              Articles similaires
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map((relatedPost: any) => (
+                <Link
+                  key={relatedPost.slug.current}
+                  href={`/blog/${relatedPost.slug.current}`}
+                  className="group cursor-pointer"
+                >
+                  <div className="overflow-hidden rounded-sm">
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <img
+                        src={relatedPost.mainImage?.asset?.url}
+                        alt={relatedPost.title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-ITCGaramondN group-hover:text-primary/70 mb-2 text-lg leading-tight transition-colors">
+                        {relatedPost.title}
+                      </h3>
+                      {relatedPost.publishedAt && (
+                        <p className="font-HelveticaNow text-sm text-gray-400">
+                          {new Date(
+                            relatedPost.publishedAt,
+                          ).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation Section */}
+      <div className="mx-auto mt-16 max-w-6xl border-t border-gray-200 pt-8">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between">
+          {/* Previous Post */}
+          {prevPost && (
+            <Link
+              href={`/blog/${prevPost.slug.current}`}
+              className="group flex-1 cursor-pointer"
+            >
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
+                  <img
+                    src={prevPost.mainImage?.asset?.url}
+                    alt={prevPost.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                    Article précédent
+                  </p>
+                  <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                    {prevPost.title}
+                  </h3>
+                  {prevPost.publishedAt && (
+                    <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
+                      {new Date(prevPost.publishedAt).toLocaleDateString()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </Link>
+          )}
+
+          {/* Back to Blog Button */}
+          <div className="flex items-center justify-center">
+            <Link
+              href="/blog"
+              className="font-HelveticaNow border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out"
+            >
+              <span>Retour au blog</span>
+            </Link>
+          </div>
+
+          {/* Next Post */}
+          {nextPost && (
+            <Link
+              href={`/blog/${nextPost.slug.current}`}
+              className="group flex-1 cursor-pointer"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex-1 text-right">
+                  <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                    Article suivant
+                  </p>
+                  <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                    {nextPost.title}
+                  </h3>
+                  {nextPost.publishedAt && (
+                    <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
+                      {new Date(nextPost.publishedAt).toLocaleDateString()}
+                    </p>
+                  )}
+                </div>
+                <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
+                  <img
+                    src={nextPost.mainImage?.asset?.url}
+                    alt={nextPost.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+            </Link>
+          )}
+        </div>
       </div>
     </main>
   );
