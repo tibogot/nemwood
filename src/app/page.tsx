@@ -74,27 +74,16 @@ export default function Home() {
         />
 
         {/* Simple LCP text */}
-        <h1 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
+        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
           Meubles en bois sur mesure
-        </h1>
+        </h4>
       </section>
 
       <section className="text-primary section2 px-4 md:px-8">
         {/* <div className="py-40"></div> */}
         <div className="mx-auto py-20 text-center md:py-40">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h1
-              className="mb-6"
-              style={{
-                opacity: 1,
-                visibility: "visible",
-                transform: "none",
-                animation: "none",
-                transition: "none",
-              }}
-            >
-              Meubles en bois sur mesure
-            </h1>
+            <h1 className="mb-6">Meubles en bois sur mesure</h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
               Vous cherchez un artisan menuisier en Belgique pour créer des
               meubles en bois sur mesure ? Nemwood est spécialisé dans la
