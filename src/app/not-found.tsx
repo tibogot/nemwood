@@ -77,10 +77,10 @@ export default function NotFound() {
               </a>
               <span className="hidden text-gray-400 sm:block">•</span>
               <a
-                href="tel:+32412345678"
+                href="tel:+32489330544"
                 className="text-primary hover:text-primary/70 cursor-pointer transition-colors"
               >
-                +32 412 34 56 78
+                +32 489 33 05 44
               </a>
             </div>
           </div>
