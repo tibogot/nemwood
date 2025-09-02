@@ -124,7 +124,7 @@ export default async function BlogPostPage(props: any) {
           className="mb-8 max-h-[620px] w-full rounded-sm object-cover"
         />
       )}
-      <div className="font-HelveticaNow max-w-2xl text-xl">
+      <div className="font-HelveticaNow mx-auto mt-20 max-w-6xl text-xl">
         <PortableText value={post.body} components={portableTextComponents} />
       </div>
     </main>
