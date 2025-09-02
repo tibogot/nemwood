@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata as generatePageMetadata } from "@/app/metadata";
 
+// Force revalidation every 60 seconds to match blog page
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {
@@ -21,6 +24,7 @@ export async function generateMetadata({
       publishedAt
     }`,
     { slug },
+    { cache: "no-store" }, // Force fresh data every time
   );
 
   if (!post) return generatePageMetadata();
@@ -40,12 +44,8 @@ export async function generateMetadata({
   );
 }
 
-export async function generateStaticParams() {
-  const slugs = await client.fetch(
-    `*[_type == "post" && defined(slug.current)][].slug.current`,
-  );
-  return slugs.map((slug: string) => ({ slug }));
-}
+// Removed generateStaticParams to force server-side rendering
+// This ensures immediate updates from Sanity
 
 export default async function BlogPostPage(props: any) {
   const params = await props.params;
@@ -59,6 +59,7 @@ export default async function BlogPostPage(props: any) {
       publishedAt
     }`,
     { slug: params.slug },
+    { cache: "no-store" }, // Force fresh data every time
   );
 
   if (!post) return notFound();
