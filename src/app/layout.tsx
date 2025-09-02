@@ -191,8 +191,8 @@ export default function RootLayout({
         />
 
         {/* Additional Meta Tags for Better SEO */}
-        <meta name="theme-color" content="#8B4513" />
-        <meta name="msapplication-TileColor" content="#8B4513" />
+        {/* <meta name="theme-color" content="#8B4513" />
+        <meta name="msapplication-TileColor" content="#8B4513" /> */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Nemwood" />
