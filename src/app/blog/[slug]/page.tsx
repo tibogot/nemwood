@@ -187,7 +187,10 @@ export default async function BlogPostPage(props: any) {
     { cache: "no-store" }, // Force fresh data every time
   );
 
-  // Fetch previous, next, and related posts
+  // Check if post exists first
+  if (!post) return notFound();
+
+  // Fetch previous, next, and related posts only if post exists
   const [prevPost, nextPost, relatedPosts] = await Promise.all([
     client.fetch(
       `*[_type == "post" && _createdAt < $createdAt]|order(_createdAt desc)[0]{
@@ -226,8 +229,6 @@ export default async function BlogPostPage(props: any) {
       { cache: "no-store" },
     ),
   ]);
-
-  if (!post) return notFound();
 
   return (
     <main className="bg-secondary text-primary px-4 pb-20 md:px-8">
