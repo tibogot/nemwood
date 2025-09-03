@@ -5,11 +5,12 @@ import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
+import ManyServices from "@/components/ManyServices";
 
 export const metadata: Metadata = generateMetadata(
   "Services de menuiserie sur mesure en Belgique | Nemwood",
   "Découvrez nos services de menuiserie : escaliers, garde-robes, tables et cuisines en bois sur mesure. Artisanat belge de qualité.",
-  "/images/nemwardrobe7.webp",
+  "/images/wood-work.webp",
   "https://www.nemwood.be/services",
 );
 
@@ -64,7 +65,7 @@ export default function ServicesPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/nemwardrobe7.webp"
+          src="/images/wood-work.webp"
           alt="Nemwood craftsmanship showcase"
           fill
           className="object-cover"
@@ -75,7 +76,7 @@ export default function ServicesPage() {
       </ParallaxImage>
 
       {/* Services Grid */}
-      <section className="px-4 py-20 md:px-8 md:py-40">
+      {/* <section className="px-4 py-20 md:px-8 md:py-40">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
             {services.map((service, index) => (
@@ -113,10 +114,10 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
+      {/* <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-4xl md:text-5xl">
             Prêt à commencer votre projet ?
@@ -137,6 +138,44 @@ export default function ServicesPage() {
             </button>
           </Link>
         </div>
+      </section> */}
+      <ManyServices />
+      <section className="text-primary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
+        <h1 className="font-ITCGaramondN mb-6 text-6xl">
+          Creativity to design
+        </h1>
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-xl">
+            Vous cherchez un artisan menuisier en Belgique pour créer des
+            meubles en bois sur mesure ? Nemwood est spécialisé dans la
+            fabrication artisanale de tables, chaises, garde-robes, escaliers et
+            même de décors pour le cinéma.
+          </p>
+        </AnimatedText>
+      </section>
+      <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-64">
+        <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
+          <Image
+            src="/images/loft.webp"
+            alt=""
+            fill
+            className="rounded-sm object-cover"
+            sizes="100vw"
+            quality={95}
+            priority
+          />
+        </ParallaxImage>
+        <h1 className="font-ITCGaramondN mt-12 mb-6 text-5xl">
+          Creativity to design
+        </h1>
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto max-w-lg text-center text-lg">
+            Vous cherchez un artisan menuisier en Belgique pour créer des
+            meubles en bois sur mesure ? Nemwood est spécialisé dans la
+            fabrication artisanale de tables, chaises, garde-robes, escaliers et
+            même de décors pour le cinéma.
+          </p>
+        </AnimatedText>
       </section>
     </main>
   );
