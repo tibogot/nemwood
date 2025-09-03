@@ -140,11 +140,12 @@ export default function ServicesPage() {
         </div>
       </section> */}
       <ManyServices />
-      <section className="text-primary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
-        <h1 className="font-ITCGaramondN mb-6 text-6xl">
-          Creativity to design
-        </h1>
+      <section className="text-primary intro border-primary mx-auto border-t border-b border-solid px-4 py-20 text-center md:px-8 md:py-30">
         <AnimatedText>
+          <h1 className="font-ITCGaramondN mb-6 text-6xl">
+            Creativity to design
+          </h1>
+
           <p className="font-HelveticaNow mx-auto text-lg md:max-w-xl">
             Vous cherchez un artisan menuisier en Belgique pour créer des
             meubles en bois sur mesure ? Nemwood est spécialisé dans la
@@ -165,17 +166,6 @@ export default function ServicesPage() {
             priority
           />
         </ParallaxImage>
-        <h1 className="font-ITCGaramondN mt-12 mb-6 text-5xl">
-          Creativity to design
-        </h1>
-        <AnimatedText>
-          <p className="font-HelveticaNow mx-auto max-w-lg text-center text-lg">
-            Vous cherchez un artisan menuisier en Belgique pour créer des
-            meubles en bois sur mesure ? Nemwood est spécialisé dans la
-            fabrication artisanale de tables, chaises, garde-robes, escaliers et
-            même de décors pour le cinéma.
-          </p>
-        </AnimatedText>
       </section>
     </main>
   );
