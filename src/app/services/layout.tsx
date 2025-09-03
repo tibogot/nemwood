@@ -3,7 +3,7 @@
 import ServiceContactSection from "@/components/ServiceContactSection";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import { usePathname } from "next/navigation";
-import StickyStackScroll from "@/components/StickyStackScroll4";
+import StickyStackScroll from "@/components/StickyStackScroll5";
 
 export default function ServicesLayout({
   children,

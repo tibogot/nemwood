@@ -213,6 +213,16 @@ export default function HomeCard() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Aggressive cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      // Kill all ScrollTrigger instances when component unmounts
+      ScrollTrigger.killAll();
+      // Clear all GSAP tweens
+      gsap.killTweensOf("*");
+    };
+  }, []);
+
   useGSAP(
     () => {
       if (!container.current || !domReady || !lenis) return;
@@ -339,9 +349,15 @@ export default function HomeCard() {
           lenis.off("scroll", handleScroll);
         }
 
+        // Kill all ScrollTrigger instances
+        ScrollTrigger.killAll();
+
         // Clean up all contexts
         introPinCtx.revert();
         cardContexts.forEach((ctx) => ctx.revert());
+
+        // Clear any remaining GSAP tweens
+        gsap.killTweensOf("*");
       };
     },
     {
