@@ -200,25 +200,7 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
 
-        {/* Facebook App ID */}
-        <meta property="fb:app_id" content="100063674583109" />
-        <meta property="fb:page_id" content="100063674583109" />
-        <meta property="fb:admins" content="1140420250" />
-
-        {/* Additional Open Graph Tags */}
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
-        <meta
-          property="og:image:alt"
-          content="Nemwood - Meubles en bois sur mesure"
-        />
-        <meta property="og:locale" content="fr_BE" />
-        <meta property="og:site_name" content="Nemwood" />
-        <meta
-          property="og:see_also"
-          content="https://www.facebook.com/p/NemwOod-100063674583109/"
-        />
+        {/* Facebook and Open Graph meta tags are now handled by the metadata system */}
 
         {/* Google Analytics Component */}
         <GoogleAnalytics />

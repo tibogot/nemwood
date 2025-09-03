@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const siteMetadata = {
-  title: "Nemwood | Meubles en bois sur mesure en Belgique - Artisan menuisier",
+  title: "Nemwood | Meubles en bois sur mesure en Belgique",
   description:
     "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
   keywords: [
@@ -21,7 +21,7 @@ export const siteMetadata = {
   locale: "fr_BE",
   image: "/images/nem1.png", // Replace with your preferred image
   facebook: {
-    appId: "YOUR_FACEBOOK_APP_ID", // Replace with your actual Facebook App ID
+    appId: "100063674583109",
     pageId: "100063674583109",
     adminId: "1140420250",
     pageUrl: "https://www.facebook.com/p/NemwOod-100063674583109/",
