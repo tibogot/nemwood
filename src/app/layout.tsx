@@ -63,7 +63,7 @@ const HelveticaNow = localFont({
 // });
 
 export const metadata: Metadata = {
-  title: "Nemwood | Meubles en bois sur mesure en Belgique - Artisan menuisier",
+  title: "Nemwood | Meubles en bois sur mesure en Belgique",
   description:
     "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
   keywords: [
