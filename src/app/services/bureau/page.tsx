@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = generateMetadata(
   "Bureaux sur mesure en Belgique | Nemwood",
@@ -76,6 +77,34 @@ export default function BureauPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions sur les bureaux"
+        description="Découvrez les réponses aux questions les plus courantes sur nos bureaux en bois sur mesure."
+        faqs={[
+          {
+            question: "Quels types de bureaux pouvez-vous réaliser ?",
+            answer:
+              "Nous réalisons tous types de bureaux : bureaux d'angle, bureaux droits, bureaux avec rangements intégrés, ou solutions sur mesure. Chaque bureau est conçu selon votre espace de travail et vos besoins professionnels.",
+          },
+          {
+            question: "Peut-on intégrer des passages de câbles ?",
+            answer:
+              "Oui, nous prévoyons des passages de câbles discrets et des prises intégrées pour un espace de travail propre et fonctionnel. Nous adaptons l'électrification selon vos équipements.",
+          },
+          {
+            question: "Quelle est la hauteur recommandée pour un bureau ?",
+            answer:
+              "La hauteur standard est de 75cm, mais nous l'adaptons selon votre taille et vos préférences. Nous proposons aussi des bureaux à hauteur réglable pour un confort optimal.",
+          },
+          {
+            question: "Proposez-vous des rangements intégrés ?",
+            answer:
+              "Oui, nous intégrons tiroirs, étagères, casiers et tous types de rangements selon vos besoins. Chaque rangement est conçu pour optimiser votre espace de travail et votre productivité.",
+          },
+        ]}
+      />
     </main>
   );
 }

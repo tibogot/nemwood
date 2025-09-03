@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = generateMetadata(
   "Bibliothèques sur mesure en Belgique | Nemwood",
@@ -75,6 +76,34 @@ export default function BibliothequePage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions sur les bibliothèques"
+        description="Découvrez les réponses aux questions les plus courantes sur nos bibliothèques en bois sur mesure."
+        faqs={[
+          {
+            question: "Quels types de bibliothèques pouvez-vous réaliser ?",
+            answer:
+              "Nous réalisons tous types de bibliothèques : étagères murales, bibliothèques sur pied, meubles bibliothèques, ou solutions sur mesure. Chaque bibliothèque est conçue selon votre espace et vos besoins de rangement.",
+          },
+          {
+            question: "Peut-on intégrer un éclairage dans la bibliothèque ?",
+            answer:
+              "Oui, nous proposons l'intégration d'éclairage LED discret ou d'éclairage d'ambiance. L'éclairage peut être intégré dans les étagères ou en bandeau pour mettre en valeur vos livres et objets.",
+          },
+          {
+            question: "Quelle est la capacité de charge des étagères ?",
+            answer:
+              "Nos étagères sont conçues pour supporter le poids des livres. Nous calculons la charge selon vos besoins et utilisons des fixations adaptées pour garantir la sécurité et la durabilité.",
+          },
+          {
+            question: "Proposez-vous des portes vitrées ?",
+            answer:
+              "Oui, nous proposons des portes vitrées pour protéger vos livres tout en les gardant visibles. Les portes peuvent être coulissantes ou battantes selon vos préférences et contraintes d'espace.",
+          },
+        ]}
+      />
     </main>
   );
 }

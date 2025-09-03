@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = generateMetadata(
   "Cuisines en bois sur mesure en Belgique | Nemwood",
@@ -110,6 +111,34 @@ export default function CuisinesPage() {
           </Link>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions sur les cuisines"
+        description="Découvrez les réponses aux questions les plus courantes sur nos cuisines en bois sur mesure."
+        faqs={[
+          {
+            question: "Peut-on rénover une cuisine existante ?",
+            answer:
+              "Oui, nous proposons la rénovation complète ou partielle de cuisines existantes. Nous pouvons remplacer les façades, ajouter des éléments, ou refaire entièrement l'aménagement selon vos besoins.",
+          },
+          {
+            question: "Quels équipements pouvez-vous intégrer ?",
+            answer:
+              "Nous intégrons tous types d'équipements : électroménager encastré, éclairage LED, tiroirs à fermeture douce, systèmes de rangement innovants. Chaque équipement est choisi pour optimiser votre espace.",
+          },
+          {
+            question: "Combien coûte une cuisine sur mesure ?",
+            answer:
+              "Le prix varie selon la taille, les matériaux et les équipements. Une cuisine complète commence à 8 000€. Nous établissons un devis détaillé gratuit adapté à votre projet et votre budget.",
+          },
+          {
+            question: "Quel est le délai de réalisation ?",
+            answer:
+              "Une cuisine complète prend 6-8 semaines de fabrication et installation. Nous planifions chaque étape avec vous pour minimiser les désagréments et respecter vos contraintes.",
+          },
+        ]}
+      />
     </main>
   );
 }

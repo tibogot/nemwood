@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = generateMetadata(
   "Tables en bois sur mesure en Belgique | Nemwood",
@@ -111,6 +112,35 @@ export default function TablesPage() {
           </Link>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions sur les tables"
+        description="Découvrez les réponses aux questions les plus courantes sur nos tables en bois sur mesure."
+        faqs={[
+          {
+            question: "Quels types de tables pouvez-vous réaliser ?",
+            answer:
+              "Nous réalisons tous types de tables : tables à manger, tables basses, tables de salon, tables de bureau, tables d'appoint. Chaque table est conçue selon vos dimensions et votre style.",
+          },
+          {
+            question:
+              "Quelles essences de bois recommandez-vous pour une table ?",
+            answer:
+              "Pour les tables, nous recommandons le chêne pour sa robustesse, le noyer pour son élégance, ou le frêne pour sa légèreté. Chaque essence a ses caractéristiques que nous vous expliquons lors du devis.",
+          },
+          {
+            question: "Peut-on personnaliser la finition ?",
+            answer:
+              "Oui, nous proposons diverses finitions : huiles naturelles, vernis mat ou brillant, cires, ou même peintures. Chaque finition est choisie pour mettre en valeur le bois et s'adapter à votre intérieur.",
+          },
+          {
+            question: "Quel est le délai de fabrication d'une table ?",
+            answer:
+              "Une table sur mesure prend généralement 2-3 semaines de fabrication, plus le temps de séchage et de finition. Nous vous fournissons un planning précis lors du devis.",
+          },
+        ]}
+      />
     </main>
   );
 }

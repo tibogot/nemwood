@@ -12,6 +12,7 @@ import AnimatedText from "@/components/AnimatedText3";
 import BlurryTextReveal from "@/components/TextReveal";
 import ReverseCards from "@/components/ReverseCards2";
 import BlogPreview from "@/components/BlogPreview";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
@@ -228,6 +229,35 @@ export default function Home() {
       </section>
 
       <Testimonial />
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions fréquentes"
+        description="Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure en Belgique."
+        faqs={[
+          {
+            question: "Proposez-vous des devis gratuits ?",
+            answer:
+              "Oui, nous proposons des devis gratuits et sans engagement pour tous nos projets de menuiserie sur mesure. Contactez-nous pour planifier une visite et discuter de vos besoins.",
+          },
+          {
+            question: "Quels types de bois utilisez-vous ?",
+            answer:
+              "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
+          },
+          {
+            question: "Combien de temps prend la réalisation d'un projet ?",
+            answer:
+              "Les délais varient selon la complexité du projet. Un escalier simple prend 4-6 semaines, une garde-robe 3-4 semaines, et une cuisine complète 6-8 semaines. Nous vous fournissons un planning détaillé lors du devis.",
+          },
+          {
+            question: "Travaillez-vous dans toute la Belgique ?",
+            answer:
+              "Oui, nous intervenons dans toute la Belgique. Nos artisans se déplacent pour les mesures, l'installation et le suivi de vos projets, quel que soit votre lieu de résidence.",
+          },
+        ]}
+      />
+
       {/* Blog Previews Section */}
       <section className="px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col items-center">

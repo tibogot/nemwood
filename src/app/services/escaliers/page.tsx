@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = generateMetadata(
   "Escaliers en bois sur mesure en Belgique | Nemwood",
@@ -86,6 +87,34 @@ export default function EscaliersPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ
+        title="Questions sur les escaliers"
+        description="Découvrez les réponses aux questions les plus courantes sur nos escaliers en bois sur mesure."
+        faqs={[
+          {
+            question: "Quels types d'escaliers pouvez-vous réaliser ?",
+            answer:
+              "Nous réalisons tous types d'escaliers : droits, tournants, hélicoïdaux, suspendus, avec ou sans contremarches. Chaque escalier est conçu selon vos contraintes d'espace et vos préférences esthétiques.",
+          },
+          {
+            question: "Quel est le prix d'un escalier sur mesure ?",
+            answer:
+              "Le prix varie selon la complexité, les dimensions et les matériaux choisis. Un escalier simple commence à 2 500€, un escalier tournant à 4 000€. Nous établissons un devis gratuit adapté à votre projet.",
+          },
+          {
+            question: "Peut-on installer un escalier dans un bâtiment ancien ?",
+            answer:
+              "Oui, nous nous spécialisons dans l'adaptation aux contraintes des bâtiments anciens. Nous effectuons une étude préalable pour garantir une installation parfaite dans votre espace existant.",
+          },
+          {
+            question: "Quelles finitions proposez-vous ?",
+            answer:
+              "Nous proposons diverses finitions : huiles naturelles, vernis, cires, ou peintures. Chaque finition est choisie pour mettre en valeur le bois et s'adapter à votre style d'intérieur.",
+          },
+        ]}
+      />
     </main>
   );
 }
