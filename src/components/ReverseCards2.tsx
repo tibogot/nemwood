@@ -256,7 +256,7 @@ function ReverseCards() {
           className="left relative flex flex-col will-change-transform md:w-1/2"
         >
           {/* Image Container */}
-          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm bg-amber-400 select-none">
+          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm select-none">
             <Image
               src="/images/woman-garden.webp"
               alt="Aménagement extérieur en bois sur mesure - Terrasse et mobilier de jardin par Nemwood"
@@ -298,7 +298,7 @@ function ReverseCards() {
           className="right relative flex flex-col will-change-transform md:w-1/2"
         >
           {/* Image Container */}
-          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm bg-amber-400 select-none">
+          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm select-none">
             <Image
               src="/images/dress.webp"
               alt="Dressing et garde-robe sur mesure en bois massif - Menuiserie artisanale Nemwood"
