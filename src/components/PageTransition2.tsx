@@ -113,7 +113,10 @@ export default function PageTransition({ children }: PageTransitionProps) {
         }
 
         const tl = gsap.timeline({
-          onComplete: () => router.push(url),
+          onComplete: () => {
+            isTransitioning.current = false;
+            router.push(url);
+          },
         });
 
         // Always ensure the logo path is properly set up before animation

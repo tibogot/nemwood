@@ -213,13 +213,27 @@ export default function HomeCard() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Aggressive cleanup on component unmount
+  // Targeted cleanup on component unmount
   useEffect(() => {
     return () => {
-      // Kill all ScrollTrigger instances when component unmounts
-      ScrollTrigger.killAll();
-      // Clear all GSAP tweens
-      gsap.killTweensOf("*");
+      // Only kill ScrollTrigger instances that belong to this component
+      // Don't kill ALL ScrollTrigger instances as it affects page transitions
+      const cards = gsap.utils.toArray(".card") as Element[];
+      cards.forEach((card) => {
+        ScrollTrigger.getAll().forEach((trigger) => {
+          if (
+            trigger.trigger === card ||
+            trigger.trigger?.contains(card as Node)
+          ) {
+            trigger.kill();
+          }
+        });
+      });
+
+      // Only kill tweens that belong to this component's elements
+      if (container.current) {
+        gsap.killTweensOf(container.current.querySelectorAll("*"));
+      }
     };
   }, []);
 
@@ -349,15 +363,14 @@ export default function HomeCard() {
           lenis.off("scroll", handleScroll);
         }
 
-        // Kill all ScrollTrigger instances
-        ScrollTrigger.killAll();
-
-        // Clean up all contexts
+        // Clean up all contexts (this will properly kill associated ScrollTriggers)
         introPinCtx.revert();
         cardContexts.forEach((ctx) => ctx.revert());
 
-        // Clear any remaining GSAP tweens
-        gsap.killTweensOf("*");
+        // Only kill tweens that belong to this component's elements
+        if (container.current) {
+          gsap.killTweensOf(container.current.querySelectorAll("*"));
+        }
       };
     },
     {
