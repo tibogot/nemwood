@@ -158,7 +158,7 @@ export default function ServicesPage() {
         <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
           <Image
             src="/images/loft.webp"
-            alt=""
+            alt="Aménagement de loft avec meubles en bois sur mesure - Escalier et bibliothèque par Nemwood"
             fill
             className="rounded-sm object-cover"
             sizes="100vw"

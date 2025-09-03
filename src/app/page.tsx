@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import client from "@/sanityClient";
 
-import HorizScroll from "@/components/HorizScroll7";
+import HorizScroll from "@/components/HorizScroll8";
 import CardsScroll from "@/components/CardsScroll5";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Testimonial from "@/components/Testimonial";

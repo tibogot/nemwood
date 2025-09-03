@@ -216,22 +216,21 @@ export default function HomeCard() {
   // Targeted cleanup on component unmount
   useEffect(() => {
     return () => {
-      // Only kill ScrollTrigger instances that belong to this component
-      // Don't kill ALL ScrollTrigger instances as it affects page transitions
-      const cards = gsap.utils.toArray(".card") as Element[];
-      cards.forEach((card) => {
-        ScrollTrigger.getAll().forEach((trigger) => {
-          if (
-            trigger.trigger === card ||
-            trigger.trigger?.contains(card as Node)
-          ) {
-            trigger.kill();
-          }
-        });
-      });
-
-      // Only kill tweens that belong to this component's elements
+      // Only kill ScrollTrigger instances that belong to this component's cards
       if (container.current) {
+        const componentCards = container.current.querySelectorAll(".card");
+        componentCards.forEach((card) => {
+          ScrollTrigger.getAll().forEach((trigger) => {
+            if (
+              trigger.trigger === card ||
+              trigger.trigger?.contains(card as Node)
+            ) {
+              trigger.kill();
+            }
+          });
+        });
+
+        // Only kill tweens that belong to this component's elements
         gsap.killTweensOf(container.current.querySelectorAll("*"));
       }
     };
@@ -247,7 +246,9 @@ export default function HomeCard() {
         return;
       }
 
-      const cards = gsap.utils.toArray(".card") as Element[];
+      const cards = gsap.utils.toArray(
+        container.current.querySelectorAll(".card"),
+      ) as Element[];
       if (cards.length === 0) return;
 
       // Tell ScrollTrigger to use Lenis for scroll calculations
@@ -285,7 +286,9 @@ export default function HomeCard() {
         }
       };
 
-      lenis.on("scroll", handleScroll);
+      // Store the listener reference for proper cleanup
+      const scrollListener = handleScroll;
+      lenis.on("scroll", scrollListener);
 
       // Desktop settings only
       const startPosition = "top 20%";
@@ -358,14 +361,17 @@ export default function HomeCard() {
 
       // Return cleanup function
       return () => {
-        // Clean up Lenis listener
-        if (lenis) {
-          lenis.off("scroll", handleScroll);
+        // Clean up Lenis listener with proper reference
+        if (lenis && scrollListener) {
+          lenis.off("scroll", scrollListener);
         }
 
         // Clean up all contexts (this will properly kill associated ScrollTriggers)
         introPinCtx.revert();
         cardContexts.forEach((ctx) => ctx.revert());
+
+        // Clear the scrollerProxy to prevent conflicts with other components
+        ScrollTrigger.scrollerProxy(document.body, undefined);
 
         // Only kill tweens that belong to this component's elements
         if (container.current) {

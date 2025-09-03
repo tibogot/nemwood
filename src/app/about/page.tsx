@@ -132,7 +132,7 @@ export default function About() {
           <div className="h-[600px] w-full bg-amber-400 select-none">
             <Image
               src="/images/loft.webp"
-              alt=""
+              alt="Atelier Nemwood - Menuisier artisan spécialisé dans les meubles en bois sur mesure en Belgique"
               width={1000}
               height={800}
               className="h-full w-[160%] object-cover transition-transform duration-500 ease-out group-hover:scale-110"
@@ -162,7 +162,7 @@ export default function About() {
         <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
           <Image
             src="/images/loft.webp"
-            alt=""
+            alt="Savoir-faire artisanal Nemwood - Création de mobilier en bois massif sur mesure"
             fill
             className="rounded-sm object-cover"
             sizes="100vw"

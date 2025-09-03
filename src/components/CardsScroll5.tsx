@@ -172,7 +172,7 @@ function CardsScroll() {
           <div className="card card-left relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
               src={`/img-${2 * i - 1}.webp`}
-              alt=""
+              alt={`Réalisation ${2 * i - 1} - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique`}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"
@@ -182,7 +182,7 @@ function CardsScroll() {
           <div className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
               src={`/img-${2 * i}.webp`}
-              alt=""
+              alt={`Réalisation ${2 * i} - Mobilier artisanal en bois massif créé par Nemwood en Belgique`}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"

@@ -259,9 +259,11 @@ function ReverseCards() {
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm bg-amber-400 select-none">
             <Image
               src="/images/woman-garden.webp"
-              alt=""
-              width={1000}
-              height={800}
+              alt="Aménagement extérieur en bois sur mesure - Terrasse et mobilier de jardin par Nemwood"
+              fill
+              sizes="50vw"
+              // width={1000}
+              // height={800}
               className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-110"
               loading="lazy"
             />
@@ -299,9 +301,11 @@ function ReverseCards() {
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-sm bg-amber-400 select-none">
             <Image
               src="/images/dress.webp"
-              alt=""
-              width={1000}
-              height={800}
+              alt="Dressing et garde-robe sur mesure en bois massif - Menuiserie artisanale Nemwood"
+              fill
+              sizes="50vw"
+              // width={1000}
+              // height={800}
               className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-110"
               loading="lazy"
             />
