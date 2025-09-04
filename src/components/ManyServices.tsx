@@ -279,8 +279,72 @@ export default function ManyServices() {
         </p>
       </div>
 
-      {/* Services List */}
-      <div className="font-HelveticaNow mt-20 md:mt-40">
+      {/* Mobile Card Layout */}
+      <div className="block space-y-8 px-4 md:hidden">
+        {services.map((service, index) => (
+          <div
+            key={`mobile-${service.name}`}
+            className="group bg-secondary relative cursor-pointer overflow-hidden rounded-sm duration-300"
+          >
+            <a href={service.href} className="block">
+              {/* Image */}
+              <div className="aspect-[4/3] w-full overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={`${service.name} sur mesure par Nemwood - Menuisier artisan en Belgique`}
+                  width={1000}
+                  height={800}
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={index === 0}
+                  quality={75}
+                />
+              </div>
+
+              {/* Content */}
+              <div className="py-6">
+                {/* Number */}
+                <p className="font-HelveticaNow text-primary/70 mb-3 text-xs tracking-wider uppercase">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+
+                {/* Title */}
+                <h3 className="font-ITCGaramondN text-primary mb-4 text-4xl leading-tight">
+                  {service.name}
+                </h3>
+
+                {/* CTA */}
+                <button className="font-HelveticaNow">
+                  <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                    <span>En savoir plus</span>
+                    <div className="mt-0.5 ml-1">
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5 12H19M19 12L12 5M19 12L12 19"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Services List */}
+      <div className="font-HelveticaNow mt-20 hidden md:mt-40 md:block">
         {services.map((service, index) => (
           <ServiceItem
             key={service.name}
@@ -292,8 +356,10 @@ export default function ManyServices() {
         ))}
       </div>
 
-      {/* Modal */}
-      <Modal modal={modal} services={services} />
+      {/* Modal - Desktop Only */}
+      <div className="hidden md:block">
+        <Modal modal={modal} services={services} />
+      </div>
     </section>
   );
 }
