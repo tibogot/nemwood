@@ -16,7 +16,7 @@ export default function CuisinesPage() {
   return (
     <main className="bg-secondary text-primary">
       {/* Hero Section */}
-      <section className="px-4 pt-20 pb-20 md:px-8 md:pt-32 md:pb-32">
+      <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>

@@ -31,8 +31,18 @@ export async function submitContactForm(
   prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  console.log("🚀 Contact form submission started");
+  console.log("📧 Environment variables check:", {
+    SMTP_HOST: process.env.SMTP_HOST ? "✅ Set" : "❌ Missing",
+    SMTP_PORT: process.env.SMTP_PORT ? "✅ Set" : "❌ Missing",
+    SMTP_USER: process.env.SMTP_USER ? "✅ Set" : "❌ Missing",
+    SMTP_PASS: process.env.SMTP_PASS ? "✅ Set" : "❌ Missing",
+    SMTP_FROM: process.env.SMTP_FROM ? "✅ Set" : "❌ Missing",
+  });
+
   try {
     // Validate form data
+    console.log("🔍 Validating form data...");
     const validatedFields = contactSchema.safeParse({
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
@@ -43,12 +53,17 @@ export async function submitContactForm(
 
     // If validation fails, return field errors
     if (!validatedFields.success) {
+      console.log(
+        "❌ Validation failed:",
+        validatedFields.error.flatten().fieldErrors,
+      );
       return {
         error: "Veuillez corriger les erreurs ci-dessous",
         fieldErrors: validatedFields.error.flatten().fieldErrors,
       };
     }
 
+    console.log("✅ Form validation passed");
     const { firstName, lastName, email, phone, message } = validatedFields.data;
 
     // Create nodemailer transporter
@@ -68,6 +83,9 @@ export async function submitContactForm(
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      // OVH SSL0 specific options - simplified
+      ignoreTLS: false,
+      debug: true, // Enable debug logs
     });
 
     // Email content
@@ -136,7 +154,12 @@ Pour toute question urgente, contactez-nous directement au 0489 33 05 44.
       success: true,
     };
   } catch (error) {
-    console.error("Contact form submission error:", error);
+    console.error("❌ Contact form submission error:", error);
+    console.error("❌ Error details:", {
+      name: error instanceof Error ? error.name : "Unknown",
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     return {
       error:
         "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer ou nous contacter directement.",

@@ -98,7 +98,7 @@ export default function Home() {
         </div>
 
         {/*Big Image - Optimized for LCP */}
-        {/* <div className="second-image-container flex w-full justify-center pb-20">
+        <div className="second-image-container flex w-full justify-center pb-20">
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             {secondImageVisible && (
               <Image
@@ -112,9 +112,9 @@ export default function Home() {
               />
             )}
           </div>
-        </div> */}
+        </div>
       </section>
-      <ReverseCards />
+      {/* <ReverseCards /> */}
       <section className="text-primary flex w-full flex-col px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
         <div className="left md:w-1/2">
           <div>

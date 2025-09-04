@@ -46,65 +46,68 @@ export default function ServiceNavigation() {
       : services[0]; // Wrap to first service
 
   return (
-    <section className="bg-secondary border-primary border-t px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between">
+    <section className="bg-secondary px-4 py-8 md:px-8">
+      <div className="mx-auto max-w-6xl border-t border-gray-200 pt-8">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Previous Service */}
           <Link
             href={`/services/${previousService.slug}`}
-            className="group text-primary hover:text-primary/70 flex items-center space-x-4 transition-colors duration-300"
+            className="group flex-1 cursor-pointer"
           >
-            <div className="flex items-center space-x-3">
-              <ArrowLeft
-                size={20}
-                className="transition-transform duration-300 group-hover:-translate-x-1"
-              />
-              <div className="relative h-16 w-20 overflow-hidden rounded-sm">
+            <div className="flex items-center gap-4">
+              <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
                 <Image
                   src={previousService.image}
                   alt={previousService.name}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="80px"
                 />
               </div>
-              <div className="text-left">
-                <p className="text-primary/60 text-sm font-light">Précédent</p>
-                <p className="font-medium">{previousService.name}</p>
+              <div className="flex-1">
+                <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                  Service précédent
+                </p>
+                <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                  {previousService.name}
+                </h3>
               </div>
             </div>
           </Link>
 
-          {/* Current Service Indicator */}
-          <div className="text-center">
-            <p className="text-primary/60 text-sm font-light">
-              {currentServiceIndex + 1} / {services.length}
-            </p>
+          {/* Back to Services Button */}
+          <div className="flex items-center justify-center">
+            <Link
+              href="/services"
+              className="font-HelveticaNow border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out"
+            >
+              <span>Retour aux services</span>
+            </Link>
           </div>
 
           {/* Next Service */}
           <Link
             href={`/services/${nextService.slug}`}
-            className="group text-primary hover:text-primary/70 flex items-center space-x-4 transition-colors duration-300"
+            className="group flex-1 cursor-pointer"
           >
-            <div className="flex items-center space-x-3">
-              <div className="text-right">
-                <p className="text-primary/60 text-sm font-light">Suivant</p>
-                <p className="font-medium">{nextService.name}</p>
+            <div className="flex items-center gap-4">
+              <div className="flex-1 text-right">
+                <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                  Service suivant
+                </p>
+                <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                  {nextService.name}
+                </h3>
               </div>
-              <div className="relative h-16 w-20 overflow-hidden rounded-sm">
+              <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
                 <Image
                   src={nextService.image}
                   alt={nextService.name}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="80px"
                 />
               </div>
-              <ArrowRight
-                size={20}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
             </div>
           </Link>
         </div>

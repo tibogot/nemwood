@@ -21,7 +21,7 @@ export default function ServicesLayout({
   return (
     <>
       {children}
-      {shouldShowContact && <ServiceContactSection />}
+      {/* {shouldShowContact && <ServiceContactSection />} */}
       {/* {shouldShowContact && <StickyStackScroll />} */}
       {shouldShowContact && <ServiceNavigation />}
     </>
