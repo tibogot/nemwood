@@ -18,15 +18,15 @@ export default function ContactForm() {
 
   // Reset form on successful submission
   useEffect(() => {
-    if (state.success && formRef.current) {
+    if (state?.success && formRef.current) {
       formRef.current.reset();
     }
-  }, [state.success]);
+  }, [state?.success]);
 
   return (
     <div className="">
       {/* Success Message */}
-      {state.success && (
+      {state?.success && (
         <div className="mb-6 rounded-sm border border-green-300 bg-green-100 p-4 text-green-800">
           <p className="font-HelveticaNow font-medium">
             ✅ Votre message a été envoyé avec succès !
@@ -38,9 +38,9 @@ export default function ContactForm() {
       )}
 
       {/* Error Message */}
-      {state.error && (
+      {state?.error && (
         <div className="mb-6 rounded-sm border border-red-300 bg-red-100 p-4 text-red-800">
-          <p className="font-HelveticaNow font-medium">❌ {state.error}</p>
+          <p className="font-HelveticaNow font-medium">❌ {state?.error}</p>
         </div>
       )}
 
@@ -56,9 +56,9 @@ export default function ContactForm() {
               placeholder="Votre prénom"
               disabled={isPending}
             />
-            {state.fieldErrors?.firstName && (
+            {state?.fieldErrors?.firstName && (
               <p className="mt-1 text-sm text-red-600">
-                {state.fieldErrors.firstName[0]}
+                {state?.fieldErrors?.firstName?.[0]}
               </p>
             )}
           </div>
@@ -73,9 +73,9 @@ export default function ContactForm() {
               placeholder="Votre nom"
               disabled={isPending}
             />
-            {state.fieldErrors?.lastName && (
+            {state?.fieldErrors?.lastName && (
               <p className="mt-1 text-sm text-red-600">
-                {state.fieldErrors.lastName[0]}
+                {state?.fieldErrors?.lastName?.[0]}
               </p>
             )}
           </div>
@@ -91,9 +91,9 @@ export default function ContactForm() {
             placeholder="votre@email.com"
             disabled={isPending}
           />
-          {state.fieldErrors?.email && (
+          {state?.fieldErrors?.email && (
             <p className="mt-1 text-sm text-red-600">
-              {state.fieldErrors.email[0]}
+              {state?.fieldErrors?.email?.[0]}
             </p>
           )}
         </div>
@@ -107,9 +107,9 @@ export default function ContactForm() {
             placeholder="+32 123 45 67 89 (optionnel)"
             disabled={isPending}
           />
-          {state.fieldErrors?.phone && (
+          {state?.fieldErrors?.phone && (
             <p className="mt-1 text-sm text-red-600">
-              {state.fieldErrors.phone[0]}
+              {state?.fieldErrors?.phone?.[0]}
             </p>
           )}
         </div>
@@ -124,9 +124,9 @@ export default function ContactForm() {
             placeholder="Décrivez votre projet en détail : dimensions, style souhaité, contraintes particulières, délais..."
             disabled={isPending}
           ></textarea>
-          {state.fieldErrors?.message && (
+          {state?.fieldErrors?.message && (
             <p className="mt-1 text-sm text-red-600">
-              {state.fieldErrors.message[0]}
+              {state?.fieldErrors?.message?.[0]}
             </p>
           )}
         </div>
