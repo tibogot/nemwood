@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import { generateMetadata } from "@/app/metadata";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
@@ -50,85 +51,7 @@ export default function Contact() {
 
             {/* Right Side - Contact Form */}
             <div className="text-primary md:w-1/2">
-              <div className=" ">
-                {/* <h2 className="font-ITCGaramondN mb-6 text-4xl md:text-5xl">
-                  Demande de devis
-                </h2>
-                <p className="font-HelveticaNow text-primary/80 mb-8">
-                  Remplissez ce formulaire et nous vous recontacterons sous 24h
-                  pour discuter de votre projet.
-                </p> */}
-
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <div>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
-                        placeholder="Votre prénom"
-                      />
-                    </div>
-
-                    <div>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
-                        placeholder="Votre nom"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
-                      placeholder="+32 123 45 67 89"
-                    />
-                  </div>
-
-                  <div>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      className="bg-secondary focus:border-primary/40 border-primary/20 w-full resize-none border-0 border-b px-0 py-3 transition-colors focus:border-b-2 focus:outline-none"
-                      placeholder="Décrivez votre projet en détail : dimensions, style souhaité, contraintes particulières, délais..."
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="border-primary text-primary font-HelveticaNow hover:bg-primary hover:text-secondary cursor-pointer border px-8 py-2 font-medium transition-colors duration-300"
-                  >
-                    Envoyer ma demande
-                  </button>
-
-                  <p className="font-HelveticaNow text-primary/60 text-left text-sm">
-                    En soumettant ce formulaire, vous acceptez d'être contacté
-                    par notre équipe concernant votre projet.
-                  </p>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </div>
