@@ -29,7 +29,7 @@ export default function ContactForm() {
       {state?.success && (
         <div className="mb-6 rounded-sm border border-green-300 bg-green-100 p-4 text-green-800">
           <p className="font-HelveticaNow font-medium">
-            ✅ Votre message a été envoyé avec succès!
+            ✅ Votre message a été envoyé avec succès !
           </p>
           <p className="font-HelveticaNow mt-1 text-sm">
             Nous vous recontacterons dans les plus brefs délais.
