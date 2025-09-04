@@ -52,6 +52,14 @@ export async function submitContactForm(
     const { firstName, lastName, email, phone, message } = validatedFields.data;
 
     // Create nodemailer transporter
+    console.log("SMTP Config:", {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secure: process.env.SMTP_SECURE,
+      user: process.env.SMTP_USER,
+      passLength: process.env.SMTP_PASS?.length || 0,
+    });
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.gmail.com",
       port: parseInt(process.env.SMTP_PORT || "587"),
@@ -79,7 +87,13 @@ Email envoyé depuis le formulaire de contact Nemwood
 Date : ${new Date().toLocaleString("fr-BE", { timeZone: "Europe/Brussels" })}
     `.trim();
 
+    // Test SMTP connection first
+    console.log("Testing SMTP connection...");
+    await transporter.verify();
+    console.log("SMTP connection verified successfully");
+
     // Send email to your business email
+    console.log("Sending email to:", "contact@nemwood.be");
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: "contact@nemwood.be",
@@ -88,6 +102,7 @@ Date : ${new Date().toLocaleString("fr-BE", { timeZone: "Europe/Brussels" })}
       html: emailContent.replace(/\n/g, "<br>"),
       replyTo: email, // Allow direct reply to the customer
     });
+    console.log("Email sent successfully to contact@nemwood.be");
 
     // Optional: Send confirmation email to the customer
     const confirmationContent = `
