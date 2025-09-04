@@ -97,7 +97,7 @@ function ServiceItem({ index, name, href, setModal }: ServiceItemProps) {
         {/* Background fill animation */}
         <div className="bg-primary absolute inset-0 origin-bottom scale-y-0 transform transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
 
-        <div className="relative z-10 flex items-center justify-between px-2 py-3 md:px-4 md:py-4">
+        <div className="relative z-10 flex items-center justify-between px-2 py-3 md:px-8 md:py-4">
           <span className="text-primary group-hover:text-secondary text-sm font-light transition-colors duration-500 md:text-lg lg:text-xl">
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -265,9 +265,9 @@ export default function ManyServices() {
   const [modal, setModal] = useState<ModalState>({ active: false, index: 0 });
 
   return (
-    <section className="relative min-h-screen w-full px-2 py-16 md:px-8 md:py-20">
+    <section className="relative min-h-screen w-full py-16 md:py-20">
       {/* Title and Description */}
-      <div className="mb-16 flex flex-col md:flex-row md:items-start md:justify-between md:gap-8">
+      <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
         <h3 className="font-ITCGaramondN text-primary mb-4 text-3xl leading-tight md:mb-0 md:text-5xl lg:text-7xl">
           Nos services
         </h3>
