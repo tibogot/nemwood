@@ -25,10 +25,10 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
   if (!imageUrl) imageUrl = "/logo.svg"; // fallback to your logo
 
   return (
-    <li className="text-primary mb-10 w-full flex-1 md:mb-0 md:w-1/3">
+    <li className="text-primary mb-10 w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink">
       <Link href={`/blog/${post.slug.current}`} className="group block h-full">
         <div className="flex h-full flex-col items-stretch overflow-hidden">
-          <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden">
+          <div className="relative flex h-[300px] w-full items-center justify-center overflow-hidden md:h-[400px]">
             <img
               src={imageUrl}
               alt={post.title}
@@ -37,22 +37,22 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
               loading="lazy"
             />
           </div>
-          <div className="flex flex-1 flex-col justify-between py-6">
+          <div className="flex flex-1 flex-col justify-between py-4 md:py-6">
             <div>
               {post.publishedAt && (
                 <p className="font-HelveticaNow mb-2 text-xs">
                   {new Date(post.publishedAt).toLocaleDateString()}
                 </p>
               )}
-              <h2 className="font-ITCGaramondN mb-2 text-4xl leading-tight">
+              <h2 className="font-ITCGaramondN mb-2 text-2xl leading-tight md:text-4xl">
                 {post.title}
               </h2>
 
-              <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
+              <div className="font-HelveticaNow mb-2 line-clamp-3 text-sm md:max-w-md md:text-lg">
                 {post.body && <PortableText value={post.body.slice(0, 1)} />}
               </div>
             </div>
-            <span className="font-HelveticaNow mt-2 inline-block text-base">
+            <span className="font-HelveticaNow mt-2 inline-block text-sm md:text-base">
               Read more →
             </span>
           </div>
