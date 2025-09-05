@@ -38,6 +38,24 @@ const BlurryTextReveal: React.FC = () => {
               aria: "none", // Disable automatic aria-label addition
             }) as unknown as SplitTextInstance;
 
+            // Force font inheritance on Safari for each character
+            splitInstance.chars.forEach((char: Element) => {
+              const htmlChar = char as HTMLElement;
+              const parentElement = htmlChar.parentElement;
+              if (
+                parentElement &&
+                parentElement.classList.contains("font-ITCGaramondNI")
+              ) {
+                htmlChar.style.fontFamily =
+                  "var(--font-ITCGaramondStdLtNarrowIta), serif";
+                htmlChar.style.fontStyle = "normal";
+              } else if (parentElement && parentElement.tagName === "EM") {
+                htmlChar.style.fontFamily =
+                  "var(--font-ITCGaramondStdLtNarrowIta), serif";
+                htmlChar.style.fontStyle = "normal";
+              }
+            });
+
             // Initial state
             gsap.set(splitInstance.chars, {
               filter: "blur(20px)",
@@ -89,6 +107,23 @@ const BlurryTextReveal: React.FC = () => {
             const charElements = text.querySelectorAll(
               ".char",
             ) as NodeListOf<HTMLElement>;
+
+            // Force font inheritance for Safari
+            charElements.forEach((char) => {
+              const parentElement = char.parentElement;
+              if (
+                parentElement &&
+                parentElement.classList.contains("font-ITCGaramondNI")
+              ) {
+                char.style.fontFamily =
+                  "var(--font-ITCGaramondStdLtNarrowIta), serif";
+                char.style.fontStyle = "normal";
+              } else if (parentElement && parentElement.tagName === "EM") {
+                char.style.fontFamily =
+                  "var(--font-ITCGaramondStdLtNarrowIta), serif";
+                char.style.fontStyle = "normal";
+              }
+            });
 
             gsap.set(charElements, {
               filter: "blur(20px)",
@@ -146,17 +181,18 @@ const BlurryTextReveal: React.FC = () => {
         style={{
           fontFamily: "var(--font-ITCGaramondStdLtNarrow), serif",
         }}
+        data-text="Créons quelque chose d'incroyable ensemble"
       >
-        Créons quelque chose
-        <span
-          className="font-ITCGaramondNI"
+        Créons quelque chose{" "}
+        <em
+          className="font-ITCGaramondNI not-italic"
           style={{
             fontFamily: "var(--font-ITCGaramondStdLtNarrowIta), serif",
+            fontStyle: "normal",
           }}
         >
-          {" "}
           d'incroyable
-        </span>{" "}
+        </em>{" "}
         ensemble
       </h2>
     </section>

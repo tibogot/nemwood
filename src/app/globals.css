@@ -137,6 +137,13 @@ img {
     -webkit-font-feature-settings: inherit;
     font-feature-settings: inherit;
   }
+
+  /* Safari specific fix for italic font in SplitText */
+  em .char,
+  .font-ITCGaramondNI .char {
+    font-family: var(--font-ITCGaramondStdLtNarrowIta), serif !important;
+    font-style: normal !important;
+  }
 }
 
 /* Font display optimization for TextReveal fonts */
