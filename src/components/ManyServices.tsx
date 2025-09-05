@@ -97,14 +97,14 @@ function ServiceItem({ index, name, href, setModal }: ServiceItemProps) {
         {/* Background fill animation */}
         <div className="bg-primary absolute inset-0 origin-bottom scale-y-0 transform transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
 
-        <div className="relative z-10 flex items-center justify-between px-2 py-3 md:px-8 md:py-4">
-          <span className="text-primary group-hover:text-secondary text-sm font-light transition-colors duration-500 md:text-lg lg:text-xl">
+        <div className="relative z-10 flex items-center px-2 py-3 md:px-8 md:py-4">
+          <span className="text-primary group-hover:text-secondary absolute left-2 text-sm font-light transition-colors duration-500 md:left-8 md:text-lg lg:text-xl">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h3 className="text-primary group-hover:text-secondary text-3xl transition-all duration-500 group-hover:translate-x-2 md:text-6xl lg:text-8xl">
+          <h3 className="text-primary group-hover:text-secondary mx-auto text-3xl transition-all duration-500 group-hover:translate-x-2 md:text-6xl lg:text-8xl">
             {name}
           </h3>
-          <span className="text-primary group-hover:text-secondary text-xs font-light transition-colors duration-500 md:text-sm lg:text-base">
+          <span className="text-primary group-hover:text-secondary absolute right-2 text-xs font-light transition-colors duration-500 md:right-8 md:text-sm lg:text-base">
             En savoir plus →
           </span>
           {/* <div className="text-sm tracking-wide text-gray-400 uppercase">
