@@ -8,6 +8,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition2";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+// import CookieConsent from "@/components/CookieConsent";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const ITCGaramondStdLtNarrow = localFont({
@@ -218,6 +219,8 @@ export default function RootLayout({
               <Footer />
             </LenisProvider>
           </PageTransition>
+          {/* Cookie Consent Banner - RGPD compliant */}
+          {/* <CookieConsent /> */}
         </ThemeProvider>
       </body>
     </html>
