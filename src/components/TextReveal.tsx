@@ -80,7 +80,7 @@ const BlurryTextReveal: React.FC = () => {
               .map((char: string) =>
                 char === " "
                   ? '<span class="char"> </span>'
-                  : `<span class="char" style="display: inline-block;">${char}</span>`,
+                  : `<span class="char" style="display: inline-block; font-family: inherit; font-style: inherit;">${char}</span>`,
               )
               .join("");
 
@@ -140,13 +140,25 @@ const BlurryTextReveal: React.FC = () => {
       ref={sectionRef}
       className="text-primary mx-auto w-full px-4 text-center md:px-8"
     >
-      <span
+      <h2
         ref={titleRef}
         className="font-ITCGaramondN mx-auto max-w-6xl text-6xl md:text-9xl"
+        style={{
+          fontFamily: "var(--font-ITCGaramondStdLtNarrow), serif",
+        }}
       >
         Créons quelque chose
-        <span className="font-ITCGaramondNI"> d'incroyable</span> ensemble
-      </span>
+        <span
+          className="font-ITCGaramondNI"
+          style={{
+            fontFamily: "var(--font-ITCGaramondStdLtNarrowIta), serif",
+          }}
+        >
+          {" "}
+          d'incroyable
+        </span>{" "}
+        ensemble
+      </h2>
     </section>
   );
 };
