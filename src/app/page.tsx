@@ -123,19 +123,16 @@ export default function Home() {
               <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 A PROPOS
               </h4>
-              <h2 className="mt-8 md:max-w-xl">
-                Fabrication artisanale par Nemwood
-              </h2>
+              <h2 className="mt-8 md:max-w-xl">Notre savoir-faire</h2>
             </AnimatedText>
             <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
-              Chez Nemwood, chaque meuble est une œuvre unique. Spécialisés dans
-              la fabrication de mobilier en bois sur mesure en Belgique, nous
-              mettons notre savoir-faire artisanal au service de vos projets,
-              qu’il s’agisse d’aménager une cuisine, un salon, un escalier ou
-              tout autre espace de vie. Nous utilisons exclusivement du bois
-              massif durable, travaillé à la main avec passion pour créer des
-              pièces uniques, durables et parfaitement adaptées à vos
-              besoins.{" "}
+              Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est
+              conçu sur mesure dans notre atelier. Spécialisés dans la
+              fabrication de meubles en bois massif, nous créons des cuisines
+              sur mesure, mobilier de salon, escaliers et aménagements uniques.
+              Notre savoir-faire artisanal privilégie le bois massif durable,
+              travaillé à la main pour des créations authentiques et durables,
+              parfaitement adaptées à votre intérieur.
             </p>
             <Link href="/about">
               <button className="font-HelveticaNow mt-10">
@@ -261,8 +258,8 @@ export default function Home() {
 
       {/* Blog Previews Section */}
       <section className="px-4 py-10 md:px-8 md:py-20">
-        <div className="flex w-full flex-col items-center">
-          <h2 className="font-ITCGaramondN text-primary text-6xl md:text-8xl">
+        <div className="flex w-full flex-col">
+          <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
             Actualités
           </h2>
         </div>
