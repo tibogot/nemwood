@@ -76,16 +76,19 @@ export async function submitContactForm(
     });
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT || "587"),
+      host: process.env.SMTP_HOST || "ssl0.ovh.net",
+      port: parseInt(process.env.SMTP_PORT || "465"),
       secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-      // OVH SSL0 specific options - simplified
+      // OVH SSL0 specific options
       ignoreTLS: false,
+      requireTLS: true,
       debug: true, // Enable debug logs
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 30000, // 30 seconds
     });
 
     // Email content
