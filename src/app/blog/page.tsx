@@ -24,6 +24,7 @@ export default async function BlogPage() {
       _id,
       title,
       slug,
+      description,
       mainImage {
         asset->{url}
       },
@@ -51,14 +52,18 @@ export default async function BlogPage() {
         <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-6">
           {posts.map((post: any) => (
             <li key={post._id} className="flex flex-col overflow-hidden">
-              <Link href={`/blog/${post.slug.current}`} className="group block">
+              <Link
+                href={`/blog/${post.slug.current}`}
+                className="group block cursor-pointer"
+              >
                 {post.mainImage && (
                   <div className="bg-secondary relative h-[400px] w-full overflow-hidden">
-                    <img
+                    <Image
                       src={post.mainImage.asset.url}
                       alt={post.title}
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
+                      fill
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                 )}
@@ -69,14 +74,15 @@ export default async function BlogPage() {
                         {new Date(post.publishedAt).toLocaleDateString()}
                       </p>
                     )}
-                    <h2 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
+                    <h3 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
                       {post.title}
-                    </h2>
+                    </h3>
 
                     <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
-                      {post.body && (
-                        <PortableText value={post.body.slice(0, 1)} />
-                      )}
+                      {post.description ||
+                        (post.body && (
+                          <PortableText value={post.body.slice(0, 1)} />
+                        ))}
                     </div>
                   </div>
                   <span className="font-HelveticaNow mt-2 inline-block text-base">
@@ -88,7 +94,7 @@ export default async function BlogPage() {
           ))}
         </ul>
       </main>
-      <section className="bg-secondary relative mt-20 h-svh w-full">
+      <section className="bg-secondary relative mt-40 w-full">
         <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
           <Image
             src="/images/nemohero.webp"

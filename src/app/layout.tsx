@@ -208,7 +208,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} antialiased`}
+        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-secondary antialiased`}
       >
         <ThemeProvider>
           <PageTransition>

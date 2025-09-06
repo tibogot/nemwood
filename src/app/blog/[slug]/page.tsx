@@ -24,6 +24,7 @@ export async function generateMetadata({
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       title,
+      description,
       body,
       mainImage {
         asset->{url}
@@ -36,12 +37,15 @@ export async function generateMetadata({
 
   if (!post) return generatePageMetadata();
 
-  // Extract first paragraph for description
-  const firstParagraph = post.body?.[0]?.children?.[0]?.text || "";
+  // Use dedicated description field or fallback to first paragraph
   const description =
-    firstParagraph.length > 160
-      ? firstParagraph.substring(0, 160) + "..."
-      : firstParagraph;
+    post.description ||
+    (() => {
+      const firstParagraph = post.body?.[0]?.children?.[0]?.text || "";
+      return firstParagraph.length > 160
+        ? firstParagraph.substring(0, 160) + "..."
+        : firstParagraph;
+    })();
 
   return generatePageMetadata(
     `${post.title} | Blog Nemwood`,
@@ -91,24 +95,22 @@ const portableTextComponents = {
     normal: ({ children }: any) => (
       <p className="mb-4 leading-relaxed">{children}</p>
     ),
-    // Handle headings
+    // Handle headings - 3 consistent sizes regardless of what user picks in CMS
     h1: ({ children }: any) => (
-      <h1 className="font-ITCGaramondN mt-8 mb-6 text-4xl font-bold">
-        {children}
-      </h1>
+      <h2 className="font-ITCGaramondN mt-8 mb-6 text-5xl">{children}</h2>
     ),
     h2: ({ children }: any) => (
-      <h2 className="font-ITCGaramondN mt-6 mb-4 text-3xl font-bold">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 className="font-ITCGaramondN mt-5 mb-3 text-2xl font-bold">
+      <h3 className="font-ITCGaramondN mt-6 mb-4 text-4xl leading-tight">
         {children}
       </h3>
     ),
+    h3: ({ children }: any) => (
+      <h4 className="font-ITCGaramondN mt-5 mb-3 text-3xl leading-tight">
+        {children}
+      </h4>
+    ),
     h4: ({ children }: any) => (
-      <h4 className="font-ITCGaramondN mt-4 mb-2 text-xl font-bold">
+      <h4 className="font-ITCGaramondN mt-5 mb-3 text-2xl leading-tight">
         {children}
       </h4>
     ),
@@ -176,6 +178,7 @@ export default async function BlogPostPage(props: any) {
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       title,
+      description,
       body,
       mainImage {
         asset->{url}
@@ -220,10 +223,12 @@ export default async function BlogPostPage(props: any) {
       `*[_type == "post" && slug.current != $currentSlug]|order(_createdAt desc)[0...3]{
         title,
         slug,
+        description,
         mainImage {
           asset->{url}
         },
-        publishedAt
+        publishedAt,
+        body
       }`,
       { currentSlug: params.slug },
       { cache: "no-store" },
@@ -237,6 +242,11 @@ export default async function BlogPostPage(props: any) {
           <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
             {post.title}
           </h1>
+          {post.description && (
+            <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+              {post.description}
+            </p>
+          )}
         </AnimatedText>
       </div>
       {post.publishedAt && (
@@ -265,40 +275,60 @@ export default async function BlogPostPage(props: any) {
       {relatedPosts && relatedPosts.length > 0 && (
         <div className="mx-auto mt-16 max-w-6xl">
           <div className="border-t border-gray-200 pt-8">
-            <h2 className="font-ITCGaramondN mb-8 text-center text-3xl md:text-4xl">
+            <h2 className="font-ITCGaramondN mb-12 text-3xl md:text-6xl">
               Articles similaires
             </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
               {relatedPosts.map((relatedPost: any) => (
-                <Link
+                <li
                   key={relatedPost.slug.current}
-                  href={`/blog/${relatedPost.slug.current}`}
-                  className="group cursor-pointer"
+                  className="flex flex-col overflow-hidden"
                 >
-                  <div className="overflow-hidden rounded-sm">
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <img
-                        src={relatedPost.mainImage?.asset?.url}
-                        alt={relatedPost.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                  <Link
+                    href={`/blog/${relatedPost.slug.current}`}
+                    className="group block cursor-pointer"
+                  >
+                    {relatedPost.mainImage && (
+                      <div className="bg-secondary relative h-[400px] w-full overflow-hidden">
+                        <Image
+                          src={relatedPost.mainImage.asset.url}
+                          alt={relatedPost.title}
+                          fill
+                          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-1 flex-col justify-between pt-4 pb-6">
+                      <div>
+                        {relatedPost.publishedAt && (
+                          <p className="font-HelveticaNow mb-2 text-xs">
+                            {new Date(
+                              relatedPost.publishedAt,
+                            ).toLocaleDateString()}
+                          </p>
+                        )}
+                        <h3 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
+                          {relatedPost.title}
+                        </h3>
+
+                        <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
+                          {relatedPost.description ||
+                            (relatedPost.body && (
+                              <PortableText
+                                value={relatedPost.body.slice(0, 1)}
+                              />
+                            ))}
+                        </div>
+                      </div>
+                      <span className="font-HelveticaNow mt-2 inline-block text-base">
+                        Read more →
+                      </span>
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-ITCGaramondN group-hover:text-primary/70 mb-2 text-lg leading-tight transition-colors">
-                        {relatedPost.title}
-                      </h3>
-                      {relatedPost.publishedAt && (
-                        <p className="font-HelveticaNow text-sm text-gray-400">
-                          {new Date(
-                            relatedPost.publishedAt,
-                          ).toLocaleDateString()}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       )}

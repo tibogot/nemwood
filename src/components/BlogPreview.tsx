@@ -6,6 +6,7 @@ interface BlogPreviewProps {
     _id: string;
     title: string;
     slug: { current: string };
+    description?: string;
     mainImage?: any;
     publishedAt?: string;
     body?: any;
@@ -44,12 +45,13 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
                   {new Date(post.publishedAt).toLocaleDateString()}
                 </p>
               )}
-              <h2 className="font-ITCGaramondN mb-2 text-2xl leading-tight md:text-4xl">
+              <h3 className="font-ITCGaramondN mb-2 text-2xl leading-tight md:text-4xl">
                 {post.title}
-              </h2>
+              </h3>
 
               <div className="font-HelveticaNow mb-2 line-clamp-3 text-sm md:max-w-md md:text-lg">
-                {post.body && <PortableText value={post.body.slice(0, 1)} />}
+                {post.description ||
+                  (post.body && <PortableText value={post.body.slice(0, 1)} />)}
               </div>
             </div>
             <span className="font-HelveticaNow mt-2 inline-block text-sm md:text-base">

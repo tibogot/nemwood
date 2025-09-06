@@ -25,6 +25,7 @@ export default function Home() {
           _id,
           title,
           slug,
+          description,
           mainImage {
             asset->{url}
           },
