@@ -13,6 +13,7 @@ import BlurryTextReveal from "@/components/TextReveal";
 import ReverseCards from "@/components/ReverseCards2";
 import BlogPreview from "@/components/BlogPreview";
 import FAQ from "@/components/FAQ";
+import AnimatedBorderLines from "@/components/AnimatedBorderLines";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
@@ -116,7 +117,7 @@ export default function Home() {
         </div>
       </section>
       {/* <ReverseCards /> */}
-      <section className="text-primary flex w-full flex-col px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
+      <section className="border-primary flex w-full flex-col border-y px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
         <div className="left md:w-1/2">
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
@@ -149,28 +150,41 @@ export default function Home() {
         </div>
         <div className="left mt-8 flex flex-col items-center justify-center text-center md:mt-0 md:w-1/2">
           <div className="w-full md:max-w-xl">
-            {[
-              "Un artisanat de haute qualité",
-              "Bois massif & éco-responsabilité",
-              "Solutions Personnalisées",
-              "Design & fonctionnalité",
-            ].map((text, index) => (
-              <div key={index} className="border-primary/50 mt-4 border-t pt-4">
-                <div className="flex items-center justify-start gap-3">
-                  <span className="text-primary relative top-[1px] text-3xl leading-none">
-                    •
-                  </span>
-                  <p className="font-HelveticaNow text-left text-lg">{text}</p>
+            <AnimatedBorderLines
+              stagger={0.15}
+              duration={0.6}
+              delay={0.2}
+              start="top 85%"
+            >
+              {[
+                "Un artisanat de haute qualité",
+                "Bois massif & éco-responsabilité",
+                "Solutions Personnalisées",
+                "Design & fonctionnalité",
+              ].map((text, index) => (
+                <div
+                  key={index}
+                  className="border-primary/50 mt-4 border-t pt-4"
+                >
+                  <div className="flex items-center justify-start gap-3">
+                    <span className="text-primary relative top-[1px] text-3xl leading-none">
+                      •
+                    </span>
+
+                    <p className="font-HelveticaNow text-left text-lg">
+                      {text}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </AnimatedBorderLines>
           </div>
         </div>
       </section>
 
       <HorizScroll />
 
-      <section className="text-primary mx-auto px-4 py-20 text-center md:px-8 md:py-40">
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
         {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
           Creativity to design
         </h1> */}
@@ -223,7 +237,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="pb-80">
+      <section className="py-80">
         <BlurryTextReveal />
       </section>
 
@@ -258,7 +272,7 @@ export default function Home() {
       />
 
       {/* Blog Previews Section */}
-      <section className="px-4 py-10 md:px-8 md:py-20">
+      <section className="border-primary border-y px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col">
           <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
             Actualités

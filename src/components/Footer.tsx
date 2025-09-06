@@ -37,9 +37,9 @@ export default function Footer() {
           <div className="mt-24 flex flex-col gap-8 md:flex-row md:gap-24">
             {/* CONTACT Column */}
             <div className="flex flex-col">
-              <h3 className="text-primary font-HelveticaNow mb-4 text-xl font-semibold">
+              {/* <h3 className="text-primary font-HelveticaNow mb-4 text-xl font-semibold">
                 CONTACT
-              </h3>
+              </h3> */}
               <div className="text-primary flex flex-col space-y-1">
                 <Link
                   href="tel:+33123456789"
@@ -58,9 +58,9 @@ export default function Footer() {
 
             {/* SOCIAL Column */}
             <div className="flex flex-col">
-              <h3 className="font-HelveticaNow text-primary mb-4 text-xl font-semibold">
+              {/* <h3 className="font-HelveticaNow text-primary mb-4 text-xl font-semibold">
                 SOCIAL
-              </h3>
+              </h3> */}
               <div className="flex flex-col space-y-1">
                 <Link
                   href="https://instagram.com/nemwood"

@@ -38,7 +38,7 @@ function CardsScroll() {
       const rightXValues = [800, 900, 800];
       const leftRotationValues = [-30, -20, -35];
       const rightRotationValues = [30, 20, 35];
-      const yValues = [100, -150, -250];
+      const yValues = [100, -150, -400];
 
       // Animate cards
       gsap.utils.toArray(".row").forEach((row: any, index: number) => {
@@ -49,7 +49,7 @@ function CardsScroll() {
           const leftST = ScrollTrigger.create({
             trigger: mainRef.current, // Use ref instead of class selector
             start: "top center",
-            end: "bottom top",
+            end: "150% bottom",
             scrub: true,
             onUpdate: (self) => {
               const progress = self.progress;
@@ -63,7 +63,7 @@ function CardsScroll() {
           const rightST = ScrollTrigger.create({
             trigger: mainRef.current, // Use ref instead of class selector
             start: "top center",
-            end: "bottom top",
+            end: "150% bottom",
             scrub: true,
             onUpdate: (self) => {
               const progress = self.progress;
@@ -130,7 +130,7 @@ function CardsScroll() {
         const mainContentST = ScrollTrigger.create({
           trigger: mainRef.current, // Use ref instead of class selector
           start: "top center",
-          end: "bottom top",
+          end: "150% bottom",
           scrub: true,
           animation: gsap.to(mainContentRef.current, {
             y: -100,
@@ -199,8 +199,7 @@ function CardsScroll() {
     <div>
       <section
         ref={mainRef} // Add ref to main section
-        className="main border-primary relative flex w-full flex-col items-center justify-center overflow-hidden border-b pt-20 text-center"
-        style={{ height: "140vh" }}
+        className="main relative flex w-full flex-col items-center justify-center overflow-hidden text-center"
       >
         <div
           className="main-content absolute top-1/2 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8"
