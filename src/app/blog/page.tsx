@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
-import { PortableText } from "@portabletext/react";
-import Image from "next/image";
-import Link from "next/link";
+import BlogPreview from "@/components/BlogPreview";
 import ParallaxImage from "@/components/ParallaxImage";
+import Image from "next/image";
 import { generateMetadata } from "@/app/metadata";
 
 // Force revalidation every 60 seconds (optional)
@@ -49,48 +48,10 @@ export default async function BlogPage() {
             </p>
           </AnimatedText>
         </section>
-        <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-6">
+        {/* Responsive blog grid with proper wrapping */}
+        <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: any) => (
-            <li key={post._id} className="flex flex-col overflow-hidden">
-              <Link
-                href={`/blog/${post.slug.current}`}
-                className="group block cursor-pointer"
-              >
-                {post.mainImage && (
-                  <div className="bg-secondary relative h-[400px] w-full overflow-hidden">
-                    <Image
-                      src={post.mainImage.asset.url}
-                      alt={post.title}
-                      fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col justify-between py-6">
-                  <div>
-                    {post.publishedAt && (
-                      <p className="font-HelveticaNow mb-2 text-xs">
-                        {new Date(post.publishedAt).toLocaleDateString()}
-                      </p>
-                    )}
-                    <h3 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
-                      {post.title}
-                    </h3>
-
-                    <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
-                      {post.description ||
-                        (post.body && (
-                          <PortableText value={post.body.slice(0, 1)} />
-                        ))}
-                    </div>
-                  </div>
-                  <span className="font-HelveticaNow mt-2 inline-block text-base">
-                    Read more →
-                  </span>
-                </div>
-              </Link>
-            </li>
+            <BlogPreview key={post._id} post={post} layout="grid" />
           ))}
         </ul>
       </main>

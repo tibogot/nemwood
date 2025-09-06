@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 interface BlogPreviewProps {
@@ -11,9 +12,13 @@ interface BlogPreviewProps {
     publishedAt?: string;
     body?: any;
   };
+  layout?: "horizontal-scroll" | "grid";
 }
 
-export default function BlogPreview({ post }: BlogPreviewProps) {
+export default function BlogPreview({
+  post,
+  layout = "horizontal-scroll",
+}: BlogPreviewProps) {
   // Try to get the image URL safely (Sanity image may be deeply nested)
   let imageUrl = "";
   if (post.mainImage) {
@@ -25,16 +30,23 @@ export default function BlogPreview({ post }: BlogPreviewProps) {
   }
   if (!imageUrl) imageUrl = "/logo.svg"; // fallback to your logo
 
+  // Different responsive classes based on layout
+  const responsiveClasses =
+    layout === "grid"
+      ? "text-primary mb-10"
+      : "text-primary mb-10 w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink";
+
   return (
-    <li className="text-primary mb-10 w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink">
+    <li className={responsiveClasses}>
       <Link href={`/blog/${post.slug.current}`} className="group block h-full">
         <div className="flex h-full flex-col items-stretch overflow-hidden">
-          <div className="relative flex h-[300px] w-full items-center justify-center overflow-hidden md:h-[400px]">
-            <img
+          <div className="relative h-[300px] w-full overflow-hidden md:h-[400px]">
+            <Image
               src={imageUrl}
               alt={post.title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              style={{ fontFamily: "object-fit: cover" }}
+              fill
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               loading="lazy"
             />
           </div>
