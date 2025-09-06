@@ -119,21 +119,22 @@ export default function Home() {
       <section className="text-primary flex w-full flex-col px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
         <div className="left md:w-1/2">
           <div>
-            <AnimatedText>
+            <AnimatedText delay={0.0} stagger={0.3}>
               <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 A PROPOS
               </h4>
               <h2 className="mt-8 md:max-w-xl">Notre savoir-faire</h2>
+              <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
+                Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est
+                conçu sur mesure dans notre atelier. Spécialisés dans la
+                fabrication de meubles en bois massif, nous créons des cuisines
+                sur mesure, mobilier de salon, escaliers et aménagements
+                uniques. Notre savoir-faire artisanal privilégie le bois massif
+                durable, travaillé à la main pour des créations authentiques et
+                durables, parfaitement adaptées à votre intérieur.
+              </p>
             </AnimatedText>
-            <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
-              Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est
-              conçu sur mesure dans notre atelier. Spécialisés dans la
-              fabrication de meubles en bois massif, nous créons des cuisines
-              sur mesure, mobilier de salon, escaliers et aménagements uniques.
-              Notre savoir-faire artisanal privilégie le bois massif durable,
-              travaillé à la main pour des créations authentiques et durables,
-              parfaitement adaptées à votre intérieur.
-            </p>
+
             <Link href="/about">
               <button className="font-HelveticaNow mt-10">
                 <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
