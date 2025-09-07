@@ -16,7 +16,6 @@ gsap.registerPlugin(SplitText);
 export default function Navigation() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [splitTextReady, setSplitTextReady] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -59,21 +58,12 @@ export default function Navigation() {
     checkFontsLoaded();
   }, []);
 
-  // Check if mobile on mount and resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  // Helper function to check if mobile
+  const isMobile = () => window.innerWidth < 768;
 
   // Handle mobile viewport changes (address bar show/hide)
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile()) return;
 
     const handleViewportChange = () => {
       // Update menu height to current viewport height when open
@@ -103,11 +93,11 @@ export default function Navigation() {
         );
       }
     };
-  }, [isMobile, isMenuOpen]);
+  }, [isMenuOpen]);
 
   // Prevent body scroll when menu is open on mobile
   useEffect(() => {
-    if (isMobile && isMenuOpen) {
+    if (isMobile() && isMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -116,7 +106,7 @@ export default function Navigation() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isMenuOpen, isMobile]);
+  }, [isMenuOpen]);
 
   // Create SplitText instances with proper timing
   useEffect(() => {
@@ -156,7 +146,7 @@ export default function Navigation() {
 
                 // Set initial state for split characters
                 gsap.set(split.chars, {
-                  y: isMobile ? 60 : 100,
+                  y: isMobile() ? 60 : 100,
                   opacity: 0,
                   rotationX: -90,
                   transformOrigin: "0% 50% -50",
@@ -200,7 +190,7 @@ export default function Navigation() {
       splitTextInstances.current = [];
       setSplitTextReady(false);
     };
-  }, [fontsLoaded, isMobile]);
+  }, [fontsLoaded]);
 
   const { contextSafe } = useGSAP(() => {
     if (!fontsLoaded || !splitTextReady) return;
@@ -219,7 +209,7 @@ export default function Navigation() {
 
     // Initial state - menu items hidden
     gsap.set(menuItemsRef.current, {
-      y: isMobile ? 50 : -30,
+      y: isMobile() ? 50 : -30,
       opacity: 0,
     });
 
@@ -228,14 +218,14 @@ export default function Navigation() {
       opacity: 0,
       pointerEvents: "none",
     });
-  }, [isMobile, fontsLoaded, splitTextReady]);
+  }, [fontsLoaded, splitTextReady]);
 
   const openMenu = contextSafe(() => {
     if (!splitTextReady) return;
 
     const tl = gsap.timeline();
     // Use current viewport height for mobile to adapt to browser bar show/hide
-    const menuHeight = isMobile ? `${window.innerHeight}px` : "60vh";
+    const menuHeight = isMobile() ? `${window.innerHeight}px` : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
@@ -255,7 +245,7 @@ export default function Navigation() {
     );
 
     // 2. Show overlay on mobile
-    if (isMobile) {
+    if (isMobile()) {
       tl.to(
         overlayRef.current,
         {
@@ -289,7 +279,7 @@ export default function Navigation() {
         y: 0,
         opacity: 1,
         duration: 0.8,
-        stagger: isMobile ? 0.1 : 0.15,
+        stagger: isMobile() ? 0.1 : 0.15,
         ease: "back.out(1.2)",
       },
       0.4,
@@ -306,12 +296,12 @@ export default function Navigation() {
             rotationX: 0,
             duration: 1,
             stagger: {
-              each: isMobile ? 0.02 : 0.03,
+              each: isMobile() ? 0.02 : 0.03,
               from: "start",
             },
             ease: "back.out(1.4)",
           },
-          0.6 + index * (isMobile ? 0.08 : 0.1),
+          0.6 + index * (isMobile() ? 0.08 : 0.1),
         );
       }
     });
@@ -328,7 +318,7 @@ export default function Navigation() {
         tl.to(
           split.chars,
           {
-            y: isMobile ? 60 : 100,
+            y: isMobile() ? 60 : 100,
             opacity: 0,
             rotationX: -90,
             duration: 0.5,
@@ -347,7 +337,7 @@ export default function Navigation() {
     tl.to(
       menuItemsRef.current,
       {
-        y: isMobile ? 50 : -30,
+        y: isMobile() ? 50 : -30,
         opacity: 0,
         duration: 0.5,
         stagger: 0.06,
@@ -360,7 +350,7 @@ export default function Navigation() {
     // Logo now stays unchanged when menu closes
 
     // 4. Hide overlay on mobile
-    if (isMobile) {
+    if (isMobile()) {
       tl.to(
         overlayRef.current,
         {
@@ -410,7 +400,7 @@ export default function Navigation() {
       splitTextInstances.current.forEach((split) => {
         if (split && split.chars) {
           gsap.set(split.chars, {
-            y: isMobile ? 60 : 100,
+            y: isMobile() ? 60 : 100,
             opacity: 0,
             rotationX: -90,
             transformOrigin: "0% 50% -50",
@@ -437,7 +427,7 @@ export default function Navigation() {
   };
 
   const handleOverlayClick = () => {
-    if (isMenuOpen && isMobile) {
+    if (isMenuOpen && isMobile()) {
       closeMenu();
       setIsMenuOpen(false);
     }
@@ -511,73 +501,61 @@ export default function Navigation() {
         </div>
 
         {/* Menu Content */}
-        <div
-          className={`flex h-full px-4 md:px-8 ${
-            isMobile
-              ? "absolute inset-0 flex-col justify-between py-0"
-              : "flex-col justify-between py-8"
-          }`}
-        >
+        <div className="absolute inset-0 flex h-full flex-col justify-between px-4 py-0 md:relative md:px-8 md:py-8">
           {/* Contact and Social Info - Top on Desktop Only */}
-          {!isMobile && (
-            <div className="pt-8 md:pt-0">
-              <div className="flex flex-col gap-4 md:flex-row md:gap-12">
-                {/* CONTACT Column */}
-                <div className="flex flex-col">
-                  {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
-                    Contact
-                  </h3> */}
-                  <div className="flex flex-col space-y-1">
-                    <Link
-                      href="tel:+32489330544"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      +32 489 33 05 44
-                    </Link>
-                    <Link
-                      href="mailto:contact@nemwood.be"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      contact@nemwood.be
-                    </Link>
-                  </div>
+          <div className="hidden pt-8 md:block md:pt-0">
+            <div className="flex flex-col gap-4 md:flex-row md:gap-12">
+              {/* CONTACT Column */}
+              <div className="flex flex-col">
+                {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                  Contact
+                </h3> */}
+                <div className="flex flex-col space-y-1">
+                  <Link
+                    href="tel:+32489330544"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                  >
+                    +32 489 33 05 44
+                  </Link>
+                  <Link
+                    href="mailto:contact@nemwood.be"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                  >
+                    contact@nemwood.be
+                  </Link>
                 </div>
+              </div>
 
-                {/* SOCIAL Column */}
-                <div className="flex flex-col">
-                  {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
-                    Social
-                  </h3> */}
-                  <div className="flex flex-col space-y-1">
-                    <Link
-                      href="https://instagram.com/nemwood"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      Instagram
-                    </Link>
-                    <Link
-                      href="https://www.facebook.com/p/NemwOod-100063674583109/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      Facebook
-                    </Link>
-                  </div>
+              {/* SOCIAL Column */}
+              <div className="flex flex-col">
+                {/* <h3 className="font-HelveticaNow text-primary/70 mb-2 text-xs font-medium tracking-wider uppercase">
+                  Social
+                </h3> */}
+                <div className="flex flex-col space-y-1">
+                  <Link
+                    href="https://instagram.com/nemwood"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                  >
+                    Instagram
+                  </Link>
+                  <Link
+                    href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                  >
+                    Facebook
+                  </Link>
                 </div>
               </div>
             </div>
-          )}
+          </div>
 
           {/* Navigation Links - Centered on Mobile, Bottom on Desktop */}
           <div
-            className={`flex w-full ${
-              isMobile
-                ? "flex-1 flex-col items-center justify-center space-y-6 py-4"
-                : "flex-row items-end justify-start gap-2 pb-8 md:gap-8"
-            }`}
+            className="flex w-full flex-1 flex-col items-center justify-center space-y-6 py-4 md:flex-none md:flex-row md:items-end md:justify-start md:gap-2 md:gap-8 md:space-y-0 md:py-0 md:pb-8"
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {navItems.map((item, index) => {
@@ -588,9 +566,7 @@ export default function Navigation() {
                   ref={(el) => {
                     menuItemsRef.current[index] = el;
                   }}
-                  className={`group relative flex-shrink-0 ${
-                    isMobile ? "py-2" : ""
-                  }`}
+                  className="group relative flex-shrink-0 py-2 md:py-0"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -598,16 +574,11 @@ export default function Navigation() {
                     // Disabled link for current page - using Link but disabled
                     <Link
                       href="#"
-                      className={`font-ITCGaramondN block cursor-default transition-all duration-300 ${
-                        isMobile ? "text-center text-5xl sm:text-6xl" : ""
-                      } text-primary/30 pointer-events-none line-through`}
+                      className="font-ITCGaramondN text-primary/30 pointer-events-none block cursor-default text-center text-5xl line-through transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
                       style={{
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
-                        fontSize: isMobile
-                          ? undefined
-                          : "clamp(40px, 6vw, 120px)",
                       }}
                       title="You are currently on this page"
                       onClick={(e) => e.preventDefault()}
@@ -618,9 +589,7 @@ export default function Navigation() {
                     // Active link for other pages
                     <Link
                       href={item.href}
-                      className={`font-ITCGaramondN block cursor-pointer transition-all duration-300 ${
-                        isMobile ? "text-center text-5xl sm:text-6xl" : ""
-                      } ${
+                      className={`font-ITCGaramondN block cursor-pointer text-center text-5xl transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)] ${
                         hoveredIndex !== null && hoveredIndex !== index
                           ? "text-primary/50"
                           : "text-primary"
@@ -630,9 +599,6 @@ export default function Navigation() {
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
                         opacity: fontsLoaded && splitTextReady ? 1 : 0,
-                        fontSize: isMobile
-                          ? undefined
-                          : "clamp(40px, 6vw, 120px)",
                       }}
                     >
                       {item.name}
@@ -647,51 +613,45 @@ export default function Navigation() {
           </div>
 
           {/* Contact and Social Info - Bottom on Mobile Only */}
-          {isMobile && (
-            <div className="pb-8">
-              <div className="flex flex-col gap-4">
-                {/* CONTACT Column */}
-                <div className="flex flex-col">
-                  <div className="flex flex-col space-y-1">
-                    <Link
-                      href="tel:+32489330544"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      +32 489 33 05 44
-                    </Link>
-                    <Link
-                      href="mailto:contact@nemwood.be"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      contact@nemwood.be
-                    </Link>
-                  </div>
-                </div>
+          <div className="pb-8 md:hidden">
+            <div className="flex items-start justify-between">
+              {/* CONTACT - Left side */}
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="tel:+32489330544"
+                  className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                >
+                  +32 489 33 05 44
+                </Link>
+                <Link
+                  href="mailto:contact@nemwood.be"
+                  className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                >
+                  contact@nemwood.be
+                </Link>
+              </div>
 
-                {/* SOCIAL Column */}
-                <div className="flex flex-col">
-                  <div className="flex flex-col space-y-1">
-                    <Link
-                      href="https://instagram.com/nemwood"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      Instagram
-                    </Link>
-                    <Link
-                      href="https://www.facebook.com/p/NemwOod-100063674583109/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
-                    >
-                      Facebook
-                    </Link>
-                  </div>
-                </div>
+              {/* SOCIAL - Right side */}
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="https://instagram.com/nemwood"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                >
+                  Instagram
+                </Link>
+                <Link
+                  href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                >
+                  Facebook
+                </Link>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
 
