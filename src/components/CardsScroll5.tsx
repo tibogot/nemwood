@@ -199,8 +199,8 @@ function CardsScroll() {
     <div>
       <section
         ref={mainRef} // Add ref to main section
-        className="main border-primary relative flex w-full flex-col items-center justify-center overflow-hidden border-b pt-20 text-center"
-        style={{ height: "140vh" }}
+        className="main border-primary relative flex w-full flex-col items-center justify-center overflow-hidden border-b pt-20 text-center md:h-[140vh]"
+        // style={{ height: "140vh" }}
       >
         <div
           className="main-content absolute top-1/2 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8"

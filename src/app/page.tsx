@@ -215,7 +215,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-primary border-t py-80">
+      <section className="border-primary border-t py-40 md:py-80">
         <BlurryTextReveal />
       </section>
 
