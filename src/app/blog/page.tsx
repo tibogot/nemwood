@@ -55,7 +55,7 @@ export default async function BlogPage() {
           ))}
         </ul>
       </main>
-      <section className="bg-secondary relative mt-40 w-full">
+      <section className="bg-secondary relative w-full md:mt-40">
         <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
           <Image
             src="/images/nemohero.webp"
