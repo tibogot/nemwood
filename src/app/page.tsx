@@ -71,7 +71,7 @@ export default function Home() {
               et même de décors pour le cinéma.
             </p>
             <p className="font-HelveticaNow text-primary/70 mx-auto mt-4 max-w-2xl text-sm leading-tight">
-              En activité depuis 2016 en Belgique.{" "}
+              En activité depuis 2016 en Belgique.
             </p>
           </AnimatedText>
         </div>
@@ -85,7 +85,7 @@ export default function Home() {
               fill
               className="rounded-sm object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
-              loading="lazy"
+              // loading="lazy"
               quality={90}
             />
           </div>
