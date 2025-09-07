@@ -57,16 +57,16 @@ export default function BlogPreview({
                   {new Date(post.publishedAt).toLocaleDateString()}
                 </p>
               )}
-              <h3 className="font-ITCGaramondN mb-2 text-2xl leading-tight md:text-4xl">
+              <h3 className="font-ITCGaramondN mb-2 text-4xl leading-tight md:text-4xl">
                 {post.title}
               </h3>
 
-              <div className="font-HelveticaNow mb-2 line-clamp-3 text-sm md:max-w-md md:text-lg">
+              <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
                 {post.description ||
                   (post.body && <PortableText value={post.body.slice(0, 1)} />)}
               </div>
             </div>
-            <span className="font-HelveticaNow mt-2 inline-block text-sm md:text-base">
+            <span className="font-HelveticaNow mt-2 inline-block text-base md:text-base">
               Read more →
             </span>
           </div>
