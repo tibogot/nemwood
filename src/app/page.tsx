@@ -17,7 +17,6 @@ import AnimatedBorderLines from "@/components/AnimatedBorderLines";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
-  const [secondImageVisible, setSecondImageVisible] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -39,28 +38,6 @@ export default function Home() {
     fetchPosts();
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setSecondImageVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    const secondImageElement = document.querySelector(
-      ".second-image-container",
-    );
-    if (secondImageElement) {
-      observer.observe(secondImageElement);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
@@ -76,7 +53,7 @@ export default function Home() {
           priority
         />
 
-        {/* Simple LCP text */}
+        {/* Hero text */}
         <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
           Meubles en bois sur mesure
         </h4>
@@ -99,20 +76,18 @@ export default function Home() {
           </AnimatedText>
         </div>
 
-        {/*Big Image - Optimized for LCP */}
-        <div className="second-image-container flex w-full justify-center pb-20">
+        {/* Big Image */}
+        <div className="flex w-full justify-center pb-20">
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
-            {secondImageVisible && (
-              <Image
-                src="/images/nem1.png"
-                alt="Nemwood furniture showcase"
-                fill
-                className="rounded-sm object-cover"
-                sizes="(max-width: 768px) 100vw, 80vw"
-                loading="lazy"
-                quality={90}
-              />
-            )}
+            <Image
+              src="/images/nem1.png"
+              alt="Nemwood furniture showcase"
+              fill
+              className="rounded-sm object-cover"
+              sizes="(max-width: 768px) 100vw, 80vw"
+              loading="lazy"
+              quality={90}
+            />
           </div>
         </div>
       </section>
@@ -199,7 +174,7 @@ export default function Home() {
       </section>
       <CardsScroll />
 
-      {/* <section className="text-primary flex w-full flex-col gap-20 px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
+      <section className="text-primary flex w-full flex-col gap-20 px-4 py-10 md:flex-row md:px-8 md:py-20">
         <div className="left relative h-[400px] md:h-[700px] md:w-1/2">
           <Image
             src="/images/nem1.png"
@@ -213,15 +188,18 @@ export default function Home() {
 
         <div className="right flex flex-col justify-between md:h-[700px] md:w-1/2">
           <div>
-            <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
-              Designing experiences that resonate and scale
-            </h1>
-            <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? <br />
-              Nemwood est spécialisé dans la fabrication artisanale de tables,
-              chaises, garde-robes, escaliers et même de décors pour le cinéma.
-            </p>
+            <AnimatedText delay={0.0} stagger={0.3}>
+              <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
+                Designing experiences that resonate and scale
+              </h1>
+              <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
+                Vous cherchez un artisan menuisier en Belgique pour créer des
+                meubles en bois sur mesure ? <br />
+                Nemwood est spécialisé dans la fabrication artisanale de tables,
+                chaises, garde-robes, escaliers et même de décors pour le
+                cinéma.
+              </p>
+            </AnimatedText>
           </div>
 
           <div className="mt-10">
@@ -235,9 +213,9 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section> */}
+      </section>
 
-      <section className="py-80">
+      <section className="border-primary border-t py-80">
         <BlurryTextReveal />
       </section>
 
