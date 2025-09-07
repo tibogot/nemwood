@@ -91,7 +91,7 @@ export default function Testimonial() {
           // priority
           loading="lazy"
         />
-        <h1 className="font-ITCGaramondN text-secondary relative text-5xl md:text-7xl">
+        <h1 className="font-ITCGaramondN relative text-5xl text-[#fffcf5] md:text-7xl">
           Témoignages
         </h1>
         {/* <Image
