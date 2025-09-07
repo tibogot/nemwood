@@ -258,8 +258,8 @@ export default function Home() {
         </div>
 
         {/* Mobile: Horizontal Scroll Carousel */}
-        <div className="mt-20 md:hidden">
-          <ul className="scrollbar-hide flex list-none gap-6 overflow-x-auto p-0 pb-4">
+        <div className="mt-8 md:hidden">
+          <ul className="scrollbar-hide flex list-none gap-6 overflow-x-auto p-0">
             {blogPosts.map((post, index) => (
               <div
                 key={post._id}
@@ -272,12 +272,12 @@ export default function Home() {
         </div>
 
         {/* Desktop: Regular Grid Layout */}
-        <ul className="mt-20 hidden list-none flex-row justify-center gap-6 p-0 md:flex">
+        <ul className="mt-8 hidden list-none flex-row justify-center gap-6 p-0 md:mt-20 md:flex">
           {blogPosts.map((post) => (
             <BlogPreview key={post._id} post={post} />
           ))}
         </ul>
-        <div className="mt-6">
+        <div className="mt-3 md:mt-6">
           <Link
             href="/blog"
             className="font-HelveticaNow text-primary font-medium underline"

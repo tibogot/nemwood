@@ -33,8 +33,8 @@ export default function BlogPreview({
   // Different responsive classes based on layout
   const responsiveClasses =
     layout === "grid"
-      ? "text-primary mb-10"
-      : "text-primary mb-10 w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink";
+      ? "text-primary mb-6 md:mb-10"
+      : "text-primary w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink";
 
   return (
     <li className={responsiveClasses}>
