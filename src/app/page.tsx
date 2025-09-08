@@ -1,8 +1,14 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import client from "@/sanityClient";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 import HorizScroll from "@/components/HorizScroll8";
 import CardsScroll from "@/components/CardsScroll5";
@@ -17,6 +23,40 @@ import AnimatedBorderLines from "@/components/AnimatedBorderLines";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const bigImgRef = useRef<HTMLDivElement>(null);
+
+  // GSAP animation for big image scale on scroll
+  useGSAP(
+    () => {
+      if (!bigImgRef.current) return;
+
+      // Set initial scale to smaller value
+      gsap.set(bigImgRef.current, { scale: 0.5 });
+
+      // Create scroll-triggered scale animation
+      const animation = gsap.to(bigImgRef.current, {
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: bigImgRef.current,
+          start: "top 80%",
+          end: "bottom 80%",
+          scrub: 1,
+          // Use a unique id to avoid conflicts with other ScrollTriggers
+          id: "big-img-scale",
+          // markers: true,
+        },
+      });
+
+      // Cleanup function
+      return () => {
+        animation.kill();
+        ScrollTrigger.getById("big-img-scale")?.kill();
+      };
+    },
+    { scope: bigImgRef },
+  );
 
   useEffect(() => {
     async function fetchPosts() {
@@ -41,7 +81,7 @@ export default function Home() {
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="relative flex h-[100svh] flex-col items-center justify-center px-4 md:px-8">
+      <section className="relative flex h-[100svh] flex-col items-center justify-end px-4 md:px-8">
         {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
@@ -77,10 +117,13 @@ export default function Home() {
         </div>
 
         {/* Big Image */}
-        <div className="flex w-full justify-center pb-20">
+        <div
+          ref={bigImgRef}
+          className="big-img flex w-full justify-center pb-20"
+        >
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
-              src="/images/nem1.png"
+              src="/images/wood-work.webp"
               alt="Nemwood furniture showcase"
               fill
               className="rounded-sm object-cover"
