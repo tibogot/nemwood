@@ -34,10 +34,10 @@ export default function FAQ({
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         {/* Left Column - Title and Description */}
         <div className="w-full md:w-1/2">
-          <h2 className="font-ITCGaramondN mb-6 text-5xl md:text-7xl">
+          <h2 className="font-ITCGaramondN mb-6 text-5xl leading-tight md:max-w-lg md:text-7xl">
             {title}
           </h2>
-          <p className="font-HelveticaNow text-primary/80 max-w-xl text-lg">
+          <p className="font-HelveticaNow text-primary/80 text-lg md:max-w-lg">
             {description}
           </p>
         </div>
