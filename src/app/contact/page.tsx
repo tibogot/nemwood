@@ -58,11 +58,11 @@ export default function Contact() {
       </section>
       <section className="px-4 md:px-8">
         <p className="font-HelveticaNow text-primary max-w-xl text-lg">
-          Oyom has been shaped by kindred spirits, a community of sorts, all
-          seekers themselves, with a deep desire to create and experience a
-          healthier world: physically, emotionally, spiritually. It is within
-          this small corner of the world that Oyom exists as the crowned jewel
-          of Kaiya,
+          Depuis 2016, Nemwood transforme vos idées en créations uniques en
+          bois. Chaque projet est une collaboration entre votre vision et notre
+          savoir-faire artisanal. Que ce soit pour une table sur mesure, des
+          escaliers, une garde-robe ou une cuisine, nous nous engageons à créer
+          des pièces qui s'intègrent parfaitement dans votre quotidien.
         </p>
       </section>
       <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
