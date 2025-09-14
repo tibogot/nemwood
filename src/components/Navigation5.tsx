@@ -555,7 +555,7 @@ export default function Navigation() {
 
           {/* Navigation Links - Centered on Mobile, Bottom on Desktop */}
           <div
-            className="flex w-full flex-1 flex-col items-center justify-center space-y-6 py-4 md:flex-none md:flex-row md:items-end md:justify-start md:gap-8 md:space-y-0 md:py-0 md:pb-8"
+            className="flex w-full flex-1 flex-col items-center justify-center space-y-2 py-4 md:flex-none md:flex-row md:items-end md:justify-start md:gap-8 md:space-y-0 md:py-0 md:pb-8"
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {navItems.map((item, index) => {
