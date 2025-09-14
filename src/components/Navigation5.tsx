@@ -574,7 +574,7 @@ export default function Navigation() {
                     // Disabled link for current page - using Link but disabled
                     <Link
                       href="#"
-                      className="font-ITCGaramondN text-primary/30 pointer-events-none block cursor-default text-center text-5xl line-through transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
+                      className="font-ITCGaramondN text-primary/30 pointer-events-none block cursor-default text-center text-5xl leading-tight line-through transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
                       style={{
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
@@ -589,7 +589,7 @@ export default function Navigation() {
                     // Active link for other pages
                     <Link
                       href={item.href}
-                      className={`font-ITCGaramondN block cursor-pointer text-center text-5xl transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)] ${
+                      className={`font-ITCGaramondN block cursor-pointer text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)] ${
                         hoveredIndex !== null && hoveredIndex !== index
                           ? "text-primary/50"
                           : "text-primary"
@@ -657,6 +657,7 @@ export default function Navigation() {
 
       {/* Enhanced CSS for split characters and mobile optimization */}
       <style jsx>{`
+        /* ESSENTIAL - Required for SplitText 3D animations */
         .split-char {
           display: inline-block;
           backface-visibility: hidden;
@@ -664,44 +665,30 @@ export default function Navigation() {
           transform-style: preserve-3d;
         }
 
-        /* Ensure fonts are loaded before showing text */
+        /* ESSENTIAL - Prevents text flash during font loading */
         .font-ITCGaramondN {
           font-display: block;
         }
 
-        /* Prevent SplitText characters from wrapping */
+        /* ESSENTIAL - Prevents SplitText characters from breaking layout */
         .font-ITCGaramondN a {
           white-space: nowrap;
         }
 
-        /* Ensure navigation items don't wrap */
+        /* ESSENTIAL - Prevents navigation items from wrapping */
         .group {
           white-space: nowrap;
           overflow: hidden;
         }
 
-        /* Ensure text stays within container bounds */
-        .font-ITCGaramondN a {
-          max-width: 100%;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        /* Truly responsive text that scales with screen width - using !important to override Tailwind */
-        @media (min-width: 768px) {
-          .font-ITCGaramondN a {
-            font-size: clamp(40px, 6vw, 120px) !important;
-          }
-        }
-
-        /* Alternative approach - target the navigation container directly */
+        /* ESSENTIAL - Responsive text sizing for desktop */
         @media (min-width: 768px) {
           .desktop-nav .font-ITCGaramondN a {
             font-size: clamp(40px, 6vw, 120px) !important;
           }
         }
 
-        /* Desktop navigation layout improvements */
+        /* ESSENTIAL - Desktop navigation layout optimization */
         @media (min-width: 768px) {
           .desktop-nav .flex-row {
             justify-content: flex-start !important;
@@ -718,15 +705,29 @@ export default function Navigation() {
           }
         }
 
-        /* Smooth scrolling for mobile */
-        @media (max-width: 767px) {
+        /* NON-ESSENTIAL - Text overflow handling (Tailwind handles this) */
+        /* .font-ITCGaramondN a {
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        } */
+
+        /* NON-ESSENTIAL - Duplicate responsive text rule */
+        /* @media (min-width: 768px) {
+          .font-ITCGaramondN a {
+            font-size: clamp(40px, 6vw, 120px) !important;
+          }
+        } */
+
+        /* NON-ESSENTIAL - iOS smooth scrolling (modern browsers handle this) */
+        /* @media (max-width: 767px) {
           html {
             -webkit-overflow-scrolling: touch;
           }
-        }
+        } */
 
-        /* Custom scrollbar for webkit browsers */
-        ::-webkit-scrollbar {
+        /* NON-ESSENTIAL - Custom scrollbar styling (cosmetic only) */
+        /* ::-webkit-scrollbar {
           width: 6px;
         }
 
@@ -741,7 +742,7 @@ export default function Navigation() {
 
         ::-webkit-scrollbar-thumb:hover {
           background: rgba(80, 70, 48, 0.5);
-        }
+        } */
       `}</style>
     </>
   );

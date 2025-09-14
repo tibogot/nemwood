@@ -239,7 +239,7 @@ export default async function BlogPostPage(props: any) {
     <main className="bg-secondary text-primary px-4 pb-20 md:px-8">
       <div className="mx-auto py-60 text-center">
         <AnimatedText isHero delay={0.0} stagger={0.3}>
-          <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
+          <h1 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl md:text-8xl">
             {post.title}
           </h1>
           {post.description && (
