@@ -23,6 +23,11 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
     // Add loading class to body immediately
     document.body.classList.add("page-loader-active");
+
+    // Remove the CSS overlay once PageLoader is ready (after a brief delay)
+    setTimeout(() => {
+      document.documentElement.classList.add("page-loader-ready");
+    }, 100);
   }, []);
 
   const handleLoaderComplete = () => {

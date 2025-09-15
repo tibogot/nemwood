@@ -205,15 +205,38 @@ export default function RootLayout({
         <style
           dangerouslySetInnerHTML={{
             __html: `
-            /* Immediate background to prevent FOUC */
-            html, body {
+            /* CRITICAL: Immediate full-screen overlay to prevent any FOUC */
+            html {
               background-color: #222 !important;
               margin: 0;
               padding: 0;
               overflow-x: hidden;
             }
             
-            /* Content is always visible, just covered by PageLoader blocks */
+            body {
+              background-color: #222 !important;
+              margin: 0;
+              padding: 0;
+              overflow-x: hidden;
+            }
+            
+            /* Immediate full-screen overlay - appears before ANY content */
+            body::before {
+              content: '';
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background-color: #222;
+              z-index: 999999;
+              pointer-events: none;
+            }
+            
+            /* Remove the overlay once PageLoader is ready */
+            .page-loader-ready body::before {
+              display: none;
+            }
             
             /* Ensure PageLoader is always on top during loading */
             .page-loader-active {
