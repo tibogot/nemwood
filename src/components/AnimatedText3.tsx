@@ -36,6 +36,7 @@ function AnimatedText({
   const splitRefs = useRef<any[]>([]); // Store all SplitText instances for cleanup
   const [fontsReady, setFontsReady] = useState(false);
   const [splitTextCreated, setSplitTextCreated] = useState(false);
+  const [pageLoaderReady, setPageLoaderReady] = useState(false);
 
   // Enhanced font loading detection - similar to Navigation component
   useEffect(() => {
@@ -61,35 +62,66 @@ function AnimatedText({
             }
 
             if (fontFound) {
-              // Wait extra time for hero text to ensure everything is rendered
-              const waitTime = isHero ? 300 : 150;
-              setTimeout(() => setFontsReady(true), waitTime);
+              // For hero text, don't set fontsReady yet - wait for PageLoader
+              if (!isHero) {
+                setTimeout(() => setFontsReady(true), 150);
+              }
             } else {
               // Fallback - wait longer if font isn't detected
-              const waitTime = isHero ? 600 : 400;
-              setTimeout(() => setFontsReady(true), waitTime);
+              if (!isHero) {
+                setTimeout(() => setFontsReady(true), 400);
+              }
             }
           } else {
             // Fallback for browsers without font.check
-            const waitTime = isHero ? 500 : 300;
-            setTimeout(() => setFontsReady(true), waitTime);
+            if (!isHero) {
+              setTimeout(() => setFontsReady(true), 300);
+            }
           }
         } else {
           // Fallback for browsers that don't support document.fonts
-          const waitTime = isHero ? 800 : 500;
-          setTimeout(() => setFontsReady(true), waitTime);
+          if (!isHero) {
+            setTimeout(() => setFontsReady(true), 500);
+          }
         }
       } catch (error) {
         console.warn(
           "Font loading detection failed in AnimatedText, using fallback:",
           error,
         );
-        const waitTime = isHero ? 800 : 500;
-        setTimeout(() => setFontsReady(true), waitTime);
+        if (!isHero) {
+          setTimeout(() => setFontsReady(true), 500);
+        }
       }
     };
 
     checkFontsLoaded();
+  }, [isHero]);
+
+  // For hero text, also wait for PageLoader to complete
+  useEffect(() => {
+    if (!isHero) return;
+
+    const handlePageLoaderComplete = () => {
+      // Set PageLoader ready and fonts ready for hero text
+      setPageLoaderReady(true);
+      setTimeout(() => setFontsReady(true), 200);
+    };
+
+    // Check if PageLoader is already complete
+    if (document.documentElement.classList.contains("page-loader-complete")) {
+      handlePageLoaderComplete();
+    } else {
+      // Listen for PageLoader completion
+      window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
+
+      return () => {
+        window.removeEventListener(
+          "pageLoaderComplete",
+          handlePageLoaderComplete,
+        );
+      };
+    }
   }, [isHero]);
 
   // Add CSS to prevent FOUC - ensure text is hidden until GSAP takes control
@@ -118,6 +150,9 @@ function AnimatedText({
   useGSAP(
     () => {
       if (!wrapperRef.current || !fontsReady) return;
+
+      // For hero text, also wait for PageLoader to be ready
+      if (isHero && !pageLoaderReady) return;
 
       // Add FOUC prevention class initially
       wrapperRef.current.classList.add("fouc-prevent");
@@ -254,6 +289,7 @@ function AnimatedText({
         delay,
         ease,
         fontsReady,
+        pageLoaderReady,
         isHero,
       ],
     },

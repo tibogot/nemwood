@@ -527,13 +527,13 @@ export default function Navigation() {
                 <div className="flex flex-col space-y-1">
                   <Link
                     href="tel:+32489330544"
-                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-base transition-colors"
                   >
                     +32 489 33 05 44
                   </Link>
                   <Link
                     href="mailto:contact@nemwood.be"
-                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-base transition-colors"
                   >
                     contact@nemwood.be
                   </Link>
@@ -550,7 +550,7 @@ export default function Navigation() {
                     href="https://instagram.com/nemwood"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-base transition-colors"
                   >
                     Instagram
                   </Link>
@@ -558,7 +558,7 @@ export default function Navigation() {
                     href="https://www.facebook.com/p/NemwOod-100063674583109/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-xs transition-colors"
+                    className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-base transition-colors"
                   >
                     Facebook
                   </Link>

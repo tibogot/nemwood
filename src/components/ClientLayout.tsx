@@ -37,6 +37,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     // Remove loading class and add content loaded class
     document.body.classList.remove("page-loader-active");
     document.body.classList.add("content-loaded");
+
+    // Add global flag that PageLoader is complete
+    document.documentElement.classList.add("page-loader-complete");
+
+    // Dispatch custom event for components to listen to
+    window.dispatchEvent(new CustomEvent("pageLoaderComplete"));
   };
 
   return (
