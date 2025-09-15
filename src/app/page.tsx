@@ -318,7 +318,7 @@ export default function Home() {
 
       {/* Blog Previews Section */}
       <section className="border-primary border-y px-4 py-10 md:px-8 md:py-20">
-        <div className="flex w-full flex-col">
+        <div className="flex w-full">
           <AnimatedText delay={0.0} stagger={0.3}>
             <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
               Actualités
