@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navigation from "@/components/Navigation5";
-import Footer from "@/components/Footer";
-import LenisProvider from "@/components/LenisProvider";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import PageTransition from "@/components/PageTransition2";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ClientLayout from "@/components/ClientLayout";
 // import CookieConsent from "@/components/CookieConsent";
 // import ScrollProgress from "@/components/ScrollProgress";
 
@@ -210,18 +205,9 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-secondary antialiased`}
       >
-        <ThemeProvider>
-          <PageTransition>
-            <LenisProvider>
-              <ScrollToTop />
-              <Navigation />
-              <main className="">{children}</main>
-              <Footer />
-            </LenisProvider>
-          </PageTransition>
-          {/* Cookie Consent Banner - RGPD compliant */}
-          {/* <CookieConsent /> */}
-        </ThemeProvider>
+        <ClientLayout>{children}</ClientLayout>
+        {/* Cookie Consent Banner - RGPD compliant */}
+        {/* <CookieConsent /> */}
       </body>
     </html>
   );

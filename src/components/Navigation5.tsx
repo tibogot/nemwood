@@ -28,7 +28,7 @@ export default function Navigation() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "A propos", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Contact", href: "/contact" },
     { name: "Blog", href: "/blog" },
@@ -144,8 +144,12 @@ export default function Navigation() {
               if (split.chars && split.chars.length > 0) {
                 splitTextInstances.current[index] = split;
 
-                // Set initial state for split characters
-                gsap.set(split.chars, {
+                // Set initial state for split characters (excluding spaces)
+                const visibleChars = split.chars.filter(
+                  (char: Element) =>
+                    char.textContent && char.textContent.trim() !== "",
+                ) as HTMLElement[];
+                gsap.set(visibleChars, {
                   y: isMobile() ? 60 : 100,
                   opacity: 0,
                   rotationX: -90,
@@ -288,8 +292,11 @@ export default function Navigation() {
     // 6. Animate individual letters with enhanced stagger
     splitTextInstances.current.forEach((split, index) => {
       if (split && split.chars && split.chars.length > 0) {
+        const visibleChars = split.chars.filter(
+          (char: Element) => char.textContent && char.textContent.trim() !== "",
+        ) as HTMLElement[];
         tl.to(
-          split.chars,
+          visibleChars,
           {
             y: 0,
             opacity: 1,
@@ -315,8 +322,11 @@ export default function Navigation() {
     // 1. Hide individual letters first with reverse stagger
     splitTextInstances.current.forEach((split, index) => {
       if (split && split.chars && split.chars.length > 0) {
+        const visibleChars = split.chars.filter(
+          (char: Element) => char.textContent && char.textContent.trim() !== "",
+        ) as HTMLElement[];
         tl.to(
-          split.chars,
+          visibleChars,
           {
             y: isMobile() ? 60 : 100,
             opacity: 0,
@@ -399,7 +409,11 @@ export default function Navigation() {
     tl.call(() => {
       splitTextInstances.current.forEach((split) => {
         if (split && split.chars) {
-          gsap.set(split.chars, {
+          const visibleChars = split.chars.filter(
+            (char: Element) =>
+              char.textContent && char.textContent.trim() !== "",
+          ) as HTMLElement[];
+          gsap.set(visibleChars, {
             y: isMobile() ? 60 : 100,
             opacity: 0,
             rotationX: -90,
@@ -574,7 +588,7 @@ export default function Navigation() {
                     // Disabled link for current page - using Link but disabled
                     <Link
                       href="#"
-                      className="font-ITCGaramondN text-primary/30 pointer-events-none block cursor-default text-center text-5xl leading-tight line-through transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
+                      className="font-ITCGaramondN text-primary/30 current-page-link pointer-events-none block cursor-default text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
                       style={{
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
@@ -679,6 +693,12 @@ export default function Navigation() {
         .group {
           white-space: nowrap;
           overflow: hidden;
+        }
+
+        /* ESSENTIAL - Fix line-through with 3D transforms */
+        .current-page-link .split-char {
+          text-decoration: line-through;
+          text-decoration-skip-ink: none;
         }
 
         /* ESSENTIAL - Responsive text sizing for desktop */

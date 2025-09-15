@@ -158,7 +158,7 @@ export default function About() {
       {/* Sticky Stack Scroll Section */}
       <StickyStackScroll />
 
-      <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-64">
+      <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-20">
         <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
           <Image
             src="/images/loft.webp"
@@ -170,11 +170,13 @@ export default function About() {
             priority
           />
         </ParallaxImage>
-        <h1 className="font-ITCGaramondN mt-12 mb-6 text-5xl">
-          Creativity to design
-        </h1>
-        <AnimatedText>
-          <p className="font-HelveticaNow mx-auto max-w-lg text-center text-lg">
+      </section>
+      <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
+        <AnimatedText delay={0.0} stagger={0.3}>
+          <h1 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
+            Creativity to design
+          </h1>
+          <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
             Vous cherchez un artisan menuisier en Belgique pour créer des
             meubles en bois sur mesure ? Nemwood est spécialisé dans la
             fabrication artisanale de tables, chaises, garde-robes, escaliers et

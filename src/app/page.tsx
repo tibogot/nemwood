@@ -85,13 +85,24 @@ export default function Home() {
         {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/iso2.webp"
+          src="/images/wood-work.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
           quality={90}
           priority
         />
+
+        {/* <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/images/hero.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
 
         {/* Hero text */}
         <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
@@ -295,9 +306,11 @@ export default function Home() {
       {/* Blog Previews Section */}
       <section className="border-primary border-y px-4 py-10 md:px-8 md:py-20">
         <div className="flex w-full flex-col">
-          <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
-            Actualités
-          </h2>
+          <AnimatedText delay={0.0} stagger={0.3}>
+            <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
+              Actualités
+            </h2>
+          </AnimatedText>
         </div>
 
         {/* Mobile: Horizontal Scroll Carousel */}
