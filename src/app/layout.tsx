@@ -200,10 +200,38 @@ export default function RootLayout({
 
         {/* Google Analytics Component */}
         <GoogleAnalytics />
+
+        {/* Immediate FOUC prevention styles */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            /* Immediate background to prevent FOUC */
+            html, body {
+              background-color: #222 !important;
+              margin: 0;
+              padding: 0;
+              overflow-x: hidden;
+            }
+            
+            /* Content is always visible, just covered by PageLoader blocks */
+            
+            /* Ensure PageLoader is always on top during loading */
+            .page-loader-active {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 9999;
+            }
+          `,
+          }}
+        />
       </head>
       <body
         suppressHydrationWarning
-        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-secondary antialiased`}
+        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-[#222] antialiased`}
+        style={{ backgroundColor: "#222" }}
       >
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant */}

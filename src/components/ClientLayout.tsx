@@ -15,14 +15,23 @@ interface ClientLayoutProps {
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
   const [showLoader, setShowLoader] = useState(false); // Start with false
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
 
   useEffect(() => {
     // Show loader on every page refresh/initial load
     setShowLoader(true);
+
+    // Add loading class to body immediately
+    document.body.classList.add("page-loader-active");
   }, []);
 
   const handleLoaderComplete = () => {
     setShowLoader(false);
+    setIsContentLoaded(true);
+
+    // Remove loading class and add content loaded class
+    document.body.classList.remove("page-loader-active");
+    document.body.classList.add("content-loaded");
   };
 
   return (
