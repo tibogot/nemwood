@@ -95,12 +95,6 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
           fill: "transparent",
         });
 
-        console.log(
-          "PageLoader: Blocks setup complete, count:",
-          blocksRef.current.length,
-        );
-        console.log("PageLoader: Block elements:", blocksRef.current);
-
         // Wait for page to load, then animate out
         const checkPageLoaded = () => {
           // Check if page is loaded (DOM ready and images loaded)
@@ -127,15 +121,8 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
             return;
           }
 
-          console.log(
-            "PageLoader: Starting exit animation with",
-            blocksRef.current.length,
-            "blocks",
-          );
-
           const tl = gsap.timeline({
             onComplete: () => {
-              console.log("PageLoader: Animation timeline completed");
               // Hide the entire loader
               setIsVisible(false);
               if (onComplete) onComplete();
@@ -147,15 +134,11 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
             strokeDashoffset: 0,
             duration: 1.5,
             ease: "power2.inOut",
-            onComplete: () =>
-              console.log("PageLoader: Logo animation completed"),
           })
             .to(logoOverlayRef.current, {
               opacity: 0,
               duration: 0.25,
               ease: "power2.inOut",
-              onComplete: () =>
-                console.log("PageLoader: Logo overlay fade completed"),
             })
             // Then animate blocks out to reveal the page (same as PageTransition3 revealPage)
             .to(
@@ -166,10 +149,6 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
                 stagger: 0.02,
                 ease: "power2.out",
                 transformOrigin: "right",
-                onStart: () =>
-                  console.log("PageLoader: Blocks animation started"),
-                onComplete: () =>
-                  console.log("PageLoader: Blocks animation completed"),
               },
               "-=0.1",
             );
