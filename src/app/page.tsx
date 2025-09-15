@@ -168,9 +168,9 @@ export default function Home() {
         <div className="left md:w-1/2">
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
-              <h4 className="font-HelveticaNow text-primary/70 text-sm">
+              {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 A PROPOS
-              </h4>
+              </h4> */}
               <h2 className="mt-8 md:max-w-xl">Notre savoir-faire</h2>
               <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
                 Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est
