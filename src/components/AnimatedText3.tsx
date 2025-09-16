@@ -137,6 +137,17 @@ function AnimatedText({
           overflow: hidden;
         }
         
+        /* Fix for SplitText clipping with tight line heights */
+        .animated-text-wrapper.overflow-visible {
+          overflow: visible !important;
+        }
+        
+        /* Fix for SplitText line clipping - add padding to split lines */
+        .animated-text-wrapper.overflow-visible .split-line {
+          padding-top: 0.1em !important;
+          padding-bottom: 0.1em !important;
+        }
+        
         /* Hide text until animation is ready */
         .animated-text-wrapper.fouc-prevent {
           visibility: hidden !important;
@@ -189,6 +200,18 @@ function AnimatedText({
               autoSplit: true,
               aria: "none", // Disable automatic aria-label addition
             });
+
+            // Fix for tight line heights - add padding to split lines
+            if (
+              wrapperRef.current?.classList.contains("overflow-visible") &&
+              split.lines
+            ) {
+              split.lines.forEach((line: Element) => {
+                const htmlLine = line as HTMLElement;
+                htmlLine.style.paddingTop = "0.1em";
+                htmlLine.style.paddingBottom = "0.1em";
+              });
+            }
 
             // Verify the split was successful
             if (split && split.lines && split.lines.length > 0) {

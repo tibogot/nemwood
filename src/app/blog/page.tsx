@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
 import BlogPreview from "@/components/BlogPreview";
+import BlogPreviewHorizontal from "@/components/BlogPreviewHorizontal";
+import AnimatedBorder from "@/components/AnimatedBorder";
 import ParallaxImage from "@/components/ParallaxImage";
 import Image from "next/image";
 import { generateMetadata } from "@/app/metadata";
@@ -49,24 +51,36 @@ export default async function BlogPage() {
           </AnimatedText>
         </section>
         {/* Responsive blog grid with proper wrapping */}
-        <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: any) => (
             <BlogPreview key={post._id} post={post} layout="grid" />
           ))}
-        </ul>
+        </ul> */}
+        <div className="h-[30vh]"></div>
       </main>
-      <section className="bg-secondary relative w-full md:mt-40">
-        <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
-          <Image
-            src="/images/nemohero.webp"
-            alt="Nemwood artisan woodworking"
-            fill
-            className="object-cover"
-            sizes="100vw"
-            quality={95}
-            priority
-          />
-        </ParallaxImage>
+
+      {/* Horizontal blog previews */}
+      <section className="bg-secondary px-4 md:px-8">
+        {posts.map((post: any) => (
+          <AnimatedBorder key={post._id}>
+            <BlogPreviewHorizontal post={post} />
+          </AnimatedBorder>
+        ))}
+      </section>
+      <section className="bg-secondary relative w-full">
+        <div className="md:pt-40">
+          <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+            <Image
+              src="/images/nemohero.webp"
+              alt="Nemwood artisan woodworking"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              quality={95}
+              priority
+            />
+          </ParallaxImage>
+        </div>
       </section>
     </>
   );
