@@ -70,9 +70,9 @@ export default function BlogPreviewHorizontal({
             </div>
 
             {/* Read more link */}
-            <span className="font-HelveticaNow text-primary mt-2 inline-block text-base transition-colors duration-300">
+            {/* <span className="font-HelveticaNow text-primary mt-2 inline-block text-base transition-colors duration-300">
               Read more →
-            </span>
+            </span> */}
           </div>
         </div>
       </Link>
