@@ -46,10 +46,25 @@ export default function Home() {
         },
       });
 
+      // Refresh ScrollTrigger after Lenis is ready
+      const refreshScrollTrigger = () => {
+        ScrollTrigger.refresh();
+      };
+
+      // Listen for page loader complete event (when Lenis is ready)
+      window.addEventListener("pageLoaderComplete", refreshScrollTrigger);
+
+      // Also refresh after a short delay to ensure Lenis is fully initialized
+      const timeoutId = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+
       // Cleanup function
       return () => {
         animation.kill();
         ScrollTrigger.getById("big-img-scale")?.kill();
+        window.removeEventListener("pageLoaderComplete", refreshScrollTrigger);
+        clearTimeout(timeoutId);
       };
     },
     { scope: bigImgRef },
