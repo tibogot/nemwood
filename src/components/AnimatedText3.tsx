@@ -98,14 +98,12 @@ function AnimatedText({
     checkFontsLoaded();
   }, [isHero]);
 
-  // For hero text, also wait for PageLoader to complete
+  // Wait for PageLoader to complete (for both hero and non-hero text)
   useEffect(() => {
-    if (!isHero) return;
-
     const handlePageLoaderComplete = () => {
-      // Set PageLoader ready and fonts ready for hero text
+      // Set PageLoader ready and fonts ready
       setPageLoaderReady(true);
-      setTimeout(() => setFontsReady(true), 200);
+      setTimeout(() => setFontsReady(true), isHero ? 200 : 100);
     };
 
     // Check if PageLoader is already complete
@@ -162,8 +160,8 @@ function AnimatedText({
     () => {
       if (!wrapperRef.current || !fontsReady) return;
 
-      // For hero text, also wait for PageLoader to be ready
-      if (isHero && !pageLoaderReady) return;
+      // Wait for PageLoader to be ready (for both hero and non-hero text)
+      if (!pageLoaderReady) return;
 
       // Add FOUC prevention class initially
       wrapperRef.current.classList.add("fouc-prevent");
@@ -290,7 +288,7 @@ function AnimatedText({
 
       // Use requestAnimationFrame and additional timeout for better timing
       requestAnimationFrame(() => {
-        const additionalDelay = isHero ? 200 : 100;
+        const additionalDelay = isHero ? 200 : 150; // Increased delay for non-hero text
         setTimeout(createSplitTextInstances, additionalDelay);
       });
 
