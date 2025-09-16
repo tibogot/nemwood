@@ -218,10 +218,12 @@ export default function Navigation() {
     });
 
     // Set overlay initial state
-    gsap.set(overlayRef.current, {
-      opacity: 0,
-      pointerEvents: "none",
-    });
+    if (overlayRef.current) {
+      gsap.set(overlayRef.current, {
+        opacity: 0,
+        pointerEvents: "none",
+      });
+    }
   }, [fontsLoaded, splitTextReady]);
 
   const openMenu = contextSafe(() => {
@@ -248,8 +250,8 @@ export default function Navigation() {
       0,
     );
 
-    // 2. Show overlay on mobile
-    if (isMobile()) {
+    // 2. Show overlay
+    if (overlayRef.current) {
       tl.to(
         overlayRef.current,
         {
@@ -359,8 +361,8 @@ export default function Navigation() {
     // 3. Restore logo on mobile - REMOVED
     // Logo now stays unchanged when menu closes
 
-    // 4. Hide overlay on mobile
-    if (isMobile()) {
+    // 4. Hide overlay
+    if (overlayRef.current) {
       tl.to(
         overlayRef.current,
         {
@@ -441,7 +443,7 @@ export default function Navigation() {
   };
 
   const handleOverlayClick = () => {
-    if (isMenuOpen && isMobile()) {
+    if (isMenuOpen) {
       closeMenu();
       setIsMenuOpen(false);
     }
@@ -449,16 +451,18 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Overlay - Always rendered but invisible when menu is closed */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 bg-black md:hidden"
+        className="fixed inset-0 z-40 bg-black/60"
         onClick={handleOverlayClick}
+        style={{ opacity: 0, pointerEvents: "none" }}
       />
 
       <nav
         ref={menuRef}
         className="bg-secondary desktop-nav fixed top-0 right-0 left-0 z-50 h-16 overflow-hidden border-b border-[#504630]/30 backdrop-blur-sm select-none md:pb-8"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="relative z-10 h-16 px-4 md:px-8">
           <div className="flex h-16 items-center justify-between">
