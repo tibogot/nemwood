@@ -30,9 +30,6 @@ export default function Home() {
     () => {
       if (!bigImgRef.current) return;
 
-      // Set initial scale to smaller value
-      gsap.set(bigImgRef.current, { scale: 0.5 });
-
       // Create scroll-triggered scale animation
       const animation = gsap.to(bigImgRef.current, {
         scale: 1,
@@ -148,7 +145,7 @@ export default function Home() {
         {/* Big Image */}
         <div
           ref={bigImgRef}
-          className="big-img flex w-full justify-center pb-20"
+          className="big-img flex w-full scale-50 justify-center pb-20"
         >
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
