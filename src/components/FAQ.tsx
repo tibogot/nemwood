@@ -36,7 +36,7 @@ export default function FAQ({
         {/* Left Column - Title and Description */}
         <div className="w-full md:w-1/2">
           <AnimatedText delay={0.0} stagger={0.3}>
-            <h2 className="font-ITCGaramondN mb-6 text-5xl leading-tight md:max-w-lg md:text-7xl">
+            <h2 className="font-ITCGaramondN mb-6 text-5xl leading-none md:max-w-lg md:text-7xl">
               {title}
             </h2>
             <p className="font-HelveticaNow text-primary/80 text-lg md:max-w-lg">

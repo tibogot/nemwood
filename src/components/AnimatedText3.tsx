@@ -7,6 +7,31 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+// Function to fix SplitText clipping issues with descenders
+function fixMask({ elements, masks }, baseLineHeight = 1.2) {
+  const [firstElement] = elements;
+  const lineHeight = parseFloat(
+    gsap.getProperty(firstElement, "line-height", "em"),
+  );
+  const lineHeightDifference = lineHeight - baseLineHeight;
+
+  masks.forEach((mask, i) => {
+    const isFirstMask = i === 0;
+    const isLastMask = i === masks.length - 1;
+
+    const marginTop = isFirstMask ? `${0.5 * lineHeightDifference}em` : "0";
+    const marginBottom = isLastMask
+      ? `${0.5 * lineHeightDifference}em`
+      : `${lineHeightDifference}em`;
+
+    gsap.set(mask, {
+      lineHeight: baseLineHeight,
+      marginTop,
+      marginBottom,
+    });
+  });
+}
+
 interface AnimatedTextProps {
   children: ReactNode;
   trigger?: string | HTMLElement;
@@ -140,12 +165,6 @@ function AnimatedText({
           overflow: visible !important;
         }
         
-        /* Fix for SplitText line clipping - add padding to split lines */
-        .animated-text-wrapper.overflow-visible .split-line {
-          padding-top: 0.1em !important;
-          padding-bottom: 0.1em !important;
-        }
-        
         /* Hide text until animation is ready */
         .animated-text-wrapper.fouc-prevent {
           visibility: hidden !important;
@@ -199,16 +218,9 @@ function AnimatedText({
               aria: "none", // Disable automatic aria-label addition
             });
 
-            // Fix for tight line heights - add padding to split lines
-            if (
-              wrapperRef.current?.classList.contains("overflow-visible") &&
-              split.lines
-            ) {
-              split.lines.forEach((line: Element) => {
-                const htmlLine = line as HTMLElement;
-                htmlLine.style.paddingTop = "0.1em";
-                htmlLine.style.paddingBottom = "0.1em";
-              });
+            // Apply the fixMask function to prevent clipping of descenders
+            if (split.lines && split.lines.length > 0) {
+              fixMask({ elements: [child], masks: split.lines });
             }
 
             // Verify the split was successful

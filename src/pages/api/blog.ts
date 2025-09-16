@@ -12,7 +12,11 @@ export default async function handler(
       slug,
       mainImage,
       publishedAt,
-      body
+      body,
+      categories[]->{
+        _id,
+        title
+      }
     }`,
   );
   res.status(200).json(posts);

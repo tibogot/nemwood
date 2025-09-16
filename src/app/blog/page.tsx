@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import AnimatedText from "@/components/AnimatedText3";
 import client from "@/sanityClient";
-import BlogPreview from "@/components/BlogPreview";
-import BlogPreviewHorizontal from "@/components/BlogPreviewHorizontal";
-import AnimatedBorder from "@/components/AnimatedBorder";
+import BlogSection from "@/components/BlogSection";
 import ParallaxImage from "@/components/ParallaxImage";
 import Image from "next/image";
 import { generateMetadata } from "@/app/metadata";
@@ -30,7 +28,11 @@ export default async function BlogPage() {
         asset->{url}
       },
       publishedAt,
-      body
+      body,
+      categories[]->{
+        _id,
+        title
+      }
     }`,
     {},
     { cache: "no-store" }, // Force fresh data every time
@@ -56,17 +58,11 @@ export default async function BlogPage() {
             <BlogPreview key={post._id} post={post} layout="grid" />
           ))}
         </ul> */}
-        <div className="h-[30vh]"></div>
+        {/* <div className="h-[30vh]"></div> */}
       </main>
 
-      {/* Horizontal blog previews */}
-      <section className="bg-secondary px-4 md:px-8">
-        {posts.map((post: any) => (
-          <AnimatedBorder key={post._id}>
-            <BlogPreviewHorizontal post={post} />
-          </AnimatedBorder>
-        ))}
-      </section>
+      {/* Blog section with category filtering */}
+      <BlogSection posts={posts} />
       <section className="bg-secondary relative w-full">
         <div className="md:pt-40">
           <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">

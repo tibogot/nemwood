@@ -12,6 +12,10 @@ interface BlogPreviewHorizontalProps {
     mainImage?: any;
     publishedAt?: string;
     body?: any;
+    categories?: Array<{
+      _id: string;
+      title: string;
+    }>;
   };
 }
 
@@ -53,6 +57,20 @@ export default function BlogPreviewHorizontal({
                 <p className="font-HelveticaNow text-primary/70 mb-2 text-xs">
                   {new Date(post.publishedAt).toLocaleDateString()}
                 </p>
+              )}
+
+              {/* Categories */}
+              {post.categories && post.categories.length > 0 && (
+                <div className="mb-3 flex flex-wrap gap-2">
+                  {post.categories.map((category) => (
+                    <span
+                      key={category._id}
+                      className="font-HelveticaNow bg-primary/10 text-primary rounded-full px-3 py-1 text-xs"
+                    >
+                      {category.title}
+                    </span>
+                  ))}
+                </div>
               )}
 
               {/* Title */}
