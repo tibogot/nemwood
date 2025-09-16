@@ -8,11 +8,13 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // Function to fix SplitText clipping issues with descenders
-function fixMask({ elements, masks }, baseLineHeight = 1.2) {
+function fixMask(
+  { elements, masks }: { elements: HTMLElement[]; masks: Element[] },
+  baseLineHeight = 1.2,
+) {
   const [firstElement] = elements;
-  const lineHeight = parseFloat(
-    gsap.getProperty(firstElement, "line-height", "em"),
-  );
+  const lineHeightValue = gsap.getProperty(firstElement, "line-height", "em");
+  const lineHeight = parseFloat(String(lineHeightValue));
   const lineHeightDifference = lineHeight - baseLineHeight;
 
   masks.forEach((mask, i) => {
@@ -24,7 +26,7 @@ function fixMask({ elements, masks }, baseLineHeight = 1.2) {
       ? `${0.5 * lineHeightDifference}em`
       : `${lineHeightDifference}em`;
 
-    gsap.set(mask, {
+    gsap.set(mask as HTMLElement, {
       lineHeight: baseLineHeight,
       marginTop,
       marginBottom,
