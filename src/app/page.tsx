@@ -33,25 +33,34 @@ export default function Home() {
       // Reset to initial state first to prevent jump on navigation
       gsap.set(bigImgRef.current, { scale: 0.5 });
 
-      // Create scroll-triggered scale animation
-      const animation = gsap.to(bigImgRef.current, {
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: bigImgRef.current,
-          start: "top 80%",
-          end: "bottom 80%",
-          scrub: 1,
-          // Use a unique id to avoid conflicts with other ScrollTriggers
-          id: "big-img-scale",
-          // markers: true,
-        },
-      });
+      // Delay ScrollTrigger setup to avoid conflict with scroll-to-top navigation
+      const timeoutId = setTimeout(() => {
+        // Create scroll-triggered scale animation
+        const animation = gsap.to(bigImgRef.current, {
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: bigImgRef.current,
+            start: "top 80%",
+            end: "bottom 80%",
+            scrub: 1,
+            // Use a unique id to avoid conflicts with other ScrollTriggers
+            id: "big-img-scale",
+            // markers: true,
+          },
+        });
+
+        // Store animation reference for cleanup
+        (bigImgRef.current as any).scrollAnimation = animation;
+      }, 100); // Small delay to let scroll-to-top complete
 
       // Cleanup function
       return () => {
-        animation.kill();
+        clearTimeout(timeoutId);
+        if (bigImgRef.current && (bigImgRef.current as any).scrollAnimation) {
+          (bigImgRef.current as any).scrollAnimation.kill();
+        }
         ScrollTrigger.getById("big-img-scale")?.kill();
       };
     },
