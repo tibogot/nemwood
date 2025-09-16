@@ -147,7 +147,12 @@ const BlurryTextReveal: React.FC = () => {
         Créons quelque chose{" "}
         <span
           className="font-ITCGaramondNI"
-          style={{ fontFamily: "var(--font-ITCGaramondStdLtNarrowIta), serif" }}
+          style={{
+            fontFamily: "var(--font-ITCGaramondStdLtNarrowIta), serif",
+            fontWeight: "400",
+            fontStyle: "italic",
+            WebkitTextSizeAdjust: "none",
+          }}
         >
           d'incroyable
         </span>{" "}
