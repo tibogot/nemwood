@@ -57,7 +57,7 @@ export default function BlogPreview({
                   {new Date(post.publishedAt).toLocaleDateString()}
                 </p>
               )}
-              <h3 className="font-ITCGaramondN mb-2 text-4xl leading-tight md:text-4xl">
+              <h3 className="font-ITCGaramondN mb-2 text-4xl leading-none md:text-4xl">
                 {post.title}
               </h3>
 
