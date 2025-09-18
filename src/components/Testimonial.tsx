@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import AnimatedText from "./AnimatedText3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,9 +92,11 @@ export default function Testimonial() {
           // priority
           loading="lazy"
         />
-        <h1 className="font-ITCGaramondN relative text-5xl text-[#fffcf5] md:text-7xl">
-          Témoignages
-        </h1>
+        <AnimatedText delay={0.0} stagger={0.3}>
+          <h1 className="font-ITCGaramondN relative text-5xl leading-tight text-[#fffcf5] md:text-7xl">
+            Témoignages
+          </h1>
+        </AnimatedText>
         {/* <Image
           className="relative h-auto w-full"
           src="/logonew4.svg"

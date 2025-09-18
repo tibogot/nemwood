@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import AnimatedTextHorizontal from "./AnimatedTextHorizontal";
+import AnimatedText from "./AnimatedText3";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -116,15 +118,17 @@ const HorizScroll: React.FC = () => {
                 />
               </div>
               <div className="py-6">
-                <p className="font-HelveticaNow text-primary/70 mb-3 text-xs tracking-wider uppercase">
-                  {section.number}
-                </p>
-                <h3 className="font-ITCGaramondN text-primary mb-4 text-4xl leading-tight">
-                  {section.title}
-                </h3>
-                <p className="font-HelveticaNow text-primary/80 mb-6 text-base leading-relaxed">
-                  {section.description}
-                </p>
+                <AnimatedText>
+                  <p className="font-HelveticaNow text-primary/70 mb-3 text-xs tracking-wider uppercase">
+                    {section.number}
+                  </p>
+                  <h3 className="font-ITCGaramondN text-primary mb-4 text-4xl leading-tight">
+                    {section.title}
+                  </h3>
+                  <p className="font-HelveticaNow text-primary/80 mb-6 text-base leading-relaxed">
+                    {section.description}
+                  </p>
+                </AnimatedText>
                 <Link
                   href={`/services/${section.slug}`}
                   aria-label={`En savoir plus sur nos ${section.title.toLowerCase()}`}
@@ -149,6 +153,7 @@ const HorizScroll: React.FC = () => {
         ref={containerRef}
         className="text-primary hidden h-screen w-full overflow-hidden md:block"
         aria-hidden="true"
+        data-horizontal-scroll
       >
         <div
           ref={scrollerRef}
@@ -161,27 +166,45 @@ const HorizScroll: React.FC = () => {
               className="scroll-section flex h-full w-screen flex-row"
             >
               <div className="flex h-full w-1/2 flex-col justify-between pt-30 pb-20 pl-8">
-                <div>
-                  <p
-                    className="font-HelveticaNow text-primary/70 text-sm leading-tight"
-                    aria-hidden="true"
-                  >
-                    {section.number}
-                  </p>
-                  <h3
-                    className="font-ITCGaramondN mt-8 mb-4 text-8xl"
-                    aria-hidden="true"
-                  >
-                    {section.title}
-                  </h3>
-                </div>
-                <div>
+                <AnimatedTextHorizontal
+                  horizontalContainer={containerRef.current}
+                  sectionIndex={index}
+                  totalSections={4}
+                  stagger={0.1}
+                  duration={0.6}
+                  delay={0.2}
+                >
+                  <div>
+                    <p
+                      className="font-HelveticaNow text-primary/70 text-sm leading-tight"
+                      aria-hidden="true"
+                    >
+                      {section.number}
+                    </p>
+                    <h3
+                      className="font-ITCGaramondN mt-8 mb-4 text-8xl"
+                      aria-hidden="true"
+                    >
+                      {section.title}
+                    </h3>
+                  </div>
+                </AnimatedTextHorizontal>
+                <AnimatedTextHorizontal
+                  horizontalContainer={containerRef.current}
+                  sectionIndex={index}
+                  totalSections={4}
+                  stagger={0.05}
+                  duration={0.5}
+                  delay={0.4}
+                >
                   <p
                     className="font-HelveticaNow mb-6 w-1/2 text-lg leading-tight"
                     aria-hidden="true"
                   >
                     {section.description}
                   </p>
+                </AnimatedTextHorizontal>
+                <div>
                   <Link
                     href={`/services/${section.slug}`}
                     tabIndex={-1}
