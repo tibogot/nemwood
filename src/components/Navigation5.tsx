@@ -551,7 +551,7 @@ export default function Navigation() {
                 </h3> */}
                 <div className="flex flex-col space-y-1">
                   <Link
-                    href="https://instagram.com/nemwood"
+                    href="https://instagram.com/nem_wood"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-HelveticaNow text-primary/60 hover:text-primary cursor-pointer text-base transition-colors"
