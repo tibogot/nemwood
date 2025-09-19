@@ -20,6 +20,9 @@ import ReverseCards from "@/components/ReverseCards2";
 import BlogPreview from "@/components/BlogPreview";
 import FAQ from "@/components/FAQ";
 import AnimatedBorderLines from "@/components/AnimatedBorderLines";
+import HeroCanvas from "@/components/HeroCanvas";
+import SimpleHeroCanvas from "@/components/SimpleHeroCanvas";
+import GLBHeroCanvas from "@/components/GLBHeroCanvas";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
@@ -91,7 +94,10 @@ export default function Home() {
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="relative flex h-[100svh] flex-col items-center justify-end px-4 py-20 md:px-8 md:py-40">
-        {/* Hero background image */}
+        {/* Hero 3D Canvas - GLB Model */}
+        {/* <GLBHeroCanvas /> */}
+
+        {/* Hero background image - commented out */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/wood-work.webp"
