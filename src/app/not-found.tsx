@@ -21,10 +21,10 @@ export default function NotFound() {
       <div className="relative z-10 mx-auto w-full text-center">
         {/* 404 Number */}
         <AnimatedText isHero delay={0.0} stagger={0.1}>
-          <div className="mb-4 flex justify-center">
+          <div className="mb-1 flex justify-center md:mb-4">
             <svg
               viewBox="0 0 1200 500"
-              className="text-primary h-[clamp(200px,40vh,400px)] w-full max-w-full md:w-[95vw]"
+              className="text-primary h-[clamp(150px,25vh,400px)] w-full max-w-full md:h-[clamp(200px,40vh,400px)] md:w-[95vw]"
               fill="currentColor"
             >
               <text
@@ -46,7 +46,7 @@ export default function NotFound() {
 
         {/* Error Message */}
         <AnimatedText isHero delay={0.3} stagger={0.2}>
-          <h2 className="font-ITCGaramondN mb-2 text-2xl md:text-3xl">
+          <h2 className="font-ITCGaramondN mb-1 text-2xl md:mb-2 md:text-3xl">
             Page introuvable
           </h2>
         </AnimatedText>
