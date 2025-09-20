@@ -180,7 +180,7 @@ export default function RootLayout({
               },
               sameAs: [
                 "https://www.facebook.com/p/NemwOod-100063674583109/",
-                "https://instagram.com/nemwood",
+                "https://instagram.com/nem_wood",
               ],
             }),
           }}
