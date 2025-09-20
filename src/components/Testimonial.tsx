@@ -93,9 +93,9 @@ export default function Testimonial() {
           loading="lazy"
         />
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h1 className="font-ITCGaramondN relative text-5xl leading-tight text-[#fffcf5] md:text-7xl">
+          <h2 className="font-ITCGaramondN relative text-5xl leading-tight text-[#fffcf5] md:text-7xl">
             Témoignages
-          </h1>
+          </h2>
         </AnimatedText>
         {/* <Image
           className="relative h-auto w-full"

@@ -142,9 +142,9 @@ export default function ServicesPage() {
       <ManyServices />
       <section className="text-primary intro border-primary mx-auto border-t border-b border-solid px-4 py-20 text-center md:px-8 md:py-30">
         <AnimatedText>
-          <h1 className="font-ITCGaramondN mb-6 text-6xl">
+          <h3 className="font-ITCGaramondN mb-6 text-6xl">
             Creativity to design
-          </h1>
+          </h3>
 
           <p className="font-HelveticaNow mx-auto text-lg md:max-w-xl">
             Vous cherchez un artisan menuisier en Belgique pour créer des

@@ -276,9 +276,9 @@ export default function Home() {
         <div className="right flex flex-col justify-between md:h-[700px] md:w-1/2">
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
-              <h1 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
+              <h2 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
                 Designing experiences that resonate and scale
-              </h1>
+              </h2>
               <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
                 Vous cherchez un artisan menuisier en Belgique pour créer des
                 meubles en bois sur mesure ? <br />

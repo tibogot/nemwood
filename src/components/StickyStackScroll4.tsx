@@ -371,9 +371,9 @@ export default function HomeCard() {
       </section> */}
       <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h1 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
+          <h3 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
             Creativity to design
-          </h1>
+          </h3>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
             Vous cherchez un artisan menuisier en Belgique pour créer des
             meubles en bois sur mesure ? Nemwood est spécialisé dans la
