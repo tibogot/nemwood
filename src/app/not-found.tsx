@@ -18,12 +18,30 @@ export default function NotFound() {
       </div> */}
 
       {/* Content */}
-      <div className="relative z-10 mx-auto mt-20 max-w-2xl text-center">
+      <div className="relative z-10 mx-auto mt-20 w-full text-center">
         {/* 404 Number */}
         <AnimatedText isHero delay={0.0} stagger={0.1}>
-          <h1 className="font-ITCGaramondN text-primary mb-4 text-9xl md:text-[30vw]">
-            404
-          </h1>
+          <div className="mb-4 flex justify-center">
+            <svg
+              viewBox="0 0 1200 400"
+              className="text-primary h-auto w-full max-w-full md:w-[95vw]"
+              fill="currentColor"
+            >
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize="600"
+                style={{
+                  fontFamily: "var(--font-ITCGaramondStdLtNarrow), serif",
+                  fontWeight: "normal",
+                }}
+              >
+                404
+              </text>
+            </svg>
+          </div>
         </AnimatedText>
 
         {/* Error Message */}
@@ -35,7 +53,7 @@ export default function NotFound() {
 
         {/* Description */}
         <AnimatedText isHero delay={0.6} stagger={0.1}>
-          <p className="font-HelveticaNow text-primary/60 mx-auto mb-8 max-w-sm text-lg leading-relaxed md:text-base">
+          <p className="font-HelveticaNow text-primary/60 mx-auto mb-8 max-w-sm text-lg leading-relaxed text-balance md:text-base">
             Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
           </p>
         </AnimatedText>
@@ -45,8 +63,8 @@ export default function NotFound() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             {/* Home Button */}
             <Link href="/">
-              <button className="font-HelveticaNow">
-                <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+              <button className="font-HelveticaNow cursor-pointer">
+                <div className="border-primary hover:bg-primary hover:text-secondary flex items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
                   <span>Retour à l'accueil</span>
                   <div className="mt-0.5 ml-1">
                     <ArrowRight size={18} strokeWidth={1.5} />
