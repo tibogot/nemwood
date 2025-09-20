@@ -23,13 +23,13 @@ export default function NotFound() {
         <AnimatedText isHero delay={0.0} stagger={0.1}>
           <div className="mb-4 flex justify-center">
             <svg
-              viewBox="0 0 1200 400"
+              viewBox="0 0 1200 500"
               className="text-primary h-auto w-full max-w-full md:w-[95vw]"
               fill="currentColor"
             >
               <text
                 x="50%"
-                y="50%"
+                y="60%"
                 textAnchor="middle"
                 dominantBaseline="central"
                 fontSize="600"
