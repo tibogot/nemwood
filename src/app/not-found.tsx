@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="bg-secondary text-primary flex min-h-screen flex-col items-center justify-center px-4 md:px-8">
+    <main className="bg-secondary text-primary flex h-screen flex-col items-center justify-center px-4 md:px-8">
       {/* Background Image */}
       {/* <div className="absolute inset-0 z-0">
         <Image
@@ -18,13 +18,13 @@ export default function NotFound() {
       </div> */}
 
       {/* Content */}
-      <div className="relative z-10 mx-auto mt-20 w-full text-center">
+      <div className="relative z-10 mx-auto w-full text-center">
         {/* 404 Number */}
         <AnimatedText isHero delay={0.0} stagger={0.1}>
           <div className="mb-4 flex justify-center">
             <svg
               viewBox="0 0 1200 500"
-              className="text-primary h-auto w-full max-w-full md:w-[95vw]"
+              className="text-primary h-[clamp(200px,40vh,400px)] w-full max-w-full md:w-[95vw]"
               fill="currentColor"
             >
               <text
@@ -46,28 +46,28 @@ export default function NotFound() {
 
         {/* Error Message */}
         <AnimatedText isHero delay={0.3} stagger={0.2}>
-          <h2 className="font-ITCGaramondN mb-2 text-3xl md:text-4xl">
+          <h2 className="font-ITCGaramondN mb-2 text-2xl md:text-3xl">
             Page introuvable
           </h2>
         </AnimatedText>
 
         {/* Description */}
         <AnimatedText isHero delay={0.6} stagger={0.1}>
-          <p className="font-HelveticaNow text-primary/60 mx-auto mb-8 max-w-sm text-lg leading-relaxed text-balance md:text-base">
+          <p className="font-HelveticaNow text-primary/60 mx-auto mb-6 max-w-sm text-base leading-relaxed text-balance md:text-sm">
             Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
           </p>
         </AnimatedText>
 
         {/* Action Buttons */}
         <AnimatedText isHero delay={0.9} stagger={0.1}>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             {/* Home Button */}
             <Link href="/">
               <button className="font-HelveticaNow cursor-pointer">
                 <div className="border-primary hover:bg-primary hover:text-secondary flex items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
                   <span>Retour à l'accueil</span>
                   <div className="mt-0.5 ml-1">
-                    <ArrowRight size={18} strokeWidth={1.5} />
+                    <ArrowRight size={16} strokeWidth={1.5} />
                   </div>
                 </div>
               </button>
