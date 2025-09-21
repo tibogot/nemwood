@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import PageTransition from "@/components/PageTransition3";
-import PageLoader from "@/components/PageLoader";
+import PageTransition from "@/components/PageTransition4";
+import PageLoader from "@/components/PageLoader2";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
