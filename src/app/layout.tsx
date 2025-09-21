@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ClientLayout from "@/components/ClientLayout";
+import { Analytics } from "@vercel/analytics/next";
 // import CookieConsent from "@/components/CookieConsent";
 // import ScrollProgress from "@/components/ScrollProgress";
 
@@ -259,6 +260,7 @@ export default function RootLayout({
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant */}
         {/* <CookieConsent /> */}
+        <Analytics />
       </body>
     </html>
   );
