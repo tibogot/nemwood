@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "./Logo3";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -24,6 +24,27 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const isTransitioning = useRef(false);
   const isMounted = useRef(false);
   const hasNavigated = useRef(false); // Track if this is from navigation
+  const [shouldBlockScroll, setShouldBlockScroll] = useState(false);
+
+  // Block scroll during transitions
+  useEffect(() => {
+    if (shouldBlockScroll) {
+      // Prevent scroll on body
+      document.body.style.overflow = "hidden";
+      // Also prevent scroll on html element for better browser compatibility
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      // Restore scroll when transition is complete
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    // Cleanup function to restore scroll if component unmounts
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [shouldBlockScroll]);
 
   useGSAP(
     () => {
@@ -52,6 +73,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
       // Define animation functions
       const revealPage = () => {
+        setShouldBlockScroll(true); // Block scroll during reveal animation
         gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
 
         gsap.to(blocksRef.current, {
@@ -62,6 +84,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
           transformOrigin: "right",
           onComplete: () => {
             isTransitioning.current = false;
+            setShouldBlockScroll(false); // Restore scroll after reveal
           },
         });
       };
@@ -79,10 +102,13 @@ export default function PageTransition({ children }: PageTransitionProps) {
           return;
         }
 
+        setShouldBlockScroll(true); // Block scroll during cover animation
+
         const tl = gsap.timeline({
           onComplete: () => {
             isTransitioning.current = false;
             hasNavigated.current = true; // Mark that we navigated
+            // Note: Don't restore scroll here as the new page will handle it
             router.push(url);
           },
         });
