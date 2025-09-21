@@ -83,7 +83,7 @@ export default function Testimonial() {
         ref={containerRef}
         className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-30 text-white md:px-8"
       >
-        <Image
+        {/* <Image
           src="/images/testimonial.webp"
           alt="Random from Picsum"
           fill
@@ -91,9 +91,9 @@ export default function Testimonial() {
           sizes="(max-width: 768px) 100vw, 80vw"
           // priority
           loading="lazy"
-        />
+        /> */}
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h2 className="font-ITCGaramondN relative text-5xl leading-tight text-[#fffcf5] md:text-7xl">
+          <h2 className="font-ITCGaramondN text-primary relative text-5xl leading-tight md:text-7xl">
             Témoignages
           </h2>
         </AnimatedText>
@@ -111,7 +111,7 @@ export default function Testimonial() {
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-2xl md:h-[450px] md:w-[350px]"
+                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 md:h-[450px] md:w-[350px]"
                 style={{ zIndex: i + 1 }}
               >
                 {/* Main content - blockquote takes up most space */}
