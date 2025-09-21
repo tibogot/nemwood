@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "./Logo3";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -19,6 +19,26 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
   const logoOverlayRef = useRef<HTMLDivElement | null>(null);
   const blocksRef = useRef<HTMLDivElement[]>([]);
   const [isVisible, setIsVisible] = useState(true);
+
+  // Block scroll when loader is visible
+  useEffect(() => {
+    if (isVisible) {
+      // Prevent scroll on body
+      document.body.style.overflow = "hidden";
+      // Also prevent scroll on html element for better browser compatibility
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      // Restore scroll when loader is hidden
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    // Cleanup function to restore scroll if component unmounts
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [isVisible]);
 
   useGSAP(
     () => {
@@ -159,7 +179,7 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
   if (!isVisible) return null;
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[1001]">
+    <div ref={containerRef} className="fixed inset-0 z-[1001] cursor-default">
       {/* The blocks themselves are the main overlay */}
       <div
         ref={overlayRef}
