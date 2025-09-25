@@ -67,7 +67,7 @@ export default function BlogPreview({
               </div>
             </div>
             <span className="font-HelveticaNow mt-2 inline-block text-base md:text-base">
-              Read more →
+              En savoir plus →
             </span>
           </div>
         </div>

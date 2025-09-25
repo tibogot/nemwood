@@ -120,9 +120,9 @@ export default function Home() {
         </video> */}
 
         {/* Hero text */}
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
+        {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
           Meubles en bois sur mesure
-        </h4>
+        </h4> */}
         <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
@@ -277,7 +277,7 @@ export default function Home() {
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
               <h2 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
-                Designing experiences that resonate and scale
+                Meubles en bois sur mesure pour votre intérieur
               </h2>
               <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
                 Vous cherchez un artisan menuisier en Belgique pour créer des
