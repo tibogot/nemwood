@@ -24,11 +24,13 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     // Add loading class to body immediately
     document.body.classList.add("page-loader-active");
 
-    // Remove the CSS overlay once PageLoader is ready (after a brief delay)
-    setTimeout(() => {
-      document.documentElement.classList.add("page-loader-ready");
-    }, 100);
+    // DON'T remove the CSS overlay here - let PageLoader handle it when ready
   }, []);
+
+  const handlePageLoaderReady = () => {
+    // Remove the CSS overlay only when PageLoader is covering the page
+    document.documentElement.classList.add("page-loader-ready");
+  };
 
   const handleLoaderComplete = () => {
     setShowLoader(false);
@@ -47,7 +49,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   return (
     <ThemeProvider>
-      {showLoader && <PageLoader onComplete={handleLoaderComplete} />}
+      {showLoader && (
+        <PageLoader
+          onComplete={handleLoaderComplete}
+          onReady={handlePageLoaderReady}
+        />
+      )}
 
       <PageTransition>
         <LenisProvider>

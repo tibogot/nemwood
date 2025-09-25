@@ -208,14 +208,14 @@ export default function RootLayout({
             __html: `
             /* CRITICAL: Immediate full-screen overlay to prevent any FOUC */
             html {
-              background-color: #222 !important;
+              background-color: var(--color-primary) !important;
               margin: 0;
               padding: 0;
               overflow-x: hidden;
             }
             
             body {
-              background-color: #222 !important;
+              background-color: var(--color-primary) !important;
               margin: 0;
               padding: 0;
               overflow-x: hidden;
@@ -229,7 +229,7 @@ export default function RootLayout({
               left: 0;
               width: 100vw;
               height: 100vh;
-              background-color: #222;
+              background-color: var(--color-primary);
               z-index: 999999;
               pointer-events: none;
             }
@@ -254,8 +254,8 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-[#222] antialiased`}
-        style={{ backgroundColor: "#222" }}
+        className={`${ITCGaramondStdLtNarrow.variable} ${ITCGaramondStdLtNarrowIta.variable} ${HelveticaNow.variable} bg-primary antialiased`}
+        style={{ backgroundColor: "var(--color-primary)" }}
       >
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant */}

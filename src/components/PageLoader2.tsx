@@ -10,9 +10,10 @@ gsap.registerPlugin(useGSAP);
 
 interface PageLoaderProps {
   onComplete?: () => void;
+  onReady?: () => void;
 }
 
-export default function PageLoader({ onComplete }: PageLoaderProps) {
+export default function PageLoader({ onComplete, onReady }: PageLoaderProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLDivElement | null>(null);
@@ -79,6 +80,9 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
         // Start with blocks covering the entire page
         gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
         gsap.set(logoOverlayRef.current, { opacity: 1 });
+
+        // Signal that PageLoader is ready and covering the page
+        if (onReady) onReady();
 
         // Set initial logo state (same as PageTransition4)
         gsap.set(logoRef.current, {
