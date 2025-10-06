@@ -98,7 +98,7 @@ export default function Testimonial() {
     <>
       <section
         ref={containerRef}
-        className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-30 text-white md:px-8"
+        className="bg-secondary relative h-[100dvh] overflow-hidden px-4 py-20 text-white md:px-8 md:py-30"
       >
         {/* <Image
           src="/images/testimonial.webp"
@@ -133,10 +133,6 @@ export default function Testimonial() {
                 transform: "translate(-50%, -50%) rotate(2deg)",
               }}
             >
-              {/* Card number indicator */}
-              <div className="bg-primary absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full">
-                <span className="text-secondary text-xs font-bold">1</span>
-              </div>
               {/* Main content - blockquote takes up most space */}
               <div className="flex flex-1 items-center justify-center">
                 <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
@@ -183,12 +179,6 @@ export default function Testimonial() {
                 className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:w-[350px]"
                 style={{ zIndex: i + 1 }}
               >
-                {/* Card number indicator */}
-                <div className="bg-primary absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full">
-                  <span className="text-secondary text-xs font-bold">
-                    {i + 2}
-                  </span>
-                </div>
                 {/* Main content - blockquote takes up most space */}
                 <div className="flex flex-1 items-center justify-center">
                   <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">

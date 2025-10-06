@@ -19,7 +19,7 @@ const HorizScroll: React.FC = () => {
   // Data for sections
   const sections = [
     {
-      number: "1/4",
+      number: "1/5",
       title: "Escaliers",
       slug: "escaliers",
       description:
@@ -27,7 +27,7 @@ const HorizScroll: React.FC = () => {
       image: "/images/stairs.webp",
     },
     {
-      number: "2/4",
+      number: "2/5",
       title: "Garde-robes",
       slug: "garde-robes",
       description:
@@ -35,7 +35,7 @@ const HorizScroll: React.FC = () => {
       image: "/images/wardrobe.webp",
     },
     {
-      number: "3/4",
+      number: "3/5",
       title: "Tables",
       slug: "tables",
       description:
@@ -43,12 +43,21 @@ const HorizScroll: React.FC = () => {
       image: "/images/table.webp",
     },
     {
-      number: "4/4",
+      number: "4/5",
       title: "Cuisines",
       slug: "cuisines",
       description:
         "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
       image: "/images/kitchen.webp",
+    },
+    {
+      number: "5/5",
+      title: "Plus de services",
+      slug: "services",
+      description:
+        "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure.",
+      image: "/images/wood-work.webp",
+      isCTASection: true,
     },
   ];
 
@@ -130,12 +139,24 @@ const HorizScroll: React.FC = () => {
                   </p>
                 </AnimatedText>
                 <Link
-                  href={`/services/${section.slug}`}
-                  aria-label={`En savoir plus sur nos ${section.title.toLowerCase()}`}
+                  href={
+                    section.isCTASection
+                      ? "/services"
+                      : `/services/${section.slug}`
+                  }
+                  aria-label={
+                    section.isCTASection
+                      ? "Découvrir tous nos services"
+                      : `En savoir plus sur nos ${section.title.toLowerCase()}`
+                  }
                 >
                   <button className="font-HelveticaNow">
                     <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                      <span>En savoir plus</span>
+                      <span>
+                        {section.isCTASection
+                          ? "Découvrir tous nos services"
+                          : "En savoir plus"}
+                      </span>
                       <div className="mt-0.5 ml-1">
                         <ArrowRight size={18} strokeWidth={1.5} />
                       </div>
@@ -158,7 +179,7 @@ const HorizScroll: React.FC = () => {
         <div
           ref={scrollerRef}
           className="flex h-full"
-          style={{ width: "400vw" }}
+          style={{ width: "500vw" }}
         >
           {sections.map((section, index) => (
             <div
@@ -169,20 +190,20 @@ const HorizScroll: React.FC = () => {
                 <AnimatedTextHorizontal
                   horizontalContainer={containerRef.current}
                   sectionIndex={index}
-                  totalSections={4}
+                  totalSections={5}
                   stagger={0.1}
                   duration={0.6}
                   delay={0.2}
                 >
                   <div>
                     <p
-                      className="font-HelveticaNow text-primary/70 text-sm leading-tight"
+                      className="font-HelveticaNow text-primary/70 mb-6 text-sm leading-tight"
                       aria-hidden="true"
                     >
                       {section.number}
                     </p>
                     <h3
-                      className="font-ITCGaramondN mt-8 mb-4 text-8xl"
+                      className="font-ITCGaramondN text-8xl leading-none"
                       aria-hidden="true"
                     >
                       {section.title}
@@ -192,7 +213,7 @@ const HorizScroll: React.FC = () => {
                 <AnimatedTextHorizontal
                   horizontalContainer={containerRef.current}
                   sectionIndex={index}
-                  totalSections={4}
+                  totalSections={5}
                   stagger={0.05}
                   duration={0.5}
                   delay={0.4}
@@ -206,14 +227,26 @@ const HorizScroll: React.FC = () => {
                 </AnimatedTextHorizontal>
                 <div>
                   <Link
-                    href={`/services/${section.slug}`}
+                    href={
+                      section.isCTASection
+                        ? "/services"
+                        : `/services/${section.slug}`
+                    }
                     tabIndex={-1}
                     aria-hidden="true"
-                    aria-label={`En savoir plus sur nos ${section.title.toLowerCase()}`}
+                    aria-label={
+                      section.isCTASection
+                        ? "Découvrir tous nos services"
+                        : `En savoir plus sur nos ${section.title.toLowerCase()}`
+                    }
                   >
                     <button className="font-HelveticaNow" tabIndex={-1}>
                       <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                        <span>En savoir plus</span>
+                        <span>
+                          {section.isCTASection
+                            ? "Découvrir tous nos services"
+                            : "En savoir plus"}
+                        </span>
                         <div className="mt-0.5 ml-1">
                           <ArrowRight size={18} strokeWidth={1.5} />
                         </div>
