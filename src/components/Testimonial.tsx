@@ -98,7 +98,7 @@ export default function Testimonial() {
     <>
       <section
         ref={containerRef}
-        className="bg-secondary relative h-[100dvh] overflow-hidden px-4 py-20 text-white md:px-8 md:py-30"
+        className="bg-secondary relative h-[100svh] overflow-hidden px-4 py-20 text-white md:px-8 md:py-30"
       >
         {/* <Image
           src="/images/testimonial.webp"
