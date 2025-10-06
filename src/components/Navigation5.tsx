@@ -58,12 +58,37 @@ export default function Navigation() {
     checkFontsLoaded();
   }, []);
 
-  // Helper function to check if mobile
-  const isMobile = () => window.innerWidth < 768;
+  // Helper function to check if mobile - safe for SSR
+  const isMobile = () => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  };
+
+  // State to track if we're on mobile
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  // Check mobile status on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobileDevice(isMobile());
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Listen for resize events
+    window.addEventListener("resize", checkMobile);
+    window.addEventListener("orientationchange", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("orientationchange", checkMobile);
+    };
+  }, []);
 
   // Handle mobile viewport changes (address bar show/hide)
   useEffect(() => {
-    if (!isMobile()) return;
+    if (!isMobileDevice) return;
 
     const handleViewportChange = () => {
       // Update menu height to current viewport height when open
@@ -93,20 +118,43 @@ export default function Navigation() {
         );
       }
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isMobileDevice]);
 
   // Prevent body scroll when menu is open on mobile
   useEffect(() => {
-    if (isMobile() && isMenuOpen) {
+    if (isMobileDevice && isMenuOpen) {
+      // Store original values
+      const originalOverflow = document.body.style.overflow;
+      const originalPosition = document.body.style.position;
+      const originalTop = document.body.style.top;
+      const originalWidth = document.body.style.width;
+
+      // Get current scroll position
+      const scrollY = window.scrollY;
+
+      // Apply scroll lock
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+
+      return () => {
+        // Restore original values
+        document.body.style.overflow = originalOverflow;
+        document.body.style.position = originalPosition;
+        document.body.style.top = originalTop;
+        document.body.style.width = originalWidth;
+
+        // Restore scroll position
+        window.scrollTo(0, scrollY);
+      };
     } else {
       document.body.style.overflow = "unset";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isMobileDevice]);
 
   // Create SplitText instances with proper timing
   useEffect(() => {
@@ -150,7 +198,7 @@ export default function Navigation() {
                     char.textContent && char.textContent.trim() !== "",
                 ) as HTMLElement[];
                 gsap.set(visibleChars, {
-                  y: isMobile() ? 60 : 100,
+                  y: isMobileDevice ? 60 : 100,
                   opacity: 0,
                   rotationX: -90,
                   transformOrigin: "0% 50% -50",
@@ -213,7 +261,7 @@ export default function Navigation() {
 
     // Initial state - menu items hidden
     gsap.set(menuItemsRef.current, {
-      y: isMobile() ? 50 : -30,
+      y: isMobileDevice ? 50 : -30,
       opacity: 0,
     });
 
@@ -231,7 +279,7 @@ export default function Navigation() {
 
     const tl = gsap.timeline();
     // Use current viewport height for mobile to adapt to browser bar show/hide
-    const menuHeight = isMobile() ? `${window.innerHeight}px` : "60vh";
+    const menuHeight = isMobileDevice ? `${window.innerHeight}px` : "60vh";
 
     // 1. Animate burger lines to form X with enhanced animation
     tl.to(burgerLine1Ref.current, {
@@ -285,7 +333,7 @@ export default function Navigation() {
         y: 0,
         opacity: 1,
         duration: 0.8,
-        stagger: isMobile() ? 0.1 : 0.15,
+        stagger: isMobileDevice ? 0.1 : 0.15,
         ease: "back.out(1.2)",
       },
       0.4,
@@ -305,12 +353,12 @@ export default function Navigation() {
             rotationX: 0,
             duration: 1,
             stagger: {
-              each: isMobile() ? 0.02 : 0.03,
+              each: isMobileDevice ? 0.02 : 0.03,
               from: "start",
             },
             ease: "back.out(1.4)",
           },
-          0.6 + index * (isMobile() ? 0.08 : 0.1),
+          0.6 + index * (isMobileDevice ? 0.08 : 0.1),
         );
       }
     });
@@ -330,7 +378,7 @@ export default function Navigation() {
         tl.to(
           visibleChars,
           {
-            y: isMobile() ? 60 : 100,
+            y: isMobileDevice ? 60 : 100,
             opacity: 0,
             rotationX: -90,
             duration: 0.5,
@@ -349,7 +397,7 @@ export default function Navigation() {
     tl.to(
       menuItemsRef.current,
       {
-        y: isMobile() ? 50 : -30,
+        y: isMobileDevice ? 50 : -30,
         opacity: 0,
         duration: 0.5,
         stagger: 0.06,
@@ -416,7 +464,7 @@ export default function Navigation() {
               char.textContent && char.textContent.trim() !== "",
           ) as HTMLElement[];
           gsap.set(visibleChars, {
-            y: isMobile() ? 60 : 100,
+            y: isMobileDevice ? 60 : 100,
             opacity: 0,
             rotationX: -90,
             transformOrigin: "0% 50% -50",
