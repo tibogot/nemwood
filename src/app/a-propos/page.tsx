@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
   "Découvrez Nemwood, artisan menuisier belge spécialisé dans la fabrication de meubles en bois sur mesure : tables, garde-robes, escaliers et cuisines.",
   "/images/wardrobe.webp",
-  "https://www.nemwood.be/about",
+  "https://www.nemwood.be/a-propos",
 );
 
 export default function About() {
@@ -34,7 +34,7 @@ export default function About() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/wardrobe.webp"
+          src="/images/Apropos-nemwood.webp"
           alt="Nemwood woodworking craftsmanship"
           fill
           className="object-cover"
@@ -56,11 +56,11 @@ export default function About() {
               </h3>
             </AnimatedText>
             <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Mobilier sur mesure : quand l’espace et le style s’accordent
-              parfaitement Vous cherchez un mobilier qui s’adapte vraiment à
+              Mobilier sur mesure : quand l'espace et le style s'accordent
+              parfaitement Vous cherchez un mobilier qui s'adapte vraiment à
               votre intérieur ? Le sur mesure est la solution. Chaque pièce est
               conçue selon les dimensions exactes de votre espace pour optimiser
-              chaque recoin. Plus qu’un simple meuble, c’est une création unique
+              chaque recoin. Plus qu'un simple meuble, c'est une création unique
               qui reflète votre style grâce au choix des matériaux, finitions et
               détails personnalisés. Pratique et ergonomique, il répond à vos
               besoins précis : rangements intelligents, solutions
@@ -74,7 +74,7 @@ export default function About() {
         <div className="right flex flex-col items-end text-left md:w-1/2">
           <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
             <Image
-              src="/images/kitchen.webp"
+              src="/images/atelier-1.webp"
               alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
               fill
               className="object-cover transition-transform duration-500 ease-out hover:scale-105"

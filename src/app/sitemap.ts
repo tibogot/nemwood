@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/a-propos`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
@@ -63,11 +63,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Fetch blog posts from Sanity
+  // Fetch blog posts from Sanity (French only)
   let blogPosts: any[] = [];
   try {
     blogPosts = await client.fetch(
-      `*[_type == "post"]{
+      `*[_type == "post" && language == "fr"]{
         slug,
         _updatedAt
       }`,

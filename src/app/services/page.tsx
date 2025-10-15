@@ -65,7 +65,7 @@ export default function ServicesPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/wood-work.webp"
+          src="/images/services-hero.webp"
           alt="Nemwood craftsmanship showcase"
           fill
           className="object-cover"

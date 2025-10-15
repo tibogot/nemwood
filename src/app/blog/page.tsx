@@ -17,9 +17,9 @@ export const metadata: Metadata = generateMetadata(
 );
 
 export default async function BlogPage() {
-  // Force fresh data - no caching
+  // Force fresh data - no caching, filtered by French language
   const posts = await client.fetch(
-    `*[_type == "post"]|order(_createdAt desc){
+    `*[_type == "post" && language == "fr"]|order(_createdAt desc){
       _id,
       title,
       slug,
@@ -29,6 +29,7 @@ export default async function BlogPage() {
       },
       publishedAt,
       body,
+      language,
       categories[]->{
         _id,
         title

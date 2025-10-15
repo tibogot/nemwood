@@ -22,7 +22,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]{
+    `*[_type == "post" && slug.current == $slug && language == "fr"][0]{
       title,
       description,
       body,
@@ -176,7 +176,7 @@ const portableTextComponents = {
 export default async function BlogPostPage(props: any) {
   const params = await props.params;
   const post = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]{
+    `*[_type == "post" && slug.current == $slug && language == "fr"][0]{
       title,
       description,
       body,
@@ -193,10 +193,10 @@ export default async function BlogPostPage(props: any) {
   // Check if post exists first
   if (!post) return notFound();
 
-  // Fetch previous, next, and related posts only if post exists
+  // Fetch previous, next, and related posts only if post exists (French only)
   const [prevPost, nextPost, relatedPosts] = await Promise.all([
     client.fetch(
-      `*[_type == "post" && _createdAt < $createdAt]|order(_createdAt desc)[0]{
+      `*[_type == "post" && _createdAt < $createdAt && language == "fr"]|order(_createdAt desc)[0]{
         title,
         slug,
         mainImage {
@@ -208,7 +208,7 @@ export default async function BlogPostPage(props: any) {
       { cache: "no-store" },
     ),
     client.fetch(
-      `*[_type == "post" && _createdAt > $createdAt]|order(_createdAt asc)[0]{
+      `*[_type == "post" && _createdAt > $createdAt && language == "fr"]|order(_createdAt asc)[0]{
         title,
         slug,
         mainImage {
@@ -220,7 +220,7 @@ export default async function BlogPostPage(props: any) {
       { cache: "no-store" },
     ),
     client.fetch(
-      `*[_type == "post" && slug.current != $currentSlug]|order(_createdAt desc)[0...3]{
+      `*[_type == "post" && slug.current != $currentSlug && language == "fr"]|order(_createdAt desc)[0...3]{
         title,
         slug,
         description,

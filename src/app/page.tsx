@@ -23,6 +23,7 @@ import AnimatedBorderLines from "@/components/AnimatedBorderLines";
 import HeroCanvas from "@/components/HeroCanvas";
 import SimpleHeroCanvas from "@/components/SimpleHeroCanvas";
 import GLBHeroCanvas from "@/components/GLBHeroCanvas";
+import Logo from "@/components/Logo3";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
@@ -73,7 +74,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchPosts() {
       const posts = await client.fetch(
-        `*[_type == "post"]|order(_createdAt desc)[0...3]{
+        `*[_type == "post" && language == "fr"]|order(_createdAt desc)[0...3]{
           _id,
           title,
           slug,
@@ -82,7 +83,8 @@ export default function Home() {
             asset->{url}
           },
           publishedAt,
-          body
+          body,
+          language
         }`,
       );
       setBlogPosts(posts);
@@ -100,7 +102,7 @@ export default function Home() {
         {/* Hero background image - commented out */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/wood-work.webp"
+          src="/images/hero-nemwood.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
@@ -123,11 +125,16 @@ export default function Home() {
         {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
           Meubles en bois sur mesure
         </h4> */}
-        <AnimatedText isHero delay={0.0} stagger={0.3}>
+        {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
           </h4>
-        </AnimatedText>
+        </AnimatedText> */}
+
+        {/* Logo at bottom of hero */}
+        <div className="absolute bottom-0 left-1/2 z-10 w-[85vw] -translate-x-1/2 translate-y-[25%] transform text-[#FFFCF5] md:w-[80vw] md:translate-y-[22%]">
+          <Logo className="h-auto w-full" />
+        </div>
       </section>
 
       <section className="text-primary section2 px-4 md:px-8">
@@ -167,7 +174,7 @@ export default function Home() {
         >
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
-              src="/images/wood-work.webp"
+              src="/images/BBP Dansaert 5.webp"
               alt="Nemwood furniture showcase"
               fill
               className="rounded-sm object-cover"
@@ -198,7 +205,7 @@ export default function Home() {
               </p>
             </AnimatedText>
 
-            <Link href="/about">
+            <Link href="/a-propos">
               <button className="font-HelveticaNow mt-10">
                 <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
                   <span>En savoir plus</span>
