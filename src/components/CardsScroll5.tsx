@@ -207,10 +207,10 @@ function CardsScroll() {
           ref={mainContentRef}
         >
           <div className="copy text-primary flex flex-col items-center justify-center">
-            <h3 className="text-5xl md:text-7xl" ref={titleRef}>
+            <h2 className="text-5xl md:text-7xl" ref={titleRef}>
               Nos spécialités <br />
               artisanales
-            </h3>
+            </h2>
             <p
               ref={descriptionRef}
               className="font-HelveticaNow mx-auto mt-8 text-lg md:max-w-lg"
