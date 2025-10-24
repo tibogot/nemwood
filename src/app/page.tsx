@@ -99,14 +99,17 @@ export default function Home() {
         {/* Hero 3D Canvas - GLB Model */}
         {/* <GLBHeroCanvas /> */}
 
-        {/* Hero background image - LCP optimized with regular img tag */}
-        <img
+        {/* Hero background image - LCP optimized */}
+        <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/hero-nemwood.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
-          loading="eager"
+          fill
+          sizes="100vw"
+          quality={95}
+          priority
           fetchPriority="high"
-          style={{ height: "100%", width: "100%" }}
+          style={{ contentVisibility: "auto" }}
         />
 
         {/* <video
@@ -119,7 +122,10 @@ export default function Home() {
           <source src="/images/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
-        {/* No visible text - clean hero with image and logo only */}
+
+        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
+          Meubles en bois sur mesure
+        </h4>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
