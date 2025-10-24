@@ -1,63 +1,120 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import client from "@/sanityClient";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-import HorizScroll from "@/components/HorizScroll8";
-import CardsScroll from "@/components/CardsScroll5";
+// Dynamic imports for non-critical components
+const HorizScroll = dynamic(() => import("@/components/HorizScroll8"), {
+  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+  ssr: false,
+});
+
+const CardsScroll = dynamic(() => import("@/components/CardsScroll5"), {
+  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+  ssr: false,
+});
+
+const Testimonial = dynamic(() => import("@/components/Testimonial"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+  ssr: false,
+});
+
+const BlurryTextReveal = dynamic(() => import("@/components/TextReveal"), {
+  loading: () => <div className="h-32 animate-pulse bg-gray-100" />,
+  ssr: false,
+});
+
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+  ssr: false,
+});
+
+const AnimatedBorderLines = dynamic(
+  () => import("@/components/AnimatedBorderLines"),
+  {
+    loading: () => <div className="h-32 animate-pulse bg-gray-100" />,
+    ssr: false,
+  },
+);
+
+// Critical components loaded normally
 import { ArrowRight, ChevronDown } from "lucide-react";
-import Testimonial from "@/components/Testimonial";
 import AnimatedText from "@/components/AnimatedText3";
-import BlurryTextReveal from "@/components/TextReveal";
-import ReverseCards from "@/components/ReverseCards2";
 import BlogPreview from "@/components/BlogPreview";
-import FAQ from "@/components/FAQ";
-import AnimatedBorderLines from "@/components/AnimatedBorderLines";
-import HeroCanvas from "@/components/HeroCanvas";
-import SimpleHeroCanvas from "@/components/SimpleHeroCanvas";
-import GLBHeroCanvas from "@/components/GLBHeroCanvas";
 import Logo from "@/components/Logo3";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const bigImgRef = useRef<HTMLDivElement>(null);
 
-  // GSAP animation for big image scale on scroll
+  // GSAP animation for big image scale on scroll - optimized for performance
   useGSAP(
     () => {
       if (!bigImgRef.current) return;
 
-      // Reset to initial state first to prevent jump on navigation
-      gsap.set(bigImgRef.current, { scale: 0.5 });
+      // Use requestIdleCallback to defer non-critical animations
+      const scheduleAnimation = () => {
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(() => {
+            setupAnimation();
+          });
+        } else {
+          setTimeout(setupAnimation, 0);
+        }
+      };
 
-      // Delay ScrollTrigger setup to avoid conflict with scroll-to-top navigation
-      const timeoutId = setTimeout(() => {
-        // Create scroll-triggered scale animation
+      const setupAnimation = () => {
+        if (!bigImgRef.current) return;
+
+        // Reset to initial state first to prevent jump on navigation
+        gsap.set(bigImgRef.current, { scale: 0.5 });
+
+        // Use will-change for better performance
+        gsap.set(bigImgRef.current, { willChange: "transform" });
+
+        // Create scroll-triggered scale animation with optimized settings
         const animation = gsap.to(bigImgRef.current, {
           scale: 1,
           duration: 1,
           ease: "power2.out",
+          force3D: true, // Force hardware acceleration
           scrollTrigger: {
             trigger: bigImgRef.current,
             start: "top 80%",
             end: "bottom 80%",
             scrub: 1,
-            // Use a unique id to avoid conflicts with other ScrollTriggers
             id: "big-img-scale",
-            // markers: true,
+            onUpdate: () => {
+              // Use transform3d for better performance
+              if (bigImgRef.current) {
+                gsap.set(bigImgRef.current, { force3D: true });
+              }
+            },
           },
+        });
+
+        // Add completion handler separately
+        animation.eventCallback("onComplete", () => {
+          // Remove will-change after animation completes
+          if (bigImgRef.current) {
+            gsap.set(bigImgRef.current, { willChange: "auto" });
+          }
         });
 
         // Store animation reference for cleanup
         (bigImgRef.current as any).scrollAnimation = animation;
-      }, 100); // Small delay to let scroll-to-top complete
+      };
+
+      // Delay ScrollTrigger setup to avoid conflict with scroll-to-top navigation
+      const timeoutId = setTimeout(scheduleAnimation, 100);
 
       // Cleanup function
       return () => {
@@ -72,24 +129,37 @@ export default function Home() {
   );
 
   useEffect(() => {
-    async function fetchPosts() {
-      const posts = await client.fetch(
-        `*[_type == "post" && language == "fr"]|order(_createdAt desc)[0...3]{
-          _id,
-          title,
-          slug,
-          description,
-          mainImage {
-            asset->{url}
-          },
-          publishedAt,
-          body,
-          language
-        }`,
-      );
-      setBlogPosts(posts);
+    // Defer blog posts loading to improve initial page load
+    const fetchPosts = async () => {
+      try {
+        const posts = await client.fetch(
+          `*[_type == "post" && language == "fr"]|order(_createdAt desc)[0...3]{
+            _id,
+            title,
+            slug,
+            description,
+            mainImage {
+              asset->{url}
+            },
+            publishedAt,
+            body,
+            language
+          }`,
+        );
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+      }
+    };
+
+    // Use requestIdleCallback to defer non-critical data fetching
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => {
+        fetchPosts();
+      });
+    } else {
+      setTimeout(fetchPosts, 100);
     }
-    fetchPosts();
   }, []);
 
   return (
@@ -106,10 +176,11 @@ export default function Home() {
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
-          quality={95}
+          quality={85}
           priority
           fetchPriority="high"
-          style={{ contentVisibility: "auto" }}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
 
         {/* <video
@@ -180,8 +251,10 @@ export default function Home() {
               fill
               className="rounded-sm object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
-              // loading="lazy"
-              quality={90}
+              loading="lazy"
+              quality={80}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           </div>
         </div>
@@ -252,7 +325,9 @@ export default function Home() {
         </div>
       </section>
 
-      <HorizScroll />
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+        <HorizScroll />
+      </Suspense>
 
       <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
         {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
@@ -267,17 +342,23 @@ export default function Home() {
           </p>
         </AnimatedText>
       </section>
-      <CardsScroll />
+
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+        <CardsScroll />
+      </Suspense>
 
       <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row-reverse md:gap-20 md:px-8 md:py-20">
         <div className="left relative h-[400px] md:h-[700px] md:w-1/2">
           <Image
             src="/images/nem1.png"
-            alt="Random from Picsum"
+            alt="Nemwood furniture showcase"
             fill
             className="rounded-sm object-cover"
-            sizes="(max-width: 768px) 100vw, 80vw"
-            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
         </div>
 
@@ -311,38 +392,44 @@ export default function Home() {
       </section>
 
       <section className="border-primary border-t py-40 md:py-80">
-        <BlurryTextReveal />
+        <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
+          <BlurryTextReveal />
+        </Suspense>
       </section>
 
-      <Testimonial />
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <Testimonial />
+      </Suspense>
 
       {/* FAQ Section */}
-      <FAQ
-        title="Questions fréquentes"
-        description="Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure en Belgique."
-        faqs={[
-          {
-            question: "Proposez-vous des devis gratuits ?",
-            answer:
-              "Oui, nous proposons des devis gratuits et sans engagement pour tous nos projets de menuiserie sur mesure. Contactez-nous pour planifier une visite et discuter de vos besoins.",
-          },
-          {
-            question: "Quels types de bois utilisez-vous ?",
-            answer:
-              "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
-          },
-          {
-            question: "Combien de temps prend la réalisation d'un projet ?",
-            answer:
-              "Les délais varient selon la complexité du projet. Un escalier simple prend 4-6 semaines, une garde-robe 3-4 semaines, et une cuisine complète 6-8 semaines. Nous vous fournissons un planning détaillé lors du devis.",
-          },
-          {
-            question: "Travaillez-vous dans toute la Belgique ?",
-            answer:
-              "Oui, nous intervenons dans toute la Belgique. Nos artisans se déplacent pour les mesures, l'installation et le suivi de vos projets, quel que soit votre lieu de résidence.",
-          },
-        ]}
-      />
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <FAQ
+          title="Questions fréquentes"
+          description="Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure en Belgique."
+          faqs={[
+            {
+              question: "Proposez-vous des devis gratuits ?",
+              answer:
+                "Oui, nous proposons des devis gratuits et sans engagement pour tous nos projets de menuiserie sur mesure. Contactez-nous pour planifier une visite et discuter de vos besoins.",
+            },
+            {
+              question: "Quels types de bois utilisez-vous ?",
+              answer:
+                "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
+            },
+            {
+              question: "Combien de temps prend la réalisation d'un projet ?",
+              answer:
+                "Les délais varient selon la complexité du projet. Un escalier simple prend 4-6 semaines, une garde-robe 3-4 semaines, et une cuisine complète 6-8 semaines. Nous vous fournissons un planning détaillé lors du devis.",
+            },
+            {
+              question: "Travaillez-vous dans toute la Belgique ?",
+              answer:
+                "Oui, nous intervenons dans toute la Belgique. Nos artisans se déplacent pour les mesures, l'installation et le suivi de vos projets, quel que soit votre lieu de résidence.",
+            },
+          ]}
+        />
+      </Suspense>
 
       {/* Blog Previews Section */}
       <section className="border-primary border-y px-4 py-10 md:px-8 md:py-20">
@@ -371,7 +458,12 @@ export default function Home() {
         {/* Desktop: Regular Grid Layout */}
         <ul className="mt-8 hidden list-none flex-row justify-center gap-6 p-0 md:mt-20 md:flex">
           {blogPosts.map((post) => (
-            <BlogPreview key={post._id} post={post} layout="grid" />
+            <BlogPreview
+              key={post._id}
+              post={post}
+              layout="grid"
+              className="max-w-sm flex-1"
+            />
           ))}
         </ul>
         <div className="mt-3 md:mt-6">

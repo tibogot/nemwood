@@ -4,6 +4,7 @@ import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ClientLayout from "@/components/ClientLayout";
 import { Analytics } from "@vercel/analytics/next";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 // import CookieConsent from "@/components/CookieConsent";
 // import ScrollProgress from "@/components/ScrollProgress";
 
@@ -19,6 +20,7 @@ const ITCGaramondStdLtNarrow = localFont({
   display: "swap",
   preload: true,
   fallback: ["serif"],
+  adjustFontFallback: false,
 });
 const ITCGaramondStdLtNarrowIta = localFont({
   src: [
@@ -30,8 +32,9 @@ const ITCGaramondStdLtNarrowIta = localFont({
   ],
   variable: "--font-ITCGaramondStdLtNarrowIta",
   display: "swap",
-  preload: true,
+  preload: false, // Don't preload italic variant
   fallback: ["serif"],
+  adjustFontFallback: false,
 });
 const HelveticaNow = localFont({
   src: [
@@ -45,6 +48,7 @@ const HelveticaNow = localFont({
   display: "swap",
   preload: true,
   fallback: ["sans-serif"],
+  adjustFontFallback: false,
 });
 
 // const neueHaasDisplay = localFont({
@@ -112,13 +116,16 @@ export default function RootLayout({
       <head>
         {/* Next.js automatically handles font preloading and optimization */}
 
-        {/* Preload critical hero image for LCP */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-nemwood.webp"
-          type="image/webp"
-        />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//cdn.sanity.io" />
+
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+
+        {/* Hero image preloading is handled by Next.js Image component with priority prop */}
+        {/* Font preloading is handled automatically by Next.js localFont with preload: true */}
 
         {/* JSON-LD Structured Data for SEO */}
         <script
@@ -209,6 +216,9 @@ export default function RootLayout({
 
         {/* Google Analytics Component */}
         <GoogleAnalytics />
+
+        {/* Performance Monitoring */}
+        <PerformanceMonitor />
 
         {/* Immediate FOUC prevention styles */}
         <style

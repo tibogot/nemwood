@@ -188,7 +188,7 @@ const HorizScroll: React.FC = () => {
             >
               <div className="flex h-full w-1/2 flex-col justify-between pt-30 pb-20 pl-8">
                 <AnimatedTextHorizontal
-                  horizontalContainer={containerRef.current}
+                  horizontalContainer="[data-horizontal-scroll]"
                   sectionIndex={index}
                   totalSections={5}
                   stagger={0.1}
@@ -211,7 +211,7 @@ const HorizScroll: React.FC = () => {
                   </div>
                 </AnimatedTextHorizontal>
                 <AnimatedTextHorizontal
-                  horizontalContainer={containerRef.current}
+                  horizontalContainer="[data-horizontal-scroll]"
                   sectionIndex={index}
                   totalSections={5}
                   stagger={0.05}

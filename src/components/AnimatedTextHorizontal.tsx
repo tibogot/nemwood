@@ -62,6 +62,7 @@ function AnimatedTextHorizontal({
   const [fontsReady, setFontsReady] = useState(false);
   const [splitTextCreated, setSplitTextCreated] = useState(false);
   const [pageLoaderReady, setPageLoaderReady] = useState(false);
+  const retryCountRef = useRef(0);
 
   // Enhanced font loading detection - same as AnimatedText3
   useEffect(() => {
@@ -186,6 +187,58 @@ function AnimatedTextHorizontal({
 
         if (children.length === 0) return;
 
+        // Ensure we have a valid horizontal container before proceeding
+        const triggerElement =
+          typeof horizontalContainer === "string"
+            ? (document.querySelector(horizontalContainer) as HTMLElement)
+            : horizontalContainer;
+
+        if (!triggerElement) {
+          retryCountRef.current += 1;
+          if (retryCountRef.current < 10) {
+            // Max 10 retries (1 second)
+            console.warn(
+              `Horizontal container not found, retrying in 100ms... (attempt ${retryCountRef.current}/10)`,
+            );
+            setTimeout(createSplitTextInstances, 100);
+            return;
+          } else {
+            console.warn(
+              "Horizontal container not found after 10 attempts, using immediate animation",
+            );
+            // Fall back to immediate animation
+            children.forEach((child, index) => {
+              try {
+                const split = SplitText.create(child, {
+                  type: "lines",
+                  mask: "lines",
+                  autoSplit: true,
+                  aria: "none",
+                });
+
+                if (split && split.lines && split.lines.length > 0) {
+                  splitRefs.current.push(split);
+                  gsap.set(child, { visibility: "visible", opacity: 1 });
+                  gsap.to(split.lines, {
+                    yPercent: 0,
+                    autoAlpha: 1,
+                    stagger,
+                    duration,
+                    ease,
+                    delay: delay + index * 0.1,
+                  });
+                }
+              } catch (error) {
+                console.error(`Error creating fallback animation:`, error);
+              }
+            });
+            return;
+          }
+        }
+
+        // Reset retry count since we found the container
+        retryCountRef.current = 0;
+
         let allInstancesCreated = true;
 
         children.forEach((child, index) => {
@@ -221,12 +274,7 @@ function AnimatedTextHorizontal({
                 autoAlpha: 0,
               });
 
-              // Get the horizontal container element
-              const triggerElement =
-                typeof horizontalContainer === "string"
-                  ? (document.querySelector(horizontalContainer) as HTMLElement)
-                  : horizontalContainer;
-
+              // Use the triggerElement we already validated at the beginning
               if (triggerElement) {
                 // Use a simpler approach: detect when the section element itself comes into view
                 // during the horizontal scroll animation

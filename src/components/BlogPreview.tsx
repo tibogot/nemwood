@@ -36,7 +36,7 @@ export default function BlogPreview({
   const responsiveClasses =
     layout === "grid"
       ? "text-primary mb-6 md:mb-10"
-      : "text-primary w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink";
+      : "text-primary w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink-0";
 
   return (
     <li className={`${responsiveClasses} ${className}`.trim()}>
