@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  // Redirects are now handled by middleware.ts for better performance
   // Optimize file watching for better performance
   webpack: (config, { dev }) => {
     if (dev) {
