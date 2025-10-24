@@ -122,7 +122,7 @@ export default function Home() {
         </video> */}
 
         {/* Hero text */}
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
+        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-100 md:text-6xl">
           Meubles en bois sur mesure
         </h4>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
