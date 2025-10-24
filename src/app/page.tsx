@@ -127,7 +127,7 @@ export default function Home() {
         {/* <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-100">
           Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
         </h1> */}
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
+        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-black opacity-0 md:text-6xl">
           Meubles en bois sur mesure
         </h4>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
