@@ -124,14 +124,14 @@ export default function Home() {
         </video> */}
 
         {/* Tiny LCP text - barely visible but detectable by PageSpeed */}
-        <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-100">
+        {/* <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-100">
           Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
-        </h1>
-        {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
+        </h1> */}
+        <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
           </h4>
-        </AnimatedText> */}
+        </AnimatedText>
 
         {/* Logo at bottom of hero - LCP optimized */}
         <div className="absolute bottom-0 left-1/2 z-10 w-[85vw] -translate-x-1/2 translate-y-[25%] transform text-[#FFFCF5] md:w-[80vw] md:translate-y-[22%]">
