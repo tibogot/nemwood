@@ -360,12 +360,12 @@ export default function Home() {
         <div className="mt-8 md:hidden">
           <ul className="scrollbar-hide flex list-none gap-6 overflow-x-auto p-0">
             {blogPosts.map((post, index) => (
-              <div
+              <BlogPreview
                 key={post._id}
+                post={post}
+                layout="horizontal-scroll"
                 className={`${index === 0 ? "ml-0" : ""} ${index === blogPosts.length - 1 ? "mr-0" : ""}`}
-              >
-                <BlogPreview post={post} layout="horizontal-scroll" />
-              </div>
+              />
             ))}
           </ul>
         </div>

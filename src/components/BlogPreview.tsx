@@ -13,11 +13,13 @@ interface BlogPreviewProps {
     body?: any;
   };
   layout?: "horizontal-scroll" | "grid";
+  className?: string;
 }
 
 export default function BlogPreview({
   post,
   layout = "horizontal-scroll",
+  className = "",
 }: BlogPreviewProps) {
   // Try to get the image URL safely (Sanity image may be deeply nested)
   let imageUrl = "";
@@ -37,7 +39,7 @@ export default function BlogPreview({
       : "text-primary w-80 flex-shrink-0 md:mb-0 md:w-1/3 md:flex-shrink";
 
   return (
-    <li className={responsiveClasses}>
+    <li className={`${responsiveClasses} ${className}`.trim()}>
       <Link href={`/blog/${post.slug.current}`} className="group block h-full">
         <div className="flex h-full flex-col items-stretch overflow-hidden">
           <div className="relative h-[300px] w-full overflow-hidden md:h-[400px]">
