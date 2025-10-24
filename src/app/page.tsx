@@ -122,14 +122,17 @@ export default function Home() {
           <source src="/images/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
+        <h1 className="pointer-events-none absolute text-[0.1px] text-transparent">
+          Your Page Title
+        </h1>
 
         {/* Tiny LCP text - barely visible but detectable by PageSpeed */}
         {/* <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-100">
           Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
         </h1> */}
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-black opacity-0 md:text-6xl">
+        {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
           Meubles en bois sur mesure
-        </h4>
+        </h4> */}
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
