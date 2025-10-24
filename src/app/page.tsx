@@ -124,7 +124,7 @@ export default function Home() {
         </video> */}
 
         {/* Tiny LCP text - barely visible but detectable by PageSpeed */}
-        <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-0">
+        <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-100">
           Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
         </h1>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
