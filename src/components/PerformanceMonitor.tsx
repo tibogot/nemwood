@@ -33,11 +33,11 @@ export default function PerformanceMonitor() {
     // LCP (Largest Contentful Paint)
     const observerLCP = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      const lastEntry = entries[entries.length - 1];
+      const lastEntry = entries[entries.length - 1] as any; // Cast to any for LCP-specific properties
       reportWebVitals({
         name: "LCP",
         value: lastEntry.startTime,
-        id: lastEntry.id,
+        id: lastEntry.id || `lcp-${Date.now()}`,
       });
     });
     observerLCP.observe({ entryTypes: ["largest-contentful-paint"] });
@@ -45,11 +45,12 @@ export default function PerformanceMonitor() {
     // FID (First Input Delay)
     const observerFID = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
+        const fidEntry = entry as any; // Cast to any for FID-specific properties
         reportWebVitals({
           name: "FID",
-          value: entry.processingStart - entry.startTime,
-          id: entry.name,
+          value: fidEntry.processingStart - fidEntry.startTime,
+          id: fidEntry.name || `fid-${index}-${Date.now()}`,
         });
       });
     });
@@ -75,11 +76,11 @@ export default function PerformanceMonitor() {
     // FCP (First Contentful Paint)
     const observerFCP = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         reportWebVitals({
           name: "FCP",
           value: entry.startTime,
-          id: entry.name,
+          id: entry.name || `fcp-${index}-${Date.now()}`,
         });
       });
     });
@@ -88,11 +89,12 @@ export default function PerformanceMonitor() {
     // TTFB (Time to First Byte)
     const observerTTFB = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
+        const navEntry = entry as any; // Cast to any for Navigation-specific properties
         reportWebVitals({
           name: "TTFB",
-          value: entry.responseStart - entry.requestStart,
-          id: entry.name,
+          value: navEntry.responseStart - navEntry.requestStart,
+          id: navEntry.name || `ttfb-${index}-${Date.now()}`,
         });
       });
     });
