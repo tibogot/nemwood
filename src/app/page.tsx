@@ -99,15 +99,16 @@ export default function Home() {
         {/* Hero 3D Canvas - GLB Model */}
         {/* <GLBHeroCanvas /> */}
 
-        {/* Hero background image - commented out */}
+        {/* Hero background image - LCP optimized */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/hero-nemwood.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
-          quality={90}
+          quality={95}
           priority
+          fetchPriority="high"
         />
 
         {/* <video
@@ -121,17 +122,19 @@ export default function Home() {
           Your browser does not support the video tag.
         </video> */}
 
-        {/* Hero text */}
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-100 md:text-6xl">
-          Meubles en bois sur mesure
-        </h4>
+        {/* Invisible LCP text for better performance - no visible text */}
+        <div className="sr-only">
+          <h1>
+            Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
+          </h1>
+        </div>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
           </h4>
         </AnimatedText> */}
 
-        {/* Logo at bottom of hero */}
+        {/* Logo at bottom of hero - LCP optimized */}
         <div className="absolute bottom-0 left-1/2 z-10 w-[85vw] -translate-x-1/2 translate-y-[25%] transform text-[#FFFCF5] md:w-[80vw] md:translate-y-[22%]">
           <Logo className="h-auto w-full" />
         </div>
@@ -361,7 +364,7 @@ export default function Home() {
                 key={post._id}
                 className={`${index === 0 ? "ml-0" : ""} ${index === blogPosts.length - 1 ? "mr-0" : ""}`}
               >
-                <BlogPreview post={post} />
+                <BlogPreview post={post} layout="horizontal-scroll" />
               </div>
             ))}
           </ul>
@@ -370,7 +373,7 @@ export default function Home() {
         {/* Desktop: Regular Grid Layout */}
         <ul className="mt-8 hidden list-none flex-row justify-center gap-6 p-0 md:mt-20 md:flex">
           {blogPosts.map((post) => (
-            <BlogPreview key={post._id} post={post} />
+            <BlogPreview key={post._id} post={post} layout="grid" />
           ))}
         </ul>
         <div className="mt-3 md:mt-6">

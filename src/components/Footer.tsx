@@ -42,7 +42,7 @@ export default function Footer() {
               </h3> */}
               <div className="text-primary flex flex-col space-y-1">
                 <Link
-                  href="tel:+33123456789"
+                  href="tel:+32489330544"
                   className="font-HelveticaNow text-primary cursor-pointer text-xl transition-colors"
                 >
                   +32 489 33 05 44
