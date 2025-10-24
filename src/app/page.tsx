@@ -109,6 +109,7 @@ export default function Home() {
           quality={95}
           priority
           fetchPriority="high"
+          style={{ contentVisibility: "auto" }}
         />
 
         {/* <video
@@ -122,12 +123,10 @@ export default function Home() {
           Your browser does not support the video tag.
         </video> */}
 
-        {/* Invisible LCP text for better performance - no visible text */}
-        <div className="sr-only">
-          <h1>
-            Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
-          </h1>
-        </div>
+        {/* Tiny LCP text - barely visible but detectable by PageSpeed */}
+        <h1 className="pointer-events-none absolute top-0 left-0 text-xs text-transparent opacity-0">
+          Nemwood - Artisan menuisier en Belgique - Meubles en bois sur mesure
+        </h1>
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure

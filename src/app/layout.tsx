@@ -112,6 +112,14 @@ export default function RootLayout({
       <head>
         {/* Next.js automatically handles font preloading and optimization */}
 
+        {/* Preload critical hero image for LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-nemwood.webp"
+          type="image/webp"
+        />
+
         {/* JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"
