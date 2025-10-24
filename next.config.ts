@@ -21,7 +21,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "gsap", "@gsap/react"],
-    optimizeCss: true,
     scrollRestoration: true,
   },
   compiler: {
