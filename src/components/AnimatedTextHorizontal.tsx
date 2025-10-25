@@ -218,10 +218,9 @@ function AnimatedTextHorizontal({
 
                 if (split && split.lines && split.lines.length > 0) {
                   splitRefs.current.push(split);
-                  gsap.set(child, { visibility: "visible", opacity: 1 });
+                  gsap.set(child, { opacity: 1 });
                   gsap.to(split.lines, {
                     yPercent: 0,
-                    autoAlpha: 1,
                     stagger,
                     duration,
                     ease,
@@ -245,7 +244,6 @@ function AnimatedTextHorizontal({
           try {
             // Hide the original text element to prevent FOUC
             gsap.set(child, {
-              visibility: "hidden",
               opacity: 0,
             });
 
@@ -271,7 +269,6 @@ function AnimatedTextHorizontal({
               // Set initial state to prevent FOUC
               gsap.set(split.lines, {
                 yPercent: 100,
-                autoAlpha: 0,
               });
 
               // Use the triggerElement we already validated at the beginning
@@ -286,7 +283,6 @@ function AnimatedTextHorizontal({
                   // Create the text animation (paused initially)
                   const textAnimation = gsap.to(split.lines, {
                     yPercent: 0,
-                    autoAlpha: 1,
                     stagger,
                     duration,
                     ease,
@@ -313,7 +309,6 @@ function AnimatedTextHorizontal({
                               );
                             }
                             gsap.set(child, {
-                              visibility: "visible",
                               opacity: 1,
                             });
 
@@ -357,7 +352,6 @@ function AnimatedTextHorizontal({
                             wrapperRef.current.classList.remove("fouc-prevent");
                           }
                           gsap.set(child, {
-                            visibility: "visible",
                             opacity: 1,
                           });
 
