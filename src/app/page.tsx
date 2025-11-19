@@ -165,14 +165,14 @@ export default function Home() {
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="relative flex h-[100svh] flex-col items-center justify-end px-4 py-20 md:px-8 md:py-40">
+      <section className="relative flex h-[100svh] flex-col items-start justify-end px-4 py-20 md:px-8 md:py-10">
         {/* Hero 3D Canvas - GLB Model */}
         {/* <GLBHeroCanvas /> */}
 
-        {/* Hero background image - LCP optimized */}
+        {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/hero-nemwood.webp"
+          src="/images/Apropos-nemwood.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
@@ -194,9 +194,9 @@ export default function Home() {
           Your browser does not support the video tag.
         </video> */}
 
-        <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
+        {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
           Meubles en bois sur mesure
-        </h4>
+        </h4> */}
         {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
             Meubles en bois sur mesure
@@ -204,7 +204,7 @@ export default function Home() {
         </AnimatedText> */}
 
         {/* Logo at bottom of hero - LCP optimized */}
-        <div className="absolute bottom-0 left-1/2 z-10 w-[85vw] -translate-x-1/2 translate-y-[25%] transform text-[#FFFCF5] md:w-[80vw] md:translate-y-[22%]">
+        <div className="relative z-10 w-[85vw] text-[#FFFCF5] md:w-[60vw]">
           <Logo className="h-auto w-full" />
         </div>
       </section>
