@@ -6,6 +6,10 @@ import client from "@/sanityClient";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import AnimatedText from "@/components/AnimatedText3";
+import BlogPreview from "@/components/BlogPreview";
+import Logo from "@/components/Logo3";
 import dynamic from "next/dynamic";
 
 // Register ScrollTrigger plugin
@@ -44,12 +48,6 @@ const AnimatedBorderLines = dynamic(
     ssr: false,
   },
 );
-
-// Critical components loaded normally
-import { ArrowRight, ChevronDown } from "lucide-react";
-import AnimatedText from "@/components/AnimatedText3";
-import BlogPreview from "@/components/BlogPreview";
-import Logo from "@/components/Logo3";
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
