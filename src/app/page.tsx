@@ -208,8 +208,8 @@ export default function Home() {
 
         {/* Scroll label at bottom center of hero */}
         <div className="pointer-events-none absolute right-0 bottom-6 left-0 z-10 flex justify-center md:bottom-10">
-          <span className="font-HelveticaNow text-xs tracking-[0.25em] text-[#FFFCF5]/80 uppercase">
-            Scroll
+          <span className="font-ITCGaramondN text-secondary text-xl">
+            {"{ Scroll }"}
           </span>
         </div>
       </section>
@@ -461,13 +461,13 @@ export default function Home() {
         </div>
 
         {/* Desktop: Regular Grid Layout */}
-        <ul className="mt-8 hidden list-none flex-row justify-center gap-6 p-0 md:mt-20 md:flex">
+        <ul className="mt-8 hidden list-none flex-row justify-start gap-8 p-0 md:mt-20 md:flex">
           {blogPosts.map((post) => (
             <BlogPreview
               key={post._id}
               post={post}
               layout="grid"
-              className="max-w-sm flex-1"
+              className="flex-1"
             />
           ))}
         </ul>
