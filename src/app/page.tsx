@@ -207,7 +207,7 @@ export default function Home() {
 
         {/* Scroll label at bottom center of hero */}
         <div className="pointer-events-none absolute right-0 bottom-6 left-0 z-10 flex justify-center md:bottom-10">
-          <span className="font-ITCGaramondN text-secondary text-xl">
+          <span className="font-ITCGaramondN text-xl text-[#fffcf5]">
             {"{ Scroll }"}
           </span>
         </div>

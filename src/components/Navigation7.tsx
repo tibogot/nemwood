@@ -76,11 +76,17 @@ export default function Navigation7({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
+  // Hero "fixed" color (ignores dark mode) for logo + burger when over hero
+  // Uses your off-white brand color so dark mode never affects it
+  const heroFixedColorClass = "text-[#fffcf5]";
+
+  // Whether we are in the hero-state variant (home + over hero)
+  const isHeroState = pathname === "/" && isOverHero;
+
   // Effective color for closed navbar logo + burger
-  // - On home and still over hero: use variant color (can be secondary on light background)
+  // - On home and still over hero: use fixed hero color (ignores dark mode)
   // - Otherwise: always use primary for better contrast on solid secondary background
-  const effectiveColorClass =
-    pathname === "/" && isOverHero ? baseColorClass : "text-primary";
+  const effectiveColorClass = isHeroState ? heroFixedColorClass : "text-primary";
 
   // Font loading detection (simplified version from Navigation5)
   useEffect(() => {
@@ -353,7 +359,7 @@ export default function Navigation7({
           <div className="flex h-16 items-center justify-between">
             {/* Primary logo inside the mask */}
             {pathname === "/" ? (
-              // Disabled logo for home page - same structure/offset as base nav, but primary color
+              // Disabled logo for home page - same structure/offset as base nav, always primary (theme-aware)
               <Link
                 href="#"
                 className="pointer-events-none flex cursor-default items-center space-x-2 transition-all duration-300"
@@ -364,7 +370,7 @@ export default function Navigation7({
                 <Logo width={120} height={52} className="text-primary" />
               </Link>
             ) : (
-              // Active logo for other pages - same structure/offset as base nav, but primary color
+              // Active logo for other pages - same structure/offset as base nav, always primary (theme-aware)
               <Link
                 href="/"
                 className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
