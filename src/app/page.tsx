@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText3";
 import BlogPreview from "@/components/BlogPreview";
-import Logo from "@/components/Logo3";
 import dynamic from "next/dynamic";
 
 // Register ScrollTrigger plugin
@@ -202,8 +201,8 @@ export default function Home() {
         </AnimatedText> */}
 
         {/* Logo directly under navbar - full-width, centered, tightly tucked under nav */}
-        <div className="relative z-10 -mt-8 flex w-full items-center justify-center text-[#FFFCF5] md:-mt-18">
-          <Logo className="h-auto w-full" />
+        <div className="relative z-10 flex w-full items-center justify-center text-[#FFFCF5]">
+          <img src="/logohero.svg" alt="Nemwood" className="h-auto w-full" />
         </div>
 
         {/* Scroll label at bottom center of hero */}
