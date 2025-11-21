@@ -170,7 +170,7 @@ export default function Home() {
         {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
-          src="/images/Apropos-nemwood.webp"
+          src="/images/hero-nemwood.webp"
           alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
           fill
           sizes="100vw"
