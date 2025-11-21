@@ -34,8 +34,9 @@ export default function Navigation7({
   const logoRef = useRef<HTMLAnchorElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // Determine color class based on variant
-  const colorClass = variant === "primary" ? "text-primary" : "text-secondary";
+  // Determine base color class based on variant
+  const baseColorClass =
+    variant === "primary" ? "text-primary" : "text-secondary";
 
   // Navigation items and SplitText-related state (mirrors Navigation5)
   const navItems = [
@@ -54,6 +55,32 @@ export default function Navigation7({
 
   // Master GSAP timeline for burger + overlay + links (open/close)
   const masterTimelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Track if we are over the home hero section (transparent nav) or past it (solid nav)
+  const [isOverHero, setIsOverHero] = useState(pathname === "/");
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setIsOverHero(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      const vh = window.innerHeight || 0;
+      // Once we've scrolled roughly past the hero (full viewport hero), switch to solid nav
+      setIsOverHero(window.scrollY < vh - 80);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+
+  // Effective color for closed navbar logo + burger
+  // - On home and still over hero: use variant color (can be secondary on light background)
+  // - Otherwise: always use primary for better contrast on solid secondary background
+  const effectiveColorClass =
+    pathname === "/" && isOverHero ? baseColorClass : "text-primary";
 
   // Font loading detection (simplified version from Navigation5)
   useEffect(() => {
@@ -453,7 +480,7 @@ export default function Navigation7({
                 title="You are currently on the home page"
                 onClick={(e) => e.preventDefault()}
               >
-                <Logo width={120} height={52} className={colorClass} />
+                <Logo width={120} height={52} className={effectiveColorClass} />
               </Link>
             ) : (
               // Active logo for other pages
@@ -463,7 +490,7 @@ export default function Navigation7({
                 className="flex items-center space-x-2 transition-all duration-300 hover:scale-105"
                 style={{ transform: "translateY(-4px)" }}
               >
-                <Logo width={120} height={52} className={colorClass} />
+                <Logo width={120} height={52} className={effectiveColorClass} />
               </Link>
             )}
 
@@ -475,7 +502,7 @@ export default function Navigation7({
               {/* Base burger - animates in sync and rotates like Navigation5 */}
               <button
                 onClick={toggleMenu}
-                className={`${colorClass} relative flex h-10 w-10 cursor-pointer flex-col items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none md:h-8 md:w-8 ${
+                className={`${effectiveColorClass} relative flex h-10 w-10 cursor-pointer flex-col items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none md:h-8 md:w-8 ${
                   isMenuOpen ? "rotate-180" : ""
                 }`}
                 aria-label="Toggle menu"

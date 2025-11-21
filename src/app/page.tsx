@@ -163,7 +163,7 @@ export default function Home() {
   return (
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
-      <section className="relative flex h-[100svh] flex-col items-start justify-end px-4 py-20 md:px-8 md:py-10">
+      <section className="relative flex h-[100svh] flex-col items-center justify-start px-4 pt-20 pb-10 md:px-8 md:pt-24 md:pb-16">
         {/* Hero 3D Canvas - GLB Model */}
         {/* <GLBHeroCanvas /> */}
 
@@ -201,9 +201,16 @@ export default function Home() {
           </h4>
         </AnimatedText> */}
 
-        {/* Logo at bottom of hero - LCP optimized */}
-        <div className="relative z-10 w-[85vw] text-[#FFFCF5] md:w-[60vw]">
+        {/* Logo directly under navbar - full-width, centered, tightly tucked under nav */}
+        <div className="relative z-10 -mt-8 flex w-full items-center justify-center text-[#FFFCF5] md:-mt-18">
           <Logo className="h-auto w-full" />
+        </div>
+
+        {/* Scroll label at bottom center of hero */}
+        <div className="pointer-events-none absolute right-0 bottom-6 left-0 z-10 flex justify-center md:bottom-10">
+          <span className="font-HelveticaNow text-xs tracking-[0.25em] text-[#FFFCF5]/80 uppercase">
+            Scroll
+          </span>
         </div>
       </section>
 
