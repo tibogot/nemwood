@@ -268,9 +268,9 @@ export default function ManyServices() {
     <section className="relative min-h-screen w-full py-16 md:py-20">
       {/* Title and Description */}
       <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
-        <h3 className="font-ITCGaramondN text-primary mb-4 text-3xl leading-tight md:mb-0 md:text-5xl lg:text-7xl">
+        <h2 className="font-ITCGaramondN text-primary mb-4 text-3xl leading-tight md:mb-0 md:text-5xl lg:text-7xl">
           Nos services
-        </h3>
+        </h2>
 
         <p className="font-HelveticaNow text-primary text-base md:max-w-xl md:text-lg">
           Découvrez nos services de menuiserie sur mesure en Belgique. Nous vous

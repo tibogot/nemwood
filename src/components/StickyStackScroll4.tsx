@@ -23,9 +23,7 @@ function Card1() {
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Deep Specialization
-              </h2>
+              <h3 className="-mt-1 text-4xl leading-none">Éco-responsable</h3>
 
               <div className="mt-12" />
 
@@ -70,9 +68,9 @@ function Card2() {
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Modular Portfolio Construction
-              </h2>
+              <h3 className="-mt-1 text-4xl leading-none">
+                Matériaux durables
+              </h3>
 
               <div className="mt-12" />
 
@@ -120,9 +118,9 @@ function Card3() {
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">
-                Institutional-Grade Infrastructure
-              </h2>
+              <h3 className="-mt-1 text-4xl leading-none">
+                Fabrication sur mesure
+              </h3>
 
               <div className="mt-12" />
 
@@ -169,7 +167,7 @@ function Card4() {
           {/* Title + Copy */}
           <div className="flex w-full flex-col items-start md:w-5/12 md:pr-6">
             <div>
-              <h2 className="-mt-1 text-4xl leading-none">Construction</h2>
+              <h3 className="-mt-1 text-4xl leading-none">Modélisation 3D</h3>
 
               <div className="mt-12" />
 
@@ -371,9 +369,9 @@ export default function HomeCard() {
       </section> */}
       <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h3 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
-            Creativity to design
-          </h3>
+          <h2 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
+            Imaginer, concevoir et réaliser vos projets
+          </h2>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
             Vous cherchez un artisan menuisier en Belgique pour créer des
             meubles en bois sur mesure ? Nemwood est spécialisé dans la
@@ -389,7 +387,7 @@ export default function HomeCard() {
           {/* Card 1 */}
           <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
             <span className="text-sm leading-none">01</span>
-            <h2 className="mt-4 text-4xl leading-none">Deep Specialization</h2>
+            <h3 className="mt-4 text-4xl leading-none">Éco-responsable</h3>
             <div className="mt-8" />
             <p className="font-HelveticaNow text-lg leading-relaxed">
               With decades of combined experience, Stack's specialists have
@@ -418,9 +416,7 @@ export default function HomeCard() {
           {/* Card 2 */}
           <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
             <span className="text-sm leading-none">02</span>
-            <h2 className="mt-4 text-4xl leading-none">
-              Modular Portfolio Construction
-            </h2>
+            <h3 className="mt-4 text-4xl leading-none">Matériaux durables</h3>
             <div className="mt-8" />
             <p className="font-HelveticaNow text-lg leading-relaxed">
               Every Stack fund operates as a standardized modular building
@@ -450,9 +446,9 @@ export default function HomeCard() {
           {/* Card 3 */}
           <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
             <span className="text-sm leading-none">03</span>
-            <h2 className="mt-4 text-4xl leading-none">
-              Institutional-Grade Infrastructure
-            </h2>
+            <h3 className="mt-4 text-4xl leading-none">
+              Fabrication sur mesure
+            </h3>
             <div className="mt-8" />
             <p className="font-HelveticaNow text-lg leading-relaxed">
               Stack's scalable digital-first and AI-powered operational
@@ -480,7 +476,7 @@ export default function HomeCard() {
           {/* Card 4 */}
           <div className="bg-secondary border-primary/30 overflow-hidden border-t py-6">
             <span className="text-sm leading-none">04</span>
-            <h2 className="mt-4 text-4xl leading-none">Construction</h2>
+            <h3 className="mt-4 text-4xl leading-none">Modélisation 3D</h3>
             <div className="mt-8" />
             <p className="font-HelveticaNow text-lg leading-relaxed">
               Innovative execution methods to deliver safe, high quality project

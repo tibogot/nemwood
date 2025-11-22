@@ -51,9 +51,9 @@ export default function About() {
               {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
               </h4> */}
-              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                A propos
-              </h3>
+              <h2 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
+                Le parcours du menuisier
+              </h2>
             </AnimatedText>
             <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
               Mobilier sur mesure : quand l'espace et le style s'accordent
@@ -173,9 +173,9 @@ export default function About() {
       </section>
       <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h3 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
+          <h2 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
             Creativity to design
-          </h3>
+          </h2>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
             Vous cherchez un artisan menuisier en Belgique pour créer des
             meubles en bois sur mesure ? Nemwood est spécialisé dans la
