@@ -232,7 +232,8 @@ export default function Navigation9({
         typeof window !== "undefined" ? window.innerWidth < 768 : false;
       const viewportHeight =
         typeof window !== "undefined" ? window.innerHeight : 0;
-      const openHeight = isMobile ? viewportHeight : viewportHeight * 0.6; // 100vh mobile, 60vh desktop
+      // Match Navigation6 feel: full viewport on mobile, ~75vh on desktop
+      const openHeight = isMobile ? viewportHeight : viewportHeight * 0.75;
 
       if (overlayRef.current) {
         gsap.set(overlayRef.current, {
