@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
@@ -203,7 +203,7 @@ export default function ServicesCarousel({
         gsap.killTweensOf(slider);
       },
       onRelease: function () {
-        gsap.set(document.body, { cursor: "grab" });
+        gsap.set(document.body, { cursor: "" });
       },
       onClick: function (e) {
         // GSAP's built-in click detection - only fires if no significant dragging occurred
@@ -261,12 +261,34 @@ export default function ServicesCarousel({
 
     return () => {
       clearTimeout(timeoutId);
+      // Reset cursor before killing draggable
+      gsap.set(document.body, { cursor: "" });
       if (draggableRef.current) {
         draggableRef.current.kill();
         draggableRef.current = null;
       }
     };
   }, [isVisible, animationComplete, isAnimating]);
+
+  // Reset cursor when carousel becomes invisible
+  useEffect(() => {
+    if (!isVisible) {
+      gsap.set(document.body, { cursor: "" });
+    }
+  }, [isVisible]);
+
+  // Reset cursor on component unmount
+  useEffect(() => {
+    return () => {
+      gsap.set(document.body, { cursor: "" });
+    };
+  }, []);
+
+  // Reset cursor when link is clicked (navigation occurs)
+  const handleLinkClick = () => {
+    gsap.set(document.body, { cursor: "" });
+    onLinkClick?.();
+  };
 
   return (
     <div
@@ -296,7 +318,7 @@ export default function ServicesCarousel({
               <Link
                 href={`/services/${service.slug}`}
                 className="group block"
-                onClick={onLinkClick}
+                onClick={handleLinkClick}
               >
                 <div className="service-card bg-primary/5 relative h-72 w-80 cursor-pointer overflow-hidden rounded-sm">
                   <Image
