@@ -78,6 +78,103 @@ export default function BureauPage() {
         </div>
       </section>
 
+      {/* Flexible Image Grid Section */}
+      <section className="bg-secondary px-4 py-20 md:px-8 md:py-32">
+        <div className="">
+          <div className="grid grid-cols-12 gap-4 md:gap-6">
+            {/* Single centered image - spans 7 columns */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:col-span-8 md:col-start-3 md:h-[400px]">
+              <Image
+                src="/images/desk.webp"
+                alt="Bureau sur mesure Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 58vw"
+                quality={90}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-secondary px-4 py-20 md:px-8 md:py-32">
+        <div className="">
+          <div className="grid grid-cols-12 gap-4 md:gap-6">
+            {/* First Image - spans 5 columns, starts at column 1 */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:col-span-5 md:col-start-1 md:h-[400px]">
+              <Image
+                src="/images/desk.webp"
+                alt="Bureau sur mesure Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 42vw"
+                quality={90}
+              />
+            </div>
+
+            {/* Second Image - spans 6 columns, starts at column 7 (pushes to the right) */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:col-span-6 md:col-start-7 md:h-[600px]">
+              <Image
+                src="/images/table.webp"
+                alt="Bureau en bois massif"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Full Width Image Grid Section */}
+      <section className="bg-secondary px-4 py-20 md:px-8 md:py-20">
+        <div className="">
+          <div className="grid grid-cols-12 gap-4 md:gap-6">
+            {/* Single full width image - spans 12 columns */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:h-[700px]">
+              <Image
+                src="/images/loft.webp"
+                alt="Bureau sur mesure - Réalisation Nemwood"
+                fill
+                className="object-cover"
+                sizes="100vw"
+                quality={90}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary px-4 py-20 md:px-8 md:py-20">
+        <div className="">
+          <div className="grid grid-cols-12 gap-4 md:gap-6">
+            {/* First Image - spans 6 columns, starts at column 1 */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:col-span-6 md:col-start-1 md:h-[400px]">
+              <Image
+                src="/images/kitchen.webp"
+                alt="Espace de travail sur mesure"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
+              />
+            </div>
+
+            {/* Second Image - spans 5 columns, starts at column 8 (pushes to the right) */}
+            <div className="relative col-span-12 h-[300px] overflow-hidden rounded-sm md:col-span-5 md:col-start-8 md:h-[600px]">
+              <Image
+                src="/images/wardrobe.webp"
+                alt="Bureau avec rangements intégrés"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 42vw"
+                quality={90}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <FAQ
         title="Questions sur les bureaux"
