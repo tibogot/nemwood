@@ -22,7 +22,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
   };
 
   return (
-    <div className="mx-auto mt-12 max-w-6xl">
+    <div className="mt-12">
       <div className="flex flex-col gap-4 border-t border-gray-200 pt-8">
         <p className="font-HelveticaNow text-sm text-gray-500">
           Partager cet article
