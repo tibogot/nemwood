@@ -92,9 +92,12 @@ export default function Navigation9({
 
     const handleViewportChange = () => {
       // Update overlay height to current viewport height when open
+      // Use visualViewport.height for accurate mobile viewport (handles address bar show/hide)
       if (overlayRef.current && isMenuOpen) {
+        const viewportHeight =
+          window.visualViewport?.height || window.innerHeight;
         gsap.set(overlayRef.current, {
-          height: `${window.innerHeight}px`,
+          height: `${viewportHeight}px`,
         });
       }
     };
@@ -324,8 +327,11 @@ export default function Navigation9({
       });
 
       // Initial state for overlay: collapsed height (same as Navigation7)
+      // Use visualViewport.height for accurate mobile viewport (handles address bar show/hide)
       const viewportHeight =
-        typeof window !== "undefined" ? window.innerHeight : 0;
+        typeof window !== "undefined"
+          ? window.visualViewport?.height || window.innerHeight
+          : 0;
       // Match Navigation6 feel: full viewport on mobile, ~75vh on desktop
       const openHeight = isMobileDevice
         ? viewportHeight
