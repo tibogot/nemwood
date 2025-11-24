@@ -58,6 +58,69 @@ export default function Navigation9({
   // Master GSAP timeline for burger + overlay + links (open/close)
   const masterTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
+  // Helper function to check if mobile - safe for SSR
+  const isMobile = () => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  };
+
+  // State to track if we're on mobile
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  // Check mobile status on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobileDevice(isMobile());
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Listen for resize events
+    window.addEventListener("resize", checkMobile);
+    window.addEventListener("orientationchange", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("orientationchange", checkMobile);
+    };
+  }, []);
+
+  // Handle mobile viewport changes (address bar show/hide)
+  useEffect(() => {
+    if (!isMobileDevice) return;
+
+    const handleViewportChange = () => {
+      // Update overlay height to current viewport height when open
+      if (overlayRef.current && isMenuOpen) {
+        const viewportHeight = window.innerHeight;
+        gsap.set(overlayRef.current, {
+          height: viewportHeight,
+        });
+      }
+    };
+
+    // Listen for viewport changes
+    window.addEventListener("resize", handleViewportChange);
+    window.addEventListener("orientationchange", handleViewportChange);
+
+    // Also listen for visual viewport changes (more reliable for mobile)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleViewportChange);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("orientationchange", handleViewportChange);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange,
+        );
+      }
+    };
+  }, [isMenuOpen, isMobileDevice]);
+
   // Track if we are over the home hero section (transparent nav) or past it (solid nav)
   const [isOverHero, setIsOverHero] = useState(pathname === "/");
 
@@ -111,6 +174,42 @@ export default function Navigation9({
     checkFontsLoaded();
   }, []);
 
+  // Prevent body scroll when menu is open on mobile
+  useEffect(() => {
+    if (isMobileDevice && isMenuOpen) {
+      // Store original values
+      const originalOverflow = document.body.style.overflow;
+      const originalPosition = document.body.style.position;
+      const originalTop = document.body.style.top;
+      const originalWidth = document.body.style.width;
+
+      // Get current scroll position
+      const scrollY = window.scrollY;
+
+      // Apply scroll lock
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+
+      return () => {
+        // Restore original values
+        document.body.style.overflow = originalOverflow;
+        document.body.style.position = originalPosition;
+        document.body.style.top = originalTop;
+        document.body.style.width = originalWidth;
+
+        // Restore scroll position
+        window.scrollTo(0, scrollY);
+      };
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    }
+  }, [isMenuOpen, isMobileDevice]);
+
   // Create SplitText instances for nav links (adapted from Navigation7/6)
   useEffect(() => {
     if (!fontsLoaded) return;
@@ -123,8 +222,6 @@ export default function Navigation9({
       splitTextInstances.current = [];
 
       let allInstancesCreated = true;
-      const isMobileDevice =
-        typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
       menuItemsRef.current.forEach((item, index) => {
         if (item) {
@@ -228,12 +325,12 @@ export default function Navigation9({
       });
 
       // Initial state for overlay: collapsed height (same as Navigation7)
-      const isMobile =
-        typeof window !== "undefined" ? window.innerWidth < 768 : false;
       const viewportHeight =
         typeof window !== "undefined" ? window.innerHeight : 0;
       // Match Navigation6 feel: full viewport on mobile, ~75vh on desktop
-      const openHeight = isMobile ? viewportHeight : viewportHeight * 0.75;
+      const openHeight = isMobileDevice
+        ? viewportHeight
+        : viewportHeight * 0.75;
 
       if (overlayRef.current) {
         gsap.set(overlayRef.current, {
@@ -243,8 +340,6 @@ export default function Navigation9({
       }
 
       // Initial state - menu items hidden
-      const isMobileDevice =
-        typeof window !== "undefined" ? window.innerWidth < 768 : false;
       gsap.set(menuItemsRef.current, {
         y: isMobileDevice ? 50 : -30,
         opacity: 0,
@@ -326,7 +421,7 @@ export default function Navigation9({
 
       masterTimelineRef.current = tl;
     },
-    { dependencies: [fontsLoaded, splitTextReady] },
+    { dependencies: [fontsLoaded, splitTextReady, isMobileDevice] },
   );
 
   const toggleMenu = contextSafe(() => {
