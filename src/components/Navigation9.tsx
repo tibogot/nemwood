@@ -92,10 +92,10 @@ export default function Navigation9({
 
     const handleViewportChange = () => {
       // Update overlay height to current viewport height when open
-      // Use visualViewport.height for accurate mobile viewport (handles address bar show/hide)
+      // Use window.innerHeight for full viewport (excludes browser UI, adapts when address bar hides)
       if (overlayRef.current && isMenuOpen) {
-        const viewportHeight =
-          window.visualViewport?.height || window.innerHeight;
+        // Use innerHeight for full viewport, not visualViewport which gives visible area only
+        const viewportHeight = window.innerHeight;
         gsap.set(overlayRef.current, {
           height: `${viewportHeight}px`,
         });
@@ -327,11 +327,9 @@ export default function Navigation9({
       });
 
       // Initial state for overlay: collapsed height (same as Navigation7)
-      // Use visualViewport.height for accurate mobile viewport (handles address bar show/hide)
+      // Use window.innerHeight for full viewport (excludes browser UI, adapts when address bar hides)
       const viewportHeight =
-        typeof window !== "undefined"
-          ? window.visualViewport?.height || window.innerHeight
-          : 0;
+        typeof window !== "undefined" ? window.innerHeight : 0;
       // Match Navigation6 feel: full viewport on mobile, ~75vh on desktop
       const openHeight = isMobileDevice
         ? viewportHeight
@@ -375,11 +373,9 @@ export default function Navigation9({
       );
 
       // 2. Overlay opens by increasing height
-      // Recalculate height to ensure we use current visualViewport (handles address bar show/hide)
+      // Use window.innerHeight for full viewport (excludes browser UI, adapts when address bar hides)
       const currentViewportHeight =
-        typeof window !== "undefined"
-          ? window.visualViewport?.height || window.innerHeight
-          : 0;
+        typeof window !== "undefined" ? window.innerHeight : 0;
       const currentOpenHeight = isMobileDevice
         ? currentViewportHeight
         : currentViewportHeight * 0.75;
@@ -444,11 +440,10 @@ export default function Navigation9({
       setIsMenuOpen(false);
       masterTimelineRef.current.reverse();
     } else {
-      // Recalculate height when opening to get current visualViewport height
-      // This ensures we use the latest viewport height (handles address bar show/hide)
+      // Recalculate height when opening to get current full viewport height
+      // Use window.innerHeight for full viewport (excludes browser UI, adapts when address bar hides)
       if (isMobileDevice && overlayRef.current) {
-        const currentViewportHeight =
-          window.visualViewport?.height || window.innerHeight;
+        const currentViewportHeight = window.innerHeight;
         // Update the timeline's target height dynamically
         masterTimelineRef.current.getChildren().forEach((child) => {
           if (
