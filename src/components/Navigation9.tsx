@@ -375,10 +375,18 @@ export default function Navigation9({
       );
 
       // 2. Overlay opens by increasing height
+      // Recalculate height to ensure we use current visualViewport (handles address bar show/hide)
+      const currentViewportHeight =
+        typeof window !== "undefined"
+          ? window.visualViewport?.height || window.innerHeight
+          : 0;
+      const currentOpenHeight = isMobileDevice
+        ? currentViewportHeight
+        : currentViewportHeight * 0.75;
       tl.to(
         overlayRef.current,
         {
-          height: openHeight,
+          height: currentOpenHeight,
           pointerEvents: "auto",
           duration: 0.9,
           ease: "power3.inOut",
@@ -436,6 +444,25 @@ export default function Navigation9({
       setIsMenuOpen(false);
       masterTimelineRef.current.reverse();
     } else {
+      // Recalculate height when opening to get current visualViewport height
+      // This ensures we use the latest viewport height (handles address bar show/hide)
+      if (isMobileDevice && overlayRef.current) {
+        const currentViewportHeight =
+          window.visualViewport?.height || window.innerHeight;
+        // Update the timeline's target height dynamically
+        masterTimelineRef.current.getChildren().forEach((child) => {
+          if (
+            child &&
+            typeof child === "object" &&
+            "vars" in child &&
+            child.vars &&
+            typeof child.vars === "object" &&
+            "height" in child.vars
+          ) {
+            (child.vars as { height?: number }).height = currentViewportHeight;
+          }
+        });
+      }
       setIsMenuOpen(true);
       masterTimelineRef.current.play();
     }
@@ -528,9 +555,9 @@ export default function Navigation9({
           />
         </div>
 
-        {/* Menu links content - vertically lower in the overlay */}
+        {/* Menu links content - centered on mobile, bottom on desktop */}
         <div
-          className="flex flex-1 items-end px-4 text-3xl md:px-8 md:text-4xl"
+          className="flex flex-1 items-center justify-center px-4 text-3xl md:items-end md:justify-start md:px-8 md:text-4xl"
           onClick={(e) => e.stopPropagation()}
           onMouseLeave={() => setHoveredIndex(null)}
         >
