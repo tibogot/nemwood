@@ -93,9 +93,8 @@ export default function Navigation9({
     const handleViewportChange = () => {
       // Update overlay height to current viewport height when open
       if (overlayRef.current && isMenuOpen) {
-        const viewportHeight = window.innerHeight;
         gsap.set(overlayRef.current, {
-          height: viewportHeight,
+          height: `${window.innerHeight}px`,
         });
       }
     };
