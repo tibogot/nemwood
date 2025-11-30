@@ -351,8 +351,8 @@ export default function Home() {
         <CardsScroll />
       </Suspense>
 
-      <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row-reverse md:gap-20 md:px-8 md:py-20">
-        <div className="left relative h-[400px] md:h-[700px] md:w-1/2">
+      <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row md:gap-20 md:px-8 md:py-20">
+        <div className="left relative h-[400px] md:h-[400px] md:w-1/2">
           <Image
             src="/images/nem1.png"
             alt="Nemwood furniture showcase"
@@ -366,7 +366,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="right flex flex-col justify-between md:h-[700px] md:w-1/2">
+        <div className="right flex flex-col justify-between md:h-[400px] md:w-1/2">
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
               <h2 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
@@ -395,7 +395,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-primary border-t py-40 md:py-80">
+      <section className="border-primary border-y py-40 md:py-80">
         <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
           <BlurryTextReveal />
         </Suspense>
