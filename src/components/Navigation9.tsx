@@ -191,8 +191,14 @@ export default function Navigation9({
       const originalTop = document.body.style.top;
       const originalWidth = document.body.style.width;
 
-      // Get current scroll position
-      const scrollY = window.scrollY;
+      // Stop Lenis to prevent any ongoing scroll animations
+      if (lenis) {
+        lenis.stop();
+      }
+
+      // Get current scroll position from Lenis (more accurate than window.scrollY)
+      // Fallback to window.scrollY if Lenis is not available
+      const scrollY = lenis ? lenis.scroll : window.scrollY;
 
       // Apply scroll lock
       document.body.style.overflow = "hidden";
@@ -207,16 +213,26 @@ export default function Navigation9({
         document.body.style.top = originalTop;
         document.body.style.width = originalWidth;
 
-        // Restore scroll position
-        window.scrollTo(0, scrollY);
+        // Restore scroll position using Lenis if available, otherwise window
+        if (lenis) {
+          lenis.scrollTo(scrollY, { immediate: true });
+          // Resume Lenis after restoring scroll position
+          lenis.start();
+        } else {
+          window.scrollTo(0, scrollY);
+        }
       };
     } else {
+      // Resume Lenis if it was stopped
+      if (lenis) {
+        lenis.start();
+      }
       document.body.style.overflow = "unset";
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
     }
-  }, [isMenuOpen, isMobileDevice]);
+  }, [isMenuOpen, isMobileDevice, lenis]);
 
   // Create SplitText instances for nav links (adapted from Navigation7/6)
   useEffect(() => {
