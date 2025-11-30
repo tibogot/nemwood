@@ -264,7 +264,7 @@ export default function Home() {
         </div>
       </section>
       {/* <ReverseCards /> */}
-      <section className="border-primary text-primary flex w-full flex-col border-y px-4 py-10 pb-20 md:flex-row md:px-8 md:py-20 md:pb-40">
+      <section className="border-primary text-primary flex w-full flex-col gap-8 border-y px-4 py-10 pb-20 md:flex-row md:gap-12 md:px-8 md:py-20 md:pb-40">
         <div className="left md:w-1/2">
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>

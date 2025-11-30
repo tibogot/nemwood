@@ -476,6 +476,12 @@ export default function Navigation9({
     masterTimelineRef.current.reverse();
   };
 
+  // Reset hover states when pathname changes to prevent stale hover state
+  useEffect(() => {
+    setHoveredIndex(null);
+    setIsServicesHovered(false);
+  }, [pathname]);
+
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
 
