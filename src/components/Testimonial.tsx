@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -37,6 +37,39 @@ const staticTestimonial = {
 export default function Testimonial() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Update container height dynamically to handle viewport changes
+  useEffect(() => {
+    const updateHeight = () => {
+      if (containerRef.current) {
+        // Use the actual viewport height
+        const vh = window.innerHeight;
+        containerRef.current.style.height = `${vh}px`;
+        // Refresh ScrollTrigger to recalculate
+        ScrollTrigger.refresh();
+      }
+    };
+
+    // Set initial height
+    updateHeight();
+
+    // Update on resize and orientation change
+    window.addEventListener("resize", updateHeight);
+    window.addEventListener("orientationchange", updateHeight);
+    
+    // Also listen for visual viewport changes (mobile browser UI show/hide)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", updateHeight);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("orientationchange", updateHeight);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener("resize", updateHeight);
+      }
+    };
+  }, []);
+
   useGSAP(
     () => {
       const ctx = gsap.context(() => {
@@ -63,6 +96,7 @@ export default function Testimonial() {
             scrub: 1,
             pin: true,
             anticipatePin: 1,
+            invalidateOnRefresh: true, // Recalculate on viewport changes
           },
         });
 
@@ -98,7 +132,8 @@ export default function Testimonial() {
     <>
       <section
         ref={containerRef}
-        className="bg-secondary relative h-[100dvh] overflow-hidden px-4 pt-4 text-white md:px-8 md:py-30"
+        className="bg-secondary relative overflow-hidden px-4 pt-4 text-white md:px-8 md:py-30"
+        style={{ height: "100vh" }}
       >
         {/* <Image
           src="/images/testimonial.webp"
