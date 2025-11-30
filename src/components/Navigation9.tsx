@@ -643,7 +643,9 @@ export default function Navigation9({
       </div>
 
       <nav
-        className="fixed top-0 right-0 left-0 z-40 h-16 select-none"
+        className={`fixed top-0 right-0 left-0 z-40 h-16 select-none transition-colors duration-300 ${
+          !isHeroState ? "bg-secondary" : ""
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative z-10 h-16 px-4 md:px-8">
