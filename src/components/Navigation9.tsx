@@ -93,14 +93,16 @@ export default function Navigation9({
   }, []);
 
   // Helper function to get accurate viewport height on mobile
+  // For menu overlay, we use the maximum of all possible height values
+  // to ensure it fills the entire screen even when address bars are hidden
   const getViewportHeight = () => {
     if (typeof window === "undefined") return 0;
-    // Use visualViewport.height when available (more accurate for mobile with address bar)
-    // Falls back to innerHeight if visualViewport is not available
-    if (window.visualViewport && window.visualViewport.height > 0) {
-      return window.visualViewport.height;
-    }
-    return window.innerHeight;
+    // Get all possible height values
+    const innerHeight = window.innerHeight;
+    const visualHeight = window.visualViewport?.height || innerHeight;
+    const docHeight = document.documentElement.clientHeight;
+    // Use the maximum to ensure menu fills entire screen regardless of address bar state
+    return Math.max(innerHeight, visualHeight, docHeight);
   };
 
   // Handle mobile viewport changes (address bar show/hide)
@@ -108,12 +110,12 @@ export default function Navigation9({
     if (!isMobileDevice) return;
 
     const handleViewportChange = () => {
-      // Update overlay height to current viewport height when open
+      // Update overlay height when open - use 100dvh for mobile to ensure full screen
       if (overlayRef.current && isMenuOpen) {
-        const viewportHeight = getViewportHeight();
+        const targetHeight = isMobileDevice ? "100dvh" : "75vh";
         // Update both the element directly and the timeline if it's playing
         gsap.set(overlayRef.current, {
-          height: `${viewportHeight}px`,
+          height: targetHeight,
         });
         // Also update the timeline animation target if menu is open
         if (masterTimelineRef.current && masterTimelineRef.current.isActive()) {
@@ -129,7 +131,7 @@ export default function Navigation9({
               "height" in child.vars
             ) {
               gsap.to(overlayRef.current, {
-                height: `${viewportHeight}px`,
+                height: targetHeight,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -425,11 +427,9 @@ export default function Navigation9({
       );
 
       // 2. Overlay opens by increasing height
-      // Use helper function to get accurate viewport height (handles address bar on mobile)
-      const currentViewportHeight = getViewportHeight();
-      const currentOpenHeight = isMobileDevice
-        ? currentViewportHeight
-        : currentViewportHeight * 0.75;
+      // Use 100dvh for mobile to ensure full screen coverage regardless of address bar state
+      // For desktop, use 75vh
+      const currentOpenHeight = isMobileDevice ? "100dvh" : "75vh";
       tl.to(
         overlayRef.current,
         {
@@ -491,10 +491,9 @@ export default function Navigation9({
       setIsMenuOpen(false);
       masterTimelineRef.current.reverse();
     } else {
-      // Recalculate height when opening to get current accurate viewport height
-      // This ensures the menu fills the screen even when address bar is hidden
+      // Update timeline to use 100dvh for mobile (ensures full screen regardless of address bar)
       if (isMobileDevice && overlayRef.current) {
-        const currentViewportHeight = getViewportHeight();
+        const targetHeight = "100dvh";
         // Update the timeline's target height dynamically before playing
         masterTimelineRef.current.getChildren().forEach((child) => {
           if (
@@ -507,8 +506,7 @@ export default function Navigation9({
             child.vars.target === overlayRef.current &&
             "height" in child.vars
           ) {
-            (child.vars as { height?: number | string }).height =
-              currentViewportHeight;
+            (child.vars as { height?: number | string }).height = targetHeight;
           }
         });
       }
