@@ -47,6 +47,7 @@ function Card1() {
               fill
               className="object-cover"
               sizes="50vw"
+              priority
             />
           </div>
         </div>
@@ -201,14 +202,118 @@ export default function HomeCard() {
   const container = useRef<HTMLDivElement>(null);
   const [domReady, setDomReady] = useState(false);
 
-  // Force a refresh of ScrollTrigger on component mount
+  // Wait for images to load before initializing ScrollTrigger
   useEffect(() => {
-    // Short timeout to ensure DOM is fully rendered
-    const timer = setTimeout(() => {
+    let initialCheck: NodeJS.Timeout | null = null;
+    let fallbackTimeout: NodeJS.Timeout | null = null;
+    let imageLoadHandlers: Array<() => void> = [];
+
+    const checkImagesLoaded = () => {
+      if (!container.current) return false;
+
+      // Only check on desktop (md breakpoint and above)
+      const mediaQuery = window.matchMedia("(min-width: 768px)");
+      if (!mediaQuery.matches) {
+        return true; // Skip image check on mobile
+      }
+
+      const cards = container.current.querySelectorAll(".card");
+      if (cards.length === 0) return false;
+
+      // Get all img elements within cards (Next.js Image renders as img)
+      const images = Array.from(
+        container.current.querySelectorAll(".card img"),
+      ) as HTMLImageElement[];
+
+      if (images.length === 0) return false;
+
+      // Check if all images are loaded
+      return images.every((img) => {
+        // Image is loaded if complete is true and naturalWidth > 0
+        return img.complete && img.naturalWidth > 0;
+      });
+    };
+
+    // Check if images are loaded immediately
+    if (checkImagesLoaded()) {
       setDomReady(true);
+      return;
+    }
+
+    // Wait a bit for DOM to render, then check again
+    initialCheck = setTimeout(() => {
+      if (checkImagesLoaded()) {
+        setDomReady(true);
+        return;
+      }
+
+      // If images aren't loaded yet, wait for them
+      const images = Array.from(
+        container.current?.querySelectorAll(".card img") || [],
+      ) as HTMLImageElement[];
+
+      if (images.length === 0) {
+        // Fallback: if no images found, proceed anyway
+        setDomReady(true);
+        return;
+      }
+
+      let loadedCount = 0;
+      const totalImages = images.length;
+      let isReady = false;
+
+      const handleImageLoad = () => {
+        if (isReady) return;
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          isReady = true;
+          // Small delay to ensure layout is stable after images load
+          setTimeout(() => {
+            setDomReady(true);
+          }, 50);
+        }
+      };
+
+      // Attach load handlers to images that aren't loaded yet
+      images.forEach((img) => {
+        if (img.complete && img.naturalWidth > 0) {
+          loadedCount++;
+        } else {
+          const loadHandler = () => handleImageLoad();
+          const errorHandler = () => handleImageLoad(); // Proceed even on error
+          img.addEventListener("load", loadHandler, { once: true });
+          img.addEventListener("error", errorHandler, { once: true });
+          imageLoadHandlers.push(() => {
+            img.removeEventListener("load", loadHandler);
+            img.removeEventListener("error", errorHandler);
+          });
+        }
+      });
+
+      // If all images were already loaded
+      if (loadedCount === totalImages && !isReady) {
+        isReady = true;
+        setTimeout(() => {
+          setDomReady(true);
+        }, 50);
+      }
+
+      // Fallback timeout: proceed after max 2 seconds even if images haven't loaded
+      fallbackTimeout = setTimeout(() => {
+        if (!isReady) {
+          isReady = true;
+          setDomReady(true);
+        }
+      }, 2000);
     }, 100);
 
-    return () => clearTimeout(timer);
+    // Cleanup function
+    return () => {
+      if (initialCheck) clearTimeout(initialCheck);
+      if (fallbackTimeout) clearTimeout(fallbackTimeout);
+      imageLoadHandlers.forEach((cleanup) => cleanup());
+      imageLoadHandlers = [];
+    };
   }, []);
 
   useGSAP(
@@ -322,13 +427,43 @@ export default function HomeCard() {
         }
       });
 
-      // Refresh ScrollTrigger after setup with proper timing
-      ScrollTrigger.refresh();
-
-      // Additional refresh after Lenis is fully initialized
-      setTimeout(() => {
+      // Wait for next frame to ensure all layout calculations are complete
+      requestAnimationFrame(() => {
         ScrollTrigger.refresh();
-      }, 100);
+
+        // Additional refresh after a short delay to catch any late layout changes
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 100);
+      });
+
+      // Listen for page loader completion to refresh after scrollbar appears
+      const handlePageLoaderComplete = () => {
+        // Wait for scrollbar to appear and layout to settle
+        // The loader removes overflow:hidden, causing scrollbar to appear
+        requestAnimationFrame(() => {
+          // Double RAF to ensure scrollbar rendering is complete
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+
+            // One more refresh after a short delay to be absolutely sure
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 150);
+          });
+        });
+      };
+
+      // Check if loader is already complete (for navigation between pages)
+      if (document.documentElement.classList.contains("page-loader-complete")) {
+        // Loader already completed, but wait a bit for layout to be stable
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 100);
+      } else {
+        // Listen for loader completion event
+        window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
+      }
 
       // Return cleanup function
       return () => {
@@ -336,6 +471,12 @@ export default function HomeCard() {
         if (lenis) {
           lenis.off("scroll", handleScroll);
         }
+
+        // Clean up page loader event listener
+        window.removeEventListener(
+          "pageLoaderComplete",
+          handlePageLoaderComplete,
+        );
 
         // Clean up all contexts
         introPinCtx.revert();
