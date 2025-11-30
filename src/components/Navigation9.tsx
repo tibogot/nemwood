@@ -246,33 +246,34 @@ export default function Navigation9({
       document.body.style.width = "100%";
 
       return () => {
-        // Get the scroll position to restore before changing body styles
+        // Get the scroll position to restore
         const scrollYToRestore = savedScrollPosition.current;
         
-        // Restore original values first
+        // Restore body styles
         document.body.style.overflow = originalOverflow;
         document.body.style.position = originalPosition;
         document.body.style.top = originalTop;
         document.body.style.width = originalWidth;
 
-        // Restore scroll position after body styles are restored
-        // Use multiple requestAnimationFrame calls to ensure DOM has fully updated
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            // Ensure we have a valid scroll position
-            if (scrollYToRestore >= 0) {
-              if (lenis) {
-                // Use Lenis to restore scroll position
-                lenis.scrollTo(scrollYToRestore, { immediate: true });
-                // Resume Lenis after restoring scroll position
-                lenis.start();
-              } else {
-                // Fallback to native scroll
-                window.scrollTo(0, scrollYToRestore);
-              }
-            }
-          });
-        });
+        // Restore scroll position immediately and synchronously
+        // Set on both window and documentElement to ensure it sticks
+        if (scrollYToRestore >= 0) {
+          // Set scroll position on document element first (most reliable)
+          document.documentElement.scrollTop = scrollYToRestore;
+          document.body.scrollTop = scrollYToRestore;
+          
+          // Also set via window.scrollTo for compatibility
+          window.scrollTo(0, scrollYToRestore);
+          
+          if (lenis) {
+            // Update Lenis to match the scroll position we just set
+            lenis.scrollTo(scrollYToRestore, { immediate: true });
+            // Resume Lenis after a tiny delay to ensure scroll is set
+            requestAnimationFrame(() => {
+              lenis.start();
+            });
+          }
+        }
       };
     } else {
       // Resume Lenis if it was stopped
