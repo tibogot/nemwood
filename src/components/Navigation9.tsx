@@ -6,12 +6,14 @@ import Logo from "./Logo3";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLenis } from "lenis/react";
 import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import ServicesCarousel from "./ServicesCarousel";
 
 // Register GSAP plugins
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 interface Navigation9Props {
   variant?: "primary" | "secondary";
@@ -34,6 +36,10 @@ export default function Navigation9({
   // Static header logo/burger in the base nav
   const logoRef = useRef<HTMLAnchorElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  
+  // Lenis instance for scroll detection
+  const lenis = useLenis();
 
   // Determine base color class based on variant
   const baseColorClass =
@@ -482,6 +488,83 @@ export default function Navigation9({
     setIsServicesHovered(false);
   }, [pathname]);
 
+  // Smooth navbar hide/show on scroll using Lenis and GSAP
+  useEffect(() => {
+    if (!navRef.current || !lenis) return;
+
+    let lastScrollY = lenis.scroll;
+    let scrollTimeout: NodeJS.Timeout;
+    let currentAnimation: gsap.core.Tween | null = null;
+
+    // Animation properties - same for both directions
+    const animationProps = {
+      duration: 0.6,
+      ease: "power2.out" as const,
+    };
+
+    const handleScroll = () => {
+      if (!navRef.current || isMenuOpen) {
+        // Don't hide navbar when menu is open - ensure it's visible
+        if (currentAnimation) {
+          currentAnimation.kill();
+          currentAnimation = null;
+        }
+        gsap.to(navRef.current, {
+          y: 0,
+          ...animationProps,
+        });
+        return;
+      }
+
+      const currentScrollY = lenis.scroll;
+      const scrollDifference = currentScrollY - lastScrollY;
+
+      // Only trigger if scroll difference is significant (avoid jitter)
+      if (Math.abs(scrollDifference) > 5) {
+        // Kill any ongoing animation
+        if (currentAnimation) {
+          currentAnimation.kill();
+        }
+
+        if (scrollDifference > 0 && currentScrollY > 64) {
+          // Scrolling down - hide navbar (only after scrolling past navbar)
+          currentAnimation = gsap.to(navRef.current, {
+            y: -64, // Move up by navbar height
+            ...animationProps,
+          });
+        } else if (scrollDifference < 0) {
+          // Scrolling up - show navbar (same animation properties)
+          currentAnimation = gsap.to(navRef.current, {
+            y: 0, // Move back to original position
+            ...animationProps,
+          });
+        }
+      }
+
+      lastScrollY = currentScrollY;
+
+      // Clear existing timeout
+      clearTimeout(scrollTimeout);
+      
+      // Reset flag after scroll stops
+      scrollTimeout = setTimeout(() => {
+        // Cleanup
+      }, 150);
+    };
+
+    // Listen to Lenis scroll events
+    lenis.on("scroll", handleScroll);
+
+    // Cleanup
+    return () => {
+      lenis.off("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+      if (currentAnimation) {
+        currentAnimation.kill();
+      }
+    };
+  }, [lenis, isMenuOpen]);
+
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
 
@@ -649,6 +732,7 @@ export default function Navigation9({
       </div>
 
       <nav
+        ref={navRef}
         className={`fixed top-0 right-0 left-0 z-40 h-16 select-none transition-colors duration-300 ${
           !isHeroState ? "bg-secondary" : ""
         }`}
