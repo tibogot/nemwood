@@ -172,15 +172,30 @@ export default function Navigation9({
     }
 
     const handleScroll = () => {
+      // Don't update hero state when menu is open (body is fixed, scrollY would be 0)
+      if (isMenuOpen) return;
+      
       const vh = window.innerHeight || 0;
+      // Use Lenis scroll position if available (more accurate, works even when body is fixed)
+      // Otherwise fall back to window.scrollY
+      const currentScrollY = lenis ? lenis.scroll : window.scrollY;
       // Once we've scrolled roughly past the hero (full viewport hero), switch to solid nav
-      setIsOverHero(window.scrollY < vh - 80);
+      setIsOverHero(currentScrollY < vh - 80);
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+    
+    // Listen to Lenis scroll events if available, otherwise use window scroll
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+      return () => {
+        lenis.off("scroll", handleScroll);
+      };
+    } else {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [pathname, lenis, isMenuOpen]);
 
   // Hero "fixed" color (ignores dark mode) for logo + burger when over hero
   // Uses your off-white brand color so dark mode never affects it
