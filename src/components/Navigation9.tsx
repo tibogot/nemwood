@@ -215,6 +215,9 @@ export default function Navigation9({
     checkFontsLoaded();
   }, []);
 
+  // Store scroll position in a ref to persist across renders
+  const savedScrollPosition = useRef<number>(0);
+
   // Prevent body scroll when menu is open on mobile
   useEffect(() => {
     if (isMobileDevice && isMenuOpen) {
@@ -232,6 +235,9 @@ export default function Navigation9({
       // Get current scroll position from Lenis (more accurate than window.scrollY)
       // Fallback to window.scrollY if Lenis is not available
       const scrollY = lenis ? lenis.scroll : window.scrollY;
+      
+      // Store scroll position in ref for later restoration
+      savedScrollPosition.current = scrollY;
 
       // Apply scroll lock
       document.body.style.overflow = "hidden";
@@ -240,20 +246,33 @@ export default function Navigation9({
       document.body.style.width = "100%";
 
       return () => {
-        // Restore original values
+        // Get the scroll position to restore before changing body styles
+        const scrollYToRestore = savedScrollPosition.current;
+        
+        // Restore original values first
         document.body.style.overflow = originalOverflow;
         document.body.style.position = originalPosition;
         document.body.style.top = originalTop;
         document.body.style.width = originalWidth;
 
-        // Restore scroll position using Lenis if available, otherwise window
-        if (lenis) {
-          lenis.scrollTo(scrollY, { immediate: true });
-          // Resume Lenis after restoring scroll position
-          lenis.start();
-        } else {
-          window.scrollTo(0, scrollY);
-        }
+        // Restore scroll position after body styles are restored
+        // Use multiple requestAnimationFrame calls to ensure DOM has fully updated
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // Ensure we have a valid scroll position
+            if (scrollYToRestore >= 0) {
+              if (lenis) {
+                // Use Lenis to restore scroll position
+                lenis.scrollTo(scrollYToRestore, { immediate: true });
+                // Resume Lenis after restoring scroll position
+                lenis.start();
+              } else {
+                // Fallback to native scroll
+                window.scrollTo(0, scrollYToRestore);
+              }
+            }
+          });
+        });
       };
     } else {
       // Resume Lenis if it was stopped
