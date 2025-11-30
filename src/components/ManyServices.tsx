@@ -1,19 +1,11 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import gsap from "gsap";
 
 interface Service {
   name: string;
   href: string;
   image: string;
-  color: string;
-}
-
-interface ModalState {
-  active: boolean;
-  index: number;
 }
 
 const services: Service[] = [
@@ -21,249 +13,150 @@ const services: Service[] = [
     name: "Escaliers",
     href: "/services/escaliers",
     image: "/images/stairs.webp",
-    color: "#f3f4f6",
   },
   {
     name: "Gardes-robes",
     href: "/services/garde-robes",
     image: "/images/wardrobe.webp",
-    color: "#fef3c7",
   },
   {
     name: "Tables",
     href: "/services/tables",
     image: "/images/table.webp",
-    color: "#ddd6fe",
   },
   {
     name: "Cuisines",
     href: "/services/cuisines",
     image: "/images/kitchen.webp",
-    color: "#fecaca",
   },
   {
     name: "Bibliothèque",
     href: "/services/bibliotheque",
     image: "/images/woodshelf.webp",
-    color: "#e0f2fe",
   },
   {
     name: "Bureau",
     href: "/services/bureau",
     image: "/images/desk.webp",
-    color: "#f0fdf4",
   },
   {
     name: "Salle de bain",
     href: "/services/salle-de-bain",
     image: "/images/bathroom.webp",
-    color: "#fef7ff",
   },
 ];
-
-// Animation variants for Framer Motion
-const scaleAnimation = {
-  initial: { scale: 0, x: "-50%", y: "-50%" },
-  enter: {
-    scale: 1,
-    x: "-50%",
-    y: "-50%",
-    transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as any },
-  },
-  closed: {
-    scale: 0,
-    x: "-50%",
-    y: "-50%",
-    transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] as any },
-  },
-};
 
 // Individual Service Component
 interface ServiceItemProps {
   index: number;
   name: string;
   href: string;
-  setModal: (modal: ModalState) => void;
+  image: string;
 }
 
-function ServiceItem({ index, name, href, setModal }: ServiceItemProps) {
+function ServiceItem({ index, name, href, image }: ServiceItemProps) {
+  const maskRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const mask = maskRef.current;
+    if (!container || !mask) return;
+
+    const handleMouseEnter = () => {
+      mask.style.clipPath = "inset(0% 0% 0% 0%)";
+    };
+
+    const handleMouseLeave = () => {
+      mask.style.clipPath = "inset(100% 0% 0% 0%)";
+    };
+
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
   return (
     <div
-      onMouseEnter={() => setModal({ active: true, index })}
-      onMouseLeave={() => setModal({ active: false, index })}
+      ref={containerRef}
       className="group border-primary relative cursor-pointer overflow-hidden border-b transition-all duration-500 last:border-b-0"
     >
       <a href={href} className="relative z-10 block">
-        {/* Background fill animation */}
-        <div className="bg-primary absolute inset-0 origin-bottom scale-y-0 transform transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
-
-        <div className="relative z-10 flex items-center px-2 py-3 md:px-8 md:py-4">
-          <span className="text-primary group-hover:text-secondary absolute left-2 text-sm font-light transition-colors duration-500 md:left-8 md:text-lg lg:text-xl">
+        {/* Base Content Layer - Always Visible */}
+        <div className="relative z-20 flex items-center px-2 py-3 md:px-8 md:py-4">
+          <span className="text-primary absolute left-2 text-sm font-light md:left-8 md:text-lg lg:text-xl">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h3 className="text-primary group-hover:text-secondary mx-auto text-3xl transition-all duration-500 group-hover:translate-x-2 md:text-6xl lg:text-8xl">
-            {name}
-          </h3>
-          <span className="text-primary group-hover:text-secondary absolute right-2 text-xs font-light transition-colors duration-500 md:right-8 md:text-sm lg:text-base">
+
+          {/* Title Container - Centered */}
+          <div className="relative mx-auto flex items-center justify-center">
+            {/* Invisible spacer for alignment - positioned absolutely */}
+            <div className="absolute right-full mr-12 h-[60px] w-[80px] md:h-[80px] md:w-[110px] lg:h-[100px] lg:w-[140px]"></div>
+            <h3 className="text-primary text-3xl transition-all duration-500 group-hover:translate-x-2 md:text-6xl lg:text-8xl">
+              {name}
+            </h3>
+          </div>
+
+          <span className="text-primary absolute right-2 text-xs font-light md:right-8 md:text-sm lg:text-base">
             En savoir plus →
           </span>
-          {/* <div className="text-sm tracking-wide text-gray-400 uppercase">
-            Explore
-          </div> */}
+        </div>
+
+        {/* Mask Container - Reveals on Hover (Background + Image + Content) */}
+        <div
+          ref={maskRef}
+          className="absolute inset-0 z-30 overflow-hidden"
+          style={{
+            clipPath: "inset(100% 0% 0% 0%)",
+            transition: "clip-path 0.5s cubic-bezier(0.76, 0, 0.24, 1)",
+          }}
+        >
+          {/* Brown Background */}
+          <div className="bg-primary absolute inset-0"></div>
+
+          {/* Content Inside Mask - Exact same structure as base layer for perfect alignment */}
+          <div className="relative z-10 flex items-center px-2 py-3 md:px-8 md:py-4">
+            <span className="text-secondary absolute left-2 text-sm font-light md:left-8 md:text-lg lg:text-xl">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+
+            {/* Title Container - Centered with Image */}
+            <div className="relative mx-auto flex items-center justify-center">
+              {/* Image - positioned absolutely to match base layer */}
+              <div className="absolute right-full mr-12 h-[60px] w-[80px] overflow-hidden md:h-[80px] md:w-[110px] lg:h-[100px] lg:w-[140px]">
+                <div className="relative h-full w-full overflow-hidden rounded-[1px]">
+                  <Image
+                    src={image}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 80px, 140px"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+
+              <h3 className="text-secondary text-3xl transition-all duration-500 group-hover:translate-x-2 md:text-6xl lg:text-8xl">
+                {name}
+              </h3>
+            </div>
+
+            <span className="text-secondary absolute right-2 text-xs font-light md:right-8 md:text-sm lg:text-base">
+              En savoir plus →
+            </span>
+          </div>
         </div>
       </a>
     </div>
   );
 }
 
-// Modal Component with GSAP mouse following
-interface ModalProps {
-  modal: ModalState;
-  services: Service[];
-}
-
-function Modal({ modal, services }: ModalProps) {
-  const { active, index } = modal;
-  const modalContainer = useRef<HTMLDivElement>(null);
-  const cursor = useRef<HTMLDivElement>(null);
-  const cursorLabel = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Check if elements exist before creating GSAP animations
-    if (!modalContainer.current || !cursor.current || !cursorLabel.current)
-      return;
-
-    // GSAP quickTo functions for smooth mouse following - exactly like in Olivier's tutorial
-    const xMoveContainer = gsap.quickTo(modalContainer.current, "left", {
-      duration: 0.8,
-      ease: "power3",
-    });
-    const yMoveContainer = gsap.quickTo(modalContainer.current, "top", {
-      duration: 0.8,
-      ease: "power3",
-    });
-
-    const xMoveCursor = gsap.quickTo(cursor.current, "left", {
-      duration: 0.5,
-      ease: "power3",
-    });
-    const yMoveCursor = gsap.quickTo(cursor.current, "top", {
-      duration: 0.5,
-      ease: "power3",
-    });
-
-    const xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {
-      duration: 0.45,
-      ease: "power3",
-    });
-    const yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {
-      duration: 0.45,
-      ease: "power3",
-    });
-
-    // Mouse move handler - keep modal at safe distance from cursor
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      // Offset the modal position to keep it away from the cursor
-      const offsetX = clientX + (window.innerWidth < 768 ? 200 : 400); // Smaller offset on mobile
-      const offsetY = clientY; // Keep modal at same vertical level as cursor
-
-      xMoveContainer(offsetX);
-      yMoveContainer(offsetY);
-      xMoveCursor(clientX);
-      yMoveCursor(clientY);
-      xMoveCursorLabel(clientX);
-      yMoveCursorLabel(clientY);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <>
-      {/* Modal Container */}
-      <motion.div
-        ref={modalContainer}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed z-50 h-32 w-48 overflow-hidden rounded-sm shadow-2xl md:h-40 md:w-60"
-        style={{
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        {/* Modal Slider - slides based on index */}
-        <div
-          className="relative h-full w-full"
-          style={{
-            top: `${index * -100}%`,
-            transition: "top 0.3s cubic-bezier(0.76, 0, 0.24, 1)",
-          }}
-        >
-          {services.map((service, idx) => (
-            <div
-              key={`modal_${idx}`}
-              className="absolute h-full w-full"
-              style={{
-                backgroundColor: service.color,
-                top: `${idx * 100}%`,
-              }}
-            >
-              <Image
-                src={service.image}
-                alt={service.name}
-                fill
-                className="object-cover"
-                draggable={false}
-                sizes="(max-width: 768px) 100vw, 384px"
-                style={{ objectFit: "cover" }}
-                priority={idx === index}
-              />
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Custom Cursor */}
-      <motion.div
-        ref={cursor}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed"
-        style={{
-          left: "0px",
-          top: "0px",
-        }}
-      />
-
-      {/* Cursor Label */}
-      <motion.div
-        ref={cursorLabel}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed z-50 flex items-center justify-center"
-        style={{
-          left: "0px",
-          top: "0px",
-        }}
-      ></motion.div>
-    </>
-  );
-}
-
 // Main Component
 export default function ManyServices() {
-  const [modal, setModal] = useState<ModalState>({ active: false, index: 0 });
-
   return (
     <section className="relative min-h-screen w-full py-16 md:py-20">
       {/* Title and Description */}
@@ -351,14 +244,9 @@ export default function ManyServices() {
             index={index}
             name={service.name}
             href={service.href}
-            setModal={setModal}
+            image={service.image}
           />
         ))}
-      </div>
-
-      {/* Modal - Desktop Only */}
-      <div className="hidden md:block">
-        <Modal modal={modal} services={services} />
       </div>
     </section>
   );
