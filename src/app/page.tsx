@@ -200,26 +200,16 @@ export default function Home() {
           </h4>
         </AnimatedText> */}
 
-        {/* Logo at bottom - full-width, centered */}
-        <div className="absolute right-0 bottom-4 left-0 z-10 flex w-full items-center justify-center px-4 text-[#FFFCF5] md:bottom-6 md:px-8">
-          <img src="/logohero.svg" alt="Nemwood" className="h-auto w-full" />
-        </div>
-
-        {/* Scroll label at center right of hero */}
-        <div className="pointer-events-none absolute top-1/2 right-6 z-10 flex -translate-y-1/2 justify-end md:right-10">
-          <span className="font-ITCGaramondN text-xl text-[#fffcf5]">
-            {"{ Scroll }"}
-          </span>
-          {/* <Link href="/a-propos">
-            <button className="font-HelveticaNow mt-10">
-              <div className="text-secondary flex items-center px-4 py-2">
-                <span>En savoir plus</span>
-                <div className="mt-0.5 ml-1">
-                  <ArrowRight size={18} strokeWidth={1.5} />
-                </div>
-              </div>
-            </button>
-          </Link>{" "} */}
+        {/* Logo and location text centered in hero */}
+        <div className="absolute top-1/2 right-0 left-0 z-10 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8">
+          <div className="flex w-full items-center justify-center text-[#FFFCF5]">
+            <img src="/logohero.svg" alt="Nemwood" className="h-auto w-full" />
+          </div>
+          <div className="pointer-events-none mt-8 flex justify-center md:mt-12">
+            <span className="font-ITCGaramondN text-4xl text-[#fffcf5]">
+              Brussels, Belgium
+            </span>
+          </div>
         </div>
       </section>
 
