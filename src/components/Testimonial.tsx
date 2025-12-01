@@ -55,7 +55,7 @@ export default function Testimonial() {
     // Update on resize and orientation change
     window.addEventListener("resize", updateHeight);
     window.addEventListener("orientationchange", updateHeight);
-    
+
     // Also listen for visual viewport changes (mobile browser UI show/hide)
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", updateHeight);
@@ -135,7 +135,7 @@ export default function Testimonial() {
         className="bg-secondary relative overflow-hidden px-4 pt-4 text-white md:px-8 md:py-30"
         style={{ height: "100vh" }}
       >
-        {/* <Image
+        <Image
           src="/images/testimonial.webp"
           alt="Random from Picsum"
           fill
@@ -143,7 +143,7 @@ export default function Testimonial() {
           sizes="(max-width: 768px) 100vw, 80vw"
           // priority
           loading="lazy"
-        /> */}
+        />
         <AnimatedText delay={0.0} stagger={0.3}>
           <h2 className="font-ITCGaramondN text-primary relative text-5xl leading-tight md:text-7xl">
             Témoignages
