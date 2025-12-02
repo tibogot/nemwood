@@ -7,12 +7,20 @@ import Image from "next/image";
 
 export default function FlipBoard(): React.JSX.Element {
   const boardRef = useRef<HTMLDivElement>(null);
-  const ROWS = 6;
-  const COLS = 6;
   const COOLDOWN = 1000;
   const isFlippedRef = useRef<boolean>(false);
 
+  // Fixed grid dimensions - ALWAYS 4 rows and 6 columns (24 squares total)
+  const ROWS = 4;
+  const COLS = 6;
+
+  // Responsive perspective
+  const perspective = "1000px";
+
   useEffect(() => {
+    // Reset flip state when dimensions change
+    isFlippedRef.current = false;
+
     gsap.registerPlugin(ScrollTrigger);
     const tiles: HTMLElement[] = [];
 
@@ -58,12 +66,17 @@ export default function FlipBoard(): React.JSX.Element {
     if (boardRef.current) {
       const tileElements =
         boardRef.current.querySelectorAll<HTMLElement>(".tile");
-      tileElements.forEach((tile) => tiles.push(tile));
+      tileElements.forEach((tile) => {
+        // Reset tile rotation when dimensions change
+        gsap.set(tile, { rotateX: 0, rotateY: 0 });
+        tiles.push(tile);
+      });
     }
 
     // Initialize tile animations
     const lastEnterTimes: number[] = new Array(tiles.length).fill(0);
     const eventHandlers: (() => void)[] = [];
+    const clickHandlers: (() => void)[] = [];
 
     tiles.forEach((tile, index) => {
       const handleMouseEnter = (): void => {
@@ -73,6 +86,8 @@ export default function FlipBoard(): React.JSX.Element {
 
           let tiltY = 0;
           const col = index % COLS;
+
+          // Tilt based on column position (COLS is always 6)
           if (col === 0) tiltY = -40;
           else if (col === COLS - 1) tiltY = 40;
           else if (col === 1) tiltY = -20;
@@ -84,110 +99,108 @@ export default function FlipBoard(): React.JSX.Element {
         }
       };
 
+      const handleClick = (): void => {
+        flipAllTiles();
+      };
+
       eventHandlers.push(handleMouseEnter);
+      clickHandlers.push(handleClick);
       tile.addEventListener("mouseenter", handleMouseEnter);
+      tile.addEventListener("click", handleClick);
     });
 
-    // Add flip button listener
-    const flipButton = document.querySelector<HTMLButtonElement>(".flipButton");
-    if (flipButton) {
-      flipButton.addEventListener("click", flipAllTiles);
-    }
-
     return () => {
-      if (flipButton) {
-        flipButton.removeEventListener("click", flipAllTiles);
-      }
       tiles.forEach((tile, index) => {
         if (eventHandlers[index]) {
           tile.removeEventListener("mouseenter", eventHandlers[index]);
         }
+        if (clickHandlers[index]) {
+          tile.removeEventListener("click", clickHandlers[index]);
+        }
       });
     };
-  }, [ROWS, COLS, COOLDOWN]);
+  }, [COOLDOWN]);
 
   return (
-    <div className="h-[90vh] w-full overflow-hidden">
-      <div className="flex h-full flex-col">
-        <div className="flex justify-center py-4">
-          <button className="flipButton cursor-pointer rounded-lg bg-slate-800 px-6 py-2 text-white transition-colors hover:bg-slate-700">
-            Flip All Tiles
-          </button>
-        </div>
-        <div
-          ref={boardRef}
-          className="flex w-full flex-1 flex-col gap-1"
-          style={{ perspective: "1000px" }}
-        >
-          {Array.from({ length: ROWS }).map((_, rowIndex) => (
-            <div key={rowIndex} className="flex gap-1">
-              {Array.from({ length: COLS }).map((_, colIndex) => {
-                return (
+    <div className="flex min-h-[80vh] w-full items-center justify-center px-4 py-8 md:px-8">
+      <div
+        ref={boardRef}
+        className="grid w-[500px] gap-0.5 md:w-[700px] md:gap-1 lg:w-[900px] lg:gap-1 xl:w-[1100px] xl:gap-1.5"
+        style={{
+          perspective,
+          gridTemplateRows: "repeat(4, 1fr)", // Always 4 rows
+          gridTemplateColumns: "repeat(6, 1fr)", // Always 6 columns
+        }}
+      >
+        {Array.from({ length: ROWS * COLS }).map((_, index) => {
+          // Always 24 tiles (4×6)
+          const rowIndex = Math.floor(index / COLS);
+          const colIndex = index % COLS;
+          return (
+            <div
+              key={index}
+              className="tile relative aspect-square cursor-pointer"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {/* Front Face */}
+              <div
+                className="tile-face tile-front absolute h-full w-full overflow-hidden rounded bg-slate-600 md:rounded-lg"
+                style={{
+                  backfaceVisibility: "hidden",
+                }}
+              >
+                <div className="absolute inset-0 overflow-hidden rounded md:rounded-lg">
                   <div
-                    key={colIndex}
-                    className="tile relative aspect-square flex-1 cursor-pointer"
-                    style={{ transformStyle: "preserve-3d" }}
+                    className="relative h-full w-full"
+                    style={{
+                      width: `${COLS * 100}%`,
+                      height: `${ROWS * 100}%`,
+                      left: `-${colIndex * 100}%`,
+                      top: `-${rowIndex * 100}%`,
+                    }}
                   >
-                    {/* Front Face */}
-                    <div
-                      className="tile-face tile-front absolute h-full w-full overflow-hidden rounded-lg bg-slate-600"
-                      style={{
-                        backfaceVisibility: "hidden",
-                      }}
-                    >
-                      <div className="absolute inset-0 overflow-hidden rounded-lg">
-                        <div
-                          className="relative h-full w-full"
-                          style={{
-                            width: `${COLS * 100}%`,
-                            height: `${ROWS * 100}%`,
-                            left: `-${colIndex * 100}%`,
-                            top: `-${rowIndex * 100}%`,
-                          }}
-                        >
-                          <Image
-                            src="/images/nemohero.webp"
-                            alt="Front face"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Back Face */}
-                    <div
-                      className="tile-face tile-back absolute h-full w-full overflow-hidden rounded-lg bg-slate-700"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateX(180deg)",
-                      }}
-                    >
-                      <div className="absolute inset-0 overflow-hidden rounded-lg">
-                        <div
-                          className="relative h-full w-full"
-                          style={{
-                            width: `${COLS * 100}%`,
-                            height: `${ROWS * 100}%`,
-                            left: `-${colIndex * 100}%`,
-                            top: `-${rowIndex * 100}%`,
-                          }}
-                        >
-                          <Image
-                            src="/images/herobg3.webp"
-                            alt="Back face"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    <Image
+                      src="/flip.svg"
+                      alt="Front face"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 16vw"
+                    />
                   </div>
-                );
-              })}
+                </div>
+              </div>
+
+              {/* Back Face */}
+              <div
+                className="tile-face tile-back absolute h-full w-full overflow-hidden rounded bg-slate-700 md:rounded-lg"
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "rotateX(180deg)",
+                }}
+              >
+                <div className="absolute inset-0 overflow-hidden rounded md:rounded-lg">
+                  <div
+                    className="relative h-full w-full"
+                    style={{
+                      width: `${COLS * 100}%`,
+                      height: `${ROWS * 100}%`,
+                      left: `-${colIndex * 100}%`,
+                      top: `-${rowIndex * 100}%`,
+                    }}
+                  >
+                    <Image
+                      src="/images/bathroom.webp"
+                      alt="Back face"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 16vw"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-      <section className="px-4 md:px-8">
+      {/* <section className="px-4 md:px-8">
         <p className="font-HelveticaNow text-primary max-w-xl text-lg">
           Depuis 2016, Nemwood transforme vos idées en créations uniques en
           bois. Chaque projet est une collaboration entre votre vision et notre
@@ -65,8 +65,8 @@ export default function Contact() {
           escaliers, une garde-robe ou une cuisine, nous nous engageons à créer
           des pièces qui s'intègrent parfaitement dans votre quotidien.
         </p>
-      </section>
-      <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
+      </section> */}
+      {/* <section className="text-primary w-full px-4 py-20 md:px-8 md:py-60">
         <div className="text-center">
           <h2 className="font-ITCGaramondN text-4xl md:text-6xl lg:text-9xl">
             contact@nemwood.be
@@ -75,10 +75,10 @@ export default function Contact() {
             0489 33 05 44
           </h2>
         </div>
-      </section>
+      </section> */}
 
       {/* Full Width Image Section with Parallax */}
-      <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+      {/* <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
           src="/images/nemohero.webp"
           alt="Nemwood artisan woodworking"
@@ -88,8 +88,8 @@ export default function Contact() {
           quality={95}
           priority
         />
-      </ParallaxImage>
-      {/* <FlipBoard /> */}
+      </ParallaxImage> */}
+      <FlipBoard />
     </div>
   );
 }

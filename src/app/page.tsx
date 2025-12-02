@@ -351,7 +351,7 @@ export default function Home() {
         <CardsScroll />
       </Suspense>
 
-      <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row md:gap-20 md:px-8 md:py-20">
+      {/* <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row md:gap-20 md:px-8 md:py-20">
         <div className="left relative h-[400px] md:h-[400px] md:w-1/2">
           <Image
             src="/images/nem1.png"
@@ -393,7 +393,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="border-primary border-y py-40 md:py-80">
         <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
