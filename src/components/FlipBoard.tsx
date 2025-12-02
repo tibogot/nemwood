@@ -73,6 +73,9 @@ export default function FlipBoard(): React.JSX.Element {
       });
     }
 
+    // Check if device supports hover (not mobile/touch device)
+    const supportsHover = window.matchMedia("(hover: hover)").matches;
+
     // Initialize tile animations
     const lastEnterTimes: number[] = new Array(tiles.length).fill(0);
     const eventHandlers: (() => void)[] = [];
@@ -105,13 +108,18 @@ export default function FlipBoard(): React.JSX.Element {
 
       eventHandlers.push(handleMouseEnter);
       clickHandlers.push(handleClick);
-      tile.addEventListener("mouseenter", handleMouseEnter);
+
+      // Only add hover listener on devices that support hover (not mobile)
+      if (supportsHover) {
+        tile.addEventListener("mouseenter", handleMouseEnter);
+      }
       tile.addEventListener("click", handleClick);
     });
 
     return () => {
       tiles.forEach((tile, index) => {
-        if (eventHandlers[index]) {
+        // Only remove hover listener if it was added (hover-capable devices)
+        if (supportsHover && eventHandlers[index]) {
           tile.removeEventListener("mouseenter", eventHandlers[index]);
         }
         if (clickHandlers[index]) {

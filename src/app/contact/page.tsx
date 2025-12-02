@@ -90,8 +90,8 @@ export default function Contact() {
           priority
         />
       </ParallaxImage> */}
-      {/* <FlipBoard /> */}
-      <FlipBoardHero />
+      <FlipBoard />
+      {/* <FlipBoardHero /> */}
     </div>
   );
 }

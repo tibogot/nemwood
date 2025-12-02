@@ -51,6 +51,7 @@ const AnimatedBorderLines = dynamic(
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const bigImgRef = useRef<HTMLDivElement>(null);
+  const heroLogoRef = useRef<HTMLDivElement>(null);
 
   // GSAP animation for big image scale on scroll - optimized for performance
   useGSAP(
@@ -125,6 +126,48 @@ export default function Home() {
     { scope: bigImgRef },
   );
 
+  // Animate hero logo after PageLoader completes (same pattern as AnimatedText with isHero)
+  useEffect(() => {
+    if (!heroLogoRef.current) return;
+
+    // Set initial state (logo starts from below)
+    gsap.set(heroLogoRef.current, {
+      y: 100,
+      opacity: 0,
+    });
+
+    const handlePageLoaderComplete = () => {
+      if (!heroLogoRef.current) return;
+
+      // Wait same delay as hero text (200ms) before animating
+      setTimeout(() => {
+        if (!heroLogoRef.current) return;
+
+        gsap.to(heroLogoRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      }, 200);
+    };
+
+    // Check if PageLoader is already complete
+    if (document.documentElement.classList.contains("page-loader-complete")) {
+      handlePageLoaderComplete();
+    } else {
+      // Listen for PageLoader completion
+      window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
+
+      return () => {
+        window.removeEventListener(
+          "pageLoaderComplete",
+          handlePageLoaderComplete,
+        );
+      };
+    }
+  }, []);
+
   useEffect(() => {
     // Defer blog posts loading to improve initial page load
     const fetchPosts = async () => {
@@ -179,13 +222,18 @@ export default function Home() {
 
         {/* Logo and location text centered in hero */}
         <div className="absolute top-1/2 right-0 left-0 z-10 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8">
-          <div className="flex w-full items-center justify-center text-[#FFFCF5]">
+          <div
+            ref={heroLogoRef}
+            className="flex w-full items-center justify-center text-[#FFFCF5]"
+          >
             <img src="/logohero.svg" alt="Nemwood" className="h-auto w-full" />
           </div>
           <div className="pointer-events-none mt-8 flex justify-center md:mt-12">
-            <span className="font-ITCGaramondN text-4xl text-[#fffcf5]">
-              Brussels, Belgium
-            </span>
+            <AnimatedText isHero>
+              <span className="font-ITCGaramondN text-4xl text-[#fffcf5]">
+                Brussels, Belgium
+              </span>
+            </AnimatedText>
           </div>
         </div>
       </section>
