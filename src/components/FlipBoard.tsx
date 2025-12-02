@@ -164,7 +164,9 @@ export default function FlipBoard(): React.JSX.Element {
                       alt="Front face"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 16vw"
+                      sizes="(max-width: 640px) 500px, (max-width: 768px) 700px, (max-width: 1024px) 900px, 1100px"
+                      quality={95}
+                      unoptimized={false}
                     />
                   </div>
                 </div>
@@ -189,11 +191,13 @@ export default function FlipBoard(): React.JSX.Element {
                     }}
                   >
                     <Image
-                      src="/images/bathroom.webp"
+                      src="/images/Apropos-nemwood.webp"
                       alt="Back face"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 16vw"
+                      sizes="(max-width: 640px) 500px, (max-width: 768px) 700px, (max-width: 1024px) 900px, 1100px"
+                      quality={95}
+                      unoptimized={false}
                     />
                   </div>
                 </div>

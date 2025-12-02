@@ -158,10 +158,10 @@ export default function About() {
       {/* Sticky Stack Scroll Section */}
       <StickyStackScroll />
 
-      <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-20">
-        <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
+      <section className="flex w-full flex-col items-center justify-center px-4 pt-40 md:px-8">
+        <ParallaxImage speed={0.5} className="h-[400px] w-[400px] md:h-[600px]">
           <Image
-            src="/images/loft.webp"
+            src="/images/a-propos2.webp"
             alt="Savoir-faire artisanal Nemwood - Création de mobilier en bois massif sur mesure"
             fill
             className="rounded-sm object-cover"
