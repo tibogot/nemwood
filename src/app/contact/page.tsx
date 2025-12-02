@@ -6,6 +6,7 @@ import ParallaxImage from "@/components/ParallaxImage";
 import { generateMetadata } from "@/app/metadata";
 import ContactForm from "@/components/ContactForm";
 import FlipBoard from "@/components/FlipBoard";
+import FlipBoardHero from "@/components/FlipBoardHero";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
@@ -89,7 +90,8 @@ export default function Contact() {
           priority
         />
       </ParallaxImage> */}
-      <FlipBoard />
+      {/* <FlipBoard /> */}
+      <FlipBoardHero />
     </div>
   );
 }

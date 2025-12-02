@@ -163,9 +163,6 @@ export default function Home() {
     <main className="wrapper bg-secondary">
       {/* Hero Section */}
       <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8 md:pt-24 md:pb-16">
-        {/* Hero 3D Canvas - GLB Model */}
-        {/* <GLBHeroCanvas /> */}
-
         {/* Hero background image */}
         <Image
           className="absolute inset-0 h-full w-full object-cover"
@@ -179,26 +176,6 @@ export default function Home() {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
-
-        {/* <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/images/hero.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */}
-
-        {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
-          Meubles en bois sur mesure
-        </h4> */}
-        {/* <AnimatedText isHero delay={0.0} stagger={0.3}>
-          <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
-            Meubles en bois sur mesure
-          </h4>
-        </AnimatedText> */}
 
         {/* Logo and location text centered in hero */}
         <div className="absolute top-1/2 right-0 left-0 z-10 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8">
