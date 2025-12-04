@@ -139,13 +139,13 @@ export default function Testimonial() {
           src="/images/testimonial.webp"
           alt="Random from Picsum"
           fill
-          className="rounded-sm object-cover"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, 80vw"
           // priority
           loading="lazy"
         />
         <AnimatedText delay={0.0} stagger={0.3}>
-          <h2 className="font-ITCGaramondN text-primary relative text-5xl leading-tight md:text-7xl">
+          <h2 className="font-ITCGaramondN relative text-5xl leading-tight text-[#fffcf5] md:text-7xl">
             Témoignages
           </h2>
         </AnimatedText>
