@@ -276,7 +276,7 @@ export default function Home() {
           <div className="relative h-[600px] w-full md:h-[800px] md:w-4/5">
             <Image
               src="/images/BBP Dansaert 5.webp"
-              alt="Nemwood furniture showcase"
+              alt="Table bois suspendue et panneau mural bar BBP Dansaert Bruxelles"
               fill
               className="rounded-sm object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"

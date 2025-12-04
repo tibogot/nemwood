@@ -22,33 +22,29 @@ const HorizScroll: React.FC = () => {
       number: "1/5",
       title: "Escaliers",
       slug: "escaliers",
-      description:
-        "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale.",
-      image: "/images/stairs.webp",
+      description: "Escalier en chene rustique massif",
+      image: "/images/horiz-escalier.webp",
     },
     {
       number: "2/5",
       title: "Garde-robes",
       slug: "garde-robes",
-      description:
-        "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
-      image: "/images/wardrobe.webp",
+      description: "Gardes-robes intégrées ",
+      image: "/images/horiz-garderobe.webp",
     },
     {
       number: "3/5",
       title: "Tables",
       slug: "tables",
-      description:
-        "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.",
-      image: "/images/table.webp",
+      description: "Table à manger en plaqué noyé",
+      image: "/images/horiz-table.webp",
     },
     {
       number: "4/5",
       title: "Cuisines",
       slug: "cuisines",
-      description:
-        "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
-      image: "/images/kitchen.webp",
+      description: "Cuisine stratifiée noire et céramique",
+      image: "/images/horiz-cuisine.webp",
     },
     {
       number: "5/5",
