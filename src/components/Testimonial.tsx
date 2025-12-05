@@ -35,13 +35,22 @@ export default function Testimonial() {
 
   // Update container height dynamically to handle viewport changes
   useEffect(() => {
+    let refreshTimeout: NodeJS.Timeout | null = null;
+
     const updateHeight = () => {
       if (containerRef.current) {
         // Use the actual viewport height
         const vh = window.innerHeight;
         containerRef.current.style.height = `${vh}px`;
-        // Refresh ScrollTrigger to recalculate
-        ScrollTrigger.refresh();
+
+        // Debounce ScrollTrigger refresh to avoid excessive refreshes during rapid resize
+        if (refreshTimeout) {
+          clearTimeout(refreshTimeout);
+        }
+        refreshTimeout = setTimeout(() => {
+          ScrollTrigger.refresh();
+          refreshTimeout = null;
+        }, 150);
       }
     };
 
@@ -49,7 +58,7 @@ export default function Testimonial() {
     updateHeight();
 
     // Update on resize and orientation change
-    window.addEventListener("resize", updateHeight);
+    window.addEventListener("resize", updateHeight, { passive: true });
     window.addEventListener("orientationchange", updateHeight);
 
     // Also listen for visual viewport changes (mobile browser UI show/hide)
@@ -58,6 +67,9 @@ export default function Testimonial() {
     }
 
     return () => {
+      if (refreshTimeout) {
+        clearTimeout(refreshTimeout);
+      }
       window.removeEventListener("resize", updateHeight);
       window.removeEventListener("orientationchange", updateHeight);
       if (window.visualViewport) {

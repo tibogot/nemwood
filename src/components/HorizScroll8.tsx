@@ -71,9 +71,6 @@ const HorizScroll: React.FC = () => {
       )
         return;
 
-      // Force refresh ScrollTrigger to work properly with Lenis
-      ScrollTrigger.refresh();
-
       const scrollWidth = scrollerRef.current.scrollWidth;
       const viewportWidth = window.innerWidth;
 
@@ -81,6 +78,7 @@ const HorizScroll: React.FC = () => {
       const scrollDistance = scrollWidth - viewportWidth;
 
       // Create the horizontal scroll animation - exact same config as HorizScroll7
+      // normalizeScroll is a valid ScrollTrigger property for custom scrollers like Lenis
       const horizontalScrollAnimation = gsap.to(scrollerRef.current, {
         x: -scrollDistance,
         ease: "none",
@@ -92,9 +90,13 @@ const HorizScroll: React.FC = () => {
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          //@ts-ignore
           normalizeScroll: true,
-        },
+        } as ScrollTrigger.Vars & { normalizeScroll?: boolean },
+      });
+
+      // Refresh ScrollTrigger after animation is created (best practice)
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
 
       // Cleanup function is handled by useGSAP

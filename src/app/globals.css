@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior removed: Lenis handles smooth scrolling programmatically */
 }
 
 /* Ensure proper viewport handling on mobile */
@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
   /* Optimize scrolling performance */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  /* scroll-behavior removed: Lenis handles smooth scrolling programmatically */
 }
 
 /* Optimize image loading */

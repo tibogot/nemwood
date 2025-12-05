@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, ReactNode } from "react";
+import { useLenis } from "lenis/react";
 
 interface ParallaxImageProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ export default function ParallaxImage({
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +35,20 @@ export default function ParallaxImage({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [speed]);
+    // Use Lenis scroll events if available, otherwise fallback to window scroll
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+      handleScroll(); // Initial call
+      return () => {
+        lenis.off("scroll", handleScroll);
+      };
+    } else {
+      // Fallback for when Lenis is not available
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll(); // Initial call
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [speed, lenis]);
 
   return (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>

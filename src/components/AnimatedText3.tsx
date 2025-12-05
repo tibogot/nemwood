@@ -148,6 +148,18 @@ function AnimatedText({
     if (isHero) return; // Hero text doesn't need this
 
     let timeoutId: NodeJS.Timeout | null = null;
+    let refreshTimeout: NodeJS.Timeout | null = null;
+
+    // Debounced refresh function to avoid multiple rapid refreshes
+    const scheduleRefresh = () => {
+      if (refreshTimeout) {
+        clearTimeout(refreshTimeout);
+      }
+      refreshTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+        refreshTimeout = null;
+      }, 150);
+    };
 
     const handlePageTransitionComplete = () => {
       // Clear any pending timeout
@@ -160,9 +172,7 @@ function AnimatedText({
       setNavigationComplete(true);
 
       // Wait a bit for layout to stabilize, then refresh ScrollTrigger
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 150);
+      scheduleRefresh();
     };
 
     // Listen for page transition completion
@@ -181,7 +191,7 @@ function AnimatedText({
       // (unlikely but possible in edge cases)
       timeoutId = setTimeout(() => {
         setNavigationComplete(true);
-        ScrollTrigger.refresh();
+        scheduleRefresh();
       }, 1500); // 1.5s should be more than enough for the transition
     } else {
       // Initial load/refresh - no navigation happened, mark as complete immediately
@@ -195,6 +205,9 @@ function AnimatedText({
       );
       if (timeoutId) {
         clearTimeout(timeoutId);
+      }
+      if (refreshTimeout) {
+        clearTimeout(refreshTimeout);
       }
     };
   }, [isHero]);

@@ -436,29 +436,32 @@ export default function HomeCard() {
         }
       });
 
-      // Wait for next frame to ensure all layout calculations are complete
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
+      // Consolidated ScrollTrigger refresh function (following best practices)
+      // Debounce multiple refresh calls into a single refresh after all animations are ready
+      let refreshTimeout: NodeJS.Timeout | null = null;
+      const scheduleRefresh = (delay: number = 100) => {
+        if (refreshTimeout) {
+          clearTimeout(refreshTimeout);
+        }
+        refreshTimeout = setTimeout(() => {
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+            refreshTimeout = null;
+          });
+        }, delay);
+      };
 
-        // Additional refresh after a short delay to catch any late layout changes
-        setTimeout(() => {
-          ScrollTrigger.refresh();
-        }, 100);
-      });
+      // Initial refresh after all animations are set up
+      scheduleRefresh(100);
 
       // Listen for page loader completion to refresh after scrollbar appears
       const handlePageLoaderComplete = () => {
         // Wait for scrollbar to appear and layout to settle
         // The loader removes overflow:hidden, causing scrollbar to appear
+        // Use double RAF to ensure scrollbar rendering is complete
         requestAnimationFrame(() => {
-          // Double RAF to ensure scrollbar rendering is complete
           requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-
-            // One more refresh after a short delay to be absolutely sure
-            setTimeout(() => {
-              ScrollTrigger.refresh();
-            }, 150);
+            scheduleRefresh(150);
           });
         });
       };
@@ -466,9 +469,7 @@ export default function HomeCard() {
       // Check if loader is already complete (for navigation between pages)
       if (document.documentElement.classList.contains("page-loader-complete")) {
         // Loader already completed, but wait a bit for layout to be stable
-        setTimeout(() => {
-          ScrollTrigger.refresh();
-        }, 100);
+        scheduleRefresh(100);
       } else {
         // Listen for loader completion event
         window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
@@ -476,6 +477,12 @@ export default function HomeCard() {
 
       // Return cleanup function
       return () => {
+        // Clear any pending refresh timeout
+        if (refreshTimeout) {
+          clearTimeout(refreshTimeout);
+          refreshTimeout = null;
+        }
+
         // Clean up Lenis listener
         if (lenis) {
           lenis.off("scroll", handleScroll);
@@ -486,6 +493,9 @@ export default function HomeCard() {
           "pageLoaderComplete",
           handlePageLoaderComplete,
         );
+
+        // Clear scrollerProxy to prevent conflicts with other components
+        ScrollTrigger.scrollerProxy(document.body, undefined);
 
         // Clean up all contexts
         introPinCtx.revert();

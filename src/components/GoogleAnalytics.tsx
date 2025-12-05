@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 // TypeScript declarations for gtag
 declare global {
@@ -19,6 +19,12 @@ export default function GoogleAnalytics() {
     return null; // Don't render if no GA ID provided
   }
 
+  // Refs to store event handlers and timeout for cleanup
+  const eventTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const formSubmitHandlerRef = useRef<((e: Event) => void) | null>(null);
+  const phoneClickHandlerRef = useRef<((e: Event) => void) | null>(null);
+  const emailClickHandlerRef = useRef<((e: Event) => void) | null>(null);
+
   useEffect(() => {
     // Initialize dataLayer immediately to prevent blocking
     if (typeof window !== "undefined") {
@@ -29,6 +35,95 @@ export default function GoogleAnalytics() {
           window.dataLayer.push(arguments);
         };
     }
+  }, []);
+
+  // Set up event listeners with proper cleanup
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    // Debounced event tracking function to reduce main thread blocking
+    const debouncedGtag = (
+      event: string,
+      category: string,
+      label: string,
+      value: number,
+    ) => {
+      if (eventTimeoutRef.current) {
+        clearTimeout(eventTimeoutRef.current);
+      }
+      eventTimeoutRef.current = setTimeout(() => {
+        if (window.gtag) {
+          window.gtag("event", event, {
+            event_category: category,
+            event_label: label,
+            value: value,
+          });
+        }
+      }, 100);
+    };
+
+    // Track contact form submissions with debouncing
+    const handleFormSubmit = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (target && target.tagName === "FORM") {
+        debouncedGtag("form_submit", "engagement", "contact_form", 1);
+      }
+    };
+
+    // Track phone number clicks with debouncing
+    const handlePhoneClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      // Check if the clicked element or its parent is a link with tel: href
+      const link = target.closest("a") as HTMLAnchorElement | null;
+      if (link && link.href && link.href.includes("tel:")) {
+        debouncedGtag("phone_click", "engagement", "phone_call", 1);
+      }
+    };
+
+    // Track email clicks with debouncing
+    const handleEmailClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      // Check if the clicked element or its parent is a link with mailto: href
+      const link = target.closest("a") as HTMLAnchorElement | null;
+      if (link && link.href && link.href.includes("mailto:")) {
+        debouncedGtag("email_click", "engagement", "email_contact", 1);
+      }
+    };
+
+    // Store handlers in refs for cleanup
+    formSubmitHandlerRef.current = handleFormSubmit;
+    phoneClickHandlerRef.current = handlePhoneClick;
+    emailClickHandlerRef.current = handleEmailClick;
+
+    // Add event listeners
+    document.addEventListener("submit", handleFormSubmit, { passive: true });
+    document.addEventListener("click", handlePhoneClick, { passive: true });
+    document.addEventListener("click", handleEmailClick, { passive: true });
+
+    // Cleanup function
+    return () => {
+      // Clear any pending timeout
+      if (eventTimeoutRef.current) {
+        clearTimeout(eventTimeoutRef.current);
+        eventTimeoutRef.current = null;
+      }
+
+      // Remove event listeners
+      if (formSubmitHandlerRef.current) {
+        document.removeEventListener("submit", formSubmitHandlerRef.current);
+        formSubmitHandlerRef.current = null;
+      }
+      if (phoneClickHandlerRef.current) {
+        document.removeEventListener("click", phoneClickHandlerRef.current);
+        phoneClickHandlerRef.current = null;
+      }
+      if (emailClickHandlerRef.current) {
+        document.removeEventListener("click", emailClickHandlerRef.current);
+        emailClickHandlerRef.current = null;
+      }
+    };
   }, []);
 
   return (
@@ -54,51 +149,6 @@ export default function GoogleAnalytics() {
               },
             });
           }
-        }}
-      />
-
-      {/* Event tracking with debouncing to reduce main thread impact */}
-      <Script
-        id="google-analytics-events"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-            // Debounced event tracking to reduce main thread blocking
-            let eventTimeout;
-            function debouncedGtag(event, category, label, value) {
-              clearTimeout(eventTimeout);
-              eventTimeout = setTimeout(() => {
-                if (window.gtag) {
-                  window.gtag('event', event, {
-                    event_category: category,
-                    event_label: label,
-                    value: value
-                  });
-                }
-              }, 100);
-            }
-            
-            // Track contact form submissions with debouncing
-            document.addEventListener('submit', function(e) {
-              if (e.target && e.target.tagName === 'FORM') {
-                debouncedGtag('form_submit', 'engagement', 'contact_form', 1);
-              }
-            });
-            
-            // Track phone number clicks with debouncing
-            document.addEventListener('click', function(e) {
-              if (e.target && e.target.href && e.target.href.includes('tel:')) {
-                debouncedGtag('phone_click', 'engagement', 'phone_call', 1);
-              }
-            });
-            
-            // Track email clicks with debouncing
-            document.addEventListener('click', function(e) {
-              if (e.target && e.target.href && e.target.href.includes('mailto:')) {
-                debouncedGtag('email_click', 'engagement', 'email_contact', 1);
-              }
-            });
-          `,
         }}
       />
     </>

@@ -159,38 +159,6 @@ export default function Navigation9({
   // Track if we are over the home hero section (transparent nav) or past it (solid nav)
   const [isOverHero, setIsOverHero] = useState(pathname === "/");
 
-  useEffect(() => {
-    if (pathname !== "/") {
-      setIsOverHero(false);
-      return;
-    }
-
-    const handleScroll = () => {
-      // Don't update hero state when menu is open (body is fixed, scrollY would be 0)
-      if (isMenuOpen) return;
-
-      const vh = window.innerHeight || 0;
-      // Use Lenis scroll position if available (more accurate, works even when body is fixed)
-      // Otherwise fall back to window.scrollY
-      const currentScrollY = lenis ? lenis.scroll : window.scrollY;
-      // Once we've scrolled roughly past the hero (full viewport hero), switch to solid nav
-      setIsOverHero(currentScrollY < vh - 80);
-    };
-
-    handleScroll();
-
-    // Listen to Lenis scroll events if available, otherwise use window scroll
-    if (lenis) {
-      lenis.on("scroll", handleScroll);
-      return () => {
-        lenis.off("scroll", handleScroll);
-      };
-    } else {
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [pathname, lenis, isMenuOpen]);
-
   // Hero "fixed" color (ignores dark mode) for logo + burger when over hero
   // Uses your off-white brand color so dark mode never affects it
   const heroFixedColorClass = "text-[#fffcf5]";
@@ -555,35 +523,60 @@ export default function Navigation9({
     setIsServicesHovered(false);
   }, [pathname]);
 
-  // Smooth navbar hide/show on scroll using Lenis and GSAP
+  // Initialize hero state when pathname changes (outside scroll handler)
   useEffect(() => {
-    if (!navRef.current || !lenis) return;
+    if (pathname !== "/") {
+      setIsOverHero(false);
+    } else {
+      // On home page, check initial scroll position
+      if (lenis && !isMenuOpen) {
+        const vh = window.innerHeight || 0;
+        const currentScrollY = lenis.scroll;
+        setIsOverHero(currentScrollY < vh - 80);
+      }
+    }
+  }, [pathname, lenis, isMenuOpen]);
+
+  // Consolidated scroll handler: Hero detection + Navbar hide/show
+  useEffect(() => {
+    if (!lenis) return;
 
     let lastScrollY = lenis.scroll;
     let scrollTimeout: NodeJS.Timeout;
     let currentAnimation: gsap.core.Tween | null = null;
 
-    // Animation properties - same for both directions
+    // Animation properties for navbar hide/show
     const animationProps = {
       duration: 0.6,
       ease: "power2.out" as const,
     };
 
     const handleScroll = () => {
+      const currentScrollY = lenis.scroll;
+
+      // 1. Hero section detection (only on home page)
+      if (pathname === "/" && !isMenuOpen) {
+        const vh = window.innerHeight || 0;
+        // Once we've scrolled roughly past the hero (full viewport hero), switch to solid nav
+        setIsOverHero(currentScrollY < vh - 80);
+      }
+
+      // 2. Navbar hide/show animation (all pages)
       if (!navRef.current || isMenuOpen) {
         // Don't hide navbar when menu is open - ensure it's visible
         if (currentAnimation) {
           currentAnimation.kill();
           currentAnimation = null;
         }
-        gsap.to(navRef.current, {
-          y: 0,
-          ...animationProps,
-        });
+        if (navRef.current) {
+          gsap.to(navRef.current, {
+            y: 0,
+            ...animationProps,
+          });
+        }
         return;
       }
 
-      const currentScrollY = lenis.scroll;
       const scrollDifference = currentScrollY - lastScrollY;
 
       // Only trigger if scroll difference is significant (avoid jitter)
@@ -630,7 +623,7 @@ export default function Navigation9({
         currentAnimation.kill();
       }
     };
-  }, [lenis, isMenuOpen]);
+  }, [pathname, lenis, isMenuOpen]);
 
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
