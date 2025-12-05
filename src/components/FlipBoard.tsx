@@ -4,9 +4,11 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import Image from "next/image";
 
+// Cooldown time in milliseconds for tile animations
+const COOLDOWN = 1000;
+
 export default function FlipBoard(): React.JSX.Element {
   const boardRef = useRef<HTMLDivElement>(null);
-  const COOLDOWN = 1000;
   const isFlippedRef = useRef<boolean>(false);
 
   // Fixed grid dimensions - ALWAYS 4 rows and 6 columns (24 squares total)
@@ -124,7 +126,7 @@ export default function FlipBoard(): React.JSX.Element {
         }
       });
     };
-  }, [COOLDOWN]);
+  }, []);
 
   return (
     <div className="flex min-h-[80vh] w-full items-center justify-center px-4 py-8 md:px-8">

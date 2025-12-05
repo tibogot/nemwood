@@ -76,7 +76,7 @@ Nouvelle demande de contact depuis le site Nemwood
 Informations du client :
 - Nom : ${firstName} ${lastName}
 - Email : ${email}
-- Téléphone : ${phone || "Non renseigné"}
+- Téléphone : ${phone ? phone : "Non renseigné"}
 
 Message :
 ${message}
@@ -116,7 +116,7 @@ Menuisier artisan en Belgique
 
 ---
 Cet email est envoyé automatiquement, merci de ne pas y répondre.
-Pour toute question urgente, contactez-nous directement au 0489 33 05 44.
+Pour toute question urgente, contactez-nous directement au +32 489 33 05 44.
     `.trim();
 
     await transporter.sendMail({
