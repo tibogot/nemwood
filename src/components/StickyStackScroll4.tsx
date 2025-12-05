@@ -97,7 +97,7 @@ function Card2() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/matériaux-durable.webp"
+              src="/images/materiaux-durable.webp"
               alt="Escaliers sur mesure"
               fill
               className="object-cover"
@@ -591,7 +591,7 @@ export default function HomeCard() {
             <div className="mt-8">
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
-                  src="/images/matériaux-durable.webp"
+                  src="/images/materiaux-durable.webp"
                   alt="Escaliers sur mesure"
                   width={1000}
                   height={400}
