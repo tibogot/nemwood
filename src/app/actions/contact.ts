@@ -31,18 +31,8 @@ export async function submitContactForm(
   prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  console.log("🚀 Contact form submission started");
-  console.log("📧 Environment variables check:", {
-    SMTP_HOST: process.env.SMTP_HOST ? "✅ Set" : "❌ Missing",
-    SMTP_PORT: process.env.SMTP_PORT ? "✅ Set" : "❌ Missing",
-    SMTP_USER: process.env.SMTP_USER ? "✅ Set" : "❌ Missing",
-    SMTP_PASS: process.env.SMTP_PASS ? "✅ Set" : "❌ Missing",
-    SMTP_FROM: process.env.SMTP_FROM ? "✅ Set" : "❌ Missing",
-  });
-
   try {
     // Validate form data
-    console.log("🔍 Validating form data...");
     const validatedFields = contactSchema.safeParse({
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
@@ -53,27 +43,15 @@ export async function submitContactForm(
 
     // If validation fails, return field errors
     if (!validatedFields.success) {
-      console.log(
-        "❌ Validation failed:",
-        validatedFields.error.flatten().fieldErrors,
-      );
       return {
         error: "Veuillez corriger les erreurs ci-dessous",
         fieldErrors: validatedFields.error.flatten().fieldErrors,
       };
     }
 
-    console.log("✅ Form validation passed");
     const { firstName, lastName, email, phone, message } = validatedFields.data;
 
     // Create nodemailer transporter
-    console.log("SMTP Config:", {
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: process.env.SMTP_SECURE,
-      user: process.env.SMTP_USER,
-      passLength: process.env.SMTP_PASS?.length || 0,
-    });
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "ssl0.ovh.net",
@@ -86,7 +64,7 @@ export async function submitContactForm(
       // OVH SSL0 specific options
       ignoreTLS: false,
       requireTLS: true,
-      debug: true, // Enable debug logs
+      debug: false,
       connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000, // 30 seconds
     });
@@ -109,12 +87,9 @@ Date : ${new Date().toLocaleString("fr-BE", { timeZone: "Europe/Brussels" })}
     `.trim();
 
     // Test SMTP connection first
-    console.log("Testing SMTP connection...");
     await transporter.verify();
-    console.log("SMTP connection verified successfully");
 
     // Send email to your business email
-    console.log("Sending email to:", "contact@nemwood.be");
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: "contact@nemwood.be",
@@ -123,7 +98,6 @@ Date : ${new Date().toLocaleString("fr-BE", { timeZone: "Europe/Brussels" })}
       html: emailContent.replace(/\n/g, "<br>"),
       replyTo: email, // Allow direct reply to the customer
     });
-    console.log("Email sent successfully to contact@nemwood.be");
 
     // Optional: Send confirmation email to the customer
     const confirmationContent = `
@@ -157,12 +131,10 @@ Pour toute question urgente, contactez-nous directement au 0489 33 05 44.
       success: true,
     };
   } catch (error) {
-    console.error("❌ Contact form submission error:", error);
-    console.error("❌ Error details:", {
-      name: error instanceof Error ? error.name : "Unknown",
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : undefined,
-    });
+    // Log error only in development
+    if (process.env.NODE_ENV === "development") {
+      console.error("Contact form submission error:", error);
+    }
     return {
       error:
         "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer ou nous contacter directement.",

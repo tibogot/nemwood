@@ -68,7 +68,6 @@ export default function PageLoader({ onComplete, onReady }: PageLoaderProps) {
           !logoOverlayRef.current ||
           !blocksRef.current.length
         ) {
-          console.warn("PageLoader: Required refs not available");
           if (onComplete) onComplete();
           return;
         }
@@ -104,9 +103,6 @@ export default function PageLoader({ onComplete, onReady }: PageLoaderProps) {
             !logoOverlayRef.current ||
             !blocksRef.current.length
           ) {
-            console.warn(
-              "PageLoader: Elements not available for exit animation",
-            );
             setIsVisible(false);
             if (onComplete) onComplete();
             return;

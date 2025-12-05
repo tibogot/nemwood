@@ -94,9 +94,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
           !logoOverlayRef.current ||
           !blocksRef.current.length
         ) {
-          console.warn(
-            "PageTransition: Required refs not available, skipping transition",
-          );
           router.push(url);
           return;
         }

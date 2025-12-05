@@ -221,7 +221,7 @@ export default function Home() {
         );
         setBlogPosts(posts);
       } catch (error) {
-        console.error("Error fetching blog posts:", error);
+        // Silently handle error - blog posts are not critical for page load
       }
     };
 

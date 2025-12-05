@@ -116,10 +116,10 @@ export default function CookieConsentComponent() {
             google_analytics: {
               label: "Google Analytics",
               onAccept: () => {
-                console.log("Google Analytics activé");
+                // Google Analytics enabled
               },
               onReject: () => {
-                console.log("Google Analytics désactivé");
+                // Google Analytics disabled
               },
             },
           },

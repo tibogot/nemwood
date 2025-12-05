@@ -202,7 +202,6 @@ export default function ServicesCarousel({
       onClick: function (e) {
         // GSAP's built-in click detection - only fires if no significant dragging occurred
         // Since clickableTest allows links to be clicked directly, this mainly serves as a fallback
-        console.log("Click detected on carousel (fallback)");
       },
       // Allow clicks on interactive elements like links
       clickableTest: function (target) {

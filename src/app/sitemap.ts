@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }`,
     );
   } catch (error) {
-    console.error("Error fetching blog posts for sitemap:", error);
+    // Silently handle error - sitemap will work without blog posts
   }
 
   // Add blog post URLs

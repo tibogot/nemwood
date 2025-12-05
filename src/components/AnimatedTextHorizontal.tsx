@@ -97,10 +97,7 @@ function AnimatedTextHorizontal({
           setTimeout(() => setFontsReady(true), 500);
         }
       } catch (error) {
-        console.warn(
-          "Font loading detection failed in AnimatedTextHorizontal, using fallback:",
-          error,
-        );
+        // Fallback: proceed after delay if font detection fails
         setTimeout(() => setFontsReady(true), 500);
       }
     };
@@ -198,9 +195,6 @@ function AnimatedTextHorizontal({
             setTimeout(createSplitTextInstances, 100);
             return;
           } else {
-            console.warn(
-              "Horizontal container not found after 10 attempts, using immediate animation",
-            );
             // Fall back to immediate animation
             children.forEach((child, index) => {
               try {
@@ -223,7 +217,7 @@ function AnimatedTextHorizontal({
                   });
                 }
               } catch (error) {
-                console.error(`Error creating fallback animation:`, error);
+                // Fallback animation creation failed
               }
             });
             return;
@@ -361,15 +355,10 @@ function AnimatedTextHorizontal({
                   // Store observer for cleanup
                   splitRefs.current.push({ observer, textAnimation });
                 } else {
-                  console.warn(
-                    "Section element not found for horizontal animation",
-                  );
+                  // Section element not found
                 }
               } else {
                 // Fallback: immediate animation if no horizontal container found
-                console.warn(
-                  "Horizontal container not found, using immediate animation",
-                );
                 if (wrapperRef.current) {
                   wrapperRef.current.classList.remove("fouc-prevent");
                 }
@@ -385,17 +374,9 @@ function AnimatedTextHorizontal({
                 });
               }
             } else {
-              console.warn(
-                `SplitText failed for AnimatedTextHorizontal child ${index}:`,
-                child.textContent,
-              );
               allInstancesCreated = false;
             }
           } catch (error) {
-            console.error(
-              `Error creating SplitText for AnimatedTextHorizontal child ${index}:`,
-              error,
-            );
             allInstancesCreated = false;
           }
         });

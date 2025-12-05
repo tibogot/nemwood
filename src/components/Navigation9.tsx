@@ -31,7 +31,7 @@ export default function Navigation9({
   const logoRef = useRef<HTMLAnchorElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  
+
   // Lenis instance for scroll detection
   const lenis = useLenis();
 
@@ -168,7 +168,7 @@ export default function Navigation9({
     const handleScroll = () => {
       // Don't update hero state when menu is open (body is fixed, scrollY would be 0)
       if (isMenuOpen) return;
-      
+
       const vh = window.innerHeight || 0;
       // Use Lenis scroll position if available (more accurate, works even when body is fixed)
       // Otherwise fall back to window.scrollY
@@ -178,7 +178,7 @@ export default function Navigation9({
     };
 
     handleScroll();
-    
+
     // Listen to Lenis scroll events if available, otherwise use window scroll
     if (lenis) {
       lenis.on("scroll", handleScroll);
@@ -216,7 +216,7 @@ export default function Navigation9({
           setTimeout(() => setFontsLoaded(true), 100);
         }
       } catch (error) {
-        console.warn("Font loading detection failed, using fallback:", error);
+        // Fallback: proceed after delay if font detection fails
         setTimeout(() => setFontsLoaded(true), 100);
       }
     };
@@ -244,7 +244,7 @@ export default function Navigation9({
       // Get current scroll position from Lenis (more accurate than window.scrollY)
       // Fallback to window.scrollY if Lenis is not available
       const scrollY = lenis ? lenis.scroll : window.scrollY;
-      
+
       // Store scroll position in ref for later restoration
       savedScrollPosition.current = scrollY;
 
@@ -257,7 +257,7 @@ export default function Navigation9({
       return () => {
         // Get the scroll position to restore
         const scrollYToRestore = savedScrollPosition.current;
-        
+
         // Restore body styles
         document.body.style.overflow = originalOverflow;
         document.body.style.position = originalPosition;
@@ -270,10 +270,10 @@ export default function Navigation9({
           // Set scroll position on document element first (most reliable)
           document.documentElement.scrollTop = scrollYToRestore;
           document.body.scrollTop = scrollYToRestore;
-          
+
           // Also set via window.scrollTo for compatibility
           window.scrollTo(0, scrollYToRestore);
-          
+
           if (lenis) {
             // Update Lenis to match the scroll position we just set
             lenis.scrollTo(scrollYToRestore, { immediate: true });
@@ -345,17 +345,9 @@ export default function Navigation9({
                   transformOrigin: "0% 50% -50",
                 });
               } else {
-                console.warn(
-                  `SplitText failed for item ${index}:`,
-                  linkElement.textContent,
-                );
                 allInstancesCreated = false;
               }
             } catch (error) {
-              console.error(
-                `Error creating SplitText for item ${index}:`,
-                error,
-              );
               allInstancesCreated = false;
             }
           }
@@ -620,7 +612,7 @@ export default function Navigation9({
 
       // Clear existing timeout
       clearTimeout(scrollTimeout);
-      
+
       // Reset flag after scroll stops
       scrollTimeout = setTimeout(() => {
         // Cleanup
@@ -808,7 +800,7 @@ export default function Navigation9({
 
       <nav
         ref={navRef}
-        className={`fixed top-0 right-0 left-0 z-40 h-16 select-none transition-colors duration-300 ${
+        className={`fixed top-0 right-0 left-0 z-40 h-16 transition-colors duration-300 select-none ${
           !isHeroState ? "bg-secondary" : ""
         }`}
         onClick={(e) => e.stopPropagation()}

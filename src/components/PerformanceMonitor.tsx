@@ -25,9 +25,6 @@ export default function PerformanceMonitor() {
           non_interaction: true,
         });
       }
-
-      // Log to console in development
-      console.log("Web Vital:", metric);
     };
 
     // LCP (Largest Contentful Paint)

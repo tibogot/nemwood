@@ -109,10 +109,7 @@ function AnimatedText({
           }
         }
       } catch (error) {
-        console.warn(
-          "Font loading detection failed in AnimatedText, using fallback:",
-          error,
-        );
+        // Fallback: proceed after delay if font detection fails
         if (!isHero) {
           setTimeout(() => setFontsReady(true), 500);
         }
@@ -340,17 +337,9 @@ function AnimatedText({
                 }
               }
             } else {
-              console.warn(
-                `SplitText failed for AnimatedText child ${index}:`,
-                child.textContent,
-              );
               allInstancesCreated = false;
             }
           } catch (error) {
-            console.error(
-              `Error creating SplitText for AnimatedText child ${index}:`,
-              error,
-            );
             allInstancesCreated = false;
           }
         });
