@@ -8,22 +8,10 @@ import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { useGSAP } from "@gsap/react";
 
 // Register all GSAP plugins once in a centralized location
-// This prevents redundant registrations and ensures consistency
+// GSAP handles duplicate registrations gracefully, so registering multiple times is safe
+// This ensures all plugins are available throughout the application
 if (typeof window !== "undefined") {
-  // Check if plugins are already registered to avoid duplicate registrations
-  if (!gsap.core.globals()["ScrollTrigger"]) {
-    gsap.registerPlugin(ScrollTrigger);
-  }
-  if (!gsap.core.globals()["SplitText"]) {
-    gsap.registerPlugin(SplitText);
-  }
-  if (!gsap.core.globals()["Draggable"]) {
-    gsap.registerPlugin(Draggable);
-  }
-  if (!gsap.core.globals()["InertiaPlugin"]) {
-    gsap.registerPlugin(InertiaPlugin);
-  }
-  // Note: useGSAP is a hook from @gsap/react, not a plugin, so it doesn't need registration
+  gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin);
 }
 
 // Export all GSAP utilities for use throughout the application
