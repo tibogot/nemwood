@@ -97,7 +97,7 @@ function Card2() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/stairs.webp"
+              src="/images/matériaux-durable.webp"
               alt="Escaliers sur mesure"
               fill
               className="object-cover"
@@ -147,7 +147,7 @@ function Card3() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/wardrobe.webp"
+              src="/images/fabrication-sur-mesure.webp"
               alt="Garde-robes sur mesure"
               fill
               className="object-cover"

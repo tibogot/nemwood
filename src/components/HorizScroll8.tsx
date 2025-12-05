@@ -23,28 +23,40 @@ const HorizScroll: React.FC = () => {
       title: "Escaliers",
       slug: "escaliers",
       description: "Escalier en chene rustique massif",
+      paragraph:
+        "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale. Bien plus qu'un passage entre les étages, l'escalier devient un élément architectural à part entière. Conçu sur mesure dans notre atelier, chaque projet révèle la beauté du bois et s'intègre parfaitement à votre intérieur. Un savoir-faire artisanal pour un ouvrage élégant et durable.",
       image: "/images/horiz-escalier.webp",
+      alt: "Escalier en chêne rustique massif sur mesure - Menuiserie artisanale Nemwood Belgique",
     },
     {
       number: "2/5",
       title: "Garde-robes",
       slug: "garde-robes",
       description: "Gardes-robes intégrées ",
+      paragraph:
+        "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. Parce que chaque intérieur est unique, votre garde-robe mérite d'être pensée sur mesure. Nous créons des espaces de rangement en bois massif alliant élégance naturelle et organisation optimale.",
       image: "/images/horiz-garderobe.webp",
+      alt: "Garde-robe intégrée sur mesure - Menuiserie artisanale Nemwood Belgique",
     },
     {
       number: "3/5",
       title: "Tables",
       slug: "tables",
       description: "Table à manger en plaqué noyé",
+      paragraph:
+        "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.La table est le cœur de votre foyer où se partagent repas et moments précieux. Chaque création s'intègre parfaitement à votre espace et reflète votre style. Un savoir-faire artisanal pour un mobilier authentique, robuste et intemporel.",
       image: "/images/horiz-table.webp",
+      alt: "Table à manger en plaqué noyé sur mesure - Menuiserie artisanale Nemwood Belgique",
     },
     {
       number: "4/5",
       title: "Cuisines",
       slug: "cuisines",
       description: "Cuisine stratifiée noire et céramique",
+      paragraph:
+        "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. La cuisine est le cœur vivant de votre maison, un espace de partage qui mérite toute notre attention. Nous créons des cuisines en bois massif sur mesure alliant authenticité et ergonomie adaptée à votre quotidien. Un savoir-faire artisanal pour une cuisine unique, pratique et durable.",
       image: "/images/horiz-cuisine.webp",
+      alt: "Cuisine stratifiée noire et céramique sur mesure - Menuiserie artisanale Nemwood Belgique",
     },
     {
       number: "5/5",
@@ -52,7 +64,10 @@ const HorizScroll: React.FC = () => {
       slug: "services",
       description:
         "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure.",
+      paragraph:
+        "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure, reflétant votre personnalité et répondant à vos besoins spécifiques.",
       image: "/images/wood-work.webp",
+      alt: "Services de menuiserie artisanale sur mesure - Bibliothèques, bureaux, salles de bain - Nemwood Belgique",
       isCTASection: true,
     },
   ];
@@ -111,7 +126,7 @@ const HorizScroll: React.FC = () => {
               <div className="aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={section.image}
-                  alt={section.title}
+                  alt={section.alt || section.title}
                   width={1000}
                   height={800}
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
@@ -218,7 +233,7 @@ const HorizScroll: React.FC = () => {
                     className="font-HelveticaNow mb-6 w-1/2 text-lg leading-tight"
                     aria-hidden="true"
                   >
-                    {section.description}
+                    {section.paragraph || section.description}
                   </p>
                 </AnimatedTextHorizontal>
                 <div>
@@ -255,7 +270,10 @@ const HorizScroll: React.FC = () => {
               <div className="group relative h-full w-1/2 cursor-pointer overflow-hidden">
                 <Image
                   src={section.image}
-                  alt={`Réalisation ${section.title.toLowerCase()} sur mesure par Nemwood - Menuisier artisan en Belgique`}
+                  alt={
+                    section.alt ||
+                    `Réalisation ${section.title.toLowerCase()} sur mesure par Nemwood - Menuisier artisan en Belgique`
+                  }
                   fill
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   loading="lazy"
