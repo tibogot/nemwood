@@ -90,7 +90,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 58vw"
-                quality={90}
+                quality={85}
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 42vw"
-                quality={90}
+                quality={85}
               />
             </div>
 
@@ -119,7 +119,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                quality={90}
+                quality={85}
               />
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="100vw"
-                quality={90}
+                quality={85}
               />
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                quality={90}
+                quality={85}
               />
             </div>
 
@@ -168,7 +168,7 @@ export default function BureauPage() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 42vw"
-                quality={90}
+                quality={85}
               />
             </div>
           </div>

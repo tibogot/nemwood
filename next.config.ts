@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1 year
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [75, 85], // Required in Next.js 16+: allowed image quality values
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "gsap", "@gsap/react"],

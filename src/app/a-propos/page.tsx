@@ -104,7 +104,7 @@ export default function About() {
           alt="Hero Image"
           fill
           sizes="100vw"
-          quality={100}
+          quality={85}
           priority
         />
         <div className="absolute inset-0 h-full w-full bg-gradient-to-b from-transparent to-black opacity-50"></div>

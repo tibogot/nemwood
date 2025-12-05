@@ -155,7 +155,7 @@ export default function Testimonial() {
           alt="Logo"
           width={1200} // use a large width for SVG
           height={300} // adjust height proportionally
-          quality={100}
+          quality={85}
           // priority
         /> */}
         <div className="absolute inset-0 flex items-center justify-center">
