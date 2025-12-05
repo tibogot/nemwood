@@ -165,13 +165,22 @@ function CardsScroll() {
   }, []);
 
   const generateRows = () => {
+    const cardImages = [
+      "card-cacheradiateur",
+      "card-rondin",
+      "card-copeaux",
+      "card-oak",
+      "card-plan",
+      "card-poutre",
+    ];
+
     const rows = [];
     for (let i = 1; i <= 3; i++) {
       rows.push(
         <div className="row m-4 flex w-full justify-center gap-4" key={i}>
           <div className="card card-left relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
-              src={`/img-${2 * i - 1}.webp`}
+              src={`/images/${cardImages[2 * i - 2]}.webp`}
               alt={`Réalisation ${2 * i - 1} - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique`}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
@@ -181,7 +190,7 @@ function CardsScroll() {
           </div>
           <div className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
-              src={`/img-${2 * i}.webp`}
+              src={`/images/${cardImages[2 * i - 1]}.webp`}
               alt={`Réalisation ${2 * i} - Mobilier artisanal en bois massif créé par Nemwood en Belgique`}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"

@@ -11,13 +11,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    name: "Sophie Dubois",
-    text: `L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle.`,
+    name: "Caroline Y",
+    text: `Nous tenons a te remercier pour le magnifique travail que tu as fait chez nous et pour ta gentillesse. `,
     image: "/images/profile-1.webp",
   },
   {
-    name: "Marc Lefevre",
-    text: `Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité.`,
+    name: "Catherine Orléans",
+    text: ` Nous sommes ravis du rendu de la table. C' est exactement ce que nous voulions et maintenant nous pouvons en profiter. Un grand merci ! `,
     image: "/images/profile-2.webp",
   },
   {
@@ -136,7 +136,7 @@ export default function Testimonial() {
         style={{ height: "100vh" }}
       >
         <Image
-          src="/images/testimonial.webp"
+          src="/images/testimonial-bg.webp"
           alt="Random from Picsum"
           fill
           className="object-cover"

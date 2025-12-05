@@ -28,13 +28,16 @@ function Card1() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                With decades of combined experience, Stack's specialists have
-                unmatched insight into their sectors. By leveraging extensive
-                industry relationships and AI-powered applied research, our
-                teams systematically uncover emerging opportunities and critical
-                market challenges. We then partner with the innovators best
-                positioned to address these issues, ensuring they generate
-                meaningful, lasting value.{" "}
+                Chez Nemwood, la durabilité est au cœur de notre démarche.
+                Chaque projet est conçu dans le respect de l'environnement, en
+                privilégiant des matériaux issus de filières responsables et une
+                gestion raisonnée des ressources. <br /> Nous travaillons
+                exclusivement avec des essences de bois certifiées et des
+                partenaires locaux pour limiter notre empreinte carbone et
+                soutenir une économie de proximité. <br /> Notre savoir-faire
+                artisanal valorise la qualité et la longévité : chaque pièce est
+                pensée pour durer, être réparée ou transformée, réduisant ainsi
+                son impact écologique sur le long terme.
               </p>
             </div>
           </div>
@@ -42,7 +45,7 @@ function Card1() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/kitchen.webp"
+              src="/images/sticky-eco.webp"
               alt="Cuisine sur mesure"
               fill
               className="object-cover"
@@ -76,14 +79,17 @@ function Card2() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Every Stack fund operates as a standardized modular building
-                block, empowering LPs to design custom private-market portfolios
-                aligned precisely to their strategic priorities. Rather than
-                selecting managers, LPs choose sectors—assembling targeted
-                exposures to meet exact investment goals. This modular approach
-                delivers clarity, precision, and tailored control, redefining
-                portfolio construction as an intentional, sector-driven
-                allocation strategy.
+                Le choix des matériaux est au fondement de notre métier. Chaque
+                projet prend vie à partir de bois sélectionnés pour leur
+                qualité, leur traçabilité et leur faible impact environnemental.
+                En privilégiant des essences durables et certifiées, nous
+                garantissons la longévité de nos créations. <br /> Notre
+                approche repose sur une utilisation raisonnée des ressources :
+                optimiser chaque pièce, limiter les pertes et valoriser les
+                chutes. <br /> Ce souci du détail permet de créer des
+                réalisations solides, élégantes et pensées pour durer. Choisir
+                Nemwood, c'est opter pour une fabrication où performance,
+                esthétique et responsabilité ne font qu'un.
               </p>
             </div>
           </div>
@@ -126,13 +132,14 @@ function Card3() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Stack's scalable digital-first and AI-powered operational
-                infrastructure ensures every fund benefits from uniformity in
-                processes, compliance, reporting, and risk management. By
-                centralizing and standardizing these operational elements across
-                all funds, Stack delivers consistency and reliability, allowing
-                partners to focus solely on their core strategic
-                objectives.{" "}
+                Chaque projet est unique, c'est pourquoi nous concevons et
+                fabriquons des pièces entièrement sur mesure, adaptées à vos
+                besoins et votre espace. <br /> Du mobilier aux rangements,
+                notre savoir-faire permet de créer des aménagements précis et
+                esthétiques. <br /> En alliant méthodes modernes et exécution
+                artisanale, nous garantissons des finitions soignées et une
+                durabilité dans le temps. <br /> Chaque élément répond
+                précisément à vos attentes.
               </p>
             </div>
           </div>
@@ -173,8 +180,14 @@ function Card4() {
               <div className="mt-12" />
 
               <p className="font-HelveticaNow max-w-lg text-lg leading-relaxed">
-                Innovative execution methods to deliver safe, high quality
-                project is the foundation of our business and success.
+                Avant chaque fabrication, nous donnons vie à vos idées grâce à
+                la modélisation 3D. Cet outil permet de visualiser le projet
+                dans ses moindres détails et d'ajuster proportions, matériaux ou
+                fonctionnalités pour une intégration parfaite. La 3D offre une
+                projection réaliste du rendu final : volumes, couleurs,
+                éclairages... Cette étape essentielle garantit une compréhension
+                claire et évite les mauvaises surprises. Vous validez votre
+                aménagement en toute confiance avant le lancement en atelier.
               </p>
             </div>
           </div>
@@ -182,7 +195,7 @@ function Card4() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/table.webp"
+              src="/images/Render 3D - 2 .webp"
               alt="Tables en bois massif"
               fill
               className="object-cover"
