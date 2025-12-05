@@ -1,17 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AnimatedTextHorizontal from "./AnimatedTextHorizontal";
 import AnimatedText from "./AnimatedText3";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 const HorizScroll: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -3,11 +3,7 @@
 import Logo from "./Logo3";
 import { useRef, ReactNode, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-
-// Register the useGSAP hook
-gsap.registerPlugin(useGSAP);
+import { gsap, useGSAP } from "@/lib/gsapConfig";
 
 interface PageTransitionProps {
   children: ReactNode;

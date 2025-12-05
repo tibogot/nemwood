@@ -1,14 +1,10 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
 import AnimatedText from "./AnimatedText3";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function Card1() {
   return (

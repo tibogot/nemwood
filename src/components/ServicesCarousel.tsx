@@ -3,13 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { Draggable } from "gsap/Draggable";
-import { InertiaPlugin } from "gsap/InertiaPlugin";
-
-// Register GSAP plugins
-gsap.registerPlugin(Draggable, InertiaPlugin);
+import { gsap, Draggable, InertiaPlugin, useGSAP } from "@/lib/gsapConfig";
 
 interface Service {
   title: string;

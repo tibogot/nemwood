@@ -1,11 +1,6 @@
 "use client";
 import { useRef, ReactNode, useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
 
 // Function to fix SplitText clipping issues with descenders
 function fixMask(

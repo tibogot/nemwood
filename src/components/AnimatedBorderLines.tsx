@@ -1,10 +1,6 @@
 "use client";
 import { useRef, ReactNode, useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 
 interface AnimatedBorderLinesProps {
   children: ReactNode;

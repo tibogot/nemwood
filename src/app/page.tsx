@@ -3,16 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef, Suspense } from "react";
 import client from "@/sanityClient";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText3";
 import BlogPreview from "@/components/BlogPreview";
 import dynamic from "next/dynamic";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 // Dynamic imports for non-critical components
 const HorizScroll = dynamic(() => import("@/components/HorizScroll8"), {

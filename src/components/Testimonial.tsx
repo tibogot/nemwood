@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import Image from "next/image";
 import AnimatedText from "./AnimatedText3";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {

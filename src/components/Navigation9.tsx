@@ -3,17 +3,11 @@
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Logo from "./Logo3";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { SplitText } from "gsap/SplitText";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, SplitText, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import { useLenis } from "lenis/react";
 import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import ServicesCarousel from "./ServicesCarousel";
-
-// Register GSAP plugins
-gsap.registerPlugin(SplitText, ScrollTrigger);
 
 interface Navigation9Props {
   variant?: "primary" | "secondary";

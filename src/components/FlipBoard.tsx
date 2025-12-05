@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsapConfig";
 import Image from "next/image";
 
 export default function FlipBoard(): React.JSX.Element {
@@ -20,8 +19,6 @@ export default function FlipBoard(): React.JSX.Element {
   useEffect(() => {
     // Reset flip state when dimensions change
     isFlippedRef.current = false;
-
-    gsap.registerPlugin(ScrollTrigger);
     const tiles: HTMLElement[] = [];
 
     const animateTile = (tile: HTMLElement, tiltY: number): void => {

@@ -2,14 +2,9 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
 import Logo from "./Logo";
 import { ArrowRight } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function CardsScroll() {
   const mainContentRef = useRef<HTMLDivElement>(null);

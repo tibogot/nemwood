@@ -1,12 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
 
 // TypeScript-safe interface matching GSAP SplitText return
 interface SplitTextInstance {
@@ -23,6 +18,7 @@ const BlurryTextReveal: React.FC = () => {
   useGSAP(
     () => {
       let splitInstance: SplitTextInstance | null = null;
+      let scrollTriggerInstance: ScrollTrigger | null = null;
 
       const setupAnimation = () => {
         if (!titleRef.current || !sectionRef.current) return;
@@ -55,6 +51,11 @@ const BlurryTextReveal: React.FC = () => {
                 scrub: 1.2,
               },
             });
+
+            // Store the ScrollTrigger instance for proper cleanup
+            if (tl.scrollTrigger) {
+              scrollTriggerInstance = tl.scrollTrigger;
+            }
 
             tl.to(splitInstance.chars, {
               filter: "blur(0px)",
@@ -107,6 +108,11 @@ const BlurryTextReveal: React.FC = () => {
               },
             });
 
+            // Store the ScrollTrigger instance for proper cleanup
+            if (tl.scrollTrigger) {
+              scrollTriggerInstance = tl.scrollTrigger;
+            }
+
             tl.to(charElements, {
               filter: "blur(0px)",
               opacity: 1,
@@ -126,10 +132,14 @@ const BlurryTextReveal: React.FC = () => {
       setupAnimation();
 
       return () => {
+        // Clean up SplitText instance
         if (splitInstance?.revert) {
           splitInstance.revert();
         }
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        // Only kill the ScrollTrigger created by this component
+        if (scrollTriggerInstance) {
+          scrollTriggerInstance.kill();
+        }
       };
     },
     { scope: sectionRef },
