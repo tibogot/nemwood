@@ -58,6 +58,9 @@ function AnimatedTextHorizontal({
   const [splitTextCreated, setSplitTextCreated] = useState(false);
   const [pageLoaderReady, setPageLoaderReady] = useState(false);
   const retryCountRef = useRef(0);
+  // Store timeout references for cleanup
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initialTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Enhanced font loading detection - same as AnimatedText3
   useEffect(() => {
@@ -192,7 +195,11 @@ function AnimatedTextHorizontal({
             console.warn(
               `Horizontal container not found, retrying in 100ms... (attempt ${retryCountRef.current}/10)`,
             );
-            setTimeout(createSplitTextInstances, 100);
+            // Clear any existing timeout before setting a new one
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = setTimeout(createSplitTextInstances, 100);
             return;
           } else {
             // Fall back to immediate animation
@@ -385,16 +392,34 @@ function AnimatedTextHorizontal({
           setSplitTextCreated(true);
         } else {
           // Retry after a short delay if some instances failed
-          setTimeout(createSplitTextInstances, 100);
+          // Clear any existing timeout before setting a new one
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+          }
+          timeoutRef.current = setTimeout(createSplitTextInstances, 100);
         }
       };
 
       // Use requestAnimationFrame and additional timeout for better timing
       requestAnimationFrame(() => {
-        setTimeout(createSplitTextInstances, 200);
+        // Clear any existing initial timeout before setting a new one
+        if (initialTimeoutRef.current) {
+          clearTimeout(initialTimeoutRef.current);
+        }
+        initialTimeoutRef.current = setTimeout(createSplitTextInstances, 200);
       });
 
       return () => {
+        // Clear all timeouts on cleanup
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+        if (initialTimeoutRef.current) {
+          clearTimeout(initialTimeoutRef.current);
+          initialTimeoutRef.current = null;
+        }
+
         splitRefs.current.forEach((item) => {
           if (item && typeof item.revert === "function") {
             // It's a SplitText instance

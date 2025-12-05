@@ -17,6 +17,8 @@ export default function ParallaxImage({
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  // Store handler reference for proper cleanup
+  const handleScrollRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,18 +37,29 @@ export default function ParallaxImage({
       }
     };
 
+    // Store handler reference for cleanup
+    handleScrollRef.current = handleScroll;
+
     // Use Lenis scroll events if available, otherwise fallback to window scroll
     if (lenis) {
       lenis.on("scroll", handleScroll);
       handleScroll(); // Initial call
       return () => {
-        lenis.off("scroll", handleScroll);
+        if (handleScrollRef.current) {
+          lenis.off("scroll", handleScrollRef.current);
+          handleScrollRef.current = null;
+        }
       };
     } else {
       // Fallback for when Lenis is not available
       window.addEventListener("scroll", handleScroll, { passive: true });
       handleScroll(); // Initial call
-      return () => window.removeEventListener("scroll", handleScroll);
+      return () => {
+        if (handleScrollRef.current) {
+          window.removeEventListener("scroll", handleScrollRef.current);
+          handleScrollRef.current = null;
+        }
+      };
     }
   }, [speed, lenis]);
 
