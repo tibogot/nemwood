@@ -52,6 +52,7 @@ export default function Home() {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const bigImgRef = useRef<HTMLDivElement>(null);
   const heroLogoRef = useRef<HTMLDivElement>(null);
+  const heroBgImageRef = useRef<HTMLDivElement>(null);
 
   // GSAP animation for big image scale on scroll - optimized for performance
   useGSAP(
@@ -125,6 +126,43 @@ export default function Home() {
     },
     { scope: bigImgRef },
   );
+
+  // Animate hero background image zoom before logo and text animations
+  useEffect(() => {
+    if (!heroBgImageRef.current) return;
+
+    // Set initial state (image starts at normal scale)
+    gsap.set(heroBgImageRef.current, {
+      scale: 1,
+    });
+
+    const handlePageLoaderComplete = () => {
+      if (!heroBgImageRef.current) return;
+
+      // Start immediately (before logo/text animations which start at 200ms)
+      gsap.to(heroBgImageRef.current, {
+        scale: 1.1,
+        duration: 1.2,
+        ease: "power1.out",
+        force3D: true,
+      });
+    };
+
+    // Check if PageLoader is already complete
+    if (document.documentElement.classList.contains("page-loader-complete")) {
+      handlePageLoaderComplete();
+    } else {
+      // Listen for PageLoader completion
+      window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
+
+      return () => {
+        window.removeEventListener(
+          "pageLoaderComplete",
+          handlePageLoaderComplete,
+        );
+      };
+    }
+  }, []);
 
   // Animate hero logo after PageLoader completes (same pattern as AnimatedText with isHero)
   useEffect(() => {
@@ -207,18 +245,23 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex h-[100svh] flex-col items-center justify-between px-4 pt-20 pb-10 md:px-8 md:pt-24 md:pb-16">
         {/* Hero background image */}
-        <Image
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/images/hero-nemwood.webp"
-          alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
-          fill
-          sizes="100vw"
-          quality={85}
-          priority
-          fetchPriority="high"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-        />
+        <div
+          ref={heroBgImageRef}
+          className="absolute inset-0 h-full w-full overflow-hidden"
+        >
+          <Image
+            className="h-full w-full object-cover"
+            src="/images/hero-nemwood.webp"
+            alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
+            fill
+            sizes="100vw"
+            quality={85}
+            priority
+            fetchPriority="high"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          />
+        </div>
 
         {/* Logo and location text centered in hero */}
         <div className="absolute top-1/2 right-0 left-0 z-10 flex w-full -translate-y-1/2 flex-col items-center justify-center px-4 md:px-8">
@@ -254,7 +297,7 @@ export default function Home() {
           </AnimatedText>
         </div> */}
 
-        <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
+        <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-30">
           <AnimatedText delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
               Meubles en bois sur mesure

@@ -174,7 +174,7 @@ export default function About() {
       <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
         <AnimatedText delay={0.0} stagger={0.3}>
           <h2 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
-            Creativity to design
+            L' art de créer
           </h2>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
             Vous cherchez un artisan menuisier en Belgique pour créer des
