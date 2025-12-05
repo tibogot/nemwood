@@ -66,7 +66,7 @@ const HorizScroll: React.FC = () => {
         "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure.",
       paragraph:
         "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure, reflétant votre personnalité et répondant à vos besoins spécifiques.",
-      image: "/images/wood-work.webp",
+      image: "/images/autres-services.webp",
       alt: "Services de menuiserie artisanale sur mesure - Bibliothèques, bureaux, salles de bain - Nemwood Belgique",
       isCTASection: true,
     },
@@ -229,7 +229,7 @@ const HorizScroll: React.FC = () => {
                   delay={0.4}
                 >
                   <p
-                    className="font-HelveticaNow mb-6 w-1/2 text-lg leading-tight"
+                    className="font-HelveticaNow mb-6 max-w-xl text-lg leading-tight"
                     aria-hidden="true"
                   >
                     {section.paragraph || section.description}

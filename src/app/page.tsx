@@ -463,7 +463,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="border-primary border-y py-40 md:py-80">
+      <section className="border-primary border-b py-40 md:py-80">
         <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
           <BlurryTextReveal />
         </Suspense>
