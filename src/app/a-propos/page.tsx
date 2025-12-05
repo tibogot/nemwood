@@ -165,7 +165,7 @@ export default function About() {
             alt="Savoir-faire artisanal Nemwood - Création de mobilier en bois massif sur mesure"
             fill
             className="rounded-sm object-cover"
-            sizes="100vw"
+            sizes="400px"
             quality={85}
             priority
           />

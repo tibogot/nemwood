@@ -20,6 +20,7 @@ function CardsScroll() {
   // Store ScrollTrigger instances for proper cleanup
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
   const splitTextInstancesRef = useRef<any[]>([]);
+  const cardAnimationsRef = useRef<any[]>([]);
 
   useEffect(() => {
     let cleanup: (() => void) | null = null;
@@ -40,37 +41,49 @@ function CardsScroll() {
       const rightRotationValues = [30, 20, 35];
       const yValues = [100, -150, -250];
 
-      // Animate cards
+      // Animate cards using GSAP transforms for smooth rendering
       gsap.utils.toArray(".row").forEach((row: any, index: number) => {
         const cardLeft = row.querySelector(".card-left");
         const cardRight = row.querySelector(".card-right");
 
         if (cardLeft && mainRef.current) {
-          const leftST = ScrollTrigger.create({
-            trigger: mainRef.current, // Use ref instead of class selector
-            start: "top center",
-            end: "bottom top",
-            scrub: true,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              cardLeft.style.transform = `translateX(${progress * leftXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * leftRotationValues[index]}deg)`;
+          // Use GSAP's transform properties which handle sub-pixel rounding automatically
+          const leftAnim = gsap.to(cardLeft, {
+            x: leftXValues[index],
+            y: yValues[index],
+            rotation: leftRotationValues[index],
+            ease: "none",
+            scrollTrigger: {
+              trigger: mainRef.current,
+              start: "top center",
+              end: "bottom top",
+              scrub: true,
             },
           });
-          scrollTriggersRef.current.push(leftST);
+          if (leftAnim.scrollTrigger) {
+            scrollTriggersRef.current.push(leftAnim.scrollTrigger);
+          }
+          cardAnimationsRef.current.push(leftAnim);
         }
 
         if (cardRight && mainRef.current) {
-          const rightST = ScrollTrigger.create({
-            trigger: mainRef.current, // Use ref instead of class selector
-            start: "top center",
-            end: "bottom top",
-            scrub: true,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              cardRight.style.transform = `translateX(${progress * rightXValues[index]}px) translateY(${progress * yValues[index]}px) rotate(${progress * rightRotationValues[index]}deg)`;
+          // Use GSAP's transform properties which handle sub-pixel rounding automatically
+          const rightAnim = gsap.to(cardRight, {
+            x: rightXValues[index],
+            y: yValues[index],
+            rotation: rightRotationValues[index],
+            ease: "none",
+            scrollTrigger: {
+              trigger: mainRef.current,
+              start: "top center",
+              end: "bottom top",
+              scrub: true,
             },
           });
-          scrollTriggersRef.current.push(rightST);
+          if (rightAnim.scrollTrigger) {
+            scrollTriggersRef.current.push(rightAnim.scrollTrigger);
+          }
+          cardAnimationsRef.current.push(rightAnim);
         }
       });
 
@@ -151,6 +164,14 @@ function CardsScroll() {
       });
       scrollTriggersRef.current = [];
 
+      // Clean up GSAP animations
+      cardAnimationsRef.current.forEach((anim) => {
+        if (anim && anim.kill) {
+          anim.kill();
+        }
+      });
+      cardAnimationsRef.current = [];
+
       // Properly clean up SplitText instances
       splitTextInstancesRef.current.forEach((splitInstance) => {
         if (splitInstance && splitInstance.revert) {
@@ -178,7 +199,13 @@ function CardsScroll() {
     for (let i = 1; i <= 3; i++) {
       rows.push(
         <div className="row m-4 flex w-full justify-center gap-4" key={i}>
-          <div className="card card-left relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
+          <div
+            className="card card-left relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]"
+            style={{
+              backfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+            }}
+          >
             <Image
               src={`/images/${cardImages[2 * i - 2]}.webp`}
               alt={`Réalisation ${2 * i - 1} - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique`}
@@ -188,7 +215,13 @@ function CardsScroll() {
               loading="lazy"
             />
           </div>
-          <div className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
+          <div
+            className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]"
+            style={{
+              backfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+            }}
+          >
             <Image
               src={`/images/${cardImages[2 * i - 1]}.webp`}
               alt={`Réalisation ${2 * i} - Mobilier artisanal en bois massif créé par Nemwood en Belgique`}

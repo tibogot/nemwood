@@ -85,6 +85,9 @@ export default function PageTransition({ children }: PageTransitionProps) {
           onComplete: () => {
             isTransitioning.current = false;
             setShouldBlockScroll(false); // Restore scroll after reveal
+            // Dispatch event to notify that page transition is complete
+            // This allows ScrollTrigger to refresh after navigation
+            window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
           },
         });
       };

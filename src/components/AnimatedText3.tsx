@@ -61,9 +61,11 @@ function AnimatedText({
 }: AnimatedTextProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const splitRefs = useRef<any[]>([]); // Store all SplitText instances for cleanup
+  const scrollTriggerRefs = useRef<any[]>([]); // Store ScrollTrigger instances for refresh
   const [fontsReady, setFontsReady] = useState(false);
   const [splitTextCreated, setSplitTextCreated] = useState(false);
   const [pageLoaderReady, setPageLoaderReady] = useState(false);
+  const [navigationComplete, setNavigationComplete] = useState(false);
 
   // Enhanced font loading detection - similar to Navigation component
   useEffect(() => {
@@ -149,6 +151,62 @@ function AnimatedText({
     }
   }, [isHero]);
 
+  // Listen for page transition completion (for navigation)
+  useEffect(() => {
+    if (isHero) return; // Hero text doesn't need this
+
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const handlePageTransitionComplete = () => {
+      // Clear any pending timeout
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+
+      // Mark navigation as complete and refresh ScrollTrigger
+      setNavigationComplete(true);
+
+      // Wait a bit for layout to stabilize, then refresh ScrollTrigger
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 150);
+    };
+
+    // Listen for page transition completion
+    window.addEventListener(
+      "pageTransitionComplete",
+      handlePageTransitionComplete,
+    );
+
+    // Check if we came from navigation or if it's initial load
+    const navigatedFlag = sessionStorage.getItem("navigated");
+
+    if (navigatedFlag === "true") {
+      // We're navigating - wait for transition to complete
+      // The event will fire when reveal animation completes
+      // Add a safety timeout in case the event fires before we start listening
+      // (unlikely but possible in edge cases)
+      timeoutId = setTimeout(() => {
+        setNavigationComplete(true);
+        ScrollTrigger.refresh();
+      }, 1500); // 1.5s should be more than enough for the transition
+    } else {
+      // Initial load/refresh - no navigation happened, mark as complete immediately
+      setNavigationComplete(true);
+    }
+
+    return () => {
+      window.removeEventListener(
+        "pageTransitionComplete",
+        handlePageTransitionComplete,
+      );
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isHero]);
+
   // Add CSS to prevent FOUC - ensure text is hidden until GSAP takes control
   useEffect(() => {
     const styleId = "animated-text-fouc-prevention";
@@ -183,6 +241,9 @@ function AnimatedText({
 
       // Wait for PageLoader to be ready (for both hero and non-hero text)
       if (!pageLoaderReady) return;
+
+      // For non-hero text, wait for navigation to complete before creating ScrollTrigger
+      if (!isHero && !navigationComplete) return;
 
       // Add FOUC prevention class initially
       wrapperRef.current.classList.add("fouc-prevent");
@@ -253,6 +314,21 @@ function AnimatedText({
                 });
               } else {
                 // Regular scroll-triggered animation - use a more reliable trigger strategy
+                const scrollTriggerConfig = {
+                  trigger: trigger || wrapperRef.current || child,
+                  start: "top 80%", // More reliable start position
+                  toggleActions: "play none none reverse",
+                  refreshPriority: -1, // Lower priority for better performance
+                  onEnter: () => {
+                    // Remove FOUC prevention class and make element visible
+                    if (wrapperRef.current) {
+                      wrapperRef.current.classList.remove("fouc-prevent");
+                    }
+                    gsap.set(child, { visibility: "visible", opacity: 1 });
+                    // Ensure animation plays when entering viewport
+                  },
+                };
+
                 const animation = gsap.to(split.lines, {
                   yPercent: 0,
                   autoAlpha: 1, // Reveal with autoAlpha for smooth transition
@@ -260,21 +336,13 @@ function AnimatedText({
                   duration,
                   ease,
                   delay: delay + 0.3, // Small delay to ensure page transition is complete
-                  scrollTrigger: {
-                    trigger: trigger || wrapperRef.current || child,
-                    start: "top 80%", // More reliable start position
-                    toggleActions: "play none none reverse",
-                    refreshPriority: -1, // Lower priority for better performance
-                    onEnter: () => {
-                      // Remove FOUC prevention class and make element visible
-                      if (wrapperRef.current) {
-                        wrapperRef.current.classList.remove("fouc-prevent");
-                      }
-                      gsap.set(child, { visibility: "visible", opacity: 1 });
-                      // Ensure animation plays when entering viewport
-                    },
-                  },
+                  scrollTrigger: scrollTriggerConfig,
                 });
+
+                // Store ScrollTrigger instance for potential refresh
+                if (animation.scrollTrigger) {
+                  scrollTriggerRefs.current.push(animation.scrollTrigger);
+                }
               }
             } else {
               console.warn(
@@ -307,6 +375,13 @@ function AnimatedText({
       });
 
       return () => {
+        // Clean up ScrollTrigger instances
+        scrollTriggerRefs.current.forEach((st) => {
+          if (st && st.kill) st.kill();
+        });
+        scrollTriggerRefs.current = [];
+
+        // Clean up SplitText instances
         splitRefs.current.forEach((split) => {
           if (split) split.revert();
         });
@@ -325,6 +400,7 @@ function AnimatedText({
         ease,
         fontsReady,
         pageLoaderReady,
+        navigationComplete,
         isHero,
       ],
     },

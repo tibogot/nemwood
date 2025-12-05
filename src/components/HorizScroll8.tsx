@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,7 +22,6 @@ const HorizScroll: React.FC = () => {
       number: "1/5",
       title: "Escaliers",
       slug: "escaliers",
-      description: "Escalier en chene rustique massif",
       paragraph:
         "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale. Bien plus qu'un passage entre les étages, l'escalier devient un élément architectural à part entière. Conçu sur mesure dans notre atelier, chaque projet révèle la beauté du bois et s'intègre parfaitement à votre intérieur. Un savoir-faire artisanal pour un ouvrage élégant et durable.",
       image: "/images/horiz-escalier.webp",
@@ -32,7 +31,6 @@ const HorizScroll: React.FC = () => {
       number: "2/5",
       title: "Garde-robes",
       slug: "garde-robes",
-      description: "Gardes-robes intégrées ",
       paragraph:
         "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. Parce que chaque intérieur est unique, votre garde-robe mérite d'être pensée sur mesure. Nous créons des espaces de rangement en bois massif alliant élégance naturelle et organisation optimale.",
       image: "/images/horiz-garderobe.webp",
@@ -42,7 +40,6 @@ const HorizScroll: React.FC = () => {
       number: "3/5",
       title: "Tables",
       slug: "tables",
-      description: "Table à manger en plaqué noyé",
       paragraph:
         "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.La table est le cœur de votre foyer où se partagent repas et moments précieux. Chaque création s'intègre parfaitement à votre espace et reflète votre style. Un savoir-faire artisanal pour un mobilier authentique, robuste et intemporel.",
       image: "/images/horiz-table.webp",
@@ -52,7 +49,6 @@ const HorizScroll: React.FC = () => {
       number: "4/5",
       title: "Cuisines",
       slug: "cuisines",
-      description: "Cuisine stratifiée noire et céramique",
       paragraph:
         "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. La cuisine est le cœur vivant de votre maison, un espace de partage qui mérite toute notre attention. Nous créons des cuisines en bois massif sur mesure alliant authenticité et ergonomie adaptée à votre quotidien. Un savoir-faire artisanal pour une cuisine unique, pratique et durable.",
       image: "/images/horiz-cuisine.webp",
@@ -62,8 +58,6 @@ const HorizScroll: React.FC = () => {
       number: "5/5",
       title: "Plus de services",
       slug: "services",
-      description:
-        "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure.",
       paragraph:
         "Découvrez l'ensemble de nos services de menuiserie artisanale : bibliothèques, bureaux, salles de bain et bien plus encore. Chaque projet est unique et réalisé sur mesure, reflétant votre personnalité et répondant à vos besoins spécifiques.",
       image: "/images/autres-services.webp",
@@ -145,7 +139,7 @@ const HorizScroll: React.FC = () => {
                     {section.title}
                   </h3>
                   <p className="font-HelveticaNow text-primary/80 mb-6 text-base leading-relaxed">
-                    {section.description}
+                    {section.paragraph}
                   </p>
                 </AnimatedText>
                 <Link
@@ -232,7 +226,7 @@ const HorizScroll: React.FC = () => {
                     className="font-HelveticaNow mb-6 max-w-xl text-lg leading-tight"
                     aria-hidden="true"
                   >
-                    {section.paragraph || section.description}
+                    {section.paragraph}
                   </p>
                 </AnimatedTextHorizontal>
                 <div>
