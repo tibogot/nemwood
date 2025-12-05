@@ -8,6 +8,28 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText3";
 import BlogPreview from "@/components/BlogPreview";
 import dynamic from "next/dynamic";
+import type { PortableTextBlock } from "@portabletext/react";
+
+// Type for Sanity blog post matching the query structure
+// Compatible with BlogPreview component which accepts more flexible types
+interface SanityBlogPost {
+  _id: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  description?: string;
+  mainImage?:
+    | {
+        asset?: {
+          url?: string;
+        };
+      }
+    | string; // BlogPreview also handles string URLs
+  publishedAt?: string;
+  body?: PortableTextBlock[] | unknown; // PortableText accepts various formats
+  language?: string;
+}
 
 // Dynamic imports for non-critical components
 const HorizScroll = dynamic(() => import("@/components/HorizScroll8"), {
@@ -44,10 +66,13 @@ const AnimatedBorderLines = dynamic(
 );
 
 export default function Home() {
-  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [blogPosts, setBlogPosts] = useState<SanityBlogPost[]>([]);
   const bigImgRef = useRef<HTMLDivElement>(null);
   const heroLogoRef = useRef<HTMLDivElement>(null);
   const heroBgImageRef = useRef<HTMLDivElement>(null);
+
+  // WeakMap to store GSAP animations for cleanup (type-safe alternative to storing on DOM)
+  const animationMap = useRef(new WeakMap<HTMLDivElement, gsap.core.Tween>());
 
   // GSAP animation for big image scale on scroll - optimized for performance
   useGSAP(
@@ -103,8 +128,10 @@ export default function Home() {
           }
         });
 
-        // Store animation reference for cleanup
-        (bigImgRef.current as any).scrollAnimation = animation;
+        // Store animation reference in WeakMap for type-safe cleanup
+        if (bigImgRef.current) {
+          animationMap.current.set(bigImgRef.current, animation);
+        }
       };
 
       // Delay ScrollTrigger setup to avoid conflict with scroll-to-top navigation
@@ -113,8 +140,13 @@ export default function Home() {
       // Cleanup function
       return () => {
         clearTimeout(timeoutId);
-        if (bigImgRef.current && (bigImgRef.current as any).scrollAnimation) {
-          (bigImgRef.current as any).scrollAnimation.kill();
+        // Get animation from WeakMap and kill it
+        if (bigImgRef.current) {
+          const animation = animationMap.current.get(bigImgRef.current);
+          if (animation) {
+            animation.kill();
+            animationMap.current.delete(bigImgRef.current);
+          }
         }
         ScrollTrigger.getById("big-img-scale")?.kill();
       };
