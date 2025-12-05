@@ -45,7 +45,7 @@ export default function Contact() {
                   alt="Atelier Nemwood - Artisan menuisier au travail"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={95}
+                  quality={85}
                   priority
                 />
               </div>
@@ -86,7 +86,7 @@ export default function Contact() {
           fill
           className="object-cover"
           sizes="100vw"
-          quality={95}
+          quality={85}
           priority
         />
       </ParallaxImage> */}

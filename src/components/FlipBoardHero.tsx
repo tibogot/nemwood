@@ -165,7 +165,7 @@ export default function FlipBoardHero(): React.JSX.Element {
                       fill
                       className="object-cover"
                       sizes="100vw"
-                      quality={95}
+                      quality={85}
                       unoptimized={false}
                     />
                   </div>
@@ -196,7 +196,7 @@ export default function FlipBoardHero(): React.JSX.Element {
                       fill
                       className="object-cover"
                       sizes="100vw"
-                      quality={95}
+                      quality={85}
                       unoptimized={false}
                     />
                   </div>

@@ -298,7 +298,6 @@ export default function ManyServices() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                   loading={index === 0 ? "eager" : "lazy"}
                   priority={index === 0}
-                  quality={75}
                 />
               </div>
 

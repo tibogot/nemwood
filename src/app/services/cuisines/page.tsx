@@ -42,7 +42,7 @@ export default function CuisinesPage() {
           fill
           className="object-cover"
           sizes="100vw"
-          quality={95}
+          quality={85}
           priority
         />
       </ParallaxImage>

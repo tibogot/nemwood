@@ -134,7 +134,6 @@ const HorizScroll: React.FC = () => {
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={75}
                 />
               </div>
               <div className="py-6">
@@ -279,7 +278,6 @@ const HorizScroll: React.FC = () => {
                   loading="lazy"
                   fetchPriority="auto"
                   sizes="50vw"
-                  quality={75}
                 />
               </div>
             </div>

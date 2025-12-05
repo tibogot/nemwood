@@ -70,7 +70,7 @@ export default function ServicesPage() {
           fill
           className="object-cover"
           sizes="100vw"
-          quality={95}
+          quality={85}
           priority
         />
       </ParallaxImage>
@@ -143,14 +143,15 @@ export default function ServicesPage() {
       <section className="text-primary intro border-primary mx-auto border-t border-b border-solid px-4 py-20 text-center md:px-8 md:py-30">
         <AnimatedText>
           <h3 className="font-ITCGaramondN mb-6 text-6xl">
-            Creativity to design
+            Créativité et savoir-faire
           </h3>
 
           <p className="font-HelveticaNow mx-auto text-lg md:max-w-xl">
-            Vous cherchez un artisan menuisier en Belgique pour créer des
-            meubles en bois sur mesure ? Nemwood est spécialisé dans la
-            fabrication artisanale de tables, chaises, garde-robes, escaliers et
-            même de décors pour le cinéma.
+            Chez Nemwood, nous allions créativité et savoir-faire artisanal pour
+            transformer vos idées en pièces uniques en bois sur mesure. Chaque
+            projet est conçu avec passion et réalisé avec le plus grand soin, de
+            l'escalier à la cuisine, en passant par les garde-robes et les
+            tables sur mesure.
           </p>
         </AnimatedText>
       </section>
@@ -162,7 +163,7 @@ export default function ServicesPage() {
             fill
             className="rounded-sm object-cover"
             sizes="100vw"
-            quality={95}
+            quality={85}
             priority
           />
         </ParallaxImage>
