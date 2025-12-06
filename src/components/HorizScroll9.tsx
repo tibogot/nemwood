@@ -61,7 +61,7 @@ const FreeLayoutScroll: React.FC = () => {
           slug: "escaliers",
           position: {
             top: "20%",
-            left: "5%",
+            left: "3%",
             width: "28%",
           },
           zIndex: 10,
