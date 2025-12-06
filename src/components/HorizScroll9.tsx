@@ -24,6 +24,7 @@ interface ImageData {
   alt: string;
   position: Position;
   zIndex?: number;
+  parallaxSpeed?: number; // negative = slower, positive = faster
 }
 
 // Text block with position
@@ -77,6 +78,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "60%",
           },
           zIndex: 1,
+          parallaxSpeed: -50,
         },
         {
           src: "/images/horiz-garderobe.webp",
@@ -88,6 +90,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "78%",
           },
           zIndex: 2,
+          parallaxSpeed: 80,
         },
         {
           src: "/images/horiz-table.webp",
@@ -99,6 +102,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "38%",
           },
           zIndex: 3,
+          parallaxSpeed: -30,
         },
       ],
     },
@@ -141,6 +145,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "88%",
           },
           zIndex: 2,
+          parallaxSpeed: -60,
         },
         {
           src: "/images/horiz-cuisine.webp",
@@ -152,6 +157,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "35%",
           },
           zIndex: 3,
+          parallaxSpeed: 40,
         },
       ],
     },
@@ -183,6 +189,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "48%",
           },
           zIndex: 1,
+          parallaxSpeed: -45,
         },
       ],
     },
@@ -214,6 +221,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "78%",
           },
           zIndex: 1,
+          parallaxSpeed: -55,
         },
         {
           src: "/images/horiz-garderobe.webp",
@@ -225,6 +233,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "52%",
           },
           zIndex: 2,
+          parallaxSpeed: 35,
         },
       ],
     },
@@ -283,7 +292,8 @@ const FreeLayoutScroll: React.FC = () => {
 
           if (scrollDistance <= 0) return;
 
-          gsap.to(scrollerRef.current, {
+          // Main horizontal scroll animation
+          const scrollTween = gsap.to(scrollerRef.current, {
             x: -scrollDistance,
             ease: "none",
             scrollTrigger: {
@@ -296,6 +306,29 @@ const FreeLayoutScroll: React.FC = () => {
               invalidateOnRefresh: true,
               normalizeScroll: true,
             } as ScrollTrigger.Vars & { normalizeScroll?: boolean },
+          });
+
+          // Parallax effect for images (except last section)
+          const parallaxImages = containerRef.current?.querySelectorAll(
+            "[data-parallax-speed]",
+          );
+
+          parallaxImages?.forEach((image) => {
+            const speed = parseFloat(
+              image.getAttribute("data-parallax-speed") || "0",
+            );
+            if (speed === 0) return;
+
+            gsap.to(image, {
+              x: speed,
+              ease: "none",
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top top",
+                end: `+=${scrollDistance}`,
+                scrub: 1,
+              },
+            });
           });
 
           requestAnimationFrame(() => {
@@ -400,7 +433,7 @@ const FreeLayoutScroll: React.FC = () => {
               {section.images.map((image, imgIndex) => (
                 <div
                   key={`img-${sectionIndex}-${imgIndex}`}
-                  className="group absolute overflow-hidden"
+                  className="absolute overflow-hidden"
                   style={{
                     top: image.position.top,
                     right: image.position.right,
@@ -410,12 +443,13 @@ const FreeLayoutScroll: React.FC = () => {
                     height: image.position.height,
                     zIndex: image.zIndex || 1,
                   }}
+                  data-parallax-speed={image.parallaxSpeed || 0}
                 >
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    className="object-cover"
                     loading="lazy"
                     sizes="50vw"
                   />
