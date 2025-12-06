@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "Bureaux sur mesure en Belgique | Nemwood",
   "Bureaux en bois sur mesure pour votre espace de travail. Fabrication artisanale en Belgique par Nemwood.",
   "/images/table.webp",
-  "https://www.nemwood.be/services/bureau",
+  "https://www.nemwood.be/services/bureaux",
 );
 
 export default function BureauPage() {

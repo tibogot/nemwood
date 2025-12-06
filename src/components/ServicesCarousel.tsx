@@ -40,18 +40,18 @@ const services: Service[] = [
     image: "/images/horiz-cuisine.webp",
   },
   {
-    title: "Bibliothèque",
-    slug: "bibliotheque",
+    title: "Bibliothèques",
+    slug: "bibliotheques",
     image: "/images/woodshelf.webp",
   },
   {
-    title: "Bureau",
-    slug: "bureau",
+    title: "Bureaux",
+    slug: "bureaux",
     image: "/images/desk.webp",
   },
   {
-    title: "Salle de bain",
-    slug: "salle-de-bain",
+    title: "Salles de bain",
+    slug: "salles-de-bain",
     image: "/images/bathroom.webp",
   },
 ];

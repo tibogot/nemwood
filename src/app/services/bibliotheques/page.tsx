@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "Bibliothèques sur mesure en Belgique | Nemwood",
   "Bibliothèques en bois sur mesure pour organiser vos livres et objets. Fabrication artisanale en Belgique par Nemwood.",
   "/images/wardrobe.webp",
-  "https://www.nemwood.be/services/bibliotheque",
+  "https://www.nemwood.be/services/bibliotheques",
 );
 
 export default function BibliothequePage() {

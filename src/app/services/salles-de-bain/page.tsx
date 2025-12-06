@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetadata(
   "Salles de bain sur mesure en Belgique | Nemwood",
   "Salles de bain en bois sur mesure pour créer un espace de détente unique. Fabrication artisanale en Belgique par Nemwood.",
   "/images/kitchen.webp",
-  "https://www.nemwood.be/services/salle-de-bain",
+  "https://www.nemwood.be/services/salles-de-bain",
 );
 
 export default function SalleDeBainPage() {

@@ -11,14 +11,14 @@ const services = [
   { name: "Tables", slug: "tables", image: "/images/table.webp" },
   { name: "Cuisines", slug: "cuisines", image: "/images/kitchen.webp" },
   {
-    name: "Bibliothèque",
-    slug: "bibliotheque",
+    name: "Bibliothèques",
+    slug: "bibliotheques",
     image: "/images/wardrobe.webp",
   },
-  { name: "Bureau", slug: "bureau", image: "/images/table.webp" },
+  { name: "Bureaux", slug: "bureaux", image: "/images/table.webp" },
   {
-    name: "Salle de bain",
-    slug: "salle-de-bain",
+    name: "Salles de bain",
+    slug: "salles-de-bain",
     image: "/images/kitchen.webp",
   },
 ];
