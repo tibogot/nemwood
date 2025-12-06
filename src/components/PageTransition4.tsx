@@ -214,7 +214,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
       >
         <div
           ref={logoRef}
-          className="flex h-[400px] w-[600px] items-center justify-center overflow-hidden p-5"
+          className="flex h-[400px] w-full max-w-[600px] items-center justify-center overflow-hidden p-5"
           style={{ color: "var(--color-secondary)" }}
         >
           <Logo width={400} height={120} />

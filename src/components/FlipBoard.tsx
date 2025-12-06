@@ -129,10 +129,10 @@ export default function FlipBoard(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="flex min-h-[80vh] w-full items-center justify-center px-4 py-8 md:px-8">
+    <div className="flex w-full items-center justify-center px-4 py-16 md:min-h-[80vh] md:px-8 md:py-8">
       <div
         ref={boardRef}
-        className="grid w-[500px] gap-0.5 md:w-[700px] md:gap-1 lg:w-[900px] lg:gap-1 xl:w-[1100px] xl:gap-1.5"
+        className="grid w-full gap-0.5 md:w-[700px] md:gap-1 lg:w-[900px] lg:gap-1 xl:w-[1100px] xl:gap-1.5"
         style={{
           perspective,
           gridTemplateRows: "repeat(4, 1fr)", // Always 4 rows
@@ -171,7 +171,7 @@ export default function FlipBoard(): React.JSX.Element {
                       alt="Front face"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 500px, (max-width: 768px) 700px, (max-width: 1024px) 900px, 1100px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 900px, 1100px"
                       quality={85}
                       unoptimized={false}
                     />
@@ -202,7 +202,7 @@ export default function FlipBoard(): React.JSX.Element {
                       alt="Back face"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 500px, (max-width: 768px) 700px, (max-width: 1024px) 900px, 1100px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 900px, 1100px"
                       quality={85}
                       unoptimized={false}
                     />

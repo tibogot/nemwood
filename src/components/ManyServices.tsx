@@ -12,22 +12,22 @@ const services: Service[] = [
   {
     name: "Escaliers",
     href: "/services/escaliers",
-    image: "/images/stairs.webp",
+    image: "/images/horiz-escalier.webp",
   },
   {
     name: "Gardes-robes",
     href: "/services/garde-robes",
-    image: "/images/wardrobe.webp",
+    image: "/images/horiz-garderobe.webp",
   },
   {
     name: "Tables",
     href: "/services/tables",
-    image: "/images/table.webp",
+    image: "/images/horiz-table.webp",
   },
   {
     name: "Cuisines",
     href: "/services/cuisines",
-    image: "/images/kitchen.webp",
+    image: "/images/horiz-cuisine.webp",
   },
   {
     name: "Bibliothèque",

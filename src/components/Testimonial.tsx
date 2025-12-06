@@ -170,7 +170,7 @@ export default function Testimonial() {
           <div className="relative">
             {/* Static first card - always visible */}
             <div
-              className="border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:w-[350px]"
+              className="border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[85vw] max-w-[320px] flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:max-w-[350px]"
               style={{
                 zIndex: 0,
                 transform: "translate(-50%, -50%) rotate(2deg)",
@@ -219,7 +219,7 @@ export default function Testimonial() {
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:w-[350px]"
+                className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[85vw] max-w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:max-w-[350px]"
                 style={{ zIndex: i + 1 }}
               >
                 {/* Main content - blockquote takes up most space */}
