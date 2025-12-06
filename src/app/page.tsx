@@ -32,7 +32,7 @@ interface SanityBlogPost {
 }
 
 // Dynamic imports for non-critical components
-const HorizScroll = dynamic(() => import("@/components/HorizScroll8"), {
+const HorizScroll = dynamic(() => import("@/components/HorizScroll9"), {
   loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
   ssr: false,
 });
@@ -408,10 +408,12 @@ export default function Home() {
                   key={index}
                   className="border-primary/50 mt-4 border-t pt-4"
                 >
-                  <div className="flex items-center justify-start gap-3">
-                    <span className="text-primary relative top-[1px] text-3xl leading-none">
-                      •
-                    </span>
+                  <div className="flex items-center justify-start gap-4">
+                    <div className="bg-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full">
+                      <span className="font-HelveticaNow text-secondary text-sm font-medium">
+                        {index + 1}
+                      </span>
+                    </div>
 
                     <p className="font-HelveticaNow text-left text-lg">
                       {text}
