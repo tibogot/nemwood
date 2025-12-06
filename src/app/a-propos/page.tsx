@@ -55,20 +55,23 @@ export default function About() {
                 Le parcours du menuisier
               </h2>
             </AnimatedText>
-            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Mobilier sur mesure : quand l'espace et le style s'accordent
-              parfaitement Vous cherchez un mobilier qui s'adapte vraiment à
-              votre intérieur ? Le sur mesure est la solution. Chaque pièce est
-              conçue selon les dimensions exactes de votre espace pour optimiser
-              chaque recoin. Plus qu'un simple meuble, c'est une création unique
-              qui reflète votre style grâce au choix des matériaux, finitions et
-              détails personnalisés. Pratique et ergonomique, il répond à vos
-              besoins précis : rangements intelligents, solutions
-              multifonctionnelles, agencements uniques… tout est possible.
-              Fabriqué par des artisans passionnés, votre mobilier allie
-              solidité, durabilité et esthétique. Résultat : un intérieur
-              harmonieux et fonctionnel, qui prend de la valeur avec le temps.
-            </p>
+            <AnimatedText>
+              <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
+                Mobilier sur mesure : quand l'espace et le style s'accordent
+                parfaitement Vous cherchez un mobilier qui s'adapte vraiment à
+                votre intérieur ? Le sur mesure est la solution. Chaque pièce
+                est conçue selon les dimensions exactes de votre espace pour
+                optimiser chaque recoin. Plus qu'un simple meuble, c'est une
+                création unique qui reflète votre style grâce au choix des
+                matériaux, finitions et détails personnalisés. Pratique et
+                ergonomique, il répond à vos besoins précis : rangements
+                intelligents, solutions multifonctionnelles, agencements
+                uniques… tout est possible. Fabriqué par des artisans
+                passionnés, votre mobilier allie solidité, durabilité et
+                esthétique. Résultat : un intérieur harmonieux et fonctionnel,
+                qui prend de la valeur avec le temps.
+              </p>
+            </AnimatedText>
           </div>
         </div>
         <div className="right flex flex-col items-end text-left md:w-1/2">

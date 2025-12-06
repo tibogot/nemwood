@@ -158,20 +158,32 @@ export default function Home() {
   useEffect(() => {
     if (!heroBgImageRef.current) return;
 
-    // Set initial state (image starts at normal scale)
-    gsap.set(heroBgImageRef.current, {
+    // Target the actual img element inside the container (not the wrapper)
+    const imgElement = heroBgImageRef.current.querySelector("img");
+    if (!imgElement) return;
+
+    // Set initial state with GPU layer promotion for smooth animation
+    gsap.set(imgElement, {
       scale: 1,
+      willChange: "transform",
+      backfaceVisibility: "hidden",
+      transformOrigin: "center center",
+      force3D: true,
     });
 
     const handlePageLoaderComplete = () => {
-      if (!heroBgImageRef.current) return;
+      if (!imgElement) return;
 
       // Start immediately (before logo/text animations which start at 200ms)
-      gsap.to(heroBgImageRef.current, {
+      gsap.to(imgElement, {
         scale: 1.1,
         duration: 1.2,
         ease: "power1.out",
         force3D: true,
+        onComplete: () => {
+          // Remove will-change after animation completes to free up resources
+          gsap.set(imgElement, { willChange: "auto" });
+        },
       });
     };
 

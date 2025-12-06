@@ -39,6 +39,7 @@ interface AnimatedTextHorizontalProps {
   delay?: number;
   ease?: string;
   className?: string;
+  earlyTrigger?: boolean; // Trigger animation earlier (for elements bleeding into previous section)
 }
 
 function AnimatedTextHorizontal({
@@ -51,6 +52,7 @@ function AnimatedTextHorizontal({
   delay = 0,
   ease = "power2.out",
   className = "",
+  earlyTrigger = false,
 }: AnimatedTextHorizontalProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const splitRefs = useRef<any[]>([]); // Store all SplitText instances for cleanup
@@ -286,12 +288,14 @@ function AnimatedTextHorizontal({
                   });
 
                   // Use intersection observer to detect when this section is visible
+                  // Use lower threshold for earlyTrigger (for elements bleeding into previous section)
+                  const triggerThreshold = earlyTrigger ? 0.05 : 0.3;
                   const observer = new IntersectionObserver(
                     (entries) => {
                       entries.forEach((entry) => {
                         if (
                           entry.isIntersecting &&
-                          entry.intersectionRatio > 0.3
+                          entry.intersectionRatio > triggerThreshold
                         ) {
                           // Section is 30% visible, trigger animation forward
                           if (
@@ -447,6 +451,7 @@ function AnimatedTextHorizontal({
         ease,
         fontsReady,
         pageLoaderReady,
+        earlyTrigger,
       ],
     },
   );

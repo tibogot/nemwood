@@ -78,19 +78,19 @@ const FreeLayoutScroll: React.FC = () => {
             height: "60%",
           },
           zIndex: 1,
-          parallaxSpeed: -50,
+          parallaxSpeed: -150,
         },
         {
           src: "/images/horiz-garderobe.webp",
           alt: "Détail escalier",
           position: {
             top: "-28%",
-            right: "-40%",
+            right: "-50%",
             width: "44%",
             height: "78%",
           },
           zIndex: 2,
-          parallaxSpeed: 80,
+          parallaxSpeed: 200,
         },
         {
           src: "/images/horiz-table.webp",
@@ -102,7 +102,7 @@ const FreeLayoutScroll: React.FC = () => {
             height: "38%",
           },
           zIndex: 3,
-          parallaxSpeed: -30,
+          parallaxSpeed: -100,
         },
       ],
     },
@@ -139,25 +139,25 @@ const FreeLayoutScroll: React.FC = () => {
           src: "/images/horiz-table.webp",
           alt: "Détail garde-robe",
           position: {
-            top: "-12%",
-            right: "10%",
+            top: "12%",
+            right: "-10%",
             width: "40%",
             height: "88%",
           },
           zIndex: 2,
-          parallaxSpeed: -60,
+          parallaxSpeed: -180,
         },
         {
           src: "/images/horiz-cuisine.webp",
           alt: "Détail intérieur",
           position: {
-            top: "5%",
-            right: "-35%",
+            top: "-5%",
+            right: "-65%",
             width: "50%",
-            height: "35%",
+            height: "50%",
           },
           zIndex: 3,
-          parallaxSpeed: 40,
+          parallaxSpeed: 120,
         },
       ],
     },
@@ -172,7 +172,7 @@ const FreeLayoutScroll: React.FC = () => {
           slug: "tables",
           position: {
             top: "55%",
-            left: "5%",
+            left: "15%",
             width: "28%",
           },
           zIndex: 10,
@@ -184,12 +184,12 @@ const FreeLayoutScroll: React.FC = () => {
           alt: "Détail table",
           position: {
             top: "72%",
-            left: "38%",
+            left: "68%",
             width: "36%",
             height: "48%",
           },
           zIndex: 1,
-          parallaxSpeed: -45,
+          parallaxSpeed: -140,
         },
       ],
     },
@@ -216,24 +216,24 @@ const FreeLayoutScroll: React.FC = () => {
           alt: "Cuisine sur mesure",
           position: {
             top: "8%",
-            left: "22%",
+            left: "32%",
             width: "45%",
             height: "78%",
           },
           zIndex: 1,
-          parallaxSpeed: -55,
+          parallaxSpeed: -160,
         },
         {
           src: "/images/horiz-garderobe.webp",
           alt: "Détail cuisine",
           position: {
-            top: "70%",
+            top: "-5%",
             left: "60%",
             width: "40%",
             height: "52%",
           },
           zIndex: 2,
-          parallaxSpeed: 35,
+          parallaxSpeed: 100,
         },
       ],
     },
@@ -478,6 +478,7 @@ const FreeLayoutScroll: React.FC = () => {
                     stagger={0.1}
                     duration={0.6}
                     delay={0.1}
+                    earlyTrigger={sectionIndex === 3}
                   >
                     <p className="font-HelveticaNow text-primary/70 mb-4 text-sm">
                       {block.number}
@@ -492,6 +493,7 @@ const FreeLayoutScroll: React.FC = () => {
                     stagger={0.1}
                     duration={0.6}
                     delay={0.2}
+                    earlyTrigger={sectionIndex === 3}
                   >
                     <h3 className="font-ITCGaramondN mb-6 text-6xl leading-[0.85] md:text-7xl">
                       {block.title}
@@ -506,6 +508,7 @@ const FreeLayoutScroll: React.FC = () => {
                     stagger={0.05}
                     duration={0.5}
                     delay={0.4}
+                    earlyTrigger={sectionIndex === 3}
                   >
                     <p className="font-HelveticaNow mb-6 text-base leading-relaxed">
                       {block.paragraph}
@@ -513,28 +516,38 @@ const FreeLayoutScroll: React.FC = () => {
                   </AnimatedTextHorizontal>
 
                   {/* Button */}
-                  <Link
-                    href={
-                      block.isCTASection
-                        ? "/services"
-                        : `/services/${block.slug}`
-                    }
-                    tabIndex={-1}
-                    aria-hidden="true"
+                  <AnimatedTextHorizontal
+                    horizontalContainer="[data-horizontal-scroll-free]"
+                    sectionIndex={sectionIndex}
+                    totalSections={sections.length}
+                    stagger={0.05}
+                    duration={0.5}
+                    delay={0.55}
+                    earlyTrigger={sectionIndex === 3}
                   >
-                    <button className="font-HelveticaNow" tabIndex={-1}>
-                      <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                        <span>
-                          {block.isCTASection
-                            ? "Découvrir tous nos services"
-                            : "En savoir plus"}
-                        </span>
-                        <div className="mt-0.5 ml-1">
-                          <ArrowRight size={18} strokeWidth={1.5} />
+                    <Link
+                      href={
+                        block.isCTASection
+                          ? "/services"
+                          : `/services/${block.slug}`
+                      }
+                      tabIndex={-1}
+                      aria-hidden="true"
+                    >
+                      <button className="font-HelveticaNow" tabIndex={-1}>
+                        <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                          <span>
+                            {block.isCTASection
+                              ? "Découvrir tous nos services"
+                              : "En savoir plus"}
+                          </span>
+                          <div className="mt-0.5 ml-1">
+                            <ArrowRight size={18} strokeWidth={1.5} />
+                          </div>
                         </div>
-                      </div>
-                    </button>
-                  </Link>
+                      </button>
+                    </Link>
+                  </AnimatedTextHorizontal>
                 </div>
               ))}
             </div>
