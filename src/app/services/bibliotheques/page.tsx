@@ -45,7 +45,17 @@ export default function BibliothequePage() {
         />
       </ParallaxImage>
 
-      <section className="w-full py-10 md:py-20">
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            L'écrin de vos histoires. Des bibliothèques sur mesure qui révèlent
+            vos collections, façonnées en Belgique pour donner vie à vos livres
+            et objets précieux.
+          </p>
+        </AnimatedText>
+      </section>
+
+      <section className="w-full py-20 md:py-40">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
             <div className="right flex flex-col items-start text-left md:order-1">
@@ -128,6 +138,92 @@ export default function BibliothequePage() {
         </div>
       </section>
 
+      {/* Section 02 */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="left">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    02
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      L'art du sur mesure
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Chaque bibliothèque est une pièce unique, pensée pour
+                      s'intégrer parfaitement dans votre intérieur. Nous prenons
+                      en compte chaque détail : la hauteur sous plafond, les
+                      angles, les contraintes techniques. Le résultat est un
+                      meuble qui semble avoir toujours fait partie de votre
+                      espace, optimisant chaque centimètre disponible tout en
+                      apportant une touche d'élégance intemporelle.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+            <div className="right flex flex-col items-start text-left">
+              <div className="relative mt-10 h-[400px] w-full overflow-hidden bg-amber-400 select-none md:mt-50 md:h-[600px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Travail du bois artisanal Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
+              03
+            </span>
+            <AnimatedText>
+              <h2 className="font-ITCGaramondN mt-6 text-4xl leading-none md:mt-8 md:text-6xl">
+                La finition parfaite
+              </h2>
+            </AnimatedText>
+            <div className="relative mt-10 h-[300px] w-full overflow-hidden md:mt-16 md:h-[450px]">
+              <Image
+                src="/images/wardrobe.webp"
+                alt="Finition artisanale Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                quality={85}
+              />
+            </div>
+            <AnimatedText>
+              <p className="font-HelveticaNow mt-10 w-full text-left text-lg md:mt-16">
+                La qualité d'une bibliothèque sur mesure se révèle dans les
+                détails. Nos artisans accordent une attention particulière à
+                chaque finition : le ponçage minutieux, l'application des vernis
+                ou huiles naturelles, les assemblages invisibles. Ces gestes
+                ancestraux, transmis de génération en génération, garantissent
+                un meuble d'exception qui traversera les décennies. Nous
+                privilégions les techniques traditionnelles tout en intégrant
+                les innovations qui améliorent la durabilité et la résistance de
+                nos créations.
+              </p>
+            </AnimatedText>
+          </div>
+        </div>
+      </section>
+
       {/* <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
         <AnimatedText>
           <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
@@ -138,83 +234,6 @@ export default function BibliothequePage() {
           </p>
         </AnimatedText>
       </section> */}
-
-      <section className="flex w-full flex-col gap-10 px-4 py-10 md:px-8 md:py-20">
-        {/* Top row: Image left, Text right */}
-        {/* <div className="flex flex-col gap-10 md:flex-row-reverse md:gap-16">
-          <div className="left md:w-1/2">
-            <div>
-              <div className="flex flex-row items-start gap-6 md:gap-8">
-                <span className="font-ITCGaramondN -mt-4 text-8xl leading-none md:-mt-6 md:text-9xl">
-                  01
-                </span>
-                <div className="flex flex-col">
-                  <AnimatedText>
-                    <h2 className="font-ITCGaramondN max-w-xl text-4xl md:text-6xl">
-                      Le parcours du menuisier
-                    </h2>
-                  </AnimatedText>
-                  <AnimatedText>
-                    <p className="font-HelveticaNow max-w-xl pt-8 text-lg">
-                      Mobilier sur mesure : quand l'espace et le style
-                      s'accordent parfaitement Vous cherchez un mobilier qui
-                      s'adapte vraiment à votre intérieur ? Le sur mesure est la
-                      solution. Chaque pièce est conçue selon les dimensions
-                      exactes de votre espace pour optimiser chaque recoin. Plus
-                      qu'un simple meuble, c'est une création unique qui reflète
-                      votre style grâce au choix des matériaux, finitions et
-                      détails personnalisés. Pratique et ergonomique, il répond
-                      à vos besoins précis : rangements intelligents, solutions
-                      multifonctionnelles, agencements uniques… tout est
-                      possible. Fabriqué par des artisans passionnés, votre
-                      mobilier allie solidité, durabilité et esthétique.
-                      Résultat : un intérieur harmonieux et fonctionnel, qui
-                      prend de la valeur avec le temps.
-                    </p>
-                  </AnimatedText>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="right flex flex-col text-left md:w-1/2">
-            <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
-              <Image
-                src="/images/atelier-1.webp"
-                alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
-                fill
-                className="object-cover transition-transform duration-500 ease-out hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 25vw"
-                quality={85}
-              />
-            </div>
-            <AnimatedText>
-              <p className="font-HelveticaNow pt-10 text-lg">
-                Chaque projet commence par une écoute attentive de vos besoins
-                et une analyse précise de votre espace. Notre équipe vous
-                accompagne à chaque étape, de la conception initiale jusqu'à
-                l'installation finale. Nous travaillons avec des essences de
-                bois soigneusement sélectionnées pour leur beauté et leur
-                durabilité, garantissant un résultat qui traversera les années
-                avec élégance.
-              </p>
-            </AnimatedText>
-          </div>
-        </div> */}
-
-        {/* Centered Landscape Image */}
-        {/* <div className="flex justify-center pt-10">
-          <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
-            <Image
-              src="/images/wardrobe.webp"
-              alt="Bibliothèque sur mesure Nemwood"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 80vw"
-              quality={85}
-            />
-          </div>
-        </div> */}
-      </section>
 
       {/* Section 02 - Text Left, Image Right */}
       {/* <section className="flex w-full flex-col gap-10 px-4 py-10 md:px-8 md:py-20">
@@ -366,7 +385,7 @@ export default function BibliothequePage() {
       </section> */}
 
       {/* FAQ Section */}
-      {/* <FAQ
+      <FAQ
         title="Questions sur les bibliothèques"
         description="Découvrez les réponses aux questions les plus courantes sur nos bibliothèques en bois sur mesure."
         faqs={[
@@ -391,8 +410,8 @@ export default function BibliothequePage() {
               "Oui, nous proposons des portes vitrées pour protéger vos livres tout en les gardant visibles. Les portes peuvent être coulissantes ou battantes selon vos préférences et contraintes d'espace.",
           },
         ]}
-      /> */}
-      {/* <ServiceNavigation /> */}
+      />
+      <ServiceNavigation />
     </main>
   );
 }

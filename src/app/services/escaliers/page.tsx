@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import AnimatedText from "@/components/AnimatedText3";
@@ -48,37 +46,165 @@ export default function EscaliersPage() {
         />
       </ParallaxImage>
 
-      {/* Content Section */}
-      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
-        <div className="left md:w-1/2">
-          <div>
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            Architecture du mouvement. Chaque escalier relie vos espaces avec
+            une élégance qui défie le temps, conçu et assemblé à la main dans
+            notre atelier belge.
+          </p>
+        </AnimatedText>
+      </section>
+
+      {/* Section 01 - Centered Layout */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
+              01
+            </span>
             <AnimatedText>
-              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                Escaliers sur mesure
-              </h3>
+              <h2 className="font-ITCGaramondN mt-6 text-4xl leading-none md:mt-8 md:text-6xl">
+                L'art architectural du bois
+              </h2>
             </AnimatedText>
-            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Chaque escalier est une pièce unique, conçue selon vos dimensions
-              exactes et votre style. Nous utilisons exclusivement du bois
-              massif de qualité supérieure pour garantir une durabilité
-              optimale. Nos artisans expérimentés apportent un soin particulier
-              aux finitions, créant des escaliers qui allient robustesse,
-              esthétique et fonctionnalité. Que ce soit un escalier droit,
-              tournant, hélicoïdal ou suspendu, nous nous adaptons à toutes les
-              contraintes d'espace et d'architecture.
-            </p>
+            <div className="relative mt-10 h-[300px] w-full overflow-hidden md:mt-16 md:h-[500px]">
+              <Image
+                src="/images/stairs.webp"
+                alt="Escalier architectural sur mesure Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                quality={85}
+              />
+            </div>
+            <AnimatedText>
+              <p className="font-HelveticaNow mt-10 w-full text-left text-lg md:mt-16">
+                Chaque escalier est une structure architecturale qui défie les
+                lois de la gravité avec élégance. Nous maîtrisons tous les types
+                d'escaliers : droits pour une ascension fluide, tournants pour
+                optimiser l'espace, hélicoïdaux pour une esthétique
+                spectaculaire, suspendus pour une impression de légèreté. Chaque
+                type demande une expertise technique particulière et une
+                connaissance approfondie des contraintes structurelles. Nos
+                artisans calculent chaque angle, chaque contremarche, chaque
+                limon pour garantir à la fois la sécurité et la beauté.
+              </p>
+            </AnimatedText>
           </div>
         </div>
-        <div className="right flex flex-col items-end text-left md:w-1/2">
-          <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
-            <Image
-              src="/images/stairs.webp"
-              alt="Escalier en bois sur mesure - Détail de l'artisanat Nemwood"
-              fill
-              className="object-cover transition-transform duration-500 ease-out hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 25vw"
-              quality={85}
-            />
+      </section>
+
+      {/* Section 02 - Text Right, Image Left with overlapping effect */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right flex flex-col items-start text-left md:order-1">
+              <div className="relative h-[450px] w-full overflow-hidden bg-amber-400 select-none md:h-[700px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Fabrication artisanale d'escalier Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+              {/* Overlapping smaller image */}
+              <div className="relative -mt-20 ml-8 h-[300px] w-[80%] overflow-hidden bg-amber-400 select-none md:-mt-32 md:ml-16 md:h-[400px]">
+                <Image
+                  src="/images/atelier-1.webp"
+                  alt="Détail de l'escalier sur mesure"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 40vw, 20vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    02
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      La précision des assemblages
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Un escalier solide et durable repose sur la qualité de ses
+                      assemblages. Nos menuisiers maîtrisent les techniques
+                      ancestrales : tenons et mortaises pour les limons, queues
+                      d'aronde pour les contremarches, encoches précises pour
+                      les marches. Chaque assemblage est calculé au millimètre
+                      près pour garantir une stabilité parfaite, même pour les
+                      escaliers les plus imposants. Nous utilisons uniquement du
+                      bois massif sélectionné pour sa résistance mécanique et sa
+                      capacité à supporter des charges importantes sur la durée.
+                      Le résultat est un escalier qui ne bougera pas, qui ne
+                      grincera pas, même après des décennies d'utilisation.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 - Text Left, Image Right (image pushed down) */}
+      <section className="w-full py-20 md:py-40">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="left">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    03
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Les finitions sur mesure
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      La finition d'un escalier doit être à la fois esthétique
+                      et résistante à l'usure quotidienne. Nous proposons
+                      plusieurs options adaptées aux escaliers : huiles
+                      naturelles qui pénètrent profondément le bois, vernis
+                      polyuréthane pour une protection maximale, cires pour un
+                      aspect authentique, ou même des finitions antiglisse pour
+                      la sécurité. Chaque finition est appliquée en plusieurs
+                      couches, poncée entre chaque passage, pour obtenir une
+                      surface parfaitement lisse et résistante. Nous prêtons une
+                      attention particulière aux nez de marche et aux angles,
+                      zones les plus exposées à l'usure. Le résultat est un
+                      escalier qui conserve sa beauté dans le temps.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+            <div className="right flex flex-col items-start text-left">
+              <div className="relative mt-10 h-[350px] w-full overflow-hidden bg-amber-400 select-none md:mt-20 md:h-[550px]">
+                <Image
+                  src="/images/stairs.webp"
+                  alt="Finition d'escalier sur mesure Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

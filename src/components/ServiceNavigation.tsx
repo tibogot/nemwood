@@ -47,7 +47,7 @@ export default function ServiceNavigation() {
 
   return (
     <section className="bg-secondary px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-6xl border-t border-gray-200 pt-8">
+      <div className="mx-auto max-w-7xl border-t border-gray-200 pt-8">
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Previous Service */}
           <Link

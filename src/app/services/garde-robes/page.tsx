@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import AnimatedText from "@/components/AnimatedText3";
@@ -48,60 +46,181 @@ export default function GardeRobesPage() {
         />
       </ParallaxImage>
 
-      {/* Content Section */}
-      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
-        <div className="left md:w-1/2">
-          <div>
-            <AnimatedText>
-              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                Garde-robes sur mesure
-              </h3>
-            </AnimatedText>
-            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Chaque garde-robe est conçue pour optimiser votre espace de vie.
-              Nous intégrons tous types de rangements : étagères, tiroirs,
-              cintres, chaussures et accessoires, le tout adapté à vos habitudes
-              et contraintes d'espace. En bois massif de qualité supérieure, nos
-              garde-robes allient esthétique et fonctionnalité pour un
-              investissement durable. Que ce soit pour une chambre, un dressing
-              ou un couloir, nous créons la solution parfaite pour organiser
-              votre quotidien.
-            </p>
-          </div>
-        </div>
-        <div className="right flex flex-col items-end text-left md:w-1/2">
-          <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
-            <Image
-              src="/images/wardrobe.webp"
-              alt="Garde-robe en bois sur mesure - Détail de l'artisanat Nemwood"
-              fill
-              className="object-cover transition-transform duration-500 ease-out hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 25vw"
-              quality={85}
-            />
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            L'art de l'organisation. Des garde-robes sur mesure qui transforment
+            chaque centimètre en espace utile, façonnées en Belgique pour
+            simplifier votre quotidien.
+          </p>
+        </AnimatedText>
+      </section>
+
+      {/* Section 01 - Text Left, Image Right */}
+      <section className="w-full py-20 md:py-40">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="left">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    01
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      L'optimisation de l'espace
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Chaque garde-robe commence par une analyse précise de
+                      votre espace et de vos besoins. Nous concevons des
+                      solutions de rangement sur mesure : étagères adaptées à
+                      vos vêtements, tiroirs pour le linge, espaces cintres pour
+                      les manteaux, rangements chaussures sur mesure, niches
+                      pour accessoires. Rien n'est laissé au hasard. Nous
+                      optimisons chaque recoin, chaque hauteur, chaque largeur
+                      pour maximiser la capacité de rangement tout en conservant
+                      un accès facile à chaque élément. Le résultat est une
+                      garde-robe qui double pratiquement votre espace de
+                      stockage disponible.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+            <div className="right flex flex-col items-start text-left">
+              <div className="relative h-[500px] w-full overflow-hidden bg-amber-400 select-none md:h-[650px]">
+                <Image
+                  src="/images/wardrobe.webp"
+                  alt="Garde-robe optimisée sur mesure Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-4xl md:text-5xl">Organisez votre espace</h2>
-          <p className="font-HelveticaNow mx-auto mb-8 max-w-2xl text-lg">
-            Créons ensemble la garde-robe parfaite pour votre quotidien.
-            Consultation personnalisée et devis détaillé gratuit.
-          </p>
+      <section className="w-full">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mb-10 md:mb-16 md:w-1/2">
+            <AnimatedText>
+              <p className="font-HelveticaNow text-lg">
+                Nous travaillons avec les essences de bois les plus adaptées aux
+                rangements : chêne pour sa robustesse, pin pour sa chaleur,
+                noyer pour son élégance. Chaque essence est sélectionnée pour
+                ses qualités et sa capacité à s'adapter à votre style
+                d'intérieur.
+              </p>
+            </AnimatedText>
+          </div>
+          <div className="flex justify-center pt-10">
+            <div className="relative h-[280px] w-full max-w-5xl overflow-hidden md:h-[520px]">
+              <Image
+                src="/images/atelier-1.webp"
+                alt="Garde-robe en bois massif sur mesure Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
+                quality={85}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <Link href="/contact">
-            <button className="font-HelveticaNow">
-              <div className="border-secondary hover:bg-secondary hover:text-primary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out">
-                <span>Planifier ma garde-robe</span>
-                <div className="ml-2">
-                  <ArrowRight size={18} strokeWidth={1.5} />
+      {/* Section 02 - Text Right, Image Left */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right flex flex-col items-start text-left md:order-1">
+              <div className="relative h-[450px] w-full overflow-hidden bg-amber-400 select-none md:h-[680px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Fabrication artisanale de garde-robe Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    02
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Les systèmes de rangement
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Nous intégrons les systèmes de rangement les plus modernes
+                      et fonctionnels : tiroirs à fermeture douce, étagères
+                      réglables, tringles coulissantes pour cintres, paniers
+                      coulissants, portants rotatifs. Chaque système est choisi
+                      pour son ergonomie et sa capacité à faciliter votre
+                      quotidien. Nous concevons aussi des solutions spécifiques
+                      : compartiments à chaussures, tiroirs à accessoires,
+                      espaces pour valises ou couettes. Tout est pensé pour que
+                      chaque objet trouve sa place naturelle et soit accessible
+                      en un geste.
+                    </p>
+                  </AnimatedText>
                 </div>
               </div>
-            </button>
-          </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 - Centered Layout */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
+              03
+            </span>
+            <AnimatedText>
+              <h2 className="font-ITCGaramondN mt-6 text-4xl leading-none md:mt-8 md:text-6xl">
+                Les portes et finitions
+              </h2>
+            </AnimatedText>
+            <div className="relative mt-10 h-[320px] w-full overflow-hidden md:mt-16 md:h-[480px]">
+              <Image
+                src="/images/wardrobe.webp"
+                alt="Portes et finitions de garde-robe Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                quality={85}
+              />
+            </div>
+            <AnimatedText>
+              <p className="font-HelveticaNow mt-10 w-full text-left text-lg md:mt-16">
+                Les portes de votre garde-robe sont le premier élément visible.
+                Nous proposons plusieurs options : portes battantes pour un
+                accès facile, portes coulissantes pour économiser l'espace,
+                portes pliantes pour une ouverture maximale, ou même garde-robes
+                sans portes pour un accès direct. Chaque type de porte peut être
+                personnalisé : miroir intégré, verre dépoli, panneaux pleins, ou
+                combinaisons créatives. Les finitions sont choisies pour
+                s'harmoniser parfaitement avec votre intérieur et refléter votre
+                style personnel.
+              </p>
+            </AnimatedText>
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
@@ -45,35 +43,171 @@ export default function SalleDeBainPage() {
         />
       </ParallaxImage>
 
-      {/* Content Section */}
-      <section className="px-4 py-20 md:px-8 md:py-40">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            <div>
-              <h2 className="mb-6 text-3xl md:text-4xl">Notre expertise</h2>
-              <p className="font-HelveticaNow mb-6 text-lg">
-                Nos salles de bain sur mesure allient design et résistance à
-                l'humidité. Nous concevons des solutions adaptées à votre espace
-                et à vos besoins de confort.
-              </p>
-              <p className="font-HelveticaNow text-lg">
-                Chaque salle de bain est fabriquée avec des matériaux adaptés à
-                l'environnement humide et une finition soignée qui crée un
-                espace de détente unique et durable.
-              </p>
-            </div>
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            Espace de sérénité. Des salles de bain en bois qui résistent à
+            l'humidité, façonnées en Belgique pour créer un havre de paix où le
+            temps suspend son vol.
+          </p>
+        </AnimatedText>
+      </section>
 
-            <div>
-              <h3 className="mb-4 text-2xl md:text-3xl">Caractéristiques</h3>
-              <ul className="font-HelveticaNow space-y-3 text-lg">
-                <li>• Bois traité anti-humidité</li>
-                <li>• Finitions hydrofuges</li>
-                <li>• Rangements intégrés</li>
-                <li>• Éclairage adapté</li>
-                <li>• Design personnalisé</li>
-                <li>• Installation professionnelle</li>
-              </ul>
+      {/* Section 01 - Text Left, Image Right */}
+      <section className="w-full py-20 md:py-40">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="left">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    01
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Les essences résistantes à l'humidité
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Une salle de bain en bois doit être conçue avec des
+                      essences naturellement résistantes à l'humidité. Nous
+                      travaillons avec le teck, l'iroko, le chêne traité, ou le
+                      cèdre rouge, essences qui résistent parfaitement aux
+                      variations d'humidité et à la condensation. Chaque essence
+                      est sélectionnée pour ses qualités spécifiques : le teck
+                      pour son élégance et sa résistance naturelle, l'iroko pour
+                      sa durabilité exceptionnelle, le chêne traité pour sa
+                      robustesse. Nous appliquons aussi des traitements
+                      hydrofuges supplémentaires pour garantir une protection
+                      maximale. Le résultat est un bois qui conserve sa beauté
+                      même dans un environnement humide constant.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
             </div>
+            <div className="right flex flex-col items-start text-left">
+              <div className="relative h-[480px] w-full overflow-hidden bg-amber-400 select-none md:h-[620px]">
+                <Image
+                  src="/images/atelier-1.webp"
+                  alt="Salle de bain en bois résistant à l'humidité Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 02 - Image Left, Text Right with overlapping */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right relative flex flex-col items-start text-left md:order-1">
+              <div className="relative h-[450px] w-full overflow-hidden bg-amber-400 select-none md:h-[610px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Fabrication artisanale de salle de bain Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+              {/* Overlapping smaller image */}
+              <div className="absolute right-8 -bottom-12 h-[270px] w-[60%] overflow-hidden bg-amber-400 select-none md:right-12 md:-bottom-16 md:h-[340px]">
+                <Image
+                  src="/images/kitchen.webp"
+                  alt="Détail de la salle de bain sur mesure"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 30vw, 15vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    02
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      L'aménagement sur mesure
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Chaque salle de bain est un espace unique avec ses
+                      contraintes : dimensions, position des arrivées d'eau,
+                      évacuations, fenêtres. Nous concevons des aménagements qui
+                      optimisent chaque centimètre disponible. Meubles vasque
+                      sur mesure, rangements intégrés dans les angles, niches
+                      dans les murs, bancs de douche personnalisés, étagères
+                      adaptées. Chaque élément est pensé pour créer un espace de
+                      rangement optimal tout en conservant une esthétique
+                      apaisante. Nous intégrons aussi des solutions spécifiques
+                      : rangements pour produits de soin, séchoirs intégrés,
+                      espaces pour serviettes. Le résultat est une salle de bain
+                      où chaque objet a sa place, créant un espace de détente
+                      organisé et harmonieux.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 - Centered Layout */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
+              03
+            </span>
+            <AnimatedText>
+              <h2 className="font-ITCGaramondN mt-6 text-4xl leading-none md:mt-8 md:text-6xl">
+                Les finitions hydrofuges
+              </h2>
+            </AnimatedText>
+            <div className="relative mt-10 h-[340px] w-full overflow-hidden md:mt-16 md:h-[500px]">
+              <Image
+                src="/images/kitchen.webp"
+                alt="Finition hydrofuge de salle de bain Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                quality={85}
+              />
+            </div>
+            <AnimatedText>
+              <p className="font-HelveticaNow mt-10 w-full text-left text-lg md:mt-16">
+                La finition d'une salle de bain en bois doit être spécifiquement
+                adaptée à l'humidité constante. Nous appliquons des finitions
+                hydrofuges professionnelles : huiles spéciales pour l'humidité,
+                vernis polyuréthane hydrofuge, cires résistantes à l'eau. Chaque
+                finition est appliquée en plusieurs couches, avec un ponçage
+                méticuleux entre chaque passage, pour créer une barrière
+                imperméable efficace. Nous prêtons une attention particulière
+                aux zones critiques : autour de la douche, près du lavabo, sur
+                les surfaces horizontales. Le bois est aussi traité avant la
+                pose pour une protection en profondeur. Le résultat est un bois
+                qui résiste parfaitement à l'humidité tout en conservant son
+                aspect naturel et chaleureux, créant un espace de détente qui
+                traverse les années.
+              </p>
+            </AnimatedText>
           </div>
         </div>
       </section>

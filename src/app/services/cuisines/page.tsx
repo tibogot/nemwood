@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import AnimatedText from "@/components/AnimatedText3";
@@ -48,62 +46,221 @@ export default function CuisinesPage() {
         />
       </ParallaxImage>
 
-      {/* Content Section */}
-      <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
-        <div className="left md:w-1/2">
-          <div>
-            <AnimatedText>
-              <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                Cuisines sur mesure
-              </h3>
-            </AnimatedText>
-            <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Chaque cuisine est conçue comme le cœur de votre maison, alliant
-              ergonomie, qualité et style unique. Nous créons des aménagements
-              pensés pour votre confort et vos habitudes culinaires, utilisant
-              des matériaux nobles résistants à l'humidité et à l'usage
-              quotidien. Du plan de travail aux rangements, chaque détail est
-              personnalisé pour refléter votre personnalité et optimiser votre
-              espace de vie. Une cuisine sur mesure qui transforme votre
-              quotidien en expérience culinaire exceptionnelle.
-            </p>
-          </div>
-        </div>
-        <div className="right flex flex-col items-end text-left md:w-1/2">
-          <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
-            <Image
-              src="/images/kitchen.webp"
-              alt="Cuisine en bois sur mesure - Détail de l'artisanat Nemwood"
-              fill
-              className="object-cover transition-transform duration-500 ease-out hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 25vw"
-              quality={85}
-            />
+      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+        <AnimatedText>
+          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+            Le cœur qui bat. Des cuisines sur mesure où chaque geste devient
+            naturel, façonnées en Belgique pour transformer la cuisine en art de
+            vivre.
+          </p>
+        </AnimatedText>
+      </section>
+
+      {/* Section 01 - Text Left, Image Right */}
+      <section className="w-full py-20 md:py-40">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="left">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    01
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Le triangle d'activité optimisé
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Une cuisine fonctionnelle repose sur l'optimisation du
+                      triangle d'activité : cuisson, préparation, stockage. Nous
+                      concevons chaque cuisine en analysant vos habitudes
+                      culinaires et vos déplacements naturels dans l'espace.
+                      Chaque zone est positionnée pour minimiser les mouvements
+                      et maximiser l'efficacité. Nous adaptons aussi les
+                      hauteurs de plan de travail selon votre taille, créant un
+                      espace confortable qui réduit la fatigue. Les rangements
+                      sont pensés pour avoir chaque ustensile à portée de main,
+                      chaque ingrédient facilement accessible. Le résultat est
+                      une cuisine où cuisiner devient un plaisir fluide et
+                      naturel.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+            <div className="right flex flex-col items-start text-left">
+              <div className="relative h-[500px] w-full overflow-hidden bg-amber-400 select-none md:h-[640px]">
+                <Image
+                  src="/images/kitchen.webp"
+                  alt="Cuisine optimisée sur mesure Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-4xl md:text-5xl">
-            Transformez votre cuisine
-          </h2>
-          <p className="font-HelveticaNow mx-auto mb-8 max-w-2xl text-lg">
-            Créons ensemble l'espace culinaire de vos rêves. Étude personnalisée
-            et accompagnement complet pour votre projet de cuisine sur mesure.
-          </p>
-
-          <Link href="/contact">
-            <button className="font-HelveticaNow">
-              <div className="border-secondary hover:bg-secondary hover:text-primary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out">
-                <span>Planifier ma cuisine</span>
-                <div className="ml-2">
-                  <ArrowRight size={18} strokeWidth={1.5} />
+      {/* Section 02 - Image Left, Text Right with overlapping */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right relative flex flex-col items-start text-left md:order-1">
+              <div className="relative h-[460px] w-full overflow-hidden bg-amber-400 select-none md:h-[630px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Fabrication artisanale de cuisine Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+              {/* Overlapping smaller image */}
+              <div className="absolute -bottom-10 -left-4 h-[280px] w-[70%] overflow-hidden bg-amber-400 select-none md:-bottom-14 md:-left-8 md:h-[360px]">
+                <Image
+                  src="/images/atelier-1.webp"
+                  alt="Détail de la cuisine sur mesure"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 35vw, 17vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    02
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Les matériaux résistants
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Une cuisine doit résister à l'humidité, à la chaleur, aux
+                      taches et à l'usage intensif. Nous sélectionnons des
+                      matériaux spécifiquement adaptés aux cuisines : bois
+                      massifs traités contre l'humidité, plans de travail en
+                      bois dur ou composite résistant aux chocs et à la chaleur,
+                      finitions hydrofuges et faciles d'entretien. Chaque
+                      matériau est choisi pour ses qualités techniques mais
+                      aussi pour sa capacité à créer une atmosphère chaleureuse.
+                      Nous combinons aussi différents matériaux : bois pour les
+                      façades, pierre ou composite pour les plans de travail,
+                      acier pour certains équipements. Le résultat est une
+                      cuisine qui allie beauté et résistance dans le temps.
+                    </p>
+                  </AnimatedText>
                 </div>
               </div>
-            </button>
-          </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 - Centered Layout */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
+              03
+            </span>
+            <AnimatedText>
+              <h2 className="font-ITCGaramondN mt-6 text-4xl leading-none md:mt-8 md:text-6xl">
+                L'équipement intégré
+              </h2>
+            </AnimatedText>
+            <div className="relative mt-10 h-[330px] w-full overflow-hidden md:mt-16 md:h-[490px]">
+              <Image
+                src="/images/kitchen.webp"
+                alt="Équipement intégré dans cuisine Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                quality={85}
+              />
+            </div>
+            <AnimatedText>
+              <p className="font-HelveticaNow mt-10 w-full text-left text-lg md:mt-16">
+                Une cuisine moderne intègre parfaitement tous les équipements.
+                Nous concevons des aménagements pour encastrer électroménager,
+                créer des niches pour micro-ondes et fours, intégrer l'éclairage
+                LED sous les étagères, prévoir des systèmes d'extraction
+                discrets. Chaque équipement est positionné pour faciliter votre
+                usage tout en conservant une esthétique harmonieuse. Nous
+                intégrons aussi des systèmes innovants : tiroirs à fermeture
+                douce, étagères coulissantes, systèmes de rangement pour
+                casseroles et poêles. Rien n'est laissé au hasard pour créer une
+                cuisine où chaque élément a sa place naturelle et fonctionnelle.
+              </p>
+            </AnimatedText>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 04 - Text Right, Image Left (pushed down) */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right flex flex-col items-start text-left md:order-1">
+              <div className="relative mt-14 h-[400px] w-full overflow-hidden bg-amber-400 select-none md:mt-24 md:h-[580px]">
+                <Image
+                  src="/images/wood-work.webp"
+                  alt="Finition de cuisine sur mesure Nemwood"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    04
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Les finitions culinaires
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      La finition d'une cuisine doit résister aux éclaboussures,
+                      à la graisse, aux taches alimentaires et à l'humidité
+                      constante. Nous appliquons des finitions spécifiques aux
+                      cuisines : vernis polyuréthane pour une protection
+                      maximale, huiles dures pour une résistance aux taches,
+                      finitions antimicrobiennes pour un espace sain. Chaque
+                      finition est appliquée en plusieurs couches, poncée entre
+                      chaque passage, pour créer une surface lisse, résistante
+                      et facile d'entretien. Nous prêtons une attention
+                      particulière aux zones critiques : autour de l'évier, près
+                      des plaques, sur les plans de travail. Le résultat est une
+                      cuisine qui conserve son éclat même après des années
+                      d'utilisation intensive.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
