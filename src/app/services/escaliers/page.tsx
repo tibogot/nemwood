@@ -6,6 +6,7 @@ import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
+import ServiceNavigation from "@/components/ServiceNavigation";
 
 export const metadata: Metadata = generateMetadata(
   "Escaliers en bois sur mesure en Belgique | Nemwood",
@@ -109,6 +110,7 @@ export default function EscaliersPage() {
           },
         ]}
       />
+      <ServiceNavigation />
     </main>
   );
 }

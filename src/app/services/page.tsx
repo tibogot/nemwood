@@ -61,7 +61,6 @@ export default function ServicesPage() {
           </AnimatedText>
         </div>
       </section>
-
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
@@ -74,7 +73,25 @@ export default function ServicesPage() {
           priority
         />
       </ParallaxImage>
+      {/* Title and Description Section */}
+      <section className="relative w-full py-16 md:py-20">
+        <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
+          <AnimatedText>
+            <h2 className="font-ITCGaramondN text-primary mb-4 text-3xl leading-tight md:mb-0 md:text-5xl lg:text-7xl">
+              Notre savoir-faire
+            </h2>
+          </AnimatedText>
 
+          <AnimatedText>
+            <p className="font-HelveticaNow text-primary text-base md:max-w-xl md:text-lg">
+              Chaque pièce est façonnée à la main par nos artisans avec un souci
+              du détail et une passion pour le travail du bois. De la conception
+              à la finition, nous créons des meubles uniques qui s'adaptent
+              parfaitement à vos espaces.
+            </p>
+          </AnimatedText>
+        </div>
+      </section>
       {/* Services Grid */}
       {/* <section className="px-4 py-20 md:px-8 md:py-40">
         <div className="mx-auto max-w-6xl">
@@ -115,7 +132,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section> */}
-
       {/* CTA Section */}
       {/* <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-4xl text-center">
@@ -140,18 +156,16 @@ export default function ServicesPage() {
         </div>
       </section> */}
       <ManyServices />
-      <section className="text-primary intro border-primary mx-auto border-t border-b border-solid px-4 py-20 text-center md:px-8 md:py-30">
-        <AnimatedText>
-          <h3 className="font-ITCGaramondN mb-6 text-6xl">
-            Créativité et savoir-faire
-          </h3>
-
-          <p className="font-HelveticaNow mx-auto text-lg md:max-w-xl">
-            Chez Nemwood, nous allions créativité et savoir-faire artisanal pour
-            transformer vos idées en pièces uniques en bois sur mesure. Chaque
-            projet est conçu avec passion et réalisé avec le plus grand soin, de
-            l'escalier à la cuisine, en passant par les garde-robes et les
-            tables sur mesure.
+      <section className="text-primary bg-secondary intro border-primary mx-auto border-y border-solid px-4 py-20 text-center md:px-8 md:py-20">
+        <AnimatedText delay={0.0} stagger={0.3}>
+          <h2 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
+            L' art de créer
+          </h2>
+          <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+            Vous cherchez un artisan menuisier en Belgique pour créer des
+            meubles en bois sur mesure ? Nemwood est spécialisé dans la
+            fabrication artisanale de tables, chaises, garde-robes, escaliers et
+            même de décors pour le cinéma.
           </p>
         </AnimatedText>
       </section>

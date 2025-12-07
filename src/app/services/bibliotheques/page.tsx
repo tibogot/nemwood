@@ -6,6 +6,7 @@ import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
+import ServiceNavigation from "@/components/ServiceNavigation";
 
 export const metadata: Metadata = generateMetadata(
   "Bibliothèques sur mesure en Belgique | Nemwood",
@@ -44,10 +45,90 @@ export default function BibliothequePage() {
         />
       </ParallaxImage>
 
-      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
-        {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
-          Creativity to design
-        </h1> */}
+      <section className="w-full py-10 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
+            <div className="right flex flex-col items-start text-left md:order-1">
+              <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
+                <Image
+                  src="/images/atelier-1.webp"
+                  alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
+                />
+              </div>
+            </div>
+            <div className="left md:order-2">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="shrink-0">
+                  <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
+                    01
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <AnimatedText>
+                    <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
+                      Le parcours du menuisier
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText>
+                    <p className="font-HelveticaNow pt-8 text-lg">
+                      Mobilier sur mesure : quand l'espace et le style
+                      s'accordent parfaitement Vous cherchez un mobilier qui
+                      s'adapte vraiment à votre intérieur ? Le sur mesure est la
+                      solution. Chaque pièce est conçue selon les dimensions
+                      exactes de votre espace pour optimiser chaque recoin. Plus
+                      qu'un simple meuble, c'est une création unique qui reflète
+                      votre style grâce au choix des matériaux, finitions et
+                      détails personnalisés. Pratique et ergonomique, il répond
+                      à vos besoins précis : rangements intelligents, solutions
+                      multifonctionnelles, agencements uniques… tout est
+                      possible. Fabriqué par des artisans passionnés, votre
+                      mobilier allie solidité, durabilité et esthétique.
+                      Résultat : un intérieur harmonieux et fonctionnel, qui
+                      prend de la valeur avec le temps.
+                    </p>
+                  </AnimatedText>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mb-10 md:mb-16 md:w-1/2">
+            <AnimatedText>
+              <p className="font-HelveticaNow text-lg">
+                Chaque projet commence par une écoute attentive de vos besoins
+                et une analyse précise de votre espace. Notre équipe vous
+                accompagne à chaque étape, de la conception initiale jusqu'à
+                l'installation finale. Nous travaillons avec des essences de
+                bois soigneusement sélectionnées pour leur beauté et leur
+                durabilité, garantissant un résultat qui traversera les années
+                avec élégance.
+              </p>
+            </AnimatedText>
+          </div>
+          <div className="flex justify-center pt-10">
+            <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
+              <Image
+                src="/images/wardrobe.webp"
+                alt="Bibliothèque sur mesure Nemwood"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
+                quality={85}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
         <AnimatedText>
           <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
             Basés en Belgique, nous valorisons le travail du bois local, la
@@ -56,25 +137,25 @@ export default function BibliothequePage() {
             avec nos clients, pour répondre parfaitement à leurs attentes.
           </p>
         </AnimatedText>
-      </section>
+      </section> */}
 
       <section className="flex w-full flex-col gap-10 px-4 py-10 md:px-8 md:py-20">
         {/* Top row: Image left, Text right */}
-        <div className="flex flex-col gap-10 md:flex-row-reverse md:gap-16">
+        {/* <div className="flex flex-col gap-10 md:flex-row-reverse md:gap-16">
           <div className="left md:w-1/2">
-            <div className="">
+            <div>
               <div className="flex flex-row items-start gap-6 md:gap-8">
                 <span className="font-ITCGaramondN -mt-4 text-8xl leading-none md:-mt-6 md:text-9xl">
                   01
                 </span>
                 <div className="flex flex-col">
                   <AnimatedText>
-                    <h2 className="font-ITCGaramondN text-4xl leading-[0.85] md:text-6xl">
+                    <h2 className="font-ITCGaramondN max-w-xl text-4xl md:text-6xl">
                       Le parcours du menuisier
                     </h2>
                   </AnimatedText>
                   <AnimatedText>
-                    <p className="font-HelveticaNow pt-8 text-lg">
+                    <p className="font-HelveticaNow max-w-xl pt-8 text-lg">
                       Mobilier sur mesure : quand l'espace et le style
                       s'accordent parfaitement Vous cherchez un mobilier qui
                       s'adapte vraiment à votre intérieur ? Le sur mesure est la
@@ -118,10 +199,10 @@ export default function BibliothequePage() {
               </p>
             </AnimatedText>
           </div>
-        </div>
+        </div> */}
 
         {/* Centered Landscape Image */}
-        <div className="flex justify-center pt-10">
+        {/* <div className="flex justify-center pt-10">
           <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
             <Image
               src="/images/wardrobe.webp"
@@ -132,12 +213,11 @@ export default function BibliothequePage() {
               quality={85}
             />
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* Section 02 - Text Left, Image Right */}
-      <section className="flex w-full flex-col gap-10 px-4 py-10 md:px-8 md:py-20">
-        {/* Top row: Text left, Image right */}
+      {/* <section className="flex w-full flex-col gap-10 px-4 py-10 md:px-8 md:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="left md:w-1/2">
             <div className="">
@@ -147,7 +227,7 @@ export default function BibliothequePage() {
                 </span>
                 <div className="flex flex-col">
                   <AnimatedText>
-                    <h2 className="font-ITCGaramondN text-4xl leading-[0.85] md:text-6xl">
+                    <h2 className="font-ITCGaramondN text-4xl leading-[0.85] md:max-w-2xl md:text-6xl">
                       L'art du sur mesure
                     </h2>
                   </AnimatedText>
@@ -180,7 +260,6 @@ export default function BibliothequePage() {
           </div>
         </div>
 
-        {/* Paragraph below image level but on left - aligned with title */}
         <div className="flex md:w-1/2">
           <div className="flex flex-row items-start gap-6 md:gap-8">
             <span className="font-ITCGaramondN invisible text-8xl leading-none md:text-9xl">
@@ -203,7 +282,6 @@ export default function BibliothequePage() {
           </div>
         </div>
 
-        {/* Centered Landscape Image */}
         <div className="flex justify-center pt-10">
           <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
             <Image
@@ -216,10 +294,10 @@ export default function BibliothequePage() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 03 - Centered Column Layout */}
-      <section className="flex w-full flex-col items-center px-4 py-10 md:px-8 md:py-20">
+      {/* <section className="flex w-full flex-col items-center px-4 py-10 md:px-8 md:py-20">
         <div className="flex max-w-3xl flex-col items-center text-center">
           <span className="font-ITCGaramondN text-8xl leading-none md:text-9xl">
             03
@@ -252,10 +330,10 @@ export default function BibliothequePage() {
             </p>
           </AnimatedText>
         </div>
-      </section>
+      </section> */}
 
       {/* Content Section */}
-      <section className="px-4 py-20 md:px-8 md:py-40">
+      {/* <section className="px-4 py-20 md:px-8 md:py-40">
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
@@ -285,10 +363,10 @@ export default function BibliothequePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
-      <FAQ
+      {/* <FAQ
         title="Questions sur les bibliothèques"
         description="Découvrez les réponses aux questions les plus courantes sur nos bibliothèques en bois sur mesure."
         faqs={[
@@ -313,7 +391,8 @@ export default function BibliothequePage() {
               "Oui, nous proposons des portes vitrées pour protéger vos livres tout en les gardant visibles. Les portes peuvent être coulissantes ou battantes selon vos préférences et contraintes d'espace.",
           },
         ]}
-      />
+      /> */}
+      {/* <ServiceNavigation /> */}
     </main>
   );
 }

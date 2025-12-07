@@ -159,19 +159,6 @@ function ServiceItem({ index, name, href, image }: ServiceItemProps) {
 export default function ManyServices() {
   return (
     <section className="relative min-h-screen w-full py-16 md:py-20">
-      {/* Title and Description */}
-      <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
-        <h2 className="font-ITCGaramondN text-primary mb-4 text-3xl leading-tight md:mb-0 md:text-5xl lg:text-7xl">
-          Nos services
-        </h2>
-
-        <p className="font-HelveticaNow text-primary text-base md:max-w-xl md:text-lg">
-          Découvrez nos services de menuiserie sur mesure en Belgique. Nous vous
-          accompagnons dans la réalisation de vos projets de menuiserie sur
-          mesure en Belgique.
-        </p>
-      </div>
-
       {/* Mobile Card Layout */}
       <div className="block space-y-8 px-4 md:hidden">
         {services.map((service, index) => (
@@ -236,7 +223,7 @@ export default function ManyServices() {
       </div>
 
       {/* Desktop Services List */}
-      <div className="font-HelveticaNow mt-20 hidden md:mt-40 md:block">
+      <div className="font-HelveticaNow hidden md:block">
         {services.map((service, index) => (
           <ServiceItem
             key={service.name}
