@@ -62,56 +62,26 @@ function AnimatedText({
   const [pageLoaderReady, setPageLoaderReady] = useState(false);
   const [navigationComplete, setNavigationComplete] = useState(false);
 
-  // Enhanced font loading detection - similar to Navigation component
+  // Simplified font loading detection using document.fonts.ready
   useEffect(() => {
     const checkFontsLoaded = async () => {
       try {
         if (document.fonts && document.fonts.ready) {
           await document.fonts.ready;
-
-          // Additional check to ensure specific fonts are loaded
-          if (document.fonts.check) {
-            const fontChecks = [
-              "1em ITCGaramondN",
-              '1em "ITC Garamond Narrow"',
-              "16px serif", // fallback check
-            ];
-
-            let fontFound = false;
-            for (const fontCheck of fontChecks) {
-              if (document.fonts.check(fontCheck)) {
-                fontFound = true;
-                break;
-              }
-            }
-
-            if (fontFound) {
-              // For hero text, don't set fontsReady yet - wait for PageLoader
-              if (!isHero) {
-                setTimeout(() => setFontsReady(true), 150);
-              }
-            } else {
-              // Fallback - wait longer if font isn't detected
-              if (!isHero) {
-                setTimeout(() => setFontsReady(true), 400);
-              }
-            }
-          } else {
-            // Fallback for browsers without font.check
-            if (!isHero) {
-              setTimeout(() => setFontsReady(true), 300);
-            }
+          // For hero text, don't set fontsReady yet - wait for PageLoader
+          if (!isHero) {
+            setFontsReady(true);
           }
         } else {
           // Fallback for browsers that don't support document.fonts
           if (!isHero) {
-            setTimeout(() => setFontsReady(true), 500);
+            setFontsReady(true);
           }
         }
       } catch (error) {
-        // Fallback: proceed after delay if font detection fails
+        // Fallback: proceed if font detection fails
         if (!isHero) {
-          setTimeout(() => setFontsReady(true), 500);
+          setFontsReady(true);
         }
       }
     };
