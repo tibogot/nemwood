@@ -76,12 +76,17 @@ const portableTextComponents = {
 
       return (
         <div className="my-8">
-          <img
-            src={imageUrl}
-            alt={altText}
-            className="w-full rounded-sm object-cover"
-            loading="lazy"
-          />
+          <div className="relative h-[400px] w-full overflow-hidden rounded-sm md:h-[600px]">
+            <Image
+              src={imageUrl}
+              alt={altText}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 80vw"
+              quality={85}
+              loading="lazy"
+            />
+          </div>
           {value.caption && (
             <p className="mt-2 text-center text-sm text-gray-500">
               {value.caption}
@@ -379,12 +384,18 @@ export default async function BlogPostPage(props: any) {
                 className="group flex-1 cursor-pointer"
               >
                 <div className="flex items-center gap-4">
-                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
-                    <img
-                      src={prevPost.mainImage?.asset?.url}
-                      alt={prevPost.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
+                    {prevPost.mainImage?.asset?.url && (
+                      <Image
+                        src={prevPost.mainImage.asset.url}
+                        alt={prevPost.title}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                        quality={85}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div className="flex-1">
                     <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
@@ -433,12 +444,18 @@ export default async function BlogPostPage(props: any) {
                       </p>
                     )}
                   </div>
-                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm">
-                    <img
-                      src={nextPost.mainImage?.asset?.url}
-                      alt={nextPost.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
+                    {nextPost.mainImage?.asset?.url && (
+                      <Image
+                        src={nextPost.mainImage.asset.url}
+                        alt={nextPost.title}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                        quality={85}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                 </div>
               </Link>
