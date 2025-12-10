@@ -47,6 +47,9 @@ interface SectionData {
 const FreeLayoutScroll: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  // Store ScrollTrigger instances for proper cleanup
+  const scrollTweenRef = useRef<gsap.core.Tween | null>(null);
+  const parallaxTweensRef = useRef<gsap.core.Tween[]>([]);
 
   // Free-form sections - 5 services with artistic layout
   const sections: SectionData[] = [
@@ -283,6 +286,16 @@ const FreeLayoutScroll: React.FC = () => {
       const setupScrollAnimation = () => {
         if (!scrollerRef.current || !containerRef.current) return;
 
+        // Clean up existing ScrollTriggers before creating new ones
+        if (scrollTweenRef.current) {
+          scrollTweenRef.current.kill();
+          scrollTweenRef.current = null;
+        }
+        parallaxTweensRef.current.forEach((tween) => {
+          if (tween) tween.kill();
+        });
+        parallaxTweensRef.current = [];
+
         requestAnimationFrame(() => {
           if (!scrollerRef.current) return;
 
@@ -293,7 +306,7 @@ const FreeLayoutScroll: React.FC = () => {
           if (scrollDistance <= 0) return;
 
           // Main horizontal scroll animation
-          const scrollTween = gsap.to(scrollerRef.current, {
+          scrollTweenRef.current = gsap.to(scrollerRef.current, {
             x: -scrollDistance,
             ease: "none",
             scrollTrigger: {
@@ -319,7 +332,7 @@ const FreeLayoutScroll: React.FC = () => {
             );
             if (speed === 0) return;
 
-            gsap.to(image, {
+            const parallaxTween = gsap.to(image, {
               x: speed,
               ease: "none",
               scrollTrigger: {
@@ -329,6 +342,7 @@ const FreeLayoutScroll: React.FC = () => {
                 scrub: 1,
               },
             });
+            parallaxTweensRef.current.push(parallaxTween);
           });
 
           requestAnimationFrame(() => {
@@ -349,6 +363,16 @@ const FreeLayoutScroll: React.FC = () => {
       return () => {
         clearTimeout(timeoutId);
         window.removeEventListener("resize", handleResize);
+
+        // Clean up ScrollTrigger instances
+        if (scrollTweenRef.current) {
+          scrollTweenRef.current.kill();
+          scrollTweenRef.current = null;
+        }
+        parallaxTweensRef.current.forEach((tween) => {
+          if (tween) tween.kill();
+        });
+        parallaxTweensRef.current = [];
       };
     },
     { scope: containerRef },
