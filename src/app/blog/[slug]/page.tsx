@@ -33,7 +33,7 @@ export async function generateMetadata({
       publishedAt
     }`,
     { slug },
-    { cache: "no-store" }, // Force fresh data every time
+    // Use default caching with revalidate: 60 (ISR)
   );
 
   if (!post) return generatePageMetadata();
@@ -56,8 +56,21 @@ export async function generateMetadata({
   );
 }
 
-// Removed generateStaticParams to force server-side rendering
-// This ensures immediate updates from Sanity
+// Generate static params for all blog posts at build time
+// Pages will be regenerated every 60 seconds (ISR)
+export async function generateStaticParams() {
+  const posts = await client.fetch(
+    `*[_type == "post" && language == "fr"]{
+      "slug": slug.current
+    }`,
+    {},
+    // No cache: "no-store" - use default caching with revalidate
+  );
+
+  return posts.map((post: { slug: string }) => ({
+    slug: post.slug,
+  }));
+}
 
 // PortableText components configuration
 const portableTextComponents = {
@@ -193,7 +206,7 @@ export default async function BlogPostPage(props: any) {
       _createdAt
     }`,
     { slug: params.slug },
-    { cache: "no-store" }, // Force fresh data every time
+    // Use default caching with revalidate: 60 (ISR)
   );
 
   // Check if post exists first
@@ -211,7 +224,7 @@ export default async function BlogPostPage(props: any) {
         publishedAt
       }`,
       { createdAt: post._createdAt },
-      { cache: "no-store" },
+      // Use default caching with revalidate: 60 (ISR)
     ),
     client.fetch(
       `*[_type == "post" && _createdAt > $createdAt && language == "fr"]|order(_createdAt asc)[0]{
@@ -223,7 +236,7 @@ export default async function BlogPostPage(props: any) {
         publishedAt
       }`,
       { createdAt: post._createdAt },
-      { cache: "no-store" },
+      // Use default caching with revalidate: 60 (ISR)
     ),
     client.fetch(
       `*[_type == "post" && slug.current != $currentSlug && language == "fr"]|order(_createdAt desc)[0...3]{
@@ -237,7 +250,7 @@ export default async function BlogPostPage(props: any) {
         body
       }`,
       { currentSlug: params.slug },
-      { cache: "no-store" },
+      // Use default caching with revalidate: 60 (ISR)
     ),
   ]);
 

@@ -36,7 +36,7 @@ export default async function BlogPage() {
       }
     }`,
     {},
-    { cache: "no-store" }, // Force fresh data every time
+    // Use default caching with revalidate: 60 (ISR)
   );
 
   return (
