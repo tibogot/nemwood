@@ -444,7 +444,6 @@ const FreeLayoutScroll: React.FC = () => {
       <div
         ref={containerRef}
         className="text-primary hidden h-screen w-full overflow-hidden md:block"
-        aria-hidden="true"
         data-horizontal-scroll-free
       >
         <div ref={scrollerRef} className="flex h-full">
@@ -555,10 +554,8 @@ const FreeLayoutScroll: React.FC = () => {
                           ? "/services"
                           : `/services/${block.slug}`
                       }
-                      tabIndex={-1}
-                      aria-hidden="true"
                     >
-                      <button className="font-HelveticaNow" tabIndex={-1}>
+                      <button className="font-HelveticaNow">
                         <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
                           <span>
                             {block.isCTASection
