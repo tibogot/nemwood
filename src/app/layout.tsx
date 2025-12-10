@@ -67,20 +67,17 @@ export const metadata: Metadata = {
   title: "Nemwood | Meubles en bois sur mesure en Belgique",
   description:
     "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
-  keywords: [
-    "menuisier belgique",
-    "meubles bois sur mesure",
-    "escaliers bois belgique",
-    "garde-robe sur mesure",
-    "table bois massif",
-    "cuisine bois belgique",
-  ],
   authors: [{ name: "Nemwood" }],
   creator: "Nemwood",
   publisher: "Nemwood",
   robots: "index, follow",
   alternates: {
     canonical: "https://www.nemwood.be",
+    languages: {
+      "fr-BE": "https://www.nemwood.be", // Primary: French (Belgium)
+      fr: "https://www.nemwood.be", // Fallback: French (general)
+      "x-default": "https://www.nemwood.be", // Default fallback
+    },
   },
   openGraph: {
     title: "Nemwood - Meubles en bois sur mesure en Belgique",
@@ -136,30 +133,68 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               name: "Nemwood",
               description:
-                "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure",
+                "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
               url: "https://www.nemwood.be",
               telephone: "+32 489 33 05 44",
               email: "contact@nemwood.be",
+              // Adresse complète - Complétez avec votre adresse réelle (voir LOCALBUSINESS_SCHEMA_INFO.md)
+              // Pour ajouter streetAddress, postalCode, etc., modifiez l'objet ci-dessous
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Bruxelles", // Modifiez si nécessaire (Liège, Anvers, etc.)
                 addressCountry: "BE",
-                addressLocality: "Belgique",
+                // Ajoutez ces propriétés si vous avez l'adresse complète :
+                // streetAddress: "Votre rue et numéro",
+                // postalCode: "1000",
+                // addressRegion: "Bruxelles-Capitale",
               },
+              // Coordonnées GPS - Complétez avec vos coordonnées réelles (voir LOCALBUSINESS_SCHEMA_INFO.md)
               geo: {
                 "@type": "GeoCoordinates",
                 addressCountry: "BE",
+                // Ajoutez ces propriétés si vous avez les coordonnées GPS :
+                // latitude: "50.8503",
+                // longitude: "4.3517",
               },
-              openingHours: "Mo-Fr 09:00-18:00",
+              // Images du business pour Google Business Profile
+              image: [
+                "https://www.nemwood.be/images/nem1.png",
+                "https://www.nemwood.be/images/atelier-1.webp",
+                "https://www.nemwood.be/images/hero-nemwood.webp",
+              ],
+              openingHours: ["Mo-Fr 09:00-18:00"],
               priceRange: "€€",
               currenciesAccepted: "EUR",
               paymentAccepted: "Cash, Credit Card, Bank Transfer",
-              areaServed: "Belgique",
+              areaServed: [
+                {
+                  "@type": "Country",
+                  name: "Belgium",
+                },
+                {
+                  "@type": "City",
+                  name: "Bruxelles",
+                },
+              ],
               serviceType: [
                 "Menuiserie sur mesure",
-                "Fabrication de meubles",
+                "Ébénisterie artisanale",
+                "Fabrication de meubles en bois massif",
+                "Escaliers en bois sur mesure",
+                "Garde-robes sur mesure",
+                "Tables en bois massif",
+                "Cuisines sur mesure",
                 "Installation d'escaliers",
                 "Rénovation de cuisines",
+                "Mobilier sur mesure",
+                "Aménagement intérieur",
               ],
+              // TODO: Ajouter aggregateRating si vous avez des avis clients
+              // aggregateRating: {
+              //   "@type": "AggregateRating",
+              //   ratingValue: "4.8",
+              //   reviewCount: "25",
+              // },
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Services de menuiserie",

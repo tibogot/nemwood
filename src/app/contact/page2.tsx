@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   title: "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
   description:
     "Contactez Nemwood pour vos projets de menuiserie sur mesure en Belgique. Spécialiste en tables, escaliers, garde-robes et cuisines. Devis gratuit et conseil personnalisé.",
-  keywords:
-    "contact menuisier belgique, devis menuiserie, artisan bois sur mesure, consultation menuiserie, nemwood contact",
   openGraph: {
     title: "Contact Nemwood | Menuisier Artisan en Belgique",
     description:

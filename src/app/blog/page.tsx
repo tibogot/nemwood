@@ -5,6 +5,7 @@ import BlogSection from "@/components/BlogSection";
 import ParallaxImage from "@/components/ParallaxImage";
 import Image from "next/image";
 import { generateMetadata } from "@/app/metadata";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 // Force revalidation every 60 seconds (optional)
 export const revalidate = 60;
@@ -41,6 +42,12 @@ export default async function BlogPage() {
 
   return (
     <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Blog", url: "/blog" },
+        ]}
+      />
       <main className="text-primary bg-secondary px-4 md:px-8">
         <section className="border-primary mx-auto border-b py-40 text-center md:py-64">
           <AnimatedText isHero delay={0.0} stagger={0.3}>

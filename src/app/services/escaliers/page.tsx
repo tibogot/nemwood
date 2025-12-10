@@ -5,6 +5,7 @@ import FAQ from "@/components/FAQ";
 import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import ServiceNavigation from "@/components/ServiceNavigation";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
   "Escaliers en bois sur mesure en Belgique | Nemwood",
@@ -15,7 +16,15 @@ export const metadata: Metadata = generateMetadata(
 
 export default function EscaliersPage() {
   return (
-    <main className="bg-secondary text-primary">
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: "Escaliers", url: "/services/escaliers" },
+        ]}
+      />
+      <main className="bg-secondary text-primary">
       {/* Hero Section */}
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
@@ -239,5 +248,6 @@ export default function EscaliersPage() {
       />
       <ServiceNavigation />
     </main>
+    </>
   );
 }

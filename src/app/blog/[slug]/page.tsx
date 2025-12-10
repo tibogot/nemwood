@@ -9,6 +9,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import ShareButtons from "@/components/ShareButtons";
 import ParallaxImage from "@/components/ParallaxImage";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import ArticleSchema from "@/components/ArticleSchema";
 
 // Force revalidation every 60 seconds to match blog page
 export const revalidate = 60;
@@ -203,7 +205,8 @@ export default async function BlogPostPage(props: any) {
         asset->{url}
       },
       publishedAt,
-      _createdAt
+      _createdAt,
+      _updatedAt
     }`,
     { slug: params.slug },
     // Use default caching with revalidate: 60 (ISR)
@@ -254,228 +257,259 @@ export default async function BlogPostPage(props: any) {
     ),
   ]);
 
+  // Prepare dates for Article Schema
+  const datePublished = post.publishedAt || post._createdAt;
+  const dateModified = post._updatedAt || post.publishedAt || post._createdAt;
+
   return (
-    <div className="bg-secondary text-primary">
-      {/* Title Section with its own padding */}
-      <section className="px-4 py-40 md:px-8 md:py-64">
-        <div className="mx-auto max-w-4xl text-center">
-          <AnimatedText isHero delay={0.0} stagger={0.3}>
-            <h1 className="font-ITCGaramondN mb-6 text-5xl md:text-7xl">
-              {post.title}
-            </h1>
-            {post.description && (
-              <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-                {post.description}
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: post.title, url: `/blog/${params.slug}` },
+        ]}
+      />
+      <ArticleSchema
+        headline={post.title}
+        description={post.description}
+        image={
+          post.mainImage?.asset?.url
+            ? post.mainImage.asset.url.startsWith("http")
+              ? post.mainImage.asset.url
+              : post.mainImage.asset.url
+            : undefined
+        }
+        datePublished={new Date(datePublished).toISOString()}
+        dateModified={new Date(dateModified).toISOString()}
+        author={{ name: "Nemwood" }}
+        url={`/blog/${params.slug}`}
+      />
+      <div className="bg-secondary text-primary">
+        {/* Title Section with its own padding */}
+        <section className="px-4 py-40 md:px-8 md:py-64">
+          <div className="mx-auto max-w-4xl text-center">
+            <AnimatedText isHero delay={0.0} stagger={0.3}>
+              <h1 className="font-ITCGaramondN mb-6 text-5xl md:text-7xl">
+                {post.title}
+              </h1>
+              {post.description && (
+                <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+                  {post.description}
+                </p>
+              )}
+            </AnimatedText>
+            {post.publishedAt && (
+              <p className="mt-6 text-sm text-gray-400">
+                {new Date(post.publishedAt).toLocaleDateString()}
               </p>
             )}
-          </AnimatedText>
-          {post.publishedAt && (
-            <p className="mt-6 text-sm text-gray-400">
-              {new Date(post.publishedAt).toLocaleDateString()}
-            </p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Full Width Image Section with Parallax */}
-      {post.mainImage && (
-        <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
-          <Image
-            src={post.mainImage.asset.url}
-            alt={post.title}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            quality={85}
-            priority
-            fetchPriority="high"
-          />
-        </ParallaxImage>
-      )}
+        {/* Full Width Image Section with Parallax */}
+        {post.mainImage && (
+          <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+            <Image
+              src={post.mainImage.asset.url}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              quality={85}
+              priority
+              fetchPriority="high"
+            />
+          </ParallaxImage>
+        )}
 
-      <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
-        {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
+        <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+          {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
           Creativity to design
         </h1> */}
-        <AnimatedText>
-          <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
-            Basés en Belgique, nous valorisons le travail du bois local, la
-            précision des finitions, et un accompagnement sur-mesure tout au
-            long du projet. Chaque meuble est conçu en étroite collaboration
-            avec nos clients, pour répondre parfaitement à leurs attentes.
-          </p>
-        </AnimatedText>
-      </section>
+          <AnimatedText>
+            <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
+              Basés en Belgique, nous valorisons le travail du bois local, la
+              précision des finitions, et un accompagnement sur-mesure tout au
+              long du projet. Chaque meuble est conçu en étroite collaboration
+              avec nos clients, pour répondre parfaitement à leurs attentes.
+            </p>
+          </AnimatedText>
+        </section>
 
-      {/* Content Section with its own padding */}
-      <section className="px-4 py-20 md:px-8">
-        <div className="font-HelveticaNow text-xl">
-          <PortableText value={post.body} components={portableTextComponents} />
-        </div>
-
-        {/* Share Buttons */}
-        <div className="">
-          <ShareButtons
-            title={post.title}
-            url={`https://www.nemwood.be/blog/${params.slug}`}
-          />
-        </div>
-      </section>
-
-      {/* Related Articles Section */}
-      {relatedPosts && relatedPosts.length > 0 && (
+        {/* Content Section with its own padding */}
         <section className="px-4 py-20 md:px-8">
-          <div className="">
-            <div className="border-t border-gray-200 pt-8">
-              <h2 className="font-ITCGaramondN mb-12 text-3xl md:text-6xl">
-                Articles similaires
-              </h2>
-              <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
-                {relatedPosts.map((relatedPost: any) => (
-                  <li
-                    key={relatedPost.slug.current}
-                    className="flex flex-col overflow-hidden"
-                  >
-                    <Link
-                      href={`/blog/${relatedPost.slug.current}`}
-                      className="group block cursor-pointer"
-                    >
-                      {relatedPost.mainImage && (
-                        <div className="bg-secondary relative h-[400px] w-full overflow-hidden">
-                          <Image
-                            src={relatedPost.mainImage.asset.url}
-                            alt={relatedPost.title}
-                            fill
-                            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      )}
-                      <div className="flex flex-1 flex-col justify-between pt-4 pb-6">
-                        <div>
-                          {relatedPost.publishedAt && (
-                            <p className="font-HelveticaNow mb-2 text-xs">
-                              {new Date(
-                                relatedPost.publishedAt,
-                              ).toLocaleDateString()}
-                            </p>
-                          )}
-                          <h3 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
-                            {relatedPost.title}
-                          </h3>
+          <div className="font-HelveticaNow text-xl">
+            <PortableText
+              value={post.body}
+              components={portableTextComponents}
+            />
+          </div>
 
-                          <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
-                            {relatedPost.description ||
-                              (relatedPost.body && (
-                                <PortableText
-                                  value={relatedPost.body.slice(0, 1)}
-                                />
-                              ))}
+          {/* Share Buttons */}
+          <div className="">
+            <ShareButtons
+              title={post.title}
+              url={`https://www.nemwood.be/blog/${params.slug}`}
+            />
+          </div>
+        </section>
+
+        {/* Related Articles Section */}
+        {relatedPosts && relatedPosts.length > 0 && (
+          <section className="px-4 py-20 md:px-8">
+            <div className="">
+              <div className="border-t border-gray-200 pt-8">
+                <h2 className="font-ITCGaramondN mb-12 text-3xl md:text-6xl">
+                  Articles similaires
+                </h2>
+                <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
+                  {relatedPosts.map((relatedPost: any) => (
+                    <li
+                      key={relatedPost.slug.current}
+                      className="flex flex-col overflow-hidden"
+                    >
+                      <Link
+                        href={`/blog/${relatedPost.slug.current}`}
+                        className="group block cursor-pointer"
+                      >
+                        {relatedPost.mainImage && (
+                          <div className="bg-secondary relative h-[400px] w-full overflow-hidden">
+                            <Image
+                              src={relatedPost.mainImage.asset.url}
+                              alt={relatedPost.title}
+                              fill
+                              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                            />
                           </div>
+                        )}
+                        <div className="flex flex-1 flex-col justify-between pt-4 pb-6">
+                          <div>
+                            {relatedPost.publishedAt && (
+                              <p className="font-HelveticaNow mb-2 text-xs">
+                                {new Date(
+                                  relatedPost.publishedAt,
+                                ).toLocaleDateString()}
+                              </p>
+                            )}
+                            <h3 className="font-ITCGaramondN mb-2 text-4xl md:text-4xl">
+                              {relatedPost.title}
+                            </h3>
+
+                            <div className="font-HelveticaNow mb-2 line-clamp-3 text-base md:max-w-md md:text-lg">
+                              {relatedPost.description ||
+                                (relatedPost.body && (
+                                  <PortableText
+                                    value={relatedPost.body.slice(0, 1)}
+                                  />
+                                ))}
+                            </div>
+                          </div>
+                          <span className="font-HelveticaNow mt-2 inline-block text-base">
+                            Read more →
+                          </span>
                         </div>
-                        <span className="font-HelveticaNow mt-2 inline-block text-base">
-                          Read more →
-                        </span>
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Navigation Section */}
+        <section className="px-4 pb-20 md:px-8">
+          <div className="border-t border-gray-200 pt-8">
+            <div className="flex flex-col gap-8 md:flex-row md:justify-between">
+              {/* Previous Post */}
+              {prevPost && (
+                <Link
+                  href={`/blog/${prevPost.slug.current}`}
+                  className="group flex-1 cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
+                      {prevPost.mainImage?.asset?.url && (
+                        <Image
+                          src={prevPost.mainImage.asset.url}
+                          alt={prevPost.title}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                        Article précédent
+                      </p>
+                      <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                        {prevPost.title}
+                      </h3>
+                      {prevPost.publishedAt && (
+                        <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
+                          {new Date(prevPost.publishedAt).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              )}
+
+              {/* Back to Blog Button */}
+              <div className="flex items-center justify-center">
+                <Link
+                  href="/blog"
+                  className="font-HelveticaNow border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out"
+                >
+                  <span>Retour au blog</span>
+                </Link>
+              </div>
+
+              {/* Next Post */}
+              {nextPost && (
+                <Link
+                  href={`/blog/${nextPost.slug.current}`}
+                  className="group flex-1 cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1 text-right">
+                      <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
+                        Article suivant
+                      </p>
+                      <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
+                        {nextPost.title}
+                      </h3>
+                      {nextPost.publishedAt && (
+                        <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
+                          {new Date(nextPost.publishedAt).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
+                      {nextPost.mainImage?.asset?.url && (
+                        <Image
+                          src={nextPost.mainImage.asset.url}
+                          alt={nextPost.title}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </section>
-      )}
-
-      {/* Navigation Section */}
-      <section className="px-4 pb-20 md:px-8">
-        <div className="border-t border-gray-200 pt-8">
-          <div className="flex flex-col gap-8 md:flex-row md:justify-between">
-            {/* Previous Post */}
-            {prevPost && (
-              <Link
-                href={`/blog/${prevPost.slug.current}`}
-                className="group flex-1 cursor-pointer"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
-                    {prevPost.mainImage?.asset?.url && (
-                      <Image
-                        src={prevPost.mainImage.asset.url}
-                        alt={prevPost.title}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                        quality={85}
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
-                      Article précédent
-                    </p>
-                    <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
-                      {prevPost.title}
-                    </h3>
-                    {prevPost.publishedAt && (
-                      <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
-                        {new Date(prevPost.publishedAt).toLocaleDateString()}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </Link>
-            )}
-
-            {/* Back to Blog Button */}
-            <div className="flex items-center justify-center">
-              <Link
-                href="/blog"
-                className="font-HelveticaNow border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out"
-              >
-                <span>Retour au blog</span>
-              </Link>
-            </div>
-
-            {/* Next Post */}
-            {nextPost && (
-              <Link
-                href={`/blog/${nextPost.slug.current}`}
-                className="group flex-1 cursor-pointer"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex-1 text-right">
-                    <p className="font-HelveticaNow mb-1 text-sm text-gray-500">
-                      Article suivant
-                    </p>
-                    <h3 className="font-ITCGaramondN group-hover:text-primary/70 text-lg leading-tight transition-colors">
-                      {nextPost.title}
-                    </h3>
-                    {nextPost.publishedAt && (
-                      <p className="font-HelveticaNow mt-1 text-xs text-gray-400">
-                        {new Date(nextPost.publishedAt).toLocaleDateString()}
-                      </p>
-                    )}
-                  </div>
-                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-sm transition-transform duration-300 group-hover:scale-105">
-                    {nextPost.mainImage?.asset?.url && (
-                      <Image
-                        src={nextPost.mainImage.asset.url}
-                        alt={nextPost.title}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                        quality={85}
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-                </div>
-              </Link>
-            )}
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }

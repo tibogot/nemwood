@@ -4,14 +4,6 @@ export const siteMetadata = {
   title: "Nemwood | Meubles en bois sur mesure en Belgique",
   description:
     "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
-  keywords: [
-    "menuisier belgique",
-    "meubles bois sur mesure",
-    "escaliers bois belgique",
-    "garde-robe sur mesure",
-    "table bois massif",
-    "cuisine bois belgique",
-  ],
   authors: [{ name: "Nemwood" }],
   creator: "Nemwood",
   publisher: "Nemwood",
@@ -43,14 +35,18 @@ export function generateMetadata(
     metadataBase: new URL(siteMetadata.url),
     title: title || siteMetadata.title,
     description: description || siteMetadata.description,
-    keywords: siteMetadata.keywords,
     authors: siteMetadata.authors,
     creator: siteMetadata.creator,
     publisher: siteMetadata.publisher,
     robots: siteMetadata.robots,
-    // Add canonical URL
+    // Add canonical URL and hreflang tags for Belgium French market
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        "fr-BE": canonicalUrl, // Primary: French (Belgium)
+        "fr": canonicalUrl, // Fallback: French (general)
+        "x-default": canonicalUrl, // Default fallback
+      },
     },
     openGraph: {
       title: title || "Nemwood - Meubles en bois sur mesure en Belgique",

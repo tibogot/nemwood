@@ -6,6 +6,7 @@ import ParallaxImage from "@/components/ParallaxImage";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata } from "@/app/metadata";
 import ManyServices from "@/components/ManyServices";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
   "Services de menuiserie sur mesure en Belgique | Nemwood",
@@ -47,7 +48,14 @@ export default function ServicesPage() {
   ];
 
   return (
-    <main className="bg-secondary text-primary">
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
+      />
+      <main className="bg-secondary text-primary">
       {/* Hero Section */}
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
@@ -183,5 +191,6 @@ export default function ServicesPage() {
         </ParallaxImage>
       </section>
     </main>
+    </>
   );
 }

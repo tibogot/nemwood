@@ -7,6 +7,7 @@ import { generateMetadata } from "@/app/metadata";
 import ContactForm from "@/components/ContactForm";
 import FlipBoard from "@/components/FlipBoard";
 import FlipBoardHero from "@/components/FlipBoardHero";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Nemwood | Menuisier Artisan en Belgique - Devis Gratuit",
@@ -17,7 +18,14 @@ export const metadata: Metadata = generateMetadata(
 
 export default function Contact() {
   return (
-    <div className="bg-secondary text-primary">
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+      />
+      <div className="bg-secondary text-primary">
       {/* Hero Section */}
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
@@ -94,5 +102,6 @@ export default function Contact() {
       <FlipBoard />
       {/* <FlipBoardHero /> */}
     </div>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import StickyStackScroll from "@/components/StickyStackScroll4";
 import { generateMetadata } from "@/app/metadata";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
   "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
@@ -16,7 +17,14 @@ export const metadata: Metadata = generateMetadata(
 
 export default function About() {
   return (
-    <div className="wrapper bg-secondary text-primary">
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "À propos", url: "/a-propos" },
+        ]}
+      />
+      <div className="wrapper bg-secondary text-primary">
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
           <AnimatedText isHero delay={0.0} stagger={0.3}>
@@ -191,5 +199,6 @@ export default function About() {
         </AnimatedText>
       </section>
     </div>
+    </>
   );
 }
