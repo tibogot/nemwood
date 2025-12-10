@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
@@ -12,173 +12,166 @@ function CardsScroll() {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const mainRef = useRef<HTMLElement>(null); // Add ref for main section
 
-  // Store ScrollTrigger instances for proper cleanup
-  const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
+  // Store SplitText instances and context for cleanup
   const splitTextInstancesRef = useRef<any[]>([]);
-  const cardAnimationsRef = useRef<any[]>([]);
+  const contextRef = useRef<gsap.Context | null>(null);
 
-  useEffect(() => {
-    let cleanup: (() => void) | null = null;
+  useGSAP(
+    () => {
+      if (!mainRef.current) return;
 
-    // Wait for fonts to load before splitting
-    document.fonts.ready.then(() => {
-      if (!mainRef.current) return; // Early return if component unmounted
+      // Clean up any existing context
+      if (contextRef.current) {
+        contextRef.current.revert();
+        contextRef.current = null;
+      }
 
-      const scrollTriggerSettings = {
-        trigger: mainRef.current, // Use ref instead of class selector
-        start: "top 25%",
-        toggleActions: "play reverse play reverse",
+      // Track if component is still mounted
+      let isMounted = true;
+
+      // Wait for fonts to load before splitting
+      const setupAnimations = () => {
+        if (!isMounted || !mainRef.current) return;
+
+        // Create GSAP context for automatic cleanup
+        contextRef.current = gsap.context(() => {
+          const scrollTriggerSettings = {
+            trigger: mainRef.current, // Use ref instead of class selector
+            start: "top 25%",
+            toggleActions: "play reverse play reverse",
+          };
+
+          const leftXValues = [-800, -900, -800];
+          const rightXValues = [800, 900, 800];
+          const leftRotationValues = [-30, -20, -35];
+          const rightRotationValues = [30, 20, 35];
+          const yValues = [100, -150, -250];
+
+          // Animate cards using GSAP transforms for smooth rendering
+          gsap.utils.toArray(".row").forEach((row: any, index: number) => {
+            const cardLeft = row.querySelector(".card-left");
+            const cardRight = row.querySelector(".card-right");
+
+            if (cardLeft && mainRef.current) {
+              // Use GSAP's transform properties which handle sub-pixel rounding automatically
+              gsap.to(cardLeft, {
+                x: leftXValues[index],
+                y: yValues[index],
+                rotation: leftRotationValues[index],
+                ease: "none",
+                scrollTrigger: {
+                  trigger: mainRef.current,
+                  start: "top center",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              });
+            }
+
+            if (cardRight && mainRef.current) {
+              // Use GSAP's transform properties which handle sub-pixel rounding automatically
+              gsap.to(cardRight, {
+                x: rightXValues[index],
+                y: yValues[index],
+                rotation: rightRotationValues[index],
+                ease: "none",
+                scrollTrigger: {
+                  trigger: mainRef.current,
+                  start: "top center",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              });
+            }
+          });
+
+          // Modern SplitText with built-in mask
+          let titleSplit: any = null;
+          let descriptionSplit: any = null;
+
+          if (titleRef.current) {
+            titleSplit = SplitText.create(titleRef.current, {
+              type: "lines",
+              mask: "lines",
+              autoSplit: true,
+              aria: "none", // Disable automatic aria-label addition
+              onSplit: (self: any) => {
+                gsap.from(self.lines, {
+                  yPercent: 100,
+                  stagger: 0.15,
+                  duration: 0.8,
+                  ease: "power2.out",
+                  scrollTrigger: scrollTriggerSettings,
+                });
+              },
+            });
+            splitTextInstancesRef.current.push(titleSplit);
+          }
+
+          if (descriptionRef.current) {
+            descriptionSplit = SplitText.create(descriptionRef.current, {
+              type: "lines",
+              mask: "lines",
+              autoSplit: true,
+              aria: "none", // Disable automatic aria-label addition
+              onSplit: (self: any) => {
+                gsap.from(self.lines, {
+                  yPercent: 100,
+                  stagger: 0.1,
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: 0.4,
+                  scrollTrigger: scrollTriggerSettings,
+                });
+              },
+            });
+            splitTextInstancesRef.current.push(descriptionSplit);
+          }
+
+          // Animate the main text content
+          if (mainContentRef.current && mainRef.current) {
+            ScrollTrigger.create({
+              trigger: mainRef.current, // Use ref instead of class selector
+              start: "top center",
+              end: "bottom top",
+              scrub: true,
+              animation: gsap.to(mainContentRef.current, {
+                y: -100,
+                ease: "none",
+              }),
+            });
+          }
+        }, mainRef); // Scope context to mainRef for automatic cleanup
       };
 
-      const leftXValues = [-800, -900, -800];
-      const rightXValues = [800, 900, 800];
-      const leftRotationValues = [-30, -20, -35];
-      const rightRotationValues = [30, 20, 35];
-      const yValues = [100, -150, -250];
+      // Check if fonts are already loaded
+      if (document.fonts.status === "loaded") {
+        setupAnimations();
+      } else {
+        document.fonts.ready.then(setupAnimations);
+      }
 
-      // Animate cards using GSAP transforms for smooth rendering
-      gsap.utils.toArray(".row").forEach((row: any, index: number) => {
-        const cardLeft = row.querySelector(".card-left");
-        const cardRight = row.querySelector(".card-right");
+      // Cleanup function
+      return () => {
+        isMounted = false;
 
-        if (cardLeft && mainRef.current) {
-          // Use GSAP's transform properties which handle sub-pixel rounding automatically
-          const leftAnim = gsap.to(cardLeft, {
-            x: leftXValues[index],
-            y: yValues[index],
-            rotation: leftRotationValues[index],
-            ease: "none",
-            scrollTrigger: {
-              trigger: mainRef.current,
-              start: "top center",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-          if (leftAnim.scrollTrigger) {
-            scrollTriggersRef.current.push(leftAnim.scrollTrigger);
+        // Revert GSAP context (automatically cleans up all animations and ScrollTriggers)
+        if (contextRef.current) {
+          contextRef.current.revert();
+          contextRef.current = null;
+        }
+
+        // Properly clean up SplitText instances (needed for revert)
+        splitTextInstancesRef.current.forEach((splitInstance) => {
+          if (splitInstance && splitInstance.revert) {
+            splitInstance.revert();
           }
-          cardAnimationsRef.current.push(leftAnim);
-        }
-
-        if (cardRight && mainRef.current) {
-          // Use GSAP's transform properties which handle sub-pixel rounding automatically
-          const rightAnim = gsap.to(cardRight, {
-            x: rightXValues[index],
-            y: yValues[index],
-            rotation: rightRotationValues[index],
-            ease: "none",
-            scrollTrigger: {
-              trigger: mainRef.current,
-              start: "top center",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-          if (rightAnim.scrollTrigger) {
-            scrollTriggersRef.current.push(rightAnim.scrollTrigger);
-          }
-          cardAnimationsRef.current.push(rightAnim);
-        }
-      });
-
-      // Modern SplitText with built-in mask
-      let titleSplit: any = null;
-      let descriptionSplit: any = null;
-
-      if (titleRef.current) {
-        titleSplit = SplitText.create(titleRef.current, {
-          type: "lines",
-          mask: "lines",
-          autoSplit: true,
-          aria: "none", // Disable automatic aria-label addition
-          onSplit: (self: any) => {
-            const tl = gsap.from(self.lines, {
-              yPercent: 100,
-              stagger: 0.15,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: scrollTriggerSettings,
-            });
-            if (tl.scrollTrigger) {
-              scrollTriggersRef.current.push(tl.scrollTrigger);
-            }
-            return tl;
-          },
         });
-        splitTextInstancesRef.current.push(titleSplit);
-      }
-
-      if (descriptionRef.current) {
-        descriptionSplit = SplitText.create(descriptionRef.current, {
-          type: "lines",
-          mask: "lines",
-          autoSplit: true,
-          aria: "none", // Disable automatic aria-label addition
-          onSplit: (self: any) => {
-            const tl = gsap.from(self.lines, {
-              yPercent: 100,
-              stagger: 0.1,
-              duration: 0.6,
-              ease: "power2.out",
-              delay: 0.4,
-              scrollTrigger: scrollTriggerSettings,
-            });
-            if (tl.scrollTrigger) {
-              scrollTriggersRef.current.push(tl.scrollTrigger);
-            }
-            return tl;
-          },
-        });
-        splitTextInstancesRef.current.push(descriptionSplit);
-      }
-
-      // Animate the main text content
-      if (mainContentRef.current && mainRef.current) {
-        const mainContentST = ScrollTrigger.create({
-          trigger: mainRef.current, // Use ref instead of class selector
-          start: "top center",
-          end: "bottom top",
-          scrub: true,
-          animation: gsap.to(mainContentRef.current, {
-            y: -100,
-            ease: "none",
-          }),
-        });
-        scrollTriggersRef.current.push(mainContentST);
-      }
-    });
-
-    // Cleanup function that works regardless of font loading
-    cleanup = () => {
-      // Kill only the ScrollTriggers created by this component
-      scrollTriggersRef.current.forEach((trigger) => {
-        if (trigger && trigger.kill) {
-          trigger.kill();
-        }
-      });
-      scrollTriggersRef.current = [];
-
-      // Clean up GSAP animations
-      cardAnimationsRef.current.forEach((anim) => {
-        if (anim && anim.kill) {
-          anim.kill();
-        }
-      });
-      cardAnimationsRef.current = [];
-
-      // Properly clean up SplitText instances
-      splitTextInstancesRef.current.forEach((splitInstance) => {
-        if (splitInstance && splitInstance.revert) {
-          splitInstance.revert();
-        }
-      });
-      splitTextInstancesRef.current = [];
-    };
-
-    // Return cleanup function
-    return cleanup;
-  }, []);
+        splitTextInstancesRef.current = [];
+      };
+    },
+    { scope: mainRef },
+  );
 
   const generateRows = () => {
     const cardImages = [
