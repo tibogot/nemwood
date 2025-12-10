@@ -82,7 +82,7 @@ export default function About() {
               alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
               fill
               className="object-cover transition-transform duration-500 ease-out hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 25vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               quality={85}
             />
           </div>

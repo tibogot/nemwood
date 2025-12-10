@@ -31,6 +31,7 @@ function AnimatedBorderLines({
 }: AnimatedBorderLinesProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const linesRef = useRef<HTMLElement[]>([]);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
   const [animationReady, setAnimationReady] = useState(false);
 
   // Initialize animation readiness
@@ -130,7 +131,7 @@ function AnimatedBorderLines({
         }
 
         // Animate the lines
-        const animation = gsap.to(linesRef.current, {
+        animationRef.current = gsap.to(linesRef.current, {
           scaleX: 1,
           stagger,
           duration,
@@ -151,6 +152,12 @@ function AnimatedBorderLines({
       });
 
       return () => {
+        // Cleanup ScrollTrigger and animation
+        if (animationRef.current) {
+          animationRef.current.kill();
+          animationRef.current = null;
+        }
+
         // Cleanup: remove animated lines
         linesRef.current.forEach((line) => {
           if (line && line.parentNode) {
