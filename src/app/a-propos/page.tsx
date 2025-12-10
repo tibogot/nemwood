@@ -162,7 +162,10 @@ export default function About() {
       <StickyStackScroll />
 
       <section className="flex w-full flex-col items-center justify-center px-4 pt-40 md:px-8">
-        <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px] md:w-[400px]">
+        <ParallaxImage
+          speed={0.5}
+          className="h-[400px] w-full md:h-[600px] md:w-[400px]"
+        >
           <Image
             src="/images/a-propos2.webp"
             alt="Savoir-faire artisanal Nemwood - Création de mobilier en bois massif sur mesure"
@@ -170,7 +173,6 @@ export default function About() {
             className="rounded-sm object-cover"
             sizes="(max-width: 768px) 100vw, 400px"
             quality={85}
-            priority
           />
         </ParallaxImage>
       </section>
