@@ -42,6 +42,7 @@ export default function BibliothequePage() {
           sizes="100vw"
           quality={85}
           priority
+          fetchPriority="high"
         />
       </ParallaxImage>
 

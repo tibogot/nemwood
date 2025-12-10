@@ -43,6 +43,7 @@ export default function GardeRobesPage() {
           sizes="100vw"
           quality={85}
           priority
+          fetchPriority="high"
         />
       </ParallaxImage>
 

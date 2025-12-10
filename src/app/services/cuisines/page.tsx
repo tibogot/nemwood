@@ -43,6 +43,7 @@ export default function CuisinesPage() {
           sizes="100vw"
           quality={85}
           priority
+          fetchPriority="high"
         />
       </ParallaxImage>
 

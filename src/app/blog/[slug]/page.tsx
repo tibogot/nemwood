@@ -270,6 +270,7 @@ export default async function BlogPostPage(props: any) {
             sizes="100vw"
             quality={85}
             priority
+            fetchPriority="high"
           />
         </ParallaxImage>
       )}
