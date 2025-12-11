@@ -118,16 +118,25 @@ export default function TablesPage() {
 
       <section className="w-full">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="mb-10 md:mb-16 md:w-1/2">
-            <AnimatedText>
-              <p className="font-HelveticaNow text-lg">
-                Nous travaillons avec les plus belles essences de bois : chêne
-                pour sa robustesse et ses veines marquées, noyer pour son
-                élégance et sa chaleur, frêne pour sa légèreté et sa finesse.
-                Chaque essence est sélectionnée pour ses qualités spécifiques et
-                sa capacité à s'embellir avec le temps.
-              </p>
-            </AnimatedText>
+          <div className="mb-10 md:mb-16">
+            <div className="flex flex-row items-start gap-6 md:gap-8">
+              <div className="shrink-0">
+                <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none opacity-0 md:-mt-6 md:text-9xl">
+                  01
+                </span>
+              </div>
+              <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                <AnimatedText>
+                  <p className="font-HelveticaNow text-lg">
+                    Nous travaillons avec les plus belles essences de bois : chêne
+                    pour sa robustesse et ses veines marquées, noyer pour son
+                    élégance et sa chaleur, frêne pour sa légèreté et sa finesse.
+                    Chaque essence est sélectionnée pour ses qualités spécifiques et
+                    sa capacité à s'embellir avec le temps.
+                  </p>
+                </AnimatedText>
+              </div>
+            </div>
           </div>
           <div className="flex justify-center pt-10">
             <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
