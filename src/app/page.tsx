@@ -318,6 +318,13 @@ export default function Home() {
             </AnimatedText>
           </div>
         </div>
+
+        {/* Static "Scroll" text for LCP - no animation */}
+        <div className="absolute bottom-4 right-4 z-10 md:bottom-8 md:right-8">
+          <span className="font-HelveticaNow text-sm text-[#fffcf5]">
+            Scroll
+          </span>
+        </div>
       </section>
 
       <section className="text-primary section2 px-4 md:px-8">
