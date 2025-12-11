@@ -294,7 +294,7 @@ export default function Home() {
             alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
             fill
             sizes="100vw"
-            quality={85}
+            quality={75}
             priority
             fetchPriority="high"
             placeholder="blur"
@@ -308,14 +308,10 @@ export default function Home() {
             ref={heroLogoRef}
             className="flex w-full items-center justify-center text-[#FFFCF5]"
           >
-            <Image
+            <img
               src="/logohero.svg"
               alt="Nemwood"
-              width={1200}
-              height={400}
-              className="h-auto w-full"
-              priority
-              fetchPriority="high"
+              className="h-auto w-full max-w-6xl"
             />
           </div>
           <div className="pointer-events-none mt-8 flex justify-center md:mt-12">
