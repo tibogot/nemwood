@@ -308,7 +308,15 @@ export default function Home() {
             ref={heroLogoRef}
             className="flex w-full items-center justify-center text-[#FFFCF5]"
           >
-            <img src="/logohero.svg" alt="Nemwood" className="h-auto w-full" />
+            <Image
+              src="/logohero.svg"
+              alt="Nemwood"
+              width={1200}
+              height={400}
+              className="h-auto w-full"
+              priority
+              fetchPriority="high"
+            />
           </div>
           <div className="pointer-events-none mt-8 flex justify-center md:mt-12">
             <AnimatedText isHero>
@@ -320,7 +328,7 @@ export default function Home() {
         </div>
 
         {/* Static "Scroll" text for LCP - no animation */}
-        <div className="absolute bottom-4 right-4 z-10 md:bottom-8 md:right-8">
+        <div className="absolute right-4 bottom-4 z-10 md:right-8 md:bottom-8">
           <span className="font-HelveticaNow text-sm text-[#fffcf5]">
             Scroll
           </span>
