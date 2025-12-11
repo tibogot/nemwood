@@ -127,17 +127,17 @@ const FreeLayoutScroll: React.FC = () => {
         },
       ],
       images: [
-        // {
-        //   src: "/images/horiz-garderobe.webp",
-        //   alt: "Garde-robe sur mesure",
-        //   position: {
-        //     top: "8%",
-        //     left: "12%",
-        //     width: "32%",
-        //     height: "42%",
-        //   },
-        //   zIndex: 1,
-        // },
+        {
+          src: "/images/horiz-garderobe.webp",
+          alt: "Garde-robe sur mesure",
+          position: {
+            top: "8%",
+            left: "12%",
+            width: "32%",
+            height: "42%",
+          },
+          zIndex: 1,
+        },
         {
           src: "/images/horiz-table.webp",
           alt: "Détail garde-robe",
@@ -398,13 +398,13 @@ const FreeLayoutScroll: React.FC = () => {
                     "/images/horiz-escalier.webp"
                   }
                   alt={block.title}
-                  width={1000}
-                  height={800}
+                  width={768}
+                  height={576}
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   priority={index === 0}
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 384px"
                 />
               </div>
               <div className="py-6">

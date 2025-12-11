@@ -312,6 +312,8 @@ export default function Home() {
               src="/logohero.svg"
               alt="Nemwood"
               className="h-auto w-full max-w-6xl"
+              fetchPriority="high"
+              loading="eager"
             />
           </div>
           <div className="pointer-events-none mt-8 flex justify-center md:mt-12">
@@ -372,7 +374,7 @@ export default function Home() {
               alt="Table bois suspendue et panneau mural bar BBP Dansaert Bruxelles"
               fill
               className="rounded-sm object-cover"
-              sizes="(max-width: 768px) 100vw, 80vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
               loading="lazy"
               quality={85}
               placeholder="blur"
