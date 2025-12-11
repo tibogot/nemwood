@@ -453,31 +453,46 @@ const FreeLayoutScroll: React.FC = () => {
               className="scroll-section relative h-full w-screen min-w-screen flex-shrink-0"
             >
               {/* Images - absolutely positioned */}
-              {section.images.map((image, imgIndex) => (
-                <div
-                  key={`img-${sectionIndex}-${imgIndex}`}
-                  className="absolute overflow-hidden"
-                  style={{
-                    top: image.position.top,
-                    right: image.position.right,
-                    bottom: image.position.bottom,
-                    left: image.position.left,
-                    width: image.position.width,
-                    height: image.position.height,
-                    zIndex: image.zIndex || 1,
-                  }}
-                  data-parallax-speed={image.parallaxSpeed || 0}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="50vw"
-                  />
-                </div>
-              ))}
+              {section.images.map((image, imgIndex) => {
+                // Calculate optimal sizes attribute based on actual display width
+                // Images are positioned within a 100vw container, so width percentage = viewport width percentage
+                const widthPercent = image.position.width
+                  ? parseFloat(image.position.width.replace("%", ""))
+                  : 50; // Default to 50% if not specified
+
+                // Create responsive sizes attribute matching actual display dimensions
+                // Desktop: use actual percentage width, with max constraint
+                // Mobile: these images are hidden (handled by mobile layout), but include for completeness
+                const sizesValue = `(max-width: 768px) 100vw, ${widthPercent}vw`;
+
+                return (
+                  <div
+                    key={`img-${sectionIndex}-${imgIndex}`}
+                    className="absolute overflow-hidden"
+                    style={{
+                      top: image.position.top,
+                      right: image.position.right,
+                      bottom: image.position.bottom,
+                      left: image.position.left,
+                      width: image.position.width,
+                      height: image.position.height,
+                      zIndex: image.zIndex || 1,
+                    }}
+                    data-parallax-speed={image.parallaxSpeed || 0}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                      sizes={sizesValue}
+                      quality={75}
+                      fetchPriority="auto"
+                    />
+                  </div>
+                );
+              })}
 
               {/* Text blocks - absolutely positioned */}
               {section.textBlocks.map((block, blockIndex) => (
