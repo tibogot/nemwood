@@ -176,19 +176,6 @@ export default function RootLayout({
                   name: "Bruxelles",
                 },
               ],
-              serviceType: [
-                "Menuiserie sur mesure",
-                "Ébénisterie artisanale",
-                "Fabrication de meubles en bois massif",
-                "Escaliers en bois sur mesure",
-                "Garde-robes sur mesure",
-                "Tables en bois massif",
-                "Cuisines sur mesure",
-                "Installation d'escaliers",
-                "Rénovation de cuisines",
-                "Mobilier sur mesure",
-                "Aménagement intérieur",
-              ],
               // TODO: Ajouter aggregateRating si vous avez des avis clients
               // aggregateRating: {
               //   "@type": "AggregateRating",
@@ -203,7 +190,32 @@ export default function RootLayout({
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
+                      name: "Menuiserie sur mesure",
+                      serviceType: "Menuiserie sur mesure",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Ébénisterie artisanale",
+                      serviceType: "Ébénisterie artisanale",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Fabrication de meubles en bois massif",
+                      serviceType: "Fabrication de meubles en bois massif",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
                       name: "Escaliers sur mesure",
+                      serviceType: "Escaliers en bois sur mesure",
                     },
                   },
                   {
@@ -211,6 +223,7 @@ export default function RootLayout({
                     itemOffered: {
                       "@type": "Service",
                       name: "Garde-robes sur mesure",
+                      serviceType: "Garde-robes sur mesure",
                     },
                   },
                   {
@@ -218,6 +231,7 @@ export default function RootLayout({
                     itemOffered: {
                       "@type": "Service",
                       name: "Tables en bois massif",
+                      serviceType: "Tables en bois massif",
                     },
                   },
                   {
@@ -225,6 +239,39 @@ export default function RootLayout({
                     itemOffered: {
                       "@type": "Service",
                       name: "Cuisines sur mesure",
+                      serviceType: "Cuisines sur mesure",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Installation d'escaliers",
+                      serviceType: "Installation d'escaliers",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Rénovation de cuisines",
+                      serviceType: "Rénovation de cuisines",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Mobilier sur mesure",
+                      serviceType: "Mobilier sur mesure",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Aménagement intérieur",
+                      serviceType: "Aménagement intérieur",
                     },
                   },
                 ],
