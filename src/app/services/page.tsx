@@ -36,14 +36,14 @@ export default function ServicesPage() {
       slug: "tables",
       description:
         "Tables en bois sur mesure, pièces centrales uniques et durables.",
-      image: "/images/table.webp",
+      image: "/images/horiz-table.webp",
     },
     {
       title: "Cuisines",
       slug: "cuisines",
       description:
         "Cuisines en bois massif chaleureuses et entièrement personnalisées.",
-      image: "/images/kitchen.webp",
+      image: "/images/horiz-cuisine.webp",
     },
   ];
 

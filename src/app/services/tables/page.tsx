@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Tables en bois sur mesure en Belgique | Nemwood",
   "Fabrication de tables en bois massif sur mesure en Belgique. Tables à manger, tables basses, bureaux uniques et durables.",
-  "/images/table.webp",
+  "/images/horiz-table.webp",
   "https://www.nemwood.be/services/tables",
 );
 
@@ -45,7 +45,7 @@ export default function TablesPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/table.webp"
+          src="/images/horiz-table.webp"
           alt="Table en bois sur mesure - Artisanat Nemwood"
           fill
           className="object-cover"
@@ -141,7 +141,7 @@ export default function TablesPage() {
           <div className="flex justify-center pt-10">
             <div className="relative h-[250px] w-full max-w-5xl overflow-hidden md:h-[500px]">
               <Image
-                src="/images/table.webp"
+                src="/images/horiz-table.webp"
                 alt="Table en bois massif sur mesure Nemwood"
                 fill
                 className="object-cover"
@@ -199,7 +199,7 @@ export default function TablesPage() {
             <div className="right flex flex-col items-start text-left md:order-1">
               <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
                 <Image
-                  src="/images/table.webp"
+                  src="/images/horiz-table.webp"
                   alt="Finition d'une table sur mesure Nemwood"
                   fill
                   className="object-cover transition-transform duration-500 ease-out hover:scale-105"

@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Bureaux sur mesure en Belgique | Nemwood",
   "Bureaux en bois sur mesure pour votre espace de travail. Fabrication artisanale en Belgique par Nemwood.",
-  "/images/table.webp",
+  "/images/horiz-table.webp",
   "https://www.nemwood.be/services/bureaux",
 );
 
@@ -43,7 +43,7 @@ export default function BureauPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/table.webp"
+          src="/images/horiz-table.webp"
           alt="Bureau sur mesure Nemwood"
           fill
           className="object-cover"
@@ -102,7 +102,7 @@ export default function BureauPage() {
             <div className="right relative flex flex-col items-start text-left">
               <div className="relative h-[480px] w-full overflow-hidden bg-amber-400 select-none md:h-[620px]">
                 <Image
-                  src="/images/table.webp"
+                  src="/images/horiz-table.webp"
                   alt="Bureau ergonomique sur mesure Nemwood"
                   fill
                   className="object-cover transition-transform duration-500 ease-out hover:scale-105"
@@ -192,7 +192,7 @@ export default function BureauPage() {
           <div className="flex justify-center pt-10">
             <div className="relative h-[260px] w-full max-w-5xl overflow-hidden md:h-[540px]">
               <Image
-                src="/images/table.webp"
+                src="/images/horiz-table.webp"
                 alt="Bureau en bois massif sur mesure Nemwood"
                 fill
                 className="object-cover"

@@ -44,7 +44,7 @@ function Card1() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/kitchen.webp"
+              src="/images/horiz-cuisine.webp"
               alt="Cuisine sur mesure"
               fill
               className="object-cover"
@@ -183,7 +183,7 @@ function Card4() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/table.webp"
+              src="/images/horiz-table.webp"
               alt="Tables en bois massif"
               fill
               className="object-cover"
@@ -438,7 +438,7 @@ export default function HomeCard() {
             <div className="mt-8">
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
-                  src="/images/kitchen.webp"
+                  src="/images/horiz-cuisine.webp"
                   alt="Cuisine sur mesure"
                   width={1000}
                   height={400}
@@ -524,7 +524,7 @@ export default function HomeCard() {
             <div className="mt-8">
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
-                  src="/images/table.webp"
+                  src="/images/horiz-table.webp"
                   alt="Tables en bois massif"
                   width={1000}
                   height={400}

@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Cuisines en bois sur mesure en Belgique | Nemwood",
   "Fabrication de cuisines en bois massif sur mesure en Belgique. Aménagements cuisine personnalisés, meubles de cuisine artisanaux.",
-  "/images/kitchen.webp",
+  "/images/horiz-cuisine.webp",
   "https://www.nemwood.be/services/cuisines",
 );
 
@@ -45,7 +45,7 @@ export default function CuisinesPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/kitchen.webp"
+          src="/images/horiz-cuisine.webp"
           alt="Cuisine en bois sur mesure - Artisanat Nemwood"
           fill
           className="object-cover"
@@ -105,7 +105,7 @@ export default function CuisinesPage() {
             <div className="right flex flex-col items-start text-left">
               <div className="relative h-[500px] w-full overflow-hidden bg-amber-400 select-none md:h-[640px]">
                 <Image
-                  src="/images/kitchen.webp"
+                  src="/images/horiz-cuisine.webp"
                   alt="Cuisine optimisée sur mesure Nemwood"
                   fill
                   className="object-cover transition-transform duration-500 ease-out hover:scale-105"
@@ -195,7 +195,7 @@ export default function CuisinesPage() {
             </AnimatedText>
             <div className="relative mt-10 h-[330px] w-full overflow-hidden md:mt-16 md:h-[490px]">
               <Image
-                src="/images/kitchen.webp"
+                src="/images/horiz-cuisine.webp"
                 alt="Équipement intégré dans cuisine Nemwood"
                 fill
                 className="object-cover"

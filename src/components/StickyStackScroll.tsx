@@ -44,7 +44,7 @@ function Card1() {
             {/* Mobile Image */}
             <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
               <Image
-                src="/images/kitchen.webp"
+                src="/images/horiz-cuisine.webp"
                 alt="Cuisine sur mesure"
                 fill
                 className="object-cover"
@@ -56,7 +56,7 @@ function Card1() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/kitchen.webp"
+              src="/images/horiz-cuisine.webp"
               alt="Cuisine sur mesure"
               fill
               className="object-cover"
@@ -212,7 +212,7 @@ function Card4() {
             {/* Mobile Image */}
             <div className="relative mt-6 flex-grow overflow-hidden rounded-sm md:hidden">
               <Image
-                src="/images/table.webp"
+                src="/images/horiz-table.webp"
                 alt="Tables en bois massif"
                 fill
                 className="object-cover"
@@ -224,7 +224,7 @@ function Card4() {
           {/* Desktop Image */}
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
-              src="/images/table.webp"
+              src="/images/horiz-table.webp"
               alt="Tables en bois massif"
               fill
               className="object-cover"

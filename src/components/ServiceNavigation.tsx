@@ -8,18 +8,18 @@ import { usePathname } from "next/navigation";
 const services = [
   { name: "Escaliers", slug: "escaliers", image: "/images/stairs.webp" },
   { name: "Gardes-robes", slug: "garde-robes", image: "/images/wardrobe.webp" },
-  { name: "Tables", slug: "tables", image: "/images/table.webp" },
-  { name: "Cuisines", slug: "cuisines", image: "/images/kitchen.webp" },
+  { name: "Tables", slug: "tables", image: "/images/horiz-table.webp" },
+  { name: "Cuisines", slug: "cuisines", image: "/images/horiz-cuisine.webp" },
   {
     name: "Bibliothèques",
     slug: "bibliotheques",
     image: "/images/wardrobe.webp",
   },
-  { name: "Bureaux", slug: "bureaux", image: "/images/table.webp" },
+  { name: "Bureaux", slug: "bureaux", image: "/images/horiz-table.webp" },
   {
     name: "Salles de bain",
     slug: "salles-de-bain",
-    image: "/images/kitchen.webp",
+    image: "/images/horiz-cuisine.webp",
   },
 ];
 

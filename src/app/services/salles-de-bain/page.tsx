@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Salles de bain sur mesure en Belgique | Nemwood",
   "Salles de bain en bois sur mesure pour créer un espace de détente unique. Fabrication artisanale en Belgique par Nemwood.",
-  "/images/kitchen.webp",
+  "/images/horiz-cuisine.webp",
   "https://www.nemwood.be/services/salles-de-bain",
 );
 
@@ -42,7 +42,7 @@ export default function SalleDeBainPage() {
       {/* Full Width Image Section with Parallax */}
       <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
         <Image
-          src="/images/kitchen.webp"
+          src="/images/horiz-cuisine.webp"
           alt="Salle de bain sur mesure Nemwood"
           fill
           className="object-cover"
@@ -133,7 +133,7 @@ export default function SalleDeBainPage() {
               {/* Overlapping smaller image */}
               <div className="absolute right-8 -bottom-12 h-[270px] w-[60%] overflow-hidden bg-amber-400 select-none md:right-12 md:-bottom-16 md:h-[340px]">
                 <Image
-                  src="/images/kitchen.webp"
+                  src="/images/horiz-cuisine.webp"
                   alt="Détail de la salle de bain sur mesure"
                   fill
                   className="object-cover transition-transform duration-500 ease-out hover:scale-105"
@@ -193,7 +193,7 @@ export default function SalleDeBainPage() {
             </AnimatedText>
             <div className="relative mt-10 h-[340px] w-full overflow-hidden md:mt-16 md:h-[500px]">
               <Image
-                src="/images/kitchen.webp"
+                src="/images/horiz-cuisine.webp"
                 alt="Finition hydrofuge de salle de bain Nemwood"
                 fill
                 className="object-cover"
