@@ -312,7 +312,6 @@ export default function Home() {
               src="/logohero.svg"
               alt="Nemwood"
               className="h-auto w-full max-w-6xl"
-              fetchPriority="high"
               loading="eager"
             />
           </div>
@@ -325,7 +324,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Static "Scroll" text for LCP - no animation */}
+        {/* Static "Scroll" text for LCP - no animation, high priority for LCP optimization */}
         <div className="absolute right-4 bottom-4 z-10 md:right-8 md:bottom-8">
           <span className="font-HelveticaNow text-sm text-[#fffcf5]">
             Scroll
