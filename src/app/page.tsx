@@ -293,7 +293,7 @@ export default function Home() {
             src="/images/hero-nemwood.webp"
             alt="Nemwood - Artisan menuisier en Belgique - Mobilier sur mesure en bois massif"
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1600px) 100vw, 1600px"
             quality={75}
             priority
             fetchPriority="high"
