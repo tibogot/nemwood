@@ -405,7 +405,7 @@ export default function Home() {
             <Link href="/a-propos">
               <button className="font-HelveticaNow mt-10">
                 <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                  <span>En savoir plus</span>
+                  <span>A propos</span>
                   <div className="mt-0.5 ml-1">
                     <ArrowRight size={18} strokeWidth={1.5} />
                   </div>
