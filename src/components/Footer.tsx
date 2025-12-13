@@ -11,7 +11,8 @@ export default function Footer() {
 
         {/* Right Side - Content */}
         <div className="right flex w-full flex-col md:w-1/2">
-          <p className="font-ITCGaramondN mt-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
+          {/* Newsletter Section - Commented out */}
+          {/* <p className="font-ITCGaramondN mt-8 text-3xl leading-tight md:mt-20 md:text-4xl lg:text-5xl">
             Inscrivez-vous à notre newsletter
           </p>
           <p className="font-HelveticaNow mt-4 max-w-xl text-left text-lg">
@@ -19,7 +20,7 @@ export default function Footer() {
             équipe concernant votre projet.
           </p>
 
-          {/* Newsletter Subscription */}
+          Newsletter Subscription
           <div className="mt-6 md:mt-8">
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-2">
               <input
@@ -31,7 +32,7 @@ export default function Footer() {
                 Confirmer
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* Contact and Social Columns */}
           <div className="mt-24 flex flex-col gap-8 md:flex-row md:gap-24">
