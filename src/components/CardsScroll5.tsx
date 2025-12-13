@@ -246,7 +246,7 @@ function CardsScroll() {
               className="font-HelveticaNow mx-auto mt-8 text-lg md:max-w-lg"
             >
               Découvrez notre gamme complète : escaliers sur mesure, garde-robes
-              personnalisées, tables uniques et cuisines en bois massif. Chaque
+              personnalisées, cuisines uniques et tables en bois massif. Chaque
               création est pensée pour s'harmoniser parfaitement avec votre
               intérieur.
             </p>
