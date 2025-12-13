@@ -141,20 +141,18 @@ export default function RootLayout({
               // Pour ajouter streetAddress, postalCode, etc., modifiez l'objet ci-dessous
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Bruxelles", // Modifiez si nécessaire (Liège, Anvers, etc.)
+                streetAddress: "Nering 34",
+                addressLocality: "Beersel",
+                postalCode: "1620",
+                addressRegion: "Vlaams-Brabant",
                 addressCountry: "BE",
-                // Ajoutez ces propriétés si vous avez l'adresse complète :
-                // streetAddress: "Votre rue et numéro",
-                // postalCode: "1000",
-                // addressRegion: "Bruxelles-Capitale",
               },
               // Coordonnées GPS - Complétez avec vos coordonnées réelles (voir LOCALBUSINESS_SCHEMA_INFO.md)
               geo: {
                 "@type": "GeoCoordinates",
+                latitude: "50.7636007",
+                longitude: "4.2960457",
                 addressCountry: "BE",
-                // Ajoutez ces propriétés si vous avez les coordonnées GPS :
-                // latitude: "50.8503",
-                // longitude: "4.3517",
               },
               // Images du business pour Google Business Profile
               image: [
