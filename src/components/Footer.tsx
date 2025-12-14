@@ -15,13 +15,13 @@ export default function Footer() {
           </div>
 
           {/* Three Columns: Links, Services, Address */}
-          <div className="mt-12 flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-16">
+          <div className="mt-12 flex flex-col gap-6 md:flex-row md:gap-8 lg:gap-10">
             {/* Links Column */}
             <div className="flex flex-col">
               <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
                 Liens
               </div>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1">
                 <Link
                   href="/"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
@@ -60,7 +60,7 @@ export default function Footer() {
               <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
                 Services
               </div>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1">
                 <Link
                   href="/services/escaliers"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
@@ -112,10 +112,8 @@ export default function Footer() {
                 Adresse
               </div>
               <div className="font-HelveticaNow text-primary flex flex-col space-y-1 text-lg leading-relaxed">
-                <div>Nering 34</div>
-                <div>1620 Beersel</div>
-                <div>Vlaams-Brabant</div>
-                <div>Belgique</div>
+                <div>Nering 34, 1620 Beersel</div>
+                <div>Vlaams-Brabant Belgique</div>
               </div>
             </div>
 
@@ -124,7 +122,7 @@ export default function Footer() {
               <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
                 Contact
               </div>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1">
                 <Link
                   href="tel:+32489330544"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
