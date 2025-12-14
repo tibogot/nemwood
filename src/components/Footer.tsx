@@ -10,7 +10,8 @@ export default function Footer() {
         {/* Left Side - Text */}
         <div className="flex w-full flex-col md:w-1/2">
           <div className="font-ITCGaramondN text-4xl md:max-w-xl md:text-6xl">
-            Le bois notre passion, votre style notre création.
+            Le bois notre passion, <br />
+            votre style notre création.
           </div>
 
           {/* Three Columns: Links, Services, Address */}
