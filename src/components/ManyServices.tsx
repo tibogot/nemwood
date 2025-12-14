@@ -32,17 +32,17 @@ const services: Service[] = [
   {
     name: "Bibliothèques",
     href: "/services/bibliotheques",
-    image: "/images/woodshelf.webp",
+    image: "/images/bibliothèque.webp",
   },
   {
     name: "Bureaux",
     href: "/services/bureaux",
-    image: "/images/desk.webp",
+    image: "/images/bureau.webp",
   },
   {
     name: "Salles de bain",
     href: "/services/salles-de-bain",
-    image: "/images/bathroom.webp",
+    image: "/images/sdb.webp",
   },
 ];
 

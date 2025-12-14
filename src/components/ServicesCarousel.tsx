@@ -42,17 +42,17 @@ const services: Service[] = [
   {
     title: "Bibliothèques",
     slug: "bibliotheques",
-    image: "/images/woodshelf.webp",
+    image: "/images/bibliothèque.webp",
   },
   {
     title: "Bureaux",
     slug: "bureaux",
-    image: "/images/desk.webp",
+    image: "/images/bureau.webp",
   },
   {
     title: "Salles de bain",
     slug: "salles-de-bain",
-    image: "/images/bathroom.webp",
+    image: "/images/sdb.webp",
   },
 ];
 

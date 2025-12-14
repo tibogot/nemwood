@@ -540,7 +540,7 @@ export default function Home() {
             {
               question: "Quels types de bois utilisez-vous ?",
               answer:
-                "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
+                "Nous travaillons exclusivement avec des matériaux de premier choix : bois massif de qualité supérieure (chêne, hêtre, noyer, frêne et autres essences durables), panneaux nobles et matériaux haut de gamme. Chaque essence et matériau est sélectionné selon le projet et vos préférences esthétiques.",
             },
             {
               question: "Combien de temps prend la réalisation d'un projet ?",
