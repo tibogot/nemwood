@@ -63,8 +63,8 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             <Facebook className="h-5 w-5" />
           </div>
 
-          {/* X (Twitter) Share */}
-          <div
+          {/* X (Twitter) Share - Commented out */}
+          {/* <div
             onClick={() =>
               window.open(
                 `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
@@ -77,7 +77,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
-          </div>
+          </div> */}
 
           {/* WhatsApp Share */}
           <div
@@ -95,8 +95,8 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             </svg>
           </div>
 
-          {/* LinkedIn Share */}
-          <div
+          {/* LinkedIn Share - Commented out */}
+          {/* <div
             onClick={() =>
               window.open(
                 `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
@@ -107,7 +107,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             aria-label="Partager sur LinkedIn"
           >
             <Linkedin className="h-5 w-5" />
-          </div>
+          </div> */}
 
           {/* Copy Link - Primary */}
           <div

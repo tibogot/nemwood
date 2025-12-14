@@ -7,7 +7,7 @@ import { generateMetadata as generatePageMetadata } from "@/app/metadata";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
-import ShareButtons from "@/components/ShareButtons";
+// import ShareButtons from "@/components/ShareButtons";
 import ParallaxImage from "@/components/ParallaxImage";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 import ArticleSchema from "@/components/ArticleSchema";
@@ -339,19 +339,21 @@ export default async function BlogPostPage(props: any) {
 
         {/* Content Section with its own padding */}
         <section className="px-4 py-20 md:px-8">
-          <div className="font-HelveticaNow text-xl">
-            <PortableText
-              value={post.body}
-              components={portableTextComponents}
-            />
-          </div>
+          <div className="mx-auto max-w-3xl">
+            <div className="font-HelveticaNow text-xl">
+              <PortableText
+                value={post.body}
+                components={portableTextComponents}
+              />
+            </div>
 
-          {/* Share Buttons */}
-          <div className="">
-            <ShareButtons
-              title={post.title}
-              url={`https://www.nemwood.be/blog/${params.slug}`}
-            />
+            {/* Share Buttons - Commented out for now */}
+            {/* <div className="">
+              <ShareButtons
+                title={post.title}
+                url={`https://www.nemwood.be/blog/${params.slug}`}
+              />
+            </div> */}
           </div>
         </section>
 
