@@ -10,13 +10,16 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({
   className = "logo-nav",
-  width = 120,
-  height = 40,
+  width,
+  height,
 }) => {
+  // If width/height are not provided, let CSS classes handle sizing
+  const svgProps =
+    width !== undefined && height !== undefined ? { width, height } : {};
+
   return (
     <svg
-      width={width}
-      height={height}
+      {...svgProps}
       className={className}
       viewBox="0 0 561 119"
       fill="none"

@@ -189,7 +189,7 @@ export default function Testimonial() {
 
               {/* Bottom section with profile image and name */}
               <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
-                <div className="relative h-12 w-12 md:h-14 md:w-14">
+                {/* <div className="relative h-12 w-12 md:h-14 md:w-14">
                   <Image
                     src={staticTestimonial.image}
                     alt={staticTestimonial.name}
@@ -208,7 +208,7 @@ export default function Testimonial() {
                       target.parentNode?.appendChild(fallback);
                     }}
                   />
-                </div>
+                </div> */}
                 <p className="font-HelveticaNow text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                   {staticTestimonial.name}
                 </p>
@@ -235,7 +235,7 @@ export default function Testimonial() {
 
                 {/* Bottom section with profile image and name */}
                 <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
-                  <div className="relative h-12 w-12 md:h-14 md:w-14">
+                  {/* <div className="relative h-12 w-12 md:h-14 md:w-14">
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -254,7 +254,7 @@ export default function Testimonial() {
                         target.parentNode?.appendChild(fallback);
                       }}
                     />
-                  </div>
+                  </div> */}
                   <p className="font-HelveticaNow text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                     {testimonial.name}
                   </p>
