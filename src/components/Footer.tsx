@@ -25,31 +25,31 @@ export default function Footer() {
               <div className="flex flex-col">
                 <Link
                   href="/"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Home
                 </Link>
                 <Link
                   href="/a-propos"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   A propos
                 </Link>
                 <Link
                   href="/services"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Services
                 </Link>
                 <Link
                   href="/contact"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Contact
                 </Link>
                 <Link
                   href="/blog"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Blog
                 </Link>
@@ -64,43 +64,43 @@ export default function Footer() {
               <div className="flex flex-col">
                 <Link
                   href="/services/escaliers"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Escaliers
                 </Link>
                 <Link
                   href="/services/garde-robes"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Gardes-robes
                 </Link>
                 <Link
                   href="/services/tables"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Tables
                 </Link>
                 <Link
                   href="/services/cuisines"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Cuisines
                 </Link>
                 <Link
                   href="/services/bibliotheques"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Bibliothèques
                 </Link>
                 <Link
                   href="/services/bureaux"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Bureaux
                 </Link>
                 <Link
                   href="/services/salles-de-bain"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                 >
                   Salles de bain
                 </Link>
@@ -131,13 +131,13 @@ export default function Footer() {
                 <div className="flex flex-col">
                   <Link
                     href="tel:+32489330544"
-                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                    className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                   >
                     +32 489 33 05 44
                   </Link>
                   <Link
                     href="mailto:contact@nemwood.be"
-                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                    className="font-HelveticaNow text-primary text-base break-words transition-colors hover:opacity-70 md:text-lg"
                   >
                     contact@nemwood.be
                   </Link>
@@ -154,7 +154,7 @@ export default function Footer() {
                     href="https://instagram.com/nem_wood"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                    className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                   >
                     Instagram
                   </Link>
@@ -162,7 +162,7 @@ export default function Footer() {
                     href="https://www.facebook.com/p/NemwOod-100063674583109/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                    className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
                   >
                     Facebook
                   </Link>
