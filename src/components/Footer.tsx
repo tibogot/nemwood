@@ -4,7 +4,7 @@ import Logo from "./Logo3";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-primary font-HelveticaNow relative flex min-h-svh w-full flex-col px-4 pt-12 pb-8 md:h-svh md:px-8">
+    <footer className="bg-secondary text-primary font-HelveticaNow border-primary relative flex min-h-svh w-full flex-col border-t px-4 pt-12 pb-8 md:h-svh md:px-8">
       {/* Top Section */}
       <div className="flex flex-1 flex-col">
         {/* Text Section */}
