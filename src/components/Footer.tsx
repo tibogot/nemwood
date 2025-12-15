@@ -6,22 +6,23 @@ export default function Footer() {
   return (
     <footer className="bg-secondary text-primary font-HelveticaNow relative flex min-h-svh w-full flex-col px-4 pt-12 pb-8 md:h-svh md:px-8">
       {/* Top Section */}
-      <div className="flex flex-1 flex-col md:flex-row">
-        {/* Left Side - Text */}
-        <div className="flex w-full flex-col md:w-1/2">
-          <div className="font-ITCGaramondN text-4xl md:max-w-xl md:text-6xl">
-            Le bois notre passion, <br />
-            votre style notre création.
-          </div>
+      <div className="flex flex-1 flex-col">
+        {/* Text Section */}
+        <div className="font-ITCGaramondN text-4xl md:max-w-xl md:text-6xl">
+          Le bois notre passion, <br />
+          votre style notre création.
+        </div>
 
-          {/* Three Columns: Links, Services, Address */}
-          <div className="mt-12 flex flex-col gap-6 md:flex-row md:gap-8 lg:gap-10">
+        {/* Links Container: Left (Liens & Services) and Right (Adresse & Contact) */}
+        <div className="mt-10 grid grid-cols-2 gap-6 md:mt-30 md:flex md:flex-row md:justify-between">
+          {/* Left Side: Links and Services */}
+          <div className="contents md:flex md:flex-row md:gap-18">
             {/* Links Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
+              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
                 Liens
               </div>
-              <div className="flex flex-col space-y-1">
+              <div className="flex flex-col">
                 <Link
                   href="/"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
@@ -57,10 +58,10 @@ export default function Footer() {
 
             {/* Services Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
+              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
                 Services
               </div>
-              <div className="flex flex-col space-y-1">
+              <div className="flex flex-col">
                 <Link
                   href="/services/escaliers"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
@@ -105,13 +106,16 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
+          </div>
 
+          {/* Right Side: Address and Contact */}
+          <div className="contents md:flex md:flex-row md:gap-18">
             {/* Address Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
+              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
                 Adresse
               </div>
-              <div className="font-HelveticaNow text-primary flex flex-col space-y-1 text-lg leading-relaxed">
+              <div className="font-HelveticaNow text-primary flex flex-col text-lg leading-relaxed">
                 <div>Nering 34, 1620 Beersel</div>
                 <div>Vlaams-Brabant Belgique</div>
               </div>
@@ -119,10 +123,10 @@ export default function Footer() {
 
             {/* Contact Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider uppercase">
+              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
                 Contact
               </div>
-              <div className="flex flex-col space-y-1">
+              <div className="flex flex-col">
                 <Link
                   href="tel:+32489330544"
                   className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
