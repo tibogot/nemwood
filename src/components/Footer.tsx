@@ -19,8 +19,8 @@ export default function Footer() {
           <div className="contents md:flex md:flex-row md:gap-18">
             {/* Links Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
-                Liens
+              <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
+                Menu
               </div>
               <div className="flex flex-col">
                 <Link
@@ -58,7 +58,7 @@ export default function Footer() {
 
             {/* Services Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
+              <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
                 Services
               </div>
               <div className="flex flex-col">
@@ -108,11 +108,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right Side: Address and Contact */}
-          <div className="contents md:flex md:flex-row md:gap-18">
+          {/* Right Side: Address and Contact/Social */}
+          <div className="contents md:flex md:flex-row md:gap-30">
             {/* Address Column */}
             <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
+              <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
                 Adresse
               </div>
               <div className="font-HelveticaNow text-primary flex flex-col text-lg leading-relaxed">
@@ -121,40 +121,52 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Contact Column */}
-            <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-sm font-semibold tracking-wider">
-                Contact
-              </div>
+            {/* Contact and Social Container */}
+            <div className="contents md:flex md:flex-col md:gap-6">
+              {/* Contact Column */}
               <div className="flex flex-col">
-                <Link
-                  href="tel:+32489330544"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
-                >
-                  +32 489 33 05 44
-                </Link>
-                <Link
-                  href="mailto:contact@nemwood.be"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
-                >
-                  contact@nemwood.be
-                </Link>
-                <Link
-                  href="https://instagram.com/nem_wood"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
-                >
-                  Instagram
-                </Link>
-                <Link
-                  href="https://www.facebook.com/p/NemwOod-100063674583109/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
-                >
-                  Facebook
-                </Link>
+                <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
+                  Contact
+                </div>
+                <div className="flex flex-col">
+                  <Link
+                    href="tel:+32489330544"
+                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  >
+                    +32 489 33 05 44
+                  </Link>
+                  <Link
+                    href="mailto:contact@nemwood.be"
+                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  >
+                    contact@nemwood.be
+                  </Link>
+                </div>
+              </div>
+
+              {/* Social Column */}
+              <div className="flex flex-col">
+                <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
+                  Social
+                </div>
+                <div className="flex flex-col">
+                  <Link
+                    href="https://instagram.com/nem_wood"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  >
+                    Instagram
+                  </Link>
+                  <Link
+                    href="https://www.facebook.com/p/NemwOod-100063674583109/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-HelveticaNow text-primary text-lg transition-colors hover:opacity-70"
+                  >
+                    Facebook
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
