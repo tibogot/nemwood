@@ -339,7 +339,7 @@ export default async function BlogPostPage(props: any) {
 
         {/* Content Section with its own padding */}
         <section className="px-4 py-20 md:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <div className="font-HelveticaNow">
               <PortableText
                 value={post.body}
