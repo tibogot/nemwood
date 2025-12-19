@@ -71,7 +71,7 @@ export default async function BlogPage() {
 
       {/* Blog section with category filtering */}
       <BlogSection posts={posts} />
-      {/* <section className="bg-secondary relative w-full">
+      <section className="bg-secondary relative w-full">
         <div className="md:pt-40">
           <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
             <Image
@@ -85,7 +85,7 @@ export default async function BlogPage() {
             />
           </ParallaxImage>
         </div>
-      </section> */}
+      </section>
     </>
   );
 }
