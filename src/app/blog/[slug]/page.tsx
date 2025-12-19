@@ -114,24 +114,24 @@ const portableTextComponents = {
   block: {
     // Handle normal paragraphs with proper spacing
     normal: ({ children }: any) => (
-      <p className="mb-4 leading-relaxed">{children}</p>
+      <p className="mb-4 text-base leading-relaxed">{children}</p>
     ),
     // Handle headings - 3 consistent sizes regardless of what user picks in CMS
     h1: ({ children }: any) => (
-      <h2 className="font-ITCGaramondN mt-8 mb-6 text-5xl">{children}</h2>
+      <h2 className="font-HelveticaNow mt-8 mb-6 text-3xl">{children}</h2>
     ),
     h2: ({ children }: any) => (
-      <h3 className="font-ITCGaramondN mt-6 mb-4 text-4xl leading-tight">
+      <h3 className="font-HelveticaNow mt-6 mb-4 text-2xl leading-tight">
         {children}
       </h3>
     ),
     h3: ({ children }: any) => (
-      <h4 className="font-ITCGaramondN mt-5 mb-3 text-3xl leading-tight">
+      <h4 className="font-HelveticaNow mt-5 mb-3 text-xl leading-tight">
         {children}
       </h4>
     ),
     h4: ({ children }: any) => (
-      <h4 className="font-ITCGaramondN mt-5 mb-3 text-2xl leading-tight">
+      <h4 className="font-HelveticaNow mt-5 mb-3 text-lg leading-tight">
         {children}
       </h4>
     ),
@@ -340,7 +340,7 @@ export default async function BlogPostPage(props: any) {
         {/* Content Section with its own padding */}
         <section className="px-4 py-20 md:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="font-HelveticaNow text-xl">
+            <div className="font-HelveticaNow">
               <PortableText
                 value={post.body}
                 components={portableTextComponents}
