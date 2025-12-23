@@ -159,7 +159,7 @@ export default function GardeRobesPage() {
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
               <div className="right flex flex-col items-start text-left md:order-1">
-                <div className="relative h-[450px] w-full overflow-hidden bg-amber-400 select-none md:h-[680px]">
+                <div className="relative mt-12 h-[450px] w-full overflow-hidden bg-amber-400 select-none md:mt-20 md:h-[680px]">
                   <Image
                     src="/images/wood-work.webp"
                     alt="Fabrication artisanale de garde-robe Nemwood"

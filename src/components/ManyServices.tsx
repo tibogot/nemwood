@@ -22,7 +22,7 @@ const services: Service[] = [
   {
     name: "Tables",
     href: "/services/tables",
-    image: "/images/horiz-table.webp",
+    image: "/images/table-a-manger-2.jpg",
   },
   {
     name: "Cuisines",

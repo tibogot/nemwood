@@ -32,7 +32,7 @@ const services: Service[] = [
   {
     title: "Tables",
     slug: "tables",
-    image: "/images/horiz-table.webp",
+    image: "/images/table-a-manger-2.jpg",
   },
   {
     title: "Cuisines",
