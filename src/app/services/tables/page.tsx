@@ -71,13 +71,13 @@ export default function TablesPage() {
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
               <div className="left">
-                <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                   <div className="shrink-0">
                     <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
                       01
                     </span>
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                     <AnimatedText>
                       <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                         La conception sur mesure
@@ -119,13 +119,13 @@ export default function TablesPage() {
         <section className="w-full">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="mb-10 md:mb-16">
-              <div className="flex flex-row items-start gap-6 md:gap-8">
+              <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                 <div className="shrink-0">
                   <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none opacity-0 md:-mt-6 md:text-9xl">
                     01
                   </span>
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                   <AnimatedText>
                     <p className="font-HelveticaNow text-lg">
                       Nous travaillons avec les plus belles essences de bois :
@@ -211,13 +211,13 @@ export default function TablesPage() {
                 </div>
               </div>
               <div className="left md:order-2">
-                <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                   <div className="shrink-0">
                     <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
                       03
                     </span>
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                     <AnimatedText>
                       <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                         La finition d'exception
@@ -249,13 +249,13 @@ export default function TablesPage() {
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
               <div className="left">
-                <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                   <div className="shrink-0">
                     <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
                       04
                     </span>
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                  <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                     <AnimatedText>
                       <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                         L'accompagnement personnalisé

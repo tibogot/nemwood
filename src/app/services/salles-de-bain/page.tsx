@@ -68,13 +68,13 @@ export default function SalleDeBainPage() {
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]">
             <div className="left">
-              <div className="flex flex-row items-start gap-6 md:gap-8">
+              <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                 <div className="shrink-0">
                   <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
                     01
                   </span>
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                <div className="flex min-w-0 w-full flex-col md:flex-1 md:max-w-xl">
                   <AnimatedText>
                     <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                       Les essences résistantes à l'humidité
@@ -143,13 +143,13 @@ export default function SalleDeBainPage() {
               </div>
             </div>
             <div className="left md:order-2">
-              <div className="flex flex-row items-start gap-6 md:gap-8">
+              <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
                 <div className="shrink-0">
                   <span className="font-ITCGaramondN -mt-4 block text-8xl leading-none md:-mt-6 md:text-9xl">
                     02
                   </span>
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col md:max-w-xl">
+                <div className="flex min-w-0 w-full flex-col md:flex-1 md:max-w-xl">
                   <AnimatedText>
                     <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                       L'aménagement sur mesure
