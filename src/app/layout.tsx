@@ -356,7 +356,7 @@ export default function RootLayout({
         style={{ backgroundColor: "var(--color-primary)" }}
       >
         <ClientLayout>{children}</ClientLayout>
-        {/* Cookie Consent Banner - RGPD compliant */}
+        {/* Cookie Consent Banner - RGPD compliant - Must load before GoogleAnalytics */}
         {/* <CookieConsent /> */}
         <Analytics />
       </body>
