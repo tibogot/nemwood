@@ -96,7 +96,7 @@ const FreeLayoutScroll: React.FC = () => {
           parallaxSpeed: 200,
         },
         {
-          src: "/images/horiz-table.webp",
+          src: "/images/stairs.webp",
           alt: "Détail bois",
           position: {
             top: "68%",
@@ -139,7 +139,7 @@ const FreeLayoutScroll: React.FC = () => {
           zIndex: 1,
         },
         {
-          src: "/images/horiz-table.webp",
+          src: "/images/garde-robes-2.jpg",
           alt: "Détail garde-robe",
           position: {
             top: "12%",
@@ -151,7 +151,7 @@ const FreeLayoutScroll: React.FC = () => {
           parallaxSpeed: -180,
         },
         {
-          src: "/images/horiz-cuisine.webp",
+          src: "/images/table-a-manger-2.jpg",
           alt: "Détail intérieur",
           position: {
             top: "-5%",
@@ -183,7 +183,7 @@ const FreeLayoutScroll: React.FC = () => {
       ],
       images: [
         {
-          src: "/images/horiz-cuisine.webp",
+          src: "/images/horiz-table.webp",
           alt: "Détail table",
           position: {
             top: "72%",
@@ -227,7 +227,7 @@ const FreeLayoutScroll: React.FC = () => {
           parallaxSpeed: -160,
         },
         {
-          src: "/images/horiz-garderobe.webp",
+          src: "/images/cuisine2.jpg",
           alt: "Détail cuisine",
           position: {
             top: "-5%",
