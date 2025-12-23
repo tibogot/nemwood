@@ -98,6 +98,9 @@ export default function PageTransition({ children }: PageTransitionProps) {
           return;
         }
 
+        // Dispatch event when page transition starts (for navbar to animate up)
+        window.dispatchEvent(new CustomEvent("pageTransitionStart"));
+
         setShouldBlockScroll(true); // Block scroll during cover animation
 
         const tl = gsap.timeline({

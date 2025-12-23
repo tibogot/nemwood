@@ -537,6 +537,9 @@ export default function Navigation9({
     }
   }, [pathname, lenis, isMenuOpen]);
 
+  // Track if we're in a page transition to prevent scroll animations from interfering
+  const [isInTransition, setIsInTransition] = useState(false);
+
   // Consolidated scroll handler: Hero detection + Navbar hide/show
   useEffect(() => {
     if (!lenis) return;
@@ -562,13 +565,14 @@ export default function Navigation9({
       }
 
       // 2. Navbar hide/show animation (all pages)
-      if (!navRef.current || isMenuOpen) {
-        // Don't hide navbar when menu is open - ensure it's visible
+      // Skip scroll-based animations during page transitions
+      if (!navRef.current || isMenuOpen || isInTransition) {
+        // Don't hide navbar when menu is open or during transitions - ensure it's visible
         if (currentAnimation) {
           currentAnimation.kill();
           currentAnimation = null;
         }
-        if (navRef.current) {
+        if (navRef.current && !isInTransition) {
           gsap.to(navRef.current, {
             y: 0,
             ...animationProps,
@@ -623,10 +627,110 @@ export default function Navigation9({
         currentAnimation.kill();
       }
     };
-  }, [pathname, lenis, isMenuOpen]);
+  }, [pathname, lenis, isMenuOpen, isInTransition]);
 
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
+
+  // Navbar animation: up on navigation start, down on page load/transition complete
+  useEffect(() => {
+    if (!navRef.current) return;
+
+    // Set initial state (navbar starts from above)
+    gsap.set(navRef.current, {
+      y: -100,
+      opacity: 0,
+    });
+
+    // Handle initial page load (wait for PageLoader)
+    const handlePageLoaderComplete = () => {
+      if (!navRef.current) return;
+
+      // Wait same delay as hero text (200ms) before animating
+      setTimeout(() => {
+        if (!navRef.current) return;
+
+        gsap.to(navRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      }, 200);
+    };
+
+    // Handle page transition start (animate navbar up)
+    const handlePageTransitionStart = () => {
+      if (!navRef.current) return;
+
+      setIsInTransition(true);
+
+      gsap.to(navRef.current, {
+        y: -100,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.in",
+      });
+    };
+
+    // Handle page transition complete (animate navbar down)
+    const handlePageTransitionComplete = () => {
+      if (!navRef.current) return;
+
+      // Ensure navbar is at top position before animating down
+      gsap.set(navRef.current, {
+        y: -100,
+        opacity: 0,
+      });
+
+      // Shorter delay for navigation (page transition already provides timing)
+      // Start animating almost immediately after transition completes
+      setTimeout(() => {
+        if (!navRef.current) return;
+
+        gsap.to(navRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => {
+            // Re-enable scroll animations after transition completes
+            setIsInTransition(false);
+          },
+        });
+      }, 50); // Reduced from 200ms to 50ms for faster navigation feel
+    };
+
+    // Check if PageLoader is already complete (initial load)
+    if (document.documentElement.classList.contains("page-loader-complete")) {
+      handlePageLoaderComplete();
+    } else {
+      // Listen for PageLoader completion (initial load only)
+      window.addEventListener("pageLoaderComplete", handlePageLoaderComplete);
+    }
+
+    // Listen for page transition events (navigation)
+    window.addEventListener("pageTransitionStart", handlePageTransitionStart);
+    window.addEventListener(
+      "pageTransitionComplete",
+      handlePageTransitionComplete,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "pageLoaderComplete",
+        handlePageLoaderComplete,
+      );
+      window.removeEventListener(
+        "pageTransitionStart",
+        handlePageTransitionStart,
+      );
+      window.removeEventListener(
+        "pageTransitionComplete",
+        handlePageTransitionComplete,
+      );
+    };
+  }, []);
 
   return (
     <>
