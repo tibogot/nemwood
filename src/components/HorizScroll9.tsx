@@ -183,7 +183,7 @@ const FreeLayoutScroll: React.FC = () => {
       ],
       images: [
         {
-          src: "/images/horiz-table.webp",
+          src: "/images/table-a-manger-2.jpg",
           alt: "Détail table",
           position: {
             top: "72%",
@@ -394,7 +394,7 @@ const FreeLayoutScroll: React.FC = () => {
               <div className="aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={
-                    sections[Math.floor(index / 2)]?.images[0]?.src ||
+                    sections[index]?.images[0]?.src ||
                     "/images/horiz-escalier.webp"
                   }
                   alt={block.title}
