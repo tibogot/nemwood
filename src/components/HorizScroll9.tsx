@@ -391,16 +391,15 @@ const FreeLayoutScroll: React.FC = () => {
               key={index}
               className="group bg-secondary relative cursor-pointer overflow-hidden rounded-sm duration-300"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden">
+              <div className="relative h-[300px] w-full overflow-hidden rounded-sm md:h-[400px]">
                 <Image
                   src={
                     sections[index]?.images[0]?.src ||
                     "/images/horiz-escalier.webp"
                   }
                   alt={block.title}
-                  width={768}
-                  height={576}
-                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   priority={index === 0}
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}

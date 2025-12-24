@@ -168,13 +168,12 @@ export default function ManyServices() {
           >
             <a href={service.href} className="block">
               {/* Image */}
-              <div className="aspect-[4/3] w-full overflow-hidden">
+              <div className="relative h-[300px] w-full overflow-hidden rounded-sm md:h-[400px]">
                 <Image
                   src={service.image}
                   alt={`${service.name} sur mesure par Nemwood - Menuisier artisan en Belgique`}
-                  width={1000}
-                  height={800}
-                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   loading={index === 0 ? "eager" : "lazy"}
                   priority={index === 0}
