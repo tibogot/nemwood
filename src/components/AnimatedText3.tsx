@@ -121,6 +121,7 @@ function AnimatedText({
     let refreshTimeout: NodeJS.Timeout | null = null;
 
     // Debounced refresh function to avoid multiple rapid refreshes
+    // Increased delay to ensure animations have settled before refresh
     const scheduleRefresh = () => {
       if (refreshTimeout) {
         clearTimeout(refreshTimeout);
@@ -128,7 +129,7 @@ function AnimatedText({
       refreshTimeout = setTimeout(() => {
         ScrollTrigger.refresh();
         refreshTimeout = null;
-      }, 150);
+      }, 500); // Increased from 150ms to 500ms to allow layout to settle
     };
 
     const handlePageTransitionComplete = () => {
@@ -310,7 +311,7 @@ function AnimatedText({
                   stagger,
                   duration,
                   ease,
-                  delay: delay + 0.3, // Small delay to ensure page transition is complete
+                  delay: delay, // Removed extra 0.3s delay - ScrollTrigger.refresh now handles timing
                   scrollTrigger: scrollTriggerConfig,
                 });
 

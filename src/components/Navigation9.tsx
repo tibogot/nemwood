@@ -683,8 +683,7 @@ export default function Navigation9({
         opacity: 0,
       });
 
-      // Shorter delay for navigation (page transition already provides timing)
-      // Start animating almost immediately after transition completes
+      // Match the timing with PageLoader for consistent feel (200ms)
       setTimeout(() => {
         if (!navRef.current) return;
 
@@ -698,7 +697,7 @@ export default function Navigation9({
             setIsInTransition(false);
           },
         });
-      }, 50); // Reduced from 200ms to 50ms for faster navigation feel
+      }, 200); // Standardized to 200ms to match PageLoader timing
     };
 
     // Check if PageLoader is already complete (initial load)
