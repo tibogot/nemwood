@@ -16,23 +16,161 @@ export default function PolitiqueConfidentialite() {
       <BreadcrumbsSchema
         items={[
           { name: "Accueil", url: "/" },
-          { name: "Politique de confidentialité", url: "/politique-confidentialite" },
+          {
+            name: "Politique de confidentialité",
+            url: "/politique-confidentialite",
+          },
         ]}
       />
-      <div className="bg-secondary text-primary">
-        <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto">
-            <AnimatedText isHero delay={0.0} stagger={0.3}>
-              <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
-                Politique de confidentialité
-              </h1>
-            </AnimatedText>
-            <div className="font-HelveticaNow space-y-8 text-base leading-relaxed md:text-lg">
+      <main className="text-primary bg-secondary px-4 md:px-8">
+        <section className="border-primary mx-auto border-b py-40 text-center md:py-64">
+          <AnimatedText isHero delay={0.0} stagger={0.3}>
+            <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
+              Politique de confidentialité
+            </h1>
+          </AnimatedText>
+        </section>
+        <section className="mx-auto py-20 md:py-40">
+          {/* Two column layout: TOC on left, content on right */}
+          <div className="flex flex-col gap-12 md:flex-row md:gap-16">
+            {/* Table of Contents - Left side on desktop, top on mobile */}
+            <aside className="md:w-64 md:flex-shrink-0">
+              <nav className="sticky top-20">
+                <h3 className="font-HelveticaNow mb-6 text-sm font-semibold tracking-wider uppercase">
+                  Table des matières
+                </h3>
+                <ul className="font-HelveticaNow space-y-3 text-sm">
+                  <li>
+                    <a
+                      href="#responsable"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      1. Responsable du traitement des données
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#introduction"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      2. Introduction
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#donnees-collectees"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      3. Données personnelles collectées
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#finalites"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      4. Finalités de la collecte
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#base-legale"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      5. Base légale du traitement
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#destinataires"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      6. Destinataires des données
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#duree-conservation"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      7. Durée de conservation des données
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#droits"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      8. Vos droits
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#exercice-droits"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      9. Exercice de vos droits
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#reclamation"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      10. Droit de réclamation
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#securite"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      11. Sécurité des données
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#transfert"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      12. Transfert de données hors de l'UE
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#mineurs"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      13. Mineurs
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#modifications"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      14. Modifications de la politique de confidentialité
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#contact"
+                      className="text-primary/70 hover:text-primary transition-colors"
+                    >
+                      15. Contact
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+
+            {/* Content - Right side on desktop */}
+            <div className="font-HelveticaNow min-w-0 flex-1 space-y-8 text-base leading-relaxed md:text-lg">
               <div className="text-primary/70 text-sm">
                 Dernière mise à jour : 26 décembre 2025
               </div>
 
-              <section className="space-y-4">
+              <section id="responsable" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Responsable du traitement des données
                 </h2>
@@ -48,18 +186,18 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="introduction" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Introduction
                 </h2>
                 <div className="space-y-4">
                   <p>
-                    NEMWOOD s'engage à protéger la vie privée de ses utilisateurs
-                    et clients. Cette politique de confidentialité vous informe
-                    sur la manière dont nous collectons, utilisons, stockons et
-                    protégeons vos données personnelles conformément au Règlement
-                    Général sur la Protection des Données (RGPD - Règlement UE
-                    2016/679) et à la législation belge en vigueur.
+                    NEMWOOD s'engage à protéger la vie privée de ses
+                    utilisateurs et clients. Cette politique de confidentialité
+                    vous informe sur la manière dont nous collectons, utilisons,
+                    stockons et protégeons vos données personnelles conformément
+                    au Règlement Général sur la Protection des Données (RGPD -
+                    Règlement UE 2016/679) et à la législation belge en vigueur.
                   </p>
                   <p>
                     En utilisant notre site internet ou en nous contactant, vous
@@ -68,18 +206,21 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section
+                id="donnees-collectees"
+                className="scroll-mt-20 space-y-4"
+              >
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Données personnelles collectées
                 </h2>
                 <p>
-                  Dans le cadre de l'utilisation de notre site internet et de nos
-                  services, nous sommes susceptibles de collecter les données
-                  personnelles suivantes :
+                  Dans le cadre de l'utilisation de notre site internet et de
+                  nos services, nous sommes susceptibles de collecter les
+                  données personnelles suivantes :
                 </p>
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Via le formulaire de contact
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -90,7 +231,7 @@ export default function PolitiqueConfidentialite() {
                     </ul>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Lors d'une demande de devis ou commande
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -109,7 +250,7 @@ export default function PolitiqueConfidentialite() {
                     </ul>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Données de navigation
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -123,7 +264,7 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="finalites" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Finalités de la collecte
                 </h2>
@@ -133,15 +274,15 @@ export default function PolitiqueConfidentialite() {
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Gestion de la relation client
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
-                      <li>Répondre à vos demandes de contact et d'information</li>
-                      <li>Établir et envoyer des devis personnalisés</li>
                       <li>
-                        Assurer le suivi de votre projet de menuiserie
+                        Répondre à vos demandes de contact et d'information
                       </li>
+                      <li>Établir et envoyer des devis personnalisés</li>
+                      <li>Assurer le suivi de votre projet de menuiserie</li>
                       <li>
                         Gérer la fabrication et la livraison de vos meubles sur
                         mesure
@@ -149,21 +290,19 @@ export default function PolitiqueConfidentialite() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Obligations légales et comptables
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
                       <li>
                         Établir des factures conformes à la législation belge
                       </li>
-                      <li>
-                        Respecter nos obligations comptables et fiscales
-                      </li>
+                      <li>Respecter nos obligations comptables et fiscales</li>
                       <li>Conserver les documents légaux requis</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Communication marketing (avec votre consentement)
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -179,7 +318,7 @@ export default function PolitiqueConfidentialite() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Amélioration de nos services
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -191,46 +330,48 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="base-legale" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Base légale du traitement
                 </h2>
                 <p>
-                  Conformément au RGPD, le traitement de vos données personnelles
-                  repose sur les bases légales suivantes :
+                  Conformément au RGPD, le traitement de vos données
+                  personnelles repose sur les bases légales suivantes :
                 </p>
                 <ul className="list-disc space-y-2 pl-6">
                   <li>
-                    <span className="font-semibold">Votre consentement explicite</span>
-                    {" "}- Pour l'inscription à notre newsletter et l'envoi de
+                    <span className="font-semibold">
+                      Votre consentement explicite
+                    </span>{" "}
+                    - Pour l'inscription à notre newsletter et l'envoi de
                     communications marketing.
                   </li>
                   <li>
                     <span className="font-semibold">
                       L'exécution d'un contrat ou de mesures précontractuelles
-                    </span>
-                    {" "}- Pour le traitement de vos demandes de devis, la
-                    gestion de votre commande et la livraison de vos meubles.
+                    </span>{" "}
+                    - Pour le traitement de vos demandes de devis, la gestion de
+                    votre commande et la livraison de vos meubles.
                   </li>
                   <li>
                     <span className="font-semibold">
                       Le respect de nos obligations légales
-                    </span>
-                    {" "}- Pour la facturation, la comptabilité et les
-                    obligations fiscales imposées par la législation belge.
+                    </span>{" "}
+                    - Pour la facturation, la comptabilité et les obligations
+                    fiscales imposées par la législation belge.
                   </li>
                   <li>
                     <span className="font-semibold">
                       Notre intérêt légitime
-                    </span>
-                    {" "}- Pour assurer le bon fonctionnement de notre activité,
+                    </span>{" "}
+                    - Pour assurer le bon fonctionnement de notre activité,
                     améliorer nos services et assurer la sécurité de notre site
                     internet.
                   </li>
                 </ul>
               </section>
 
-              <section className="space-y-4">
+              <section id="destinataires" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Destinataires des données
                 </h2>
@@ -246,7 +387,7 @@ export default function PolitiqueConfidentialite() {
                   <p>Vos données peuvent toutefois être partagées avec :</p>
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-xl">
+                      <h3 className="text-xl font-semibold">
                         Nos sous-traitants techniques
                       </h3>
                       <ul className="list-disc space-y-2 pl-6">
@@ -256,26 +397,31 @@ export default function PolitiqueConfidentialite() {
                       </ul>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-xl">
+                      <h3 className="text-xl font-semibold">
                         Les autorités compétentes
                       </h3>
                       <ul className="list-disc space-y-2 pl-6">
                         <li>En cas d'obligation légale ou réglementaire</li>
                         <li>
-                          Sur demande des autorités judiciaires ou administratives
+                          Sur demande des autorités judiciaires ou
+                          administratives
                         </li>
                       </ul>
                     </div>
                   </div>
                   <p>
                     Tous nos sous-traitants sont soigneusement sélectionnés et
-                    contractuellement tenus de respecter la confidentialité et la
-                    sécurité de vos données personnelles conformément au RGPD.
+                    contractuellement tenus de respecter la confidentialité et
+                    la sécurité de vos données personnelles conformément au
+                    RGPD.
                   </p>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section
+                id="duree-conservation"
+                className="scroll-mt-20 space-y-4"
+              >
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Durée de conservation des données
                 </h2>
@@ -287,37 +433,36 @@ export default function PolitiqueConfidentialite() {
                   <li>
                     <span className="font-semibold">
                       Données de contact et devis
-                    </span>
-                    {" "}- 3 ans à compter de notre dernier contact, sauf si
-                    vous avez passé commande.
+                    </span>{" "}
+                    - 3 ans à compter de notre dernier contact, sauf si vous
+                    avez passé commande.
                   </li>
                   <li>
                     <span className="font-semibold">
                       Données clients (après commande)
-                    </span>
-                    {" "}- 10 ans à compter de la fin de la relation
-                    commerciale, conformément aux obligations comptables et
-                    fiscales belges.
+                    </span>{" "}
+                    - 10 ans à compter de la fin de la relation commerciale,
+                    conformément aux obligations comptables et fiscales belges.
                   </li>
                   <li>
                     <span className="font-semibold">
                       Données marketing (newsletter)
-                    </span>
-                    {" "}- Jusqu'à votre demande de désinscription ou votre
-                    retrait de consentement.
+                    </span>{" "}
+                    - Jusqu'à votre demande de désinscription ou votre retrait
+                    de consentement.
                   </li>
                   <li>
-                    <span className="font-semibold">Données de navigation</span>
-                    {" "}- 13 mois maximum.
+                    <span className="font-semibold">Données de navigation</span>{" "}
+                    - 13 mois maximum.
                   </li>
                 </ul>
                 <p>
-                  À l'issue de ces durées, vos données sont supprimées de manière
-                  sécurisée ou anonymisées.
+                  À l'issue de ces durées, vos données sont supprimées de
+                  manière sécurisée ou anonymisées.
                 </p>
               </section>
 
-              <section className="space-y-4">
+              <section id="droits" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Vos droits
                 </h2>
@@ -327,16 +472,16 @@ export default function PolitiqueConfidentialite() {
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-semibold text-xl">Droit d'accès</h3>
+                    <h3 className="text-xl font-semibold">Droit d'accès</h3>
                     <p>
-                      Vous avez le droit d'obtenir la confirmation que des données
-                      vous concernant sont ou ne sont pas traitées et, lorsqu'elles
-                      le sont, d'accéder auxdites données ainsi qu'aux
-                      informations concernant leur traitement.
+                      Vous avez le droit d'obtenir la confirmation que des
+                      données vous concernant sont ou ne sont pas traitées et,
+                      lorsqu'elles le sont, d'accéder auxdites données ainsi
+                      qu'aux informations concernant leur traitement.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit de rectification
                     </h3>
                     <p>
@@ -345,62 +490,65 @@ export default function PolitiqueConfidentialite() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit à l'effacement ("droit à l'oubli")
                     </h3>
                     <p>
                       Vous avez le droit d'obtenir l'effacement de vos données
-                      personnelles dans certaines conditions (par exemple, si elles
-                      ne sont plus nécessaires au regard des finalités pour
-                      lesquelles elles ont été collectées).
+                      personnelles dans certaines conditions (par exemple, si
+                      elles ne sont plus nécessaires au regard des finalités
+                      pour lesquelles elles ont été collectées).
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit à la limitation du traitement
                     </h3>
                     <p>
-                      Vous avez le droit d'obtenir la limitation du traitement de
-                      vos données dans certaines conditions.
+                      Vous avez le droit d'obtenir la limitation du traitement
+                      de vos données dans certaines conditions.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit à la portabilité des données
                     </h3>
                     <p>
-                      Vous avez le droit de recevoir les données personnelles vous
-                      concernant dans un format structuré, couramment utilisé et
-                      lisible par machine, et de les transmettre à un autre
-                      responsable du traitement.
+                      Vous avez le droit de recevoir les données personnelles
+                      vous concernant dans un format structuré, couramment
+                      utilisé et lisible par machine, et de les transmettre à un
+                      autre responsable du traitement.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">Droit d'opposition</h3>
+                    <h3 className="text-xl font-semibold">
+                      Droit d'opposition
+                    </h3>
                     <p>
                       Vous avez le droit de vous opposer à tout moment, pour des
-                      raisons tenant à votre situation particulière, au traitement
-                      de vos données personnelles.
+                      raisons tenant à votre situation particulière, au
+                      traitement de vos données personnelles.
                     </p>
                     <p>
-                      Vous avez également le droit de vous opposer à tout moment au
-                      traitement de vos données à des fins de prospection
+                      Vous avez également le droit de vous opposer à tout moment
+                      au traitement de vos données à des fins de prospection
                       commerciale.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit de retirer votre consentement
                     </h3>
                     <p>
-                      Lorsque le traitement est fondé sur votre consentement, vous
-                      avez le droit de retirer ce consentement à tout moment. Ce
-                      retrait n'affecte pas la licéité du traitement fondé sur le
-                      consentement effectué avant le retrait de celui-ci.
+                      Lorsque le traitement est fondé sur votre consentement,
+                      vous avez le droit de retirer ce consentement à tout
+                      moment. Ce retrait n'affecte pas la licéité du traitement
+                      fondé sur le consentement effectué avant le retrait de
+                      celui-ci.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="text-xl font-semibold">
                       Droit de définir des directives post-mortem
                     </h3>
                     <p>
@@ -411,7 +559,7 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="exercice-droits" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Exercice de vos droits
                 </h2>
@@ -431,18 +579,18 @@ export default function PolitiqueConfidentialite() {
                 <p>
                   Nous nous engageons à répondre à votre demande dans un délai
                   d'un mois suivant sa réception. Ce délai peut être prolongé de
-                  deux mois compte tenu de la complexité et du nombre de demandes.
-                  Dans ce cas, nous vous informerons de cette prolongation et des
-                  motifs du report.
+                  deux mois compte tenu de la complexité et du nombre de
+                  demandes. Dans ce cas, nous vous informerons de cette
+                  prolongation et des motifs du report.
                 </p>
                 <p>
-                  Pour toute demande, nous pourrons vous demander de justifier de
-                  votre identité afin de garantir la confidentialité de vos
+                  Pour toute demande, nous pourrons vous demander de justifier
+                  de votre identité afin de garantir la confidentialité de vos
                   données.
                 </p>
               </section>
 
-              <section className="space-y-4">
+              <section id="reclamation" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Droit de réclamation
                 </h2>
@@ -465,7 +613,7 @@ export default function PolitiqueConfidentialite() {
                       href="https://www.autoriteprotectiondonnees.be"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-opacity hover:opacity-70 underline"
+                      className="underline transition-opacity hover:opacity-70"
                     >
                       www.autoriteprotectiondonnees.be
                     </a>
@@ -473,7 +621,7 @@ export default function PolitiqueConfidentialite() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="securite" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Sécurité des données
                 </h2>
@@ -504,32 +652,34 @@ export default function PolitiqueConfidentialite() {
                     <li>Sauvegardes régulières</li>
                   </ul>
                   <p>
-                    Malgré ces mesures, aucune méthode de transmission sur Internet
-                    ou de stockage électronique n'est totalement sécurisée. Nous
-                    ne pouvons donc garantir une sécurité absolue de vos données.
+                    Malgré ces mesures, aucune méthode de transmission sur
+                    Internet ou de stockage électronique n'est totalement
+                    sécurisée. Nous ne pouvons donc garantir une sécurité
+                    absolue de vos données.
                   </p>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="transfert" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Transfert de données hors de l'UE
                 </h2>
                 <div className="space-y-4">
                   <p>
-                    Vos données personnelles sont hébergées et traitées au sein de
-                    l'Union Européenne.
+                    Vos données personnelles sont hébergées et traitées au sein
+                    de l'Union Européenne.
                   </p>
                   <p>
                     Dans l'hypothèse où nous serions amenés à transférer vos
-                    données en dehors de l'Union Européenne, nous veillerons à ce
-                    que ce transfert soit effectué conformément à la réglementation
-                    applicable et qu'un niveau de protection adéquat soit assuré.
+                    données en dehors de l'Union Européenne, nous veillerons à
+                    ce que ce transfert soit effectué conformément à la
+                    réglementation applicable et qu'un niveau de protection
+                    adéquat soit assuré.
                   </p>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="mineurs" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Mineurs
                 </h2>
@@ -543,7 +693,7 @@ export default function PolitiqueConfidentialite() {
                 </p>
               </section>
 
-              <section className="space-y-4">
+              <section id="modifications" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Modifications de la politique de confidentialité
                 </h2>
@@ -551,29 +701,31 @@ export default function PolitiqueConfidentialite() {
                   <p>
                     NEMWOOD se réserve le droit de modifier cette politique de
                     confidentialité à tout moment pour refléter les changements
-                    apportés à nos pratiques en matière de données personnelles ou
-                    pour se conformer à l'évolution de la législation.
+                    apportés à nos pratiques en matière de données personnelles
+                    ou pour se conformer à l'évolution de la législation.
                   </p>
                   <p>
                     Toute modification sera publiée sur cette page avec une date
-                    de mise à jour actualisée. Nous vous encourageons à consulter
-                    régulièrement cette page pour rester informé de la manière
-                    dont nous protégeons vos données.
+                    de mise à jour actualisée. Nous vous encourageons à
+                    consulter régulièrement cette page pour rester informé de la
+                    manière dont nous protégeons vos données.
                   </p>
                   <p>
-                    En cas de modification substantielle, nous vous en informerons
-                    par email ou via une notification sur notre site internet.
+                    En cas de modification substantielle, nous vous en
+                    informerons par email ou via une notification sur notre site
+                    internet.
                   </p>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="contact" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Contact
                 </h2>
                 <p>
-                  Pour toute question relative à cette politique de confidentialité
-                  ou pour exercer vos droits, vous pouvez nous contacter :
+                  Pour toute question relative à cette politique de
+                  confidentialité ou pour exercer vos droits, vous pouvez nous
+                  contacter :
                 </p>
                 <div className="space-y-2">
                   <p className="font-semibold">
@@ -589,8 +741,7 @@ export default function PolitiqueConfidentialite() {
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }
-

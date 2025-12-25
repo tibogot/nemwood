@@ -19,15 +19,16 @@ export default function PolitiqueCookies() {
           { name: "Politique des cookies", url: "/politique-cookies" },
         ]}
       />
-      <div className="bg-secondary text-primary">
-        <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto">
-            <AnimatedText isHero delay={0.0} stagger={0.3}>
-              <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
-                Politique des cookies
-              </h1>
-            </AnimatedText>
-            <div className="font-HelveticaNow space-y-8 text-base leading-relaxed md:text-lg">
+      <main className="text-primary bg-secondary px-4 md:px-8">
+        <section className="border-primary mx-auto border-b py-40 text-center md:py-64">
+          <AnimatedText isHero delay={0.0} stagger={0.3}>
+            <h1 className="font-ITCGaramondN mb-6 text-6xl md:text-8xl">
+              Politique des cookies
+            </h1>
+          </AnimatedText>
+        </section>
+        <section className="mx-auto py-20 md:py-40">
+          <div className="font-HelveticaNow space-y-8 text-base leading-relaxed md:text-lg">
               <div className="text-primary/70 text-sm">
                 Dernière mise à jour : 26 décembre 2025
               </div>
@@ -666,9 +667,8 @@ export default function PolitiqueCookies() {
                 conformément aux présentes.
               </p>
             </div>
-          </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }
