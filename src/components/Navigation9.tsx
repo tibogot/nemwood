@@ -709,6 +709,12 @@ export default function Navigation9({
       // Kill any existing animations first (especially scroll-based ones)
       killNavbarAnimation();
 
+      // Immediately hide navbar and ensure it stays hidden
+      gsap.set(navRef.current, {
+        opacity: 0,
+        clearProps: "transform",
+      });
+
       // Fade out navbar (opacity only, no position change)
       navbarAnimationRef.current = gsap.to(navRef.current, {
         opacity: 0,
@@ -735,33 +741,30 @@ export default function Navigation9({
         clearProps: "transform", // Clear any lingering transform properties
       });
 
-      // Longer delay to prevent jittering - wait for page to fully settle
-      // Use requestAnimationFrame to ensure DOM is ready, then add delay
+      // Show navbar immediately after transition completes (all pages)
+      // Use requestAnimationFrame to ensure DOM is ready
       requestAnimationFrame(() => {
-        // Double RAF to ensure layout is fully settled
         requestAnimationFrame(() => {
-          setTimeout(() => {
-            if (!navRef.current) return;
+          if (!navRef.current) return;
 
-            // Kill again in case something started in the meantime
-            killNavbarAnimation();
+          // Kill again in case something started in the meantime
+          killNavbarAnimation();
 
-            // Fade in navbar (opacity only, no position change)
-            navbarAnimationRef.current = gsap.to(navRef.current, {
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              onComplete: () => {
-                // Clear the animation ref
-                navbarAnimationRef.current = null;
-                // Re-enable scroll animations after transition completes
-                // Add small delay to ensure animation is fully done
-                setTimeout(() => {
-                  setIsInTransition(false);
-                }, 50);
-              },
-            });
-          }, 250); // Increased to 250ms to prevent jittering
+          // Fade in navbar (opacity only, no position change)
+          navbarAnimationRef.current = gsap.to(navRef.current, {
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.out",
+            onComplete: () => {
+              // Clear the animation ref
+              navbarAnimationRef.current = null;
+              // Re-enable scroll animations after transition completes
+              // Add small delay to ensure animation is fully done
+              setTimeout(() => {
+                setIsInTransition(false);
+              }, 50);
+            },
+          });
         });
       });
     };
@@ -804,6 +807,18 @@ export default function Navigation9({
       );
     };
   }, []);
+
+  // Ensure navbar stays hidden when pathname changes during transition
+  useEffect(() => {
+    if (!navRef.current || !isInTransition) return;
+
+    // If we're in a transition and pathname changed, ensure navbar is hidden
+    // This prevents the navbar from briefly appearing before transitionComplete fires
+    gsap.set(navRef.current, {
+      opacity: 0,
+      clearProps: "transform",
+    });
+  }, [pathname, isInTransition]);
 
   return (
     <>

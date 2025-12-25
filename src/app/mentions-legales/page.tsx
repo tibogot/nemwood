@@ -21,7 +21,7 @@ export default function MentionsLegales() {
       />
       <div className="bg-secondary text-primary">
         <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
               <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
                 Mentions légales
@@ -33,7 +33,7 @@ export default function MentionsLegales() {
               </div>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Éditeur du site
                 </h2>
                 <div className="space-y-2">
@@ -50,7 +50,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Hébergement du site
                 </h2>
                 <div className="space-y-2">
@@ -74,7 +74,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Propriété intellectuelle
                 </h2>
                 <div className="space-y-4">
@@ -107,7 +107,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Limitation de responsabilité
                 </h2>
                 <div className="space-y-6">
@@ -157,7 +157,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Liens hypertextes
                 </h2>
                 <div className="space-y-4">
@@ -183,7 +183,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Protection des données personnelles
                 </h2>
                 <p>
@@ -200,7 +200,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Cookies
                 </h2>
                 <p>
@@ -217,7 +217,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Droit applicable et juridiction compétente
                 </h2>
                 <div className="space-y-4">
@@ -234,7 +234,7 @@ export default function MentionsLegales() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Contact
                 </h2>
                 <p>

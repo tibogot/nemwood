@@ -21,7 +21,7 @@ export default function PolitiqueConfidentialite() {
       />
       <div className="bg-secondary text-primary">
         <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
               <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
                 Politique de confidentialité
@@ -33,7 +33,7 @@ export default function PolitiqueConfidentialite() {
               </div>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Responsable du traitement des données
                 </h2>
                 <div className="space-y-2">
@@ -49,7 +49,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Introduction
                 </h2>
                 <div className="space-y-4">
@@ -69,7 +69,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Données personnelles collectées
                 </h2>
                 <p>
@@ -124,7 +124,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Finalités de la collecte
                 </h2>
                 <p>
@@ -192,7 +192,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Base légale du traitement
                 </h2>
                 <p>
@@ -231,7 +231,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Destinataires des données
                 </h2>
                 <div className="space-y-4">
@@ -276,7 +276,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Durée de conservation des données
                 </h2>
                 <p>
@@ -318,7 +318,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Vos droits
                 </h2>
                 <p>
@@ -412,7 +412,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Exercice de vos droits
                 </h2>
                 <p>
@@ -443,7 +443,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Droit de réclamation
                 </h2>
                 <p>
@@ -474,7 +474,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Sécurité des données
                 </h2>
                 <div className="space-y-4">
@@ -512,7 +512,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Transfert de données hors de l'UE
                 </h2>
                 <div className="space-y-4">
@@ -530,7 +530,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Mineurs
                 </h2>
                 <p>
@@ -544,7 +544,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Modifications de la politique de confidentialité
                 </h2>
                 <div className="space-y-4">
@@ -568,7 +568,7 @@ export default function PolitiqueConfidentialite() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Contact
                 </h2>
                 <p>

@@ -21,7 +21,7 @@ export default function PolitiqueCookies() {
       />
       <div className="bg-secondary text-primary">
         <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
               <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
                 Politique des cookies
@@ -33,7 +33,7 @@ export default function PolitiqueCookies() {
               </div>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Introduction
                 </h2>
                 <div className="space-y-4">
@@ -57,7 +57,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Qu'est-ce qu'un cookie ?
                 </h2>
                 <div className="space-y-4">
@@ -85,7 +85,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Types de cookies utilisés sur nemwood.be
                 </h2>
                 <div className="space-y-8">
@@ -227,7 +227,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Gestion de vos préférences cookies
                 </h2>
                 <div className="space-y-6">
@@ -328,7 +328,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Cookies tiers et services externes
                 </h2>
                 <div className="space-y-6">
@@ -414,7 +414,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Durée de conservation des cookies
                 </h2>
                 <p>
@@ -464,7 +464,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Protection de vos données
                 </h2>
                 <p>
@@ -493,7 +493,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Vos droits
                 </h2>
                 <p>
@@ -543,7 +543,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Cookies et mineurs
                 </h2>
                 <p>
@@ -558,7 +558,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Modifications de la politique de cookies
                 </h2>
                 <div className="space-y-4">
@@ -583,7 +583,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">Contact</h2>
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">Contact</h2>
                 <p>
                   Pour toute question concernant notre utilisation des cookies :
                 </p>
@@ -598,7 +598,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Liens utiles
                 </h2>
                 <ul className="space-y-2">
@@ -630,7 +630,7 @@ export default function PolitiqueCookies() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Autorité de contrôle
                 </h2>
                 <p>

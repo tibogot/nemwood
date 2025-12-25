@@ -21,7 +21,7 @@ export default function CGV() {
       />
       <div className="bg-secondary text-primary">
         <section className="px-4 py-20 md:px-8 md:py-40">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
               <h1 className="font-ITCGaramondN mb-8 text-5xl md:text-7xl">
                 Conditions Générales de Vente
@@ -33,7 +33,7 @@ export default function CGV() {
               </div>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Préambule
                 </h2>
                 <div className="space-y-4">
@@ -57,7 +57,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 1 - Champ d'application
                 </h2>
                 <div className="space-y-4">
@@ -94,7 +94,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 2 - Devis
                 </h2>
                 <div className="space-y-6">
@@ -147,7 +147,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 3 - Commande
                 </h2>
                 <div className="space-y-6">
@@ -201,7 +201,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 4 - Prix
                 </h2>
                 <div className="space-y-6">
@@ -288,7 +288,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 5 - Conditions de paiement
                 </h2>
                 <div className="space-y-6">
@@ -375,7 +375,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 6 - Délais de fabrication et d'installation
                 </h2>
                 <div className="space-y-6">
@@ -439,7 +439,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 7 - Livraison et installation
                 </h2>
                 <div className="space-y-6">
@@ -526,7 +526,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 8 - Réception et réserves
                 </h2>
                 <div className="space-y-6">
@@ -587,7 +587,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 9 - Garantie
                 </h2>
                 <div className="space-y-6">
@@ -692,7 +692,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 10 - Modifications et annulation
                 </h2>
                 <div className="space-y-6">
@@ -755,7 +755,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 11 - Responsabilité
                 </h2>
                 <div className="space-y-6">
@@ -793,7 +793,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 12 - Force majeure
                 </h2>
                 <div className="space-y-4">
@@ -832,7 +832,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 13 - Propriété intellectuelle
                 </h2>
                 <div className="space-y-6">
@@ -864,7 +864,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 14 - Protection des données personnelles
                 </h2>
                 <p>
@@ -889,7 +889,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 15 - Droit applicable et litiges
                 </h2>
                 <div className="space-y-6">
@@ -966,7 +966,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 16 - Dispositions diverses
                 </h2>
                 <div className="space-y-6">
@@ -1010,7 +1010,7 @@ export default function CGV() {
               </section>
 
               <section className="space-y-4">
-                <h2 className="font-ITCGaramondN text-3xl md:text-4xl">Contact</h2>
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">Contact</h2>
                 <p>
                   Pour toute question relative aux présentes Conditions Générales de
                   Vente :
