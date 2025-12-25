@@ -176,34 +176,42 @@ export default function Footer() {
       {/* Bottom Copyright Section */}
       <div className="mt-8 border-t border-gray-300 pt-6 md:border-none md:pt-4">
         <div className="text-primary flex flex-col gap-6 text-sm md:flex-row md:items-end md:justify-between md:gap-0">
-          {/* Logo and Copyright Section */}
+          {/* Logo Section */}
           <div className="flex flex-col items-start gap-3">
             {/* Logo - responsive with viewport width units and max-width constraints */}
             <div className="w-[60vw]">
               <Logo className="text-primary h-auto w-full" />
             </div>
-            {/* Copyright text under logo */}
-            <span className="text-sm">© 2025 Tous droits réservés</span>
           </div>
-
-          {/* Legal Links */}
-          <div className="flex flex-row flex-wrap gap-6 md:gap-6">
-            {/* Add legal links here */}
-            {/* <Link
+        </div>
+        {/* Legal Links and Copyright on same line */}
+        <div className="font-HelveticaNow text-primary mt-6 flex flex-col gap-4 text-sm md:mt-4 md:flex-row md:items-center md:justify-between">
+          <span>© 2025 NEMWOOD - BE 0670.534.175</span>
+          <div className="flex flex-row flex-wrap items-center gap-2 md:gap-4">
+            <Link
               href="/mentions-legales"
               className="transition-opacity hover:opacity-70"
             >
               Mentions légales
             </Link>
+            <span className="opacity-70">|</span>
             <Link
-              href="/privacy"
+              href="/politique-confidentialite"
               className="transition-opacity hover:opacity-70"
             >
-              Confidentialité
+              Politique de confidentialité
             </Link>
+            <span className="opacity-70">|</span>
             <Link href="/cgv" className="transition-opacity hover:opacity-70">
               CGV
-            </Link> */}
+            </Link>
+            <span className="opacity-70">|</span>
+            <Link
+              href="/politique-cookies"
+              className="transition-opacity hover:opacity-70"
+            >
+              Cookies
+            </Link>
           </div>
         </div>
       </div>
