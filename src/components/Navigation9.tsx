@@ -568,11 +568,15 @@ export default function Navigation9({
       // Skip scroll-based animations during page transitions
       if (!navRef.current || isMenuOpen || isInTransition) {
         // Don't hide navbar when menu is open or during transitions - ensure it's visible
+        // Kill any ongoing scroll animation
         if (currentAnimation) {
           currentAnimation.kill();
           currentAnimation = null;
         }
+        // Only restore navbar position if not in transition (transition handles its own animation)
         if (navRef.current && !isInTransition) {
+          // Kill any navbar animations first to prevent conflicts
+          gsap.killTweensOf(navRef.current);
           gsap.to(navRef.current, {
             y: 0,
             ...animationProps,
@@ -585,19 +589,29 @@ export default function Navigation9({
 
       // Only trigger if scroll difference is significant (avoid jitter)
       if (Math.abs(scrollDifference) > 5) {
-        // Kill any ongoing animation
+        // Kill any ongoing scroll animation
         if (currentAnimation) {
           currentAnimation.kill();
+          currentAnimation = null;
+        }
+
+        // Double-check we're not in transition (safety check)
+        if (isInTransition) {
+          return;
         }
 
         if (scrollDifference > 0 && currentScrollY > 64) {
           // Scrolling down - hide navbar (only after scrolling past navbar)
+          // Kill any navbar animations first to prevent conflicts
+          gsap.killTweensOf(navRef.current);
           currentAnimation = gsap.to(navRef.current, {
             y: -64, // Move up by navbar height
             ...animationProps,
           });
         } else if (scrollDifference < 0) {
           // Scrolling up - show navbar (same animation properties)
+          // Kill any navbar animations first to prevent conflicts
+          gsap.killTweensOf(navRef.current);
           currentAnimation = gsap.to(navRef.current, {
             y: 0, // Move back to original position
             ...animationProps,
@@ -632,72 +646,124 @@ export default function Navigation9({
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
 
+  // Ref to track current navbar animation for cleanup (persists across renders)
+  const navbarAnimationRef = useRef<gsap.core.Tween | null>(null);
+
   // Navbar animation: up on navigation start, down on page load/transition complete
   useEffect(() => {
     if (!navRef.current) return;
 
-    // Set initial state (navbar starts from above)
+    // Helper function to kill any existing navbar animations
+    const killNavbarAnimation = () => {
+      if (navbarAnimationRef.current) {
+        navbarAnimationRef.current.kill();
+        navbarAnimationRef.current = null;
+      }
+      // Kill any GSAP animations on the navbar element
+      if (navRef.current) {
+        gsap.killTweensOf(navRef.current);
+      }
+    };
+
+    // Set initial state (navbar starts invisible, stays in place)
+    // Clear any existing transforms first
+    killNavbarAnimation();
     gsap.set(navRef.current, {
-      y: -100,
+      y: 0, // Keep navbar in its fixed position
       opacity: 0,
+      clearProps: "transform", // Clear any lingering transform properties
     });
 
     // Handle initial page load (wait for PageLoader)
     const handlePageLoaderComplete = () => {
       if (!navRef.current) return;
 
+      // Kill any existing animations first
+      killNavbarAnimation();
+
       // Wait same delay as hero text (200ms) before animating
       setTimeout(() => {
         if (!navRef.current) return;
 
-        gsap.to(navRef.current, {
-          y: 0,
+        // Kill again in case something started in the meantime
+        killNavbarAnimation();
+
+        // Fade in navbar (opacity only, no position change)
+        navbarAnimationRef.current = gsap.to(navRef.current, {
           opacity: 1,
           duration: 0.6,
           ease: "power2.out",
+          onComplete: () => {
+            navbarAnimationRef.current = null;
+          },
         });
       }, 200);
     };
 
-    // Handle page transition start (animate navbar up)
+    // Handle page transition start (fade out navbar)
     const handlePageTransitionStart = () => {
       if (!navRef.current) return;
 
       setIsInTransition(true);
 
-      gsap.to(navRef.current, {
-        y: -100,
+      // Kill any existing animations first (especially scroll-based ones)
+      killNavbarAnimation();
+
+      // Fade out navbar (opacity only, no position change)
+      navbarAnimationRef.current = gsap.to(navRef.current, {
         opacity: 0,
         duration: 0.4,
         ease: "power2.in",
+        onComplete: () => {
+          navbarAnimationRef.current = null;
+        },
       });
     };
 
-    // Handle page transition complete (animate navbar down)
+    // Handle page transition complete (fade in navbar)
     const handlePageTransitionComplete = () => {
       if (!navRef.current) return;
 
-      // Ensure navbar is at top position before animating down
+      // Kill any existing animations first
+      killNavbarAnimation();
+
+      // Ensure navbar is invisible and in correct position before animating
+      // Clear any transform properties that might interfere
       gsap.set(navRef.current, {
-        y: -100,
+        y: 0, // Keep navbar in its fixed position
         opacity: 0,
+        clearProps: "transform", // Clear any lingering transform properties
       });
 
-      // Match the timing with PageLoader for consistent feel (200ms)
-      setTimeout(() => {
-        if (!navRef.current) return;
+      // Longer delay to prevent jittering - wait for page to fully settle
+      // Use requestAnimationFrame to ensure DOM is ready, then add delay
+      requestAnimationFrame(() => {
+        // Double RAF to ensure layout is fully settled
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            if (!navRef.current) return;
 
-        gsap.to(navRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          onComplete: () => {
-            // Re-enable scroll animations after transition completes
-            setIsInTransition(false);
-          },
+            // Kill again in case something started in the meantime
+            killNavbarAnimation();
+
+            // Fade in navbar (opacity only, no position change)
+            navbarAnimationRef.current = gsap.to(navRef.current, {
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              onComplete: () => {
+                // Clear the animation ref
+                navbarAnimationRef.current = null;
+                // Re-enable scroll animations after transition completes
+                // Add small delay to ensure animation is fully done
+                setTimeout(() => {
+                  setIsInTransition(false);
+                }, 50);
+              },
+            });
+          }, 250); // Increased to 250ms to prevent jittering
         });
-      }, 200); // Standardized to 200ms to match PageLoader timing
+      });
     };
 
     // Check if PageLoader is already complete (initial load)
@@ -716,6 +782,14 @@ export default function Navigation9({
     );
 
     return () => {
+      // Cleanup: kill any ongoing animations and remove event listeners
+      if (navbarAnimationRef.current) {
+        navbarAnimationRef.current.kill();
+        navbarAnimationRef.current = null;
+      }
+      if (navRef.current) {
+        gsap.killTweensOf(navRef.current);
+      }
       window.removeEventListener(
         "pageLoaderComplete",
         handlePageLoaderComplete,
