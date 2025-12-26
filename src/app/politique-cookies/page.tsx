@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { generateMetadata } from "@/app/metadata";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 import AnimatedText from "@/components/AnimatedText3";
+import TableOfContents from "./TableOfContents";
 
 export const metadata: Metadata = generateMetadata(
   "Politique des cookies | Nemwood",
@@ -28,12 +29,14 @@ export default function PolitiqueCookies() {
           </AnimatedText>
         </section>
         <section className="mx-auto py-20 md:py-40">
-          <div className="font-HelveticaNow space-y-8 text-base leading-relaxed md:text-lg">
-              <div className="text-primary/70 text-sm">
-                Dernière mise à jour : 26 décembre 2025
-              </div>
+          {/* Two column layout: TOC on left, content on right */}
+          <div className="flex flex-col gap-12 md:flex-row md:gap-16">
+            {/* Table of Contents - Left side on desktop, top on mobile */}
+            <TableOfContents />
 
-              <section className="space-y-4">
+            {/* Content - Right side on desktop */}
+            <div className="font-HelveticaNow min-w-0 flex-1 space-y-8 text-base leading-relaxed md:text-lg">
+              <section id="introduction" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Introduction
                 </h2>
@@ -57,7 +60,7 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="qu-est-ce-qu-un-cookie" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Qu'est-ce qu'un cookie ?
                 </h2>
@@ -85,13 +88,13 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="types-cookies" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Types de cookies utilisés sur nemwood.be
                 </h2>
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       1. Cookies strictement nécessaires
                     </h3>
                     <p>
@@ -119,7 +122,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       2. Cookies de performance et d'analyse
                     </h3>
                     <p>
@@ -166,7 +169,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       3. Cookies de fonctionnalité
                     </h3>
                     <p>
@@ -194,7 +197,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       4. Cookies de réseaux sociaux
                     </h3>
                     <p>
@@ -227,13 +230,13 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="gestion-preferences" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Gestion de vos préférences cookies
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       Acceptation ou refus des cookies
                     </h3>
                     <p>
@@ -259,7 +262,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       Configuration de votre navigateur
                     </h3>
                     <p>Vous pouvez également configurer votre navigateur pour :</p>
@@ -277,7 +280,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       Instructions par navigateur
                     </h3>
                     <div className="space-y-4">
@@ -328,7 +331,7 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="cookies-tiers" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Cookies tiers et services externes
                 </h2>
@@ -339,7 +342,7 @@ export default function PolitiqueCookies() {
                   </p>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">Google Analytics</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">Google Analytics</h3>
                     <p>
                       Si nous utilisons Google Analytics, ce service dépose des cookies
                       pour analyser l'utilisation du Site.
@@ -374,7 +377,7 @@ export default function PolitiqueCookies() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">Réseaux sociaux</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">Réseaux sociaux</h3>
                     <p>
                       Les boutons de partage vers les réseaux sociaux peuvent
                       permettre aux réseaux sociaux concernés de vous identifier et de
@@ -414,7 +417,7 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="duree-conservation" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Durée de conservation des cookies
                 </h2>
@@ -464,7 +467,7 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="protection-donnees" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Protection de vos données
                 </h2>
@@ -493,7 +496,7 @@ export default function PolitiqueCookies() {
                 </p>
               </section>
 
-              <section className="space-y-4">
+              <section id="droits" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Vos droits
                 </h2>
@@ -530,20 +533,18 @@ export default function PolitiqueCookies() {
                 </ul>
                 <p>Pour exercer vos droits, contactez-nous :</p>
                 <div className="space-y-2">
-                  <p>
-                    <strong>Email :</strong> contact@nemwood.be
-                  </p>
+                  <p>Email: contact@nemwood.be</p>
                   <div>
-                    <p className="font-semibold">Courrier :</p>
-                    <p className="ml-4">NEMWOOD - Protection des Données</p>
-                    <p className="ml-4">Nering 34</p>
-                    <p className="ml-4">1620 Beersel</p>
-                    <p className="ml-4">Belgique</p>
+                    <p>Par courrier :</p>
+                    <p className="ml-4">NEMWOOD</p>
+                    <p className="ml-4">
+                      Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                    </p>
                   </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="mineurs" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Cookies et mineurs
                 </h2>
@@ -558,7 +559,7 @@ export default function PolitiqueCookies() {
                 </p>
               </section>
 
-              <section className="space-y-4">
+              <section id="modifications" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Modifications de la politique de cookies
                 </h2>
@@ -583,81 +584,77 @@ export default function PolitiqueCookies() {
                 </div>
               </section>
 
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">Contact</h2>
-                <p>
-                  Pour toute question concernant notre utilisation des cookies :
-                </p>
-                <div className="space-y-2">
-                  <p className="font-semibold">NEMWOOD</p>
-                  <p>Nering 34</p>
-                  <p>1620 Beersel</p>
-                  <p>Belgique</p>
-                  <p>Email : contact@nemwood.be</p>
-                  <p>Téléphone : +32 489 33 05 44</p>
+              <section id="liens-utiles" className="scroll-mt-20 space-y-4">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
+                  Liens utiles et autorité de contrôle
+                </h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-HelveticaNow text-xl font-semibold mb-2">Liens utiles</h3>
+                    <ul className="space-y-2">
+                      <li>
+                        <a
+                          href="/politique-confidentialite"
+                          className="transition-opacity hover:opacity-70 underline"
+                        >
+                          Politique de Confidentialité
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/mentions-legales"
+                          className="transition-opacity hover:opacity-70 underline"
+                        >
+                          Mentions Légales
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/cgv"
+                          className="transition-opacity hover:opacity-70 underline"
+                        >
+                          Conditions Générales de Vente
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-HelveticaNow text-xl font-semibold mb-2">Autorité de contrôle</h3>
+                    <p>
+                      Si vous estimez que vos droits ne sont pas respectés, vous pouvez
+                      introduire une réclamation auprès de :
+                    </p>
+                    <div className="space-y-2">
+                      <p className="font-semibold">
+                        Autorité de Protection des Données (APD)
+                      </p>
+                      <p>Rue de la Presse 35</p>
+                      <p>1000 Bruxelles</p>
+                      <p>Belgique</p>
+                      <p>Email : contact@apd-gba.be</p>
+                      <p>Téléphone : +32 (0)2 274 48 00</p>
+                      <p>
+                        Site web :{" "}
+                        <a
+                          href="https://www.autoriteprotectiondonnees.be"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-opacity hover:opacity-70 underline"
+                        >
+                          www.autoriteprotectiondonnees.be
+                        </a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Liens utiles
-                </h2>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="/politique-confidentialite"
-                      className="transition-opacity hover:opacity-70 underline"
-                    >
-                      Politique de Confidentialité
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/mentions-legales"
-                      className="transition-opacity hover:opacity-70 underline"
-                    >
-                      Mentions Légales
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/cgv"
-                      className="transition-opacity hover:opacity-70 underline"
-                    >
-                      Conditions Générales de Vente
-                    </a>
-                  </li>
-                </ul>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Autorité de contrôle
-                </h2>
-                <p>
-                  Si vous estimez que vos droits ne sont pas respectés, vous pouvez
-                  introduire une réclamation auprès de :
-                </p>
+              <section id="contact" className="scroll-mt-20 space-y-4">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">Contact</h2>
                 <div className="space-y-2">
-                  <p className="font-semibold">
-                    Autorité de Protection des Données (APD)
-                  </p>
-                  <p>Rue de la Presse 35</p>
-                  <p>1000 Bruxelles</p>
-                  <p>Belgique</p>
-                  <p>Email : contact@apd-gba.be</p>
-                  <p>Téléphone : +32 (0)2 274 48 00</p>
-                  <p>
-                    Site web :{" "}
-                    <a
-                      href="https://www.autoriteprotectiondonnees.be"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-opacity hover:opacity-70 underline"
-                    >
-                      www.autoriteprotectiondonnees.be
-                    </a>
-                  </p>
+                  <p>Email: contact@nemwood.be</p>
+                  <p>Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique</p>
+                  <p>Tel : +32 489 33 05 44</p>
                 </div>
               </section>
 
@@ -667,6 +664,7 @@ export default function PolitiqueCookies() {
                 conformément aux présentes.
               </p>
             </div>
+          </div>
         </section>
       </main>
     </>

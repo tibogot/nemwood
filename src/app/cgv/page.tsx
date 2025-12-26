@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { generateMetadata } from "@/app/metadata";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 import AnimatedText from "@/components/AnimatedText3";
+import TableOfContents from "./TableOfContents";
 
 export const metadata: Metadata = generateMetadata(
   "Conditions Générales de Vente | Nemwood",
@@ -28,12 +29,14 @@ export default function CGV() {
           </AnimatedText>
         </section>
         <section className="mx-auto py-20 md:py-40">
-          <div className="font-HelveticaNow space-y-8 text-base leading-relaxed md:text-lg">
-              <div className="text-primary/70 text-sm">
-                Dernière mise à jour : 26 décembre 2025
-              </div>
+          {/* Two column layout: TOC on left, content on right */}
+          <div className="flex flex-col gap-12 md:flex-row md:gap-16">
+            {/* Table of Contents - Left side on desktop, top on mobile */}
+            <TableOfContents />
 
-              <section className="space-y-4">
+            {/* Content - Right side on desktop */}
+            <div className="font-HelveticaNow min-w-0 flex-1 space-y-8 text-base leading-relaxed md:text-lg">
+              <section id="preambule" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Préambule
                 </h2>
@@ -46,18 +49,19 @@ export default function CGV() {
                   </p>
                   <div className="space-y-2">
                     <p className="font-semibold">NEMWOOD</p>
-                    <p>Nering 34</p>
-                    <p>1620 Beersel</p>
-                    <p>Vlaams-Brabant, Belgique</p>
-                    <p>Email : contact@nemwood.be</p>
-                    <p>Téléphone : +32 489 33 05 44</p>
+                    <p>
+                      Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                    </p>
+                    <p>Email: contact@nemwood.be</p>
+                    <p>Tel : +32 489 33 05 44</p>
                     <p>Numéro d'entreprise : 0670.534.175</p>
                     <p>Numéro de TVA : BE 0670.534.175</p>
+                    <p>Responsable de la publication : Nemo De Kuijper</p>
                   </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-1" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 1 - Champ d'application
                 </h2>
@@ -94,13 +98,13 @@ export default function CGV() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-2" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 2 - Devis
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       2.1 Établissement du devis
                     </h3>
                     <p>
@@ -126,7 +130,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">2.2 Validité du devis</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">2.2 Validité du devis</h3>
                     <p>
                       Les devis sont valables pendant <strong>30 jours</strong> à
                       compter de leur date d'émission, sauf mention contraire.
@@ -138,7 +142,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">2.3 Devis gratuit</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">2.3 Devis gratuit</h3>
                     <p>
                       L'établissement d'un devis est gratuit et n'engage en rien le
                       Client.
@@ -147,13 +151,13 @@ export default function CGV() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-3" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 3 - Commande
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       3.1 Validation de la commande
                     </h3>
                     <p>
@@ -171,7 +175,7 @@ export default function CGV() {
                     </ol>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       3.2 Confirmation de commande
                     </h3>
                     <p>
@@ -185,7 +189,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       3.3 Documents contractuels
                     </h3>
                     <p>
@@ -201,13 +205,13 @@ export default function CGV() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-4" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 4 - Prix
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">4.1 Prix affichés</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">4.1 Prix affichés</h3>
                     <p>
                       Tous nos prix sont exprimés en <strong>euros (€)</strong> et
                       indiqués :
@@ -223,7 +227,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       4.2 Le prix comprend
                     </h3>
                     <p>
@@ -242,7 +246,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       4.3 Le prix ne comprend pas
                     </h3>
                     <p>
@@ -264,7 +268,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">4.4 Révision des prix</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">4.4 Révision des prix</h3>
                     <p>
                       NEMWOOD se réserve le droit de réviser les prix en cas de :
                     </p>
@@ -288,13 +292,13 @@ export default function CGV() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-5" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Article 5 - Conditions de paiement
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       5.1 Modalités de paiement
                     </h3>
                     <div className="space-y-2">
@@ -322,7 +326,7 @@ export default function CGV() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       5.2 Modes de paiement acceptés
                     </h3>
                     <ul className="list-disc space-y-2 pl-6">
@@ -336,7 +340,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">5.3 Défaut de paiement</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">5.3 Défaut de paiement</h3>
                     <div className="space-y-4">
                       <div>
                         <p className="font-semibold">Retard de paiement</p>
@@ -375,13 +379,16 @@ export default function CGV() {
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-6" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 6 - Délais de fabrication et d'installation
+                  Articles 6-7 - Délais et livraison
                 </h2>
                 <div className="space-y-6">
+                  <div>
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 6 - Délais de fabrication et d'installation</h3>
+                <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">6.1 Délais indicatifs</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">6.1 Délais indicatifs</h3>
                     <p>
                       Les délais de fabrication et d'installation communiqués dans le
                       devis sont donnés <strong>à titre indicatif</strong> et ne
@@ -400,7 +407,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">6.2 Report des délais</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">6.2 Report des délais</h3>
                     <p>
                       En cas de retard, NEMWOOD s'engage à informer le Client dans
                       les meilleurs délais et à lui communiquer un nouveau planning
@@ -419,7 +426,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">6.3 Collaboration du Client</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">6.3 Collaboration du Client</h3>
                     <p>
                       Le respect des délais est conditionné à la collaboration
                       effective du Client, notamment :
@@ -437,15 +444,12 @@ export default function CGV() {
                     </ul>
                   </div>
                 </div>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 7 - Livraison et installation
-                </h2>
-                <div className="space-y-6">
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 7 - Livraison et installation</h3>
+                    <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       7.1 Lieu d'installation
                     </h3>
                     <p>
@@ -454,7 +458,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       7.2 Obligations du Client
                     </h3>
                     <p>Le Client s'engage à :</p>
@@ -490,7 +494,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       7.3 Impossibilité d'installation
                     </h3>
                     <p>
@@ -514,7 +518,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       7.4 Assurance transport
                     </h3>
                     <p>
@@ -524,15 +528,20 @@ export default function CGV() {
                     </p>
                   </div>
                 </div>
+                  </div>
+                </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-8" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 8 - Réception et réserves
+                  Articles 8-9 - Réception et garantie
                 </h2>
                 <div className="space-y-6">
+                  <div>
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 8 - Réception et réserves</h3>
+                <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       8.1 Vérification à la réception
                     </h3>
                     <p>
@@ -554,7 +563,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       8.2 Émission de réserves
                     </h3>
                     <p>
@@ -570,7 +579,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       8.3 Traitement des réserves
                     </h3>
                     <p>En cas de réserve justifiée, NEMWOOD s'engage à :</p>
@@ -585,15 +594,12 @@ export default function CGV() {
                     </ul>
                   </div>
                 </div>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 9 - Garantie
-                </h2>
-                <div className="space-y-6">
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 9 - Garantie</h3>
+                    <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       9.1 Étendue de la garantie
                     </h3>
                     <p>
@@ -609,7 +615,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       9.2 Exclusions de garantie
                     </h3>
                     <p>La garantie ne couvre pas :</p>
@@ -650,7 +656,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       9.3 Mise en œuvre de la garantie
                     </h3>
                     <p>Pour bénéficier de la garantie, le Client doit :</p>
@@ -671,7 +677,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       9.4 Obligations du Client
                     </h3>
                     <p>Le Client s'engage à :</p>
@@ -690,15 +696,20 @@ export default function CGV() {
                     </ul>
                   </div>
                 </div>
+                  </div>
+                </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-10" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 10 - Modifications et annulation
+                  Articles 10-11 - Modifications et responsabilité
                 </h2>
                 <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                  <div>
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 10 - Modifications et annulation</h3>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       10.1 Modifications après validation
                     </h3>
                     <p>
@@ -720,7 +731,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       10.2 Annulation par le Client
                     </h3>
                     <div className="space-y-4">
@@ -751,17 +762,14 @@ export default function CGV() {
                         </p>
                       </div>
                     </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 11 - Responsabilité
-                </h2>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 11 - Responsabilité</h3>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       11.1 Limitation de responsabilité
                     </h3>
                     <p>
@@ -780,7 +788,7 @@ export default function CGV() {
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">11.2 Assurance</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">11.2 Assurance</h3>
                     <p>
                       NEMWOOD a souscrit une assurance responsabilité civile
                       professionnelle auprès d'un assureur agréé couvrant les dommages
@@ -789,15 +797,20 @@ export default function CGV() {
                     <p>
                       Une attestation d'assurance peut être fournie sur demande.
                     </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-12" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 12 - Force majeure
+                  Articles 12-13 - Force majeure et propriété intellectuelle
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 12 - Force majeure</h3>
+                    <div className="space-y-4">
                   <p>
                     NEMWOOD ne pourra être tenue responsable de tout retard ou
                     inexécution de ses obligations résultant d'un cas de{" "}
@@ -829,16 +842,13 @@ export default function CGV() {
                     meilleurs délais et les parties se concerteront pour définir les
                     modalités de poursuite ou d'annulation de la commande.
                   </p>
-                </div>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 13 - Propriété intellectuelle
-                </h2>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">13.1 Droits de NEMWOOD</h3>
+                    </div>
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 13 - Propriété intellectuelle</h3>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">13.1 Droits de NEMWOOD</h3>
                     <p>
                       Tous les plans, dessins, croquis, modélisations 3D, photographies
                       et créations réalisés par NEMWOOD restent sa{" "}
@@ -851,7 +861,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       13.2 Utilisation des réalisations
                     </h3>
                     <p>
@@ -860,15 +870,20 @@ export default function CGV() {
                       (site internet, réseaux sociaux, portfolio, presse) sauf
                       opposition expresse du Client.
                     </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="article-14" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 14 - Protection des données personnelles
+                  Articles 14-16 - Dispositions finales
                 </h2>
-                <p>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 14 - Protection des données personnelles</h3>
+                    <p>
                   Les données personnelles collectées dans le cadre de la relation
                   commerciale font l'objet d'un traitement informatique conforme au{" "}
                   <strong>
@@ -887,22 +902,19 @@ export default function CGV() {
                   </a>
                   .
                 </p>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 15 - Droit applicable et litiges
-                </h2>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">15.1 Droit applicable</h3>
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 15 - Droit applicable et litiges</h3>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">15.1 Droit applicable</h3>
                     <p>
                       Les présentes CGV sont régies et interprétées conformément au{" "}
                       <strong>droit belge</strong>.
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">15.2 Règlement amiable</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">15.2 Règlement amiable</h3>
                     <p>
                       En cas de litige ou de réclamation, les parties s'engagent à
                       rechercher une <strong>solution amiable</strong> avant toute
@@ -911,10 +923,10 @@ export default function CGV() {
                     <p>Le Client peut adresser sa réclamation par écrit à :</p>
                     <div className="space-y-2">
                       <p className="font-semibold">NEMWOOD</p>
-                      <p>Nering 34</p>
-                      <p>1620 Beersel</p>
-                      <p>Belgique</p>
-                      <p>Email : contact@nemwood.be</p>
+                      <p>
+                        Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                      </p>
+                      <p>Email: contact@nemwood.be</p>
                     </div>
                     <p>
                       NEMWOOD s'engage à accuser réception de la réclamation sous 48h
@@ -922,7 +934,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">15.3 Médiation</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">15.3 Médiation</h3>
                     <p>
                       En cas d'échec de la tentative de règlement amiable, le Client
                       consommateur peut faire appel à un{" "}
@@ -950,7 +962,7 @@ export default function CGV() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       15.4 Compétence juridictionnelle
                     </h3>
                     <p>
@@ -964,15 +976,12 @@ export default function CGV() {
                     </p>
                   </div>
                 </div>
-              </section>
-
-              <section className="space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Article 16 - Dispositions diverses
-                </h2>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">
+                  </div>
+                  <div className="mt-8">
+                    <h3 className="font-HelveticaNow text-2xl font-semibold mb-4">Article 16 - Dispositions diverses</h3>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                    <h3 className="font-HelveticaNow font-semibold text-xl">
                       16.1 Intégralité de l'accord
                     </h3>
                     <p>
@@ -982,7 +991,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">16.2 Nullité partielle</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">16.2 Nullité partielle</h3>
                     <p>
                       Si une ou plusieurs stipulations des présentes CGV sont tenues
                       pour non valides ou déclarées telles en application d'une loi,
@@ -992,7 +1001,7 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">16.3 Non-renonciation</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">16.3 Non-renonciation</h3>
                     <p>
                       Le fait pour NEMWOOD de ne pas se prévaloir à un moment donné de
                       l'une quelconque des présentes CGV ne peut être interprété comme
@@ -1000,34 +1009,24 @@ export default function CGV() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-xl">16.4 Modification des CGV</h3>
+                    <h3 className="font-HelveticaNow font-semibold text-xl">16.4 Modification des CGV</h3>
                     <p>
                       NEMWOOD se réserve le droit de modifier les présentes CGV à tout
                       moment. Les CGV applicables sont celles en vigueur à la date de
                       signature du devis par le Client.
                     </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <section className="space-y-4">
+              <section id="contact" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">Contact</h2>
-                <p>
-                  Pour toute question relative aux présentes Conditions Générales de
-                  Vente :
-                </p>
                 <div className="space-y-2">
-                  <p className="font-semibold">NEMWOOD</p>
-                  <p>Nering 34</p>
-                  <p>1620 Beersel</p>
-                  <p>Vlaams-Brabant, Belgique</p>
-                  <p>Email : contact@nemwood.be</p>
-                  <p>Téléphone : +32 489 33 05 44</p>
-                  <div className="mt-4">
-                    <p className="font-semibold">Horaires :</p>
-                    <p>Lundi - Vendredi : 9h00 - 18h00</p>
-                    <p>Samedi : Sur rendez-vous</p>
-                  </div>
+                  <p>Email: contact@nemwood.be</p>
+                  <p>Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique</p>
+                  <p>Tel : +32 489 33 05 44</p>
                 </div>
                 <p className="text-primary/70 italic text-sm mt-6">
                   Ces Conditions Générales de Vente ont été établies conformément à la
@@ -1035,6 +1034,7 @@ export default function CGV() {
                 </p>
               </section>
             </div>
+          </div>
         </section>
       </main>
     </>

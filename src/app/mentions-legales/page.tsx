@@ -36,49 +36,6 @@ export default function MentionsLegales() {
 
             {/* Content - Right side on desktop */}
             <div className="font-HelveticaNow min-w-0 flex-1 space-y-8 text-base leading-relaxed md:text-lg">
-              <section id="editeur" className="scroll-mt-20 space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Éditeur du site
-                </h2>
-                <div className="space-y-2">
-                  <p className="font-semibold">NEMWOOD</p>
-                  <p>Nering 34</p>
-                  <p>1620 Beersel</p>
-                  <p>Vlaams-Brabant, Belgique</p>
-                  <p>Email : contact@nemwood.be</p>
-                  <p>Téléphone : +32 489 33 05 44</p>
-                  <p>Numéro d'entreprise : 0670.534.175</p>
-                  <p>Numéro de TVA : BE 0670.534.175</p>
-                  <p>Responsable de la publication : Nemo De Kuijper</p>
-                </div>
-              </section>
-
-              <section id="hebergement" className="scroll-mt-20 space-y-4">
-                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
-                  Hébergement du site
-                </h2>
-                <div className="space-y-2">
-                  <p className="font-semibold">OVH SAS</p>
-                  <p>
-                    Siège social : 2 rue Kellermann - 59100 Roubaix - France
-                  </p>
-                  <p>RCS Lille Métropole : 424 761 419 00045</p>
-                  <p>N° TVA intracommunautaire : FR 22 424 761 419</p>
-                  <p>Téléphone : +33 (0)8 99 70 17 61</p>
-                  <p>
-                    Site web :{" "}
-                    <a
-                      href="https://www.ovhcloud.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline transition-opacity hover:opacity-70"
-                    >
-                      www.ovhcloud.com
-                    </a>
-                  </p>
-                </div>
-              </section>
-
               <section id="propriete" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Propriété intellectuelle
@@ -119,7 +76,7 @@ export default function MentionsLegales() {
                 </h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold">
+                    <h3 className="font-HelveticaNow text-xl font-semibold">
                       Informations générales
                     </h3>
                     <p>
@@ -140,7 +97,7 @@ export default function MentionsLegales() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold">
+                    <h3 className="font-HelveticaNow text-xl font-semibold">
                       Disponibilité du site
                     </h3>
                     <p>
@@ -247,24 +204,59 @@ export default function MentionsLegales() {
                 </div>
               </section>
 
+              <section id="editeur" className="scroll-mt-20 space-y-4">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
+                  Éditeur du site
+                </h2>
+                <div className="space-y-2">
+                  <p className="font-semibold">NEMWOOD</p>
+                  <p>
+                    Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                  </p>
+                  <p>Email: contact@nemwood.be</p>
+                  <p>Tel : +32 489 33 05 44</p>
+                  <p>Numéro d'entreprise : 0670.534.175</p>
+                  <p>Numéro de TVA : BE 0670.534.175</p>
+                  <p>Responsable de la publication : Nemo De Kuijper</p>
+                </div>
+              </section>
+
+              <section id="hebergement" className="scroll-mt-20 space-y-4">
+                <h2 className="font-HelveticaNow text-3xl md:text-4xl">
+                  Hébergement du site
+                </h2>
+                <div className="space-y-2">
+                  <p className="font-semibold">OVH SAS</p>
+                  <p>
+                    Siège social : 2 rue Kellermann - 59100 Roubaix - France
+                  </p>
+                  <p>RCS Lille Métropole : 424 761 419 00045</p>
+                  <p>N° TVA intracommunautaire : FR 22 424 761 419</p>
+                  <p>Téléphone : +33 (0)8 99 70 17 61</p>
+                  <p>
+                    Site web :{" "}
+                    <a
+                      href="https://www.ovhcloud.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline transition-opacity hover:opacity-70"
+                    >
+                      www.ovhcloud.com
+                    </a>
+                  </p>
+                </div>
+              </section>
+
               <section id="contact" className="scroll-mt-20 space-y-4">
                 <h2 className="font-HelveticaNow text-3xl md:text-4xl">
                   Contact
                 </h2>
-                <p>
-                  Pour toute question relative aux présentes mentions légales ou
-                  pour exercer vos droits, vous pouvez nous contacter :
-                </p>
                 <div className="space-y-2">
-                  <p>Par email : contact@nemwood.be</p>
-                  <p>Par téléphone : +32 489 33 05 44</p>
-                  <div>
-                    <p>Par courrier :</p>
-                    <p className="ml-4">NEMWOOD</p>
-                    <p className="ml-4">Nering 34</p>
-                    <p className="ml-4">1620 Beersel</p>
-                    <p className="ml-4">Belgique</p>
-                  </div>
+                  <p>Email: contact@nemwood.be</p>
+                  <p>
+                    Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                  </p>
+                  <p>Tel : +32 489 33 05 44</p>
                 </div>
               </section>
             </div>
