@@ -11,7 +11,7 @@ export const siteMetadata = {
   url: "https://www.nemwood.be", // Updated to include www
   siteName: "Nemwood",
   locale: "fr_BE",
-  image: "/images/nem1.png", // Replace with your preferred image
+  image: "https://www.nemwood.be/images/nem1.png", // Absolute URL for social media crawlers
   facebook: {
     appId: "100063674583109",
     pageId: "100063674583109",
