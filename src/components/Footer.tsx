@@ -1,8 +1,38 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
 import Logo from "./Logo3";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Helper function to render a link or disabled link based on current page
+  const renderLink = (
+    href: string,
+    children: React.ReactNode,
+    className: string,
+  ) => {
+    const isCurrentPage = pathname === href;
+    
+    if (isCurrentPage) {
+      return (
+        <span
+          className={`${className} pointer-events-none cursor-default opacity-50`}
+          title="You are currently on this page"
+        >
+          {children}
+        </span>
+      );
+    }
+    
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  };
+
   return (
     <footer className="bg-secondary text-primary font-HelveticaNow border-primary relative flex min-h-svh w-full flex-col border-t px-4 pt-12 pb-8 md:h-svh md:px-8">
       {/* Top Section */}
@@ -23,36 +53,31 @@ export default function Footer() {
                 Menu
               </div>
               <div className="flex flex-col">
-                <Link
-                  href="/"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/a-propos"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  A propos
-                </Link>
-                <Link
-                  href="/services"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/contact"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Contact
-                </Link>
-                <Link
-                  href="/blog"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Blog
-                </Link>
+                {renderLink(
+                  "/",
+                  "Home",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/a-propos",
+                  "A propos",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services",
+                  "Services",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/contact",
+                  "Contact",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/blog",
+                  "Blog",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
               </div>
             </div>
 
@@ -62,48 +87,41 @@ export default function Footer() {
                 Services
               </div>
               <div className="flex flex-col">
-                <Link
-                  href="/services/escaliers"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Escaliers
-                </Link>
-                <Link
-                  href="/services/garde-robes"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Gardes-robes
-                </Link>
-                <Link
-                  href="/services/tables"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Tables
-                </Link>
-                <Link
-                  href="/services/cuisines"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Cuisines
-                </Link>
-                <Link
-                  href="/services/bibliotheques"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Bibliothèques
-                </Link>
-                <Link
-                  href="/services/bureaux"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Bureaux
-                </Link>
-                <Link
-                  href="/services/salles-de-bain"
-                  className="font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
-                >
-                  Salles de bain
-                </Link>
+                {renderLink(
+                  "/services/escaliers",
+                  "Escaliers",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/garde-robes",
+                  "Gardes-robes",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/tables",
+                  "Tables",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/cuisines",
+                  "Cuisines",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/bibliotheques",
+                  "Bibliothèques",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/bureaux",
+                  "Bureaux",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
+                {renderLink(
+                  "/services/salles-de-bain",
+                  "Salles de bain",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                )}
               </div>
             </div>
           </div>
@@ -188,30 +206,29 @@ export default function Footer() {
         <div className="font-HelveticaNow text-primary mt-6 flex flex-col gap-4 text-sm md:mt-4 md:flex-row md:items-center md:justify-between">
           <span>© 2025 NEMWOOD - BE 0670.534.175</span>
           <div className="flex flex-row flex-wrap items-center gap-2 md:gap-4">
-            <Link
-              href="/mentions-legales"
-              className="transition-opacity hover:opacity-70"
-            >
-              Mentions légales
-            </Link>
+            {renderLink(
+              "/mentions-legales",
+              "Mentions légales",
+              "transition-opacity hover:opacity-70"
+            )}
             <span className="opacity-70">|</span>
-            <Link
-              href="/politique-confidentialite"
-              className="transition-opacity hover:opacity-70"
-            >
-              Politique de confidentialité
-            </Link>
+            {renderLink(
+              "/politique-confidentialite",
+              "Politique de confidentialité",
+              "transition-opacity hover:opacity-70"
+            )}
             <span className="opacity-70">|</span>
-            <Link href="/cgv" className="transition-opacity hover:opacity-70">
-              CGV
-            </Link>
+            {renderLink(
+              "/cgv",
+              "CGV",
+              "transition-opacity hover:opacity-70"
+            )}
             <span className="opacity-70">|</span>
-            <Link
-              href="/politique-cookies"
-              className="transition-opacity hover:opacity-70"
-            >
-              Cookies
-            </Link>
+            {renderLink(
+              "/politique-cookies",
+              "Cookies",
+              "transition-opacity hover:opacity-70"
+            )}
           </div>
         </div>
       </div>
