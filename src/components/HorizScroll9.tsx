@@ -60,7 +60,7 @@ const FreeLayoutScroll: React.FC = () => {
           number: "1/5",
           title: "Escaliers",
           paragraph:
-            "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale. Bien plus qu'un passage entre les étages, l'escalier devient un élément architectural à part entière.",
+            "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale. Bien plus qu'un passage entre les étages, l'escalier devient un élément architectural à part entière. Conçu sur mesure dans notre atelier, chaque projet révèle la beauté du bois et s'intègre parfaitement à votre intérieur. Un savoir-faire artisanal pour un ouvrage élégant et durable.",
           slug: "escaliers",
           position: {
             top: "20%",
@@ -72,7 +72,7 @@ const FreeLayoutScroll: React.FC = () => {
       ],
       images: [
         {
-          src: "/images/horiz-escalier.webp",
+          src: "/images/Escalier 5.webp",
           alt: "Escalier sur mesure",
           position: {
             top: "12%",
@@ -96,7 +96,7 @@ const FreeLayoutScroll: React.FC = () => {
           parallaxSpeed: 200,
         },
         {
-          src: "/images/stairs.webp",
+          src: "/images/Escalier 2.webp",
           alt: "Détail bois",
           position: {
             top: "68%",
@@ -116,7 +116,7 @@ const FreeLayoutScroll: React.FC = () => {
           number: "2/5",
           title: "Garde-robes",
           paragraph:
-            "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
+            "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. Parce que chaque intérieur est unique, votre garde-robe mérite d'être pensée sur mesure. Nous créons des espaces de rangement en bois massif alliant élégance naturelle et organisation optimale.",
           slug: "garde-robes",
           position: {
             top: "60%",
@@ -139,7 +139,7 @@ const FreeLayoutScroll: React.FC = () => {
           zIndex: 1,
         },
         {
-          src: "/images/garde-robes-2.jpg",
+          src: "/images/dressing - poignée en chêne - 2.webp",
           alt: "Détail garde-robe",
           position: {
             top: "12%",
@@ -171,7 +171,7 @@ const FreeLayoutScroll: React.FC = () => {
           number: "3/5",
           title: "Tables",
           paragraph:
-            "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier.",
+            "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier. La table est le cœur de votre foyer où se partagent repas et moments précieux. Chaque création s'intègre parfaitement à votre espace et reflète votre style. Un savoir-faire artisanal pour un mobilier authentique, robuste et intemporel.",
           slug: "tables",
           position: {
             top: "55%",
@@ -183,7 +183,7 @@ const FreeLayoutScroll: React.FC = () => {
       ],
       images: [
         {
-          src: "/images/table-a-manger-2.jpg",
+          src: "/images/Table 5.webp",
           alt: "Détail table",
           position: {
             top: "72%",
@@ -203,7 +203,7 @@ const FreeLayoutScroll: React.FC = () => {
           number: "4/5",
           title: "Cuisines",
           paragraph:
-            "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace.",
+            "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace. La cuisine est le cœur vivant de votre maison, un espace de partage qui mérite toute notre attention. Nous créons des cuisines en bois massif sur mesure alliant authenticité et ergonomie adaptée à votre quotidien. Un savoir-faire artisanal pour une cuisine unique, pratique et durable.",
           slug: "cuisines",
           position: {
             top: "20%",

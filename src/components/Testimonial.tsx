@@ -144,7 +144,7 @@ export default function Testimonial() {
         style={{ height: "100vh" }}
       >
         <Image
-          src="/images/testimonial-bg.webp"
+          src="/images/radiateur.jpg"
           alt="Random from Picsum"
           fill
           className="object-cover"
