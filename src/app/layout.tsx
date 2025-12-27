@@ -5,7 +5,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ClientLayout from "@/components/ClientLayout";
 import { Analytics } from "@vercel/analytics/next";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
-// import CookieConsent from "@/components/CookieConsent";
+import CookieConsent from "@/components/CookieConsent";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const ITCGaramondStdLtNarrow = localFont({
@@ -357,7 +357,7 @@ export default function RootLayout({
       >
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant - Must load before GoogleAnalytics */}
-        {/* <CookieConsent /> */}
+        <CookieConsent />
         <Analytics />
       </body>
     </html>
