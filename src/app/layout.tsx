@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "@/styles/cookieconsent-custom.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ClientLayout from "@/components/ClientLayout";
 import { Analytics } from "@vercel/analytics/next";
@@ -112,6 +113,12 @@ export default function RootLayout({
     <html lang="fr" data-scroll-behavior="smooth">
       <head>
         {/* Next.js automatically handles font preloading and optimization */}
+
+        {/* Cookie Consent CSS - loaded from CDN to avoid build issues */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css"
+        />
 
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
@@ -357,7 +364,7 @@ export default function RootLayout({
       >
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant - Must load before GoogleAnalytics */}
-        {/* <CookieConsent /> */}
+        <CookieConsent />
         <Analytics />
       </body>
     </html>

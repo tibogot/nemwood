@@ -1,0 +1,550 @@
+/* 🍪 Cookie Consent Custom Styles */
+/* Override default cookie consent styles to match Nemwood branding */
+
+/* Main consent modal - Compact size */
+#cc-main .cm {
+  background: #fffcf5 !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(56, 48, 42, 0.15) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  max-width: 420px !important;
+  padding: 0 !important;
+}
+
+/* Texts container - reduce padding */
+#cc-main .cm__texts {
+  padding: 1.2rem 0 0.8rem !important;
+}
+
+/* Modal title - smaller */
+#cc-main .cm__title {
+  color: #38302a !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  padding: 0 1.2rem !important;
+}
+
+/* Modal description - more compact */
+#cc-main .cm__desc {
+  color: #504630 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+  padding: 0 1.2rem !important;
+  max-height: 150px !important;
+  font-weight: 400 !important;
+}
+
+/* Button container - reduce padding */
+#cc-main .cm__btns {
+  padding: 0.8rem 1.2rem 1rem !important;
+  gap: 0.5rem !important;
+}
+
+/* Buttons - smaller and more elegant */
+#cc-main .cm__btn {
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  padding: 8px 16px !important;
+  border-radius: 2px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  min-height: 36px !important;
+}
+
+/* Primary button (Accept all) */
+#cc-main .cm__btn:not(.cm__btn--secondary) {
+  background: #38302a !important;
+  color: #fffcf5 !important;
+  border: 1px solid #38302a !important;
+}
+
+#cc-main .cm__btn:not(.cm__btn--secondary):hover {
+  background: rgba(56, 48, 42, 0.85) !important;
+  border-color: rgba(56, 48, 42, 0.85) !important;
+}
+
+/* Secondary buttons */
+#cc-main .cm__btn--secondary {
+  background: transparent !important;
+  color: #38302a !important;
+  border: 1px solid rgba(56, 48, 42, 0.2) !important;
+}
+
+#cc-main .cm__btn--secondary:hover {
+  background: rgba(56, 48, 42, 0.05) !important;
+  border-color: rgba(56, 48, 42, 0.3) !important;
+}
+
+/* Separator borders */
+#cc-main .cm__btns {
+  border-top: 1px solid rgba(56, 48, 42, 0.1) !important;
+}
+
+/* Preferences modal */
+#cc-main .pm {
+  background: #fffcf5 !important;
+  backdrop-filter: blur(15px) !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(56, 48, 42, 0.15) !important;
+  box-shadow: none !important;
+  max-width: 680px !important;
+}
+
+/* Preferences modal header */
+#cc-main .pm__header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(56, 48, 42, 0.12) !important;
+  padding: 1.5rem 1.8rem !important;
+}
+
+/* Preferences modal title */
+#cc-main .pm__title {
+  color: #38302a !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Close button */
+#cc-main .pm__close-btn {
+  background: rgba(56, 48, 42, 0.04) !important;
+  border: 1px solid rgba(56, 48, 42, 0.1) !important;
+  border-radius: 2px !important;
+  width: 38px !important;
+  height: 38px !important;
+}
+
+#cc-main .pm__close-btn:hover {
+  background: rgba(56, 48, 42, 0.1) !important;
+  border-color: rgba(56, 48, 42, 0.2) !important;
+}
+
+#cc-main .pm__close-btn svg {
+  stroke: #38302a !important;
+  stroke-width: 1.5 !important;
+}
+
+/* Preferences modal body */
+#cc-main .pm__body {
+  padding: 1.5rem 1.8rem !important;
+}
+
+/* Section titles */
+#cc-main .pm__section-title {
+  color: #38302a !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Section descriptions */
+#cc-main .pm__section-desc {
+  color: #504630 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+}
+
+/* Section blocks */
+#cc-main .pm__section {
+  border-color: rgba(56, 48, 42, 0.08) !important;
+  border-radius: 2px !important;
+  margin-bottom: 0.75rem !important;
+  transition: all 0.2s ease !important;
+}
+
+#cc-main .pm__section:first-child {
+  background: rgba(56, 48, 42, 0.03) !important;
+  border: 1px solid rgba(56, 48, 42, 0.08) !important;
+  padding: 1.25rem !important;
+  border-radius: 2px !important;
+  margin-bottom: 1.5rem !important;
+}
+
+#cc-main .pm__section:not(:first-child):hover {
+  background: rgba(56, 48, 42, 0.02) !important;
+  border-color: rgba(56, 48, 42, 0.12) !important;
+}
+
+/* Toggle sections */
+#cc-main .pm__section--toggle .pm__section-title {
+  background: transparent !important;
+  border: 1px solid rgba(56, 48, 42, 0.08) !important;
+  border-radius: 2px !important;
+  padding: 1rem 5.2em 1rem 1.25rem !important;
+  min-height: 54px !important;
+}
+
+#cc-main .pm__section--toggle .pm__section-title:hover {
+  background: rgba(56, 48, 42, 0.03) !important;
+  border-color: rgba(56, 48, 42, 0.12) !important;
+}
+
+#cc-main .pm__section--toggle.is-expanded .pm__section-title {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  background: rgba(56, 48, 42, 0.04) !important;
+}
+
+/* Section description wrapper */
+#cc-main .pm__section--toggle .pm__section-desc-wrapper {
+  border: 1px solid rgba(56, 48, 42, 0.08) !important;
+  border-top: none !important;
+  border-radius: 0 0 2px 2px !important;
+  background: rgba(56, 48, 42, 0.01) !important;
+}
+
+#cc-main .pm__section--toggle .pm__section-desc {
+  padding: 1.25rem !important;
+}
+
+/* Toggle wrapper positioning */
+#cc-main .section__toggle-wrapper {
+  right: 1.25rem !important;
+}
+
+/* Toggle switches */
+#cc-main .toggle__icon {
+  background: rgba(56, 48, 42, 0.12) !important;
+  box-shadow: none !important;
+  border: 1.5px solid rgba(56, 48, 42, 0.15) !important;
+  border-radius: 2px !important;
+}
+
+#cc-main .section__toggle:checked ~ .toggle__icon {
+  background: #38302a !important;
+  border-color: #38302a !important;
+}
+
+#cc-main .toggle__icon-circle {
+  background: #fffcf5 !important;
+  box-shadow: none !important;
+  border-radius: 1px !important;
+}
+
+#cc-main .section__toggle:disabled ~ .toggle__icon {
+  background: rgba(56, 48, 42, 0.08) !important;
+  border-color: rgba(56, 48, 42, 0.1) !important;
+  opacity: 0.5 !important;
+}
+
+/* Badge styling */
+#cc-main .pm__badge {
+  background: rgba(56, 48, 42, 0.1) !important;
+  color: #38302a !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+  padding: 0.15rem 0.5rem !important;
+  border-radius: 2px !important;
+  margin-left: 0.75rem !important;
+}
+
+/* Service counter badge */
+#cc-main .pm__service-counter {
+  background: #38302a !important;
+  color: #fffcf5 !important;
+}
+
+/* Preferences modal buttons */
+#cc-main .pm__btn {
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.9rem !important;
+  font-weight: 400 !important;
+  padding: 0.7rem 1.5rem !important;
+  border-radius: 2px !important;
+  min-height: 42px !important;
+  transition: all 0.2s ease !important;
+}
+
+#cc-main .pm__btn:not(.pm__btn--secondary) {
+  background: #38302a !important;
+  border: 1px solid #38302a !important;
+  color: #fffcf5 !important;
+}
+
+#cc-main .pm__btn:not(.pm__btn--secondary):hover {
+  background: rgba(56, 48, 42, 0.85) !important;
+  border-color: rgba(56, 48, 42, 0.85) !important;
+}
+
+#cc-main .pm__btn--secondary {
+  background: transparent !important;
+  border: 1px solid rgba(56, 48, 42, 0.15) !important;
+  color: #38302a !important;
+}
+
+#cc-main .pm__btn--secondary:hover {
+  background: rgba(56, 48, 42, 0.04) !important;
+  border-color: rgba(56, 48, 42, 0.25) !important;
+}
+
+/* Preferences footer */
+#cc-main .pm__footer {
+  background: transparent !important;
+  border-top: 1px solid rgba(56, 48, 42, 0.1) !important;
+  padding: 1.25rem 1.8rem !important;
+}
+
+/* Cookie table */
+#cc-main .pm__section-table {
+  border: 1px solid rgba(56, 48, 42, 0.08) !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+  margin-top: 1rem !important;
+}
+
+#cc-main .pm__table-head {
+  background: rgba(56, 48, 42, 0.04) !important;
+}
+
+#cc-main .pm__table-th {
+  background: transparent !important;
+  color: #38302a !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-weight: 400 !important;
+  font-size: 0.8rem !important;
+  padding: 0.85rem 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+
+#cc-main .pm__table-td {
+  color: #504630 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-weight: 400 !important;
+  font-size: 0.85rem !important;
+  padding: 0.85rem 1rem !important;
+  border-top: 1px solid rgba(56, 48, 42, 0.06) !important;
+}
+
+#cc-main .pm__table-tr:hover {
+  background: rgba(56, 48, 42, 0.02) !important;
+}
+
+#cc-main .pm__table-caption {
+  color: #38302a !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-weight: 400 !important;
+  font-size: 0.95rem !important;
+  padding: 0.85rem 1rem !important;
+  border-bottom: 1px solid rgba(56, 48, 42, 0.08) !important;
+  background: rgba(56, 48, 42, 0.02) !important;
+}
+
+/* Footer container */
+#cc-main .cm__footer {
+  background: #fffcf5 !important;
+  border-top: 1px solid rgba(56, 48, 42, 0.1) !important;
+  padding: 0.6rem 1.2rem !important;
+}
+
+/* Footer links */
+#cc-main .cm__footer a,
+#cc-main .cm__link {
+  color: #38302a !important;
+  text-decoration: none !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+  transition: color 0.2s ease !important;
+  background-image: none !important;
+}
+
+#cc-main .cm__footer a:hover,
+#cc-main .cm__link:hover {
+  color: #38302a !important;
+  background-size: 0 !important;
+}
+
+/* General links in description */
+#cc-main .cm__desc a {
+  color: #38302a !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(56, 48, 42, 0.3) !important;
+}
+
+#cc-main .cm__desc a:hover {
+  color: rgba(56, 48, 42, 0.85) !important;
+  text-decoration-color: rgba(56, 48, 42, 0.5) !important;
+}
+
+/* Preferences modal links */
+#cc-main .pm a {
+  color: #38302a !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(56, 48, 42, 0.3) !important;
+  font-weight: 400 !important;
+}
+
+#cc-main .pm a:hover {
+  color: rgba(56, 48, 42, 0.85) !important;
+  text-decoration-color: rgba(56, 48, 42, 0.5) !important;
+}
+
+/* Overlay/backdrop for preferences modal */
+#cc-main .pm-overlay {
+  background: rgba(56, 48, 42, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Screen reader only class for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Expandable section arrow */
+#cc-main .pm__section--expandable .pm__section-arrow {
+  background: rgba(56, 48, 42, 0.08) !important;
+  border-radius: 2px !important;
+  width: 22px !important;
+  height: 22px !important;
+  left: 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#cc-main .pm__section--expandable .pm__section-arrow svg {
+  stroke: #38302a !important;
+  stroke-width: 2 !important;
+}
+
+#cc-main .pm__section--expandable .pm__section-title {
+  padding-left: 3.5rem !important;
+}
+
+/* Services list */
+#cc-main .pm__section-services {
+  padding: 0.5rem 0 !important;
+}
+
+#cc-main .pm__service {
+  padding: 0.75rem 1.25rem !important;
+  border-radius: 2px !important;
+  margin: 0.25rem 0 !important;
+}
+
+#cc-main .pm__service:hover {
+  background-color: rgba(56, 48, 42, 0.03) !important;
+}
+
+#cc-main .pm__service-title {
+  font-size: 0.9rem !important;
+  color: #38302a !important;
+}
+
+#cc-main .pm__service-icon {
+  border-color: #38302a !important;
+  border-width: 2px !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  #cc-main .cm {
+    margin: 0.75rem !important;
+    border-radius: 2px !important;
+    max-width: calc(100vw - 1.5rem) !important;
+  }
+
+  #cc-main .cm__title {
+    font-size: 1rem !important;
+    padding: 0 1rem !important;
+  }
+
+  #cc-main .cm__desc {
+    font-size: 0.8rem !important;
+    padding: 0 1rem !important;
+    max-height: 120px !important;
+  }
+
+  #cc-main .cm__texts {
+    padding: 1rem 0 0.6rem !important;
+  }
+
+  #cc-main .cm__btns {
+    padding: 0.6rem 1rem 0.8rem !important;
+  }
+
+  #cc-main .cm__btn {
+    padding: 8px 14px !important;
+    font-size: 0.75rem !important;
+    min-height: 34px !important;
+  }
+
+  #cc-main .cm__footer {
+    padding: 0.5rem 1rem !important;
+  }
+
+  #cc-main .cm__footer a {
+    font-size: 0.7rem !important;
+  }
+
+  /* Preferences modal on mobile */
+  #cc-main .pm {
+    max-width: calc(100vw - 1rem) !important;
+    border-radius: 2px !important;
+  }
+
+  #cc-main .pm__header {
+    padding: 1.25rem 1.25rem !important;
+  }
+
+  #cc-main .pm__title {
+    font-size: 1.25rem !important;
+  }
+
+  #cc-main .pm__body {
+    padding: 1.25rem 1.25rem !important;
+  }
+
+  #cc-main .pm__section:first-child {
+    padding: 1rem !important;
+  }
+
+  #cc-main .pm__section--toggle .pm__section-title {
+    padding: 0.9rem 4.5rem 0.9rem 1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  #cc-main .pm__section-title {
+    font-size: 0.95rem !important;
+  }
+
+  #cc-main .pm__section-desc {
+    font-size: 0.85rem !important;
+    padding: 1rem !important;
+  }
+
+  #cc-main .pm__footer {
+    padding: 1rem 1.25rem !important;
+  }
+
+  #cc-main .pm__btn {
+    font-size: 0.85rem !important;
+    padding: 0.65rem 1.25rem !important;
+  }
+
+  #cc-main .section__toggle-wrapper {
+    right: 1rem !important;
+  }
+
+  #cc-main .pm__table-th,
+  #cc-main .pm__table-td {
+    font-size: 0.8rem !important;
+    padding: 0.7rem 0.75rem !important;
+  }
+}

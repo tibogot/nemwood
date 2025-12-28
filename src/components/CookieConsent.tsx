@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 
 // Déclaration pour Google Analytics
@@ -74,9 +73,9 @@ export default function CookieConsentComponent() {
       // Options d'interface
       guiOptions: {
         consentModal: {
-          layout: "cloud inline",
-          position: "bottom center",
-          equalWeightButtons: true,
+          layout: "box",
+          position: "bottom right",
+          equalWeightButtons: false,
           flipButtons: false,
         },
         preferencesModal: {
@@ -153,12 +152,12 @@ export default function CookieConsentComponent() {
         translations: {
           fr: {
             consentModal: {
-              title: "Nous utilisons des cookies",
+              title: "",
               description:
-                "Ce site utilise des cookies essentiels pour son bon fonctionnement et des cookies de suivi pour comprendre comment vous interagissez avec lui. Ces derniers ne seront activés qu'avec votre consentement. <br><br>Vos données sont traitées conformément au RGPD.",
-              acceptAllBtn: "Tout accepter",
-              acceptNecessaryBtn: "Refuser tout",
-              showPreferencesBtn: "Gérer les préférences",
+                "Ce site utilise des cookies essentiels et des cookies de suivi pour améliorer votre expérience. Vos données sont traitées conformément au RGPD.",
+              acceptAllBtn: "Accepter",
+              acceptNecessaryBtn: "Refuser",
+              showPreferencesBtn: "Personnaliser",
               footer: `
                 <a href="/mentions-legales" target="_blank">Mentions légales</a>
                 <a href="/politique-confidentialite" target="_blank">Politique de confidentialité</a>
