@@ -187,14 +187,14 @@ img {
   background: rgba(255, 255, 255, 0.98) !important;
   backdrop-filter: blur(10px) !important;
   border: 1px solid #8b4513 !important;
-  border-radius: 12px !important;
+  border-radius: 2px !important;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Modal title */
 #cc-main .cm__title {
   color: #2d1b0f !important;
-  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-family: var(--font-HelveticaNow) !important;
   font-size: 1.5rem !important;
   font-weight: 400 !important;
 }
@@ -213,7 +213,7 @@ img {
   font-size: 0.9rem !important;
   font-weight: 500 !important;
   padding: 12px 24px !important;
-  border-radius: 6px !important;
+  border-radius: 2px !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
 }
@@ -261,7 +261,7 @@ img {
 #cc-main .pm {
   background: rgba(255, 255, 255, 0.98) !important;
   backdrop-filter: blur(15px) !important;
-  border-radius: 16px !important;
+  border-radius: 2px !important;
   border: 1px solid #8b4513 !important;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
 }
@@ -269,7 +269,7 @@ img {
 /* Preferences modal title */
 #cc-main .pm__title {
   color: #2d1b0f !important;
-  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-family: var(--font-HelveticaNow) !important;
   font-size: 1.8rem !important;
   border-bottom: 2px solid #d2b48c !important;
   padding-bottom: 1rem !important;
@@ -278,7 +278,7 @@ img {
 /* Section titles */
 #cc-main .pm__section-title {
   color: #8b4513 !important;
-  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-family: var(--font-HelveticaNow) !important;
   font-size: 1.2rem !important;
   font-weight: 400 !important;
 }
@@ -306,7 +306,7 @@ img {
 /* Cookie table */
 #cc-main .cookie-table {
   border: 1px solid #d2b48c !important;
-  border-radius: 8px !important;
+  border-radius: 2px !important;
 }
 
 #cc-main .cookie-table th {
@@ -349,7 +349,7 @@ img {
 @media (max-width: 768px) {
   #cc-main .cm {
     margin: 1rem !important;
-    border-radius: 12px !important;
+    border-radius: 2px !important;
   }
 
   #cc-main .cm__title {

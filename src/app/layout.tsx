@@ -357,7 +357,7 @@ export default function RootLayout({
       >
         <ClientLayout>{children}</ClientLayout>
         {/* Cookie Consent Banner - RGPD compliant - Must load before GoogleAnalytics */}
-        <CookieConsent />
+        {/* <CookieConsent /> */}
         <Analytics />
       </body>
     </html>
