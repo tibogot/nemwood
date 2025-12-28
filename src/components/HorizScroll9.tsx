@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AnimatedText from "./AnimatedText3";
-import AnimatedTextHorizontal from "./AnimatedTextHorizontal";
 
 // Absolute positioning with x coordinate
 interface Position {
@@ -500,81 +499,41 @@ const FreeLayoutScroll: React.FC = () => {
                 >
                   <div className="w-full">
                     {/* Number */}
-                    <AnimatedTextHorizontal
-                      horizontalContainer="[data-horizontal-scroll-free]"
-                      sectionIndex={element.sectionIndex}
-                      totalSections={5}
-                      stagger={0.1}
-                      duration={0.6}
-                      delay={0.1}
-                      earlyTrigger={false}
-                    >
-                      <p className="font-HelveticaNow text-primary/70 mb-4 text-sm">
-                        {element.number}
-                      </p>
-                    </AnimatedTextHorizontal>
+                    <p className="font-HelveticaNow text-primary/70 mb-4 text-sm">
+                      {element.number}
+                    </p>
 
                     {/* Title */}
-                    <AnimatedTextHorizontal
-                      horizontalContainer="[data-horizontal-scroll-free]"
-                      sectionIndex={element.sectionIndex}
-                      totalSections={5}
-                      stagger={0.1}
-                      duration={0.6}
-                      delay={0.2}
-                      earlyTrigger={false}
-                    >
-                      <h3 className="font-ITCGaramondN text-primary mb-6 text-4xl leading-[0.9] break-words md:text-5xl lg:text-6xl xl:text-7xl">
-                        {element.title}
-                      </h3>
-                    </AnimatedTextHorizontal>
+                    <h3 className="font-ITCGaramondN text-primary mb-6 text-4xl leading-[0.9] break-words md:text-5xl lg:text-6xl xl:text-7xl">
+                      {element.title}
+                    </h3>
 
                     {/* Paragraph */}
-                    <AnimatedTextHorizontal
-                      horizontalContainer="[data-horizontal-scroll-free]"
-                      sectionIndex={element.sectionIndex}
-                      totalSections={5}
-                      stagger={0.05}
-                      duration={0.5}
-                      delay={0.4}
-                      earlyTrigger={false}
-                    >
-                      <p className="font-HelveticaNow text-primary/90 mb-6 max-w-full text-lg leading-relaxed break-words hyphens-auto">
-                        {element.paragraph}
-                      </p>
-                    </AnimatedTextHorizontal>
+                    <p className="font-HelveticaNow text-primary/90 mb-6 max-w-full text-lg leading-relaxed break-words hyphens-auto">
+                      {element.paragraph}
+                    </p>
 
                     {/* Button */}
-                    <AnimatedTextHorizontal
-                      horizontalContainer="[data-horizontal-scroll-free]"
-                      sectionIndex={element.sectionIndex}
-                      totalSections={5}
-                      stagger={0.05}
-                      duration={0.5}
-                      delay={0.55}
-                      earlyTrigger={false}
+                    <Link
+                      href={
+                        element.isCTASection
+                          ? "/services"
+                          : `/services/${element.slug}`
+                      }
                     >
-                      <Link
-                        href={
-                          element.isCTASection
-                            ? "/services"
-                            : `/services/${element.slug}`
-                        }
-                      >
-                        <button className="font-HelveticaNow">
-                          <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                            <span>
-                              {element.isCTASection
-                                ? "Découvrir tous nos services"
-                                : "En savoir plus"}
-                            </span>
-                            <div className="mt-0.5 ml-1">
-                              <ArrowRight size={18} strokeWidth={1.5} />
-                            </div>
+                      <button className="font-HelveticaNow">
+                        <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
+                          <span>
+                            {element.isCTASection
+                              ? "Découvrir tous nos services"
+                              : "En savoir plus"}
+                          </span>
+                          <div className="mt-0.5 ml-1">
+                            <ArrowRight size={18} strokeWidth={1.5} />
                           </div>
-                        </button>
-                      </Link>
-                    </AnimatedTextHorizontal>
+                        </div>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               );
