@@ -315,11 +315,16 @@ const FreeLayoutScroll: React.FC = () => {
         parallaxTweensRef.current = [];
 
         requestAnimationFrame(() => {
-          if (!scrollerRef.current) return;
+          if (!scrollerRef.current || !containerRef.current) return;
+
+          // Force a reflow to ensure width is calculated
+          scrollerRef.current.offsetWidth;
 
           const scrollWidth = scrollerRef.current.scrollWidth;
           const viewportWidth = window.innerWidth;
           const scrollDistance = scrollWidth - viewportWidth;
+
+          console.log('HorizScroll9 - scrollWidth:', scrollWidth, 'viewportWidth:', viewportWidth, 'scrollDistance:', scrollDistance);
 
           if (scrollDistance <= 0) return;
 
@@ -330,12 +335,14 @@ const FreeLayoutScroll: React.FC = () => {
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top top",
-              end: `+=${scrollDistance}`,
+              end: () => `+=${scrollDistance}`,
               scrub: 1,
               pin: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              pinSpacing: true,
               normalizeScroll: true,
+              markers: false, // Set to true for debugging
             } as ScrollTrigger.Vars & { normalizeScroll?: boolean },
           });
 
@@ -469,10 +476,11 @@ const FreeLayoutScroll: React.FC = () => {
       >
         <div
           ref={scrollerRef}
-          className="relative h-full"
+          className="relative h-full will-change-transform"
           style={{
             width: totalCanvasWidth,
             minWidth: totalCanvasWidth,
+            maxWidth: totalCanvasWidth,
             paddingTop: "clamp(3rem, 6vw, 5rem)",
             paddingBottom: "clamp(3rem, 6vw, 5rem)",
           }}
