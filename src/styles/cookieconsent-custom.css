@@ -547,4 +547,17 @@
     font-size: 0.8rem !important;
     padding: 0.7rem 0.75rem !important;
   }
+
+  /* Expandable sections (accordion) on mobile - fix chevron overlap */
+  #cc-main .pm__section--expandable .pm__section-arrow {
+    left: 1rem !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  #cc-main .pm__section--expandable .pm__section-title {
+    padding-left: 3rem !important;
+    padding-right: 1rem !important;
+    font-size: 0.95rem !important;
+  }
 }
