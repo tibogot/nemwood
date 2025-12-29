@@ -302,8 +302,17 @@ const FreeLayoutScroll: React.FC = () => {
       )
         return;
 
-      const setupScrollAnimation = () => {
+      const setupScrollAnimation = async () => {
         if (!scrollerRef.current || !containerRef.current) return;
+
+        // CRITICAL: Wait for fonts to load before calculating widths
+        // This prevents incorrect width calculations that cause jumping
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+
+        // Additional delay to ensure SplitText animations have completed
+        await new Promise((resolve) => setTimeout(resolve, 200));
 
         // Clean up existing ScrollTriggers
         if (scrollTweenRef.current) {
@@ -342,9 +351,9 @@ const FreeLayoutScroll: React.FC = () => {
               anticipatePin: 1,
               invalidateOnRefresh: true,
               pinSpacing: true,
-              normalizeScroll: true,
+              // normalizeScroll removed - conflicts with Lenis smooth scroll
               markers: false, // Set to true for debugging
-            } as ScrollTrigger.Vars & { normalizeScroll?: boolean },
+            },
           });
 
           // Parallax effect for images
@@ -371,13 +380,14 @@ const FreeLayoutScroll: React.FC = () => {
             parallaxTweensRef.current.push(parallaxTween);
           });
 
-          requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-          });
+          // Single ScrollTrigger refresh after setup
+          ScrollTrigger.refresh();
         });
       };
 
-      const timeoutId = setTimeout(setupScrollAnimation, 100);
+      // Increased timeout to ensure fonts and SplitText are fully loaded
+      // This prevents width calculation issues that cause jumping
+      const timeoutId = setTimeout(setupScrollAnimation, 500);
 
       const handleResize = () => {
         ScrollTrigger.refresh();
@@ -484,6 +494,9 @@ const FreeLayoutScroll: React.FC = () => {
             maxWidth: totalCanvasWidth,
             paddingTop: "clamp(3rem, 6vw, 5rem)",
             paddingBottom: "clamp(3rem, 6vw, 5rem)",
+            // Force GPU acceleration for smoother horizontal scroll
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
           }}
         >
           {/* Render all elements */}
