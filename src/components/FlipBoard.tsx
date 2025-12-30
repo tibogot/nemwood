@@ -198,7 +198,7 @@ export default function FlipBoard(): React.JSX.Element {
                     }}
                   >
                     <Image
-                      src="/images/Apropos-nemwood.webp"
+                      src="/images/Biliothèque 3.webp"
                       alt="Back face"
                       fill
                       className="object-cover"

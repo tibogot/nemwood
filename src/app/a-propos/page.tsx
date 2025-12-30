@@ -86,7 +86,7 @@ export default function About() {
           <div className="right flex flex-col items-end text-left md:w-1/2">
             <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
               <Image
-                src="/images/atelier-1.webp"
+                src="/images/Table 1.webp"
                 alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
                 fill
                 className="object-cover transition-transform duration-500 ease-out hover:scale-105"

@@ -121,7 +121,7 @@ const FreeLayoutScroll: React.FC = () => {
         maxWidth: "480px",
         maxHeight: "380px",
       },
-      zIndex: 1,
+      zIndex: 10,
     },
     // Text - bottom left
     {
@@ -137,13 +137,13 @@ const FreeLayoutScroll: React.FC = () => {
         width: "min(600px, 35vw)",
         maxWidth: "600px",
       },
-      zIndex: 10,
+      zIndex: 1,
       sectionIndex: 1,
     },
     // Large image - right side
     {
       type: "image",
-      src: "/images/Escalier 5.webp",
+      src: "/images/dressing-poignée en chêne-2.webp",
       alt: "Détail garde-robe",
       position: {
         x: "155vw",
@@ -245,15 +245,15 @@ const FreeLayoutScroll: React.FC = () => {
     // Small image - bottom left
     {
       type: "image",
-      src: "/images/cuisine2.jpg",
+      src: "/images/Cuisine Jade & O'nonto 2.webp",
       alt: "Détail cuisine",
       position: {
-        x: "305vw",
-        bottom: "10%",
+        x: "310vw",
+        bottom: "-10%",
         width: "min(480px, 32vw)",
-        height: "min(420px, 36vh)",
+        height: "min(650px, 58vh)",
         maxWidth: "480px",
-        maxHeight: "420px",
+        maxHeight: "650px",
       },
       zIndex: 2,
       parallaxSpeed: 100,
@@ -281,7 +281,7 @@ const FreeLayoutScroll: React.FC = () => {
     // Full-height image - right side (pinned to right edge, 55vw wide)
     {
       type: "image",
-      src: "/images/autres-services.webp",
+      src: "/images/Meuble SDB Jade & O'nonto.webp",
       alt: "Autres services",
       position: {
         x: "445vw",
@@ -334,7 +334,14 @@ const FreeLayoutScroll: React.FC = () => {
           const viewportWidth = window.innerWidth;
           const scrollDistance = scrollWidth - viewportWidth;
 
-          console.log('HorizScroll9 - scrollWidth:', scrollWidth, 'viewportWidth:', viewportWidth, 'scrollDistance:', scrollDistance);
+          console.log(
+            "HorizScroll9 - scrollWidth:",
+            scrollWidth,
+            "viewportWidth:",
+            viewportWidth,
+            "scrollDistance:",
+            scrollDistance,
+          );
 
           if (scrollDistance <= 0) return;
 
