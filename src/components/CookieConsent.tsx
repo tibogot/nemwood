@@ -152,7 +152,7 @@ export default function CookieConsentComponent() {
         translations: {
           fr: {
             consentModal: {
-              title: "",
+              title: "Gestion des cookies",
               description:
                 "Ce site utilise des cookies essentiels et des cookies de suivi pour améliorer votre expérience. Vos données sont traitées conformément au RGPD.",
               acceptAllBtn: "Accepter",

@@ -161,10 +161,9 @@
 }
 
 #cc-main .pm__section:first-child {
-  background: rgba(56, 48, 42, 0.03) !important;
-  border: 1px solid rgba(56, 48, 42, 0.08) !important;
-  padding: 1.25rem !important;
-  border-radius: 2px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
   margin-bottom: 1.5rem !important;
 }
 
@@ -512,7 +511,7 @@
   }
 
   #cc-main .pm__section:first-child {
-    padding: 1rem !important;
+    padding: 0 !important;
   }
 
   #cc-main .pm__section--toggle .pm__section-title {
