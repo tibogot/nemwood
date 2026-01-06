@@ -178,3 +178,14 @@ img {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: red;
+  background: yellow;
+}
