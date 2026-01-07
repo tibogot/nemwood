@@ -181,11 +181,11 @@ img {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: red;
-  background: yellow;
+  color: var(--color-secondary);
+  background: var(--color-primary);
 }
 
 ::selection {
-  color: red;
-  background: yellow;
+  color: var(--color-secondary);
+  background: var(--color-primary);
 }
