@@ -101,7 +101,7 @@ export default function TableOfContents({
           end: "bottom bottom", // Unpin when content section ends
           pin: true,
           pinSpacing: false, // Don't add spacing - the aside container maintains its width in flex layout
-          anticipatePin: 1,
+          // anticipatePin: 1,
           scroller: document.body,
         });
 
@@ -189,9 +189,6 @@ export default function TableOfContents({
       ref={containerRef}
       className="md:w-[35%] md:max-w-[700px] md:flex-shrink-0"
     >
-      <div className="text-primary/70 mb-20 text-base md:text-lg">
-        Dernière mise à jour : {lastUpdate}
-      </div>
       <nav ref={navRef}>
         <h3 className="font-HelveticaNow mb-6 text-base md:text-lg">
           Table des matières

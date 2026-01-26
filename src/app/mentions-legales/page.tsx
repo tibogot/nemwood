@@ -29,6 +29,10 @@ export default function MentionsLegales() {
           </AnimatedText>
         </section>
         <section className="mx-auto py-20 md:py-40">
+          {/* Last update date */}
+          <div className="font-HelveticaNow text-primary/70 mb-12 text-base md:text-lg">
+            Dernière mise à jour : 26 décembre 2025
+          </div>
           {/* Two column layout: TOC on left, content on right */}
           <div className="flex flex-col gap-12 md:flex-row md:gap-16">
             {/* Table of Contents - Left side on desktop, top on mobile */}
