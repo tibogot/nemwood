@@ -103,7 +103,7 @@ export default function Testimonial() {
             end: `+=${cards.length * 100}%`,
             scrub: 1,
             pin: true,
-            anticipatePin: 1,
+            // anticipatePin: 1,
             invalidateOnRefresh: true, // Recalculate on viewport changes
           },
         });
