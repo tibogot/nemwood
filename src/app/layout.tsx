@@ -150,7 +150,7 @@ export default function RootLayout({
                 "@type": "PostalAddress",
                 streetAddress: "Nering 34",
                 addressLocality: "Beersel",
-                postalCode: "1620",
+                postalCode: "1650",
                 addressRegion: "Vlaams-Brabant",
                 addressCountry: "BE",
               },

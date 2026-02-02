@@ -50,7 +50,7 @@ export default function CGV() {
                   <div className="space-y-2">
                     <p className="font-semibold">NEMWOOD</p>
                     <p>
-                      Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant,
+                      Addresse: Nering 34, 1650 Beersel, Vlaams-Brabant,
                       Belgique
                     </p>
                     <p>Email: contact@nemwood.be</p>
@@ -1003,7 +1003,7 @@ export default function CGV() {
                         <div className="space-y-2">
                           <p className="font-semibold">NEMWOOD</p>
                           <p>
-                            Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant,
+                            Addresse: Nering 34, 1650 Beersel, Vlaams-Brabant,
                             Belgique
                           </p>
                           <p>Email: contact@nemwood.be</p>
@@ -1122,7 +1122,7 @@ export default function CGV() {
                 <div className="space-y-2">
                   <p>Email: contact@nemwood.be</p>
                   <p>
-                    Addresse: Nering 34, 1620 Beersel, Vlaams-Brabant, Belgique
+                    Addresse: Nering 34, 1650 Beersel, Vlaams-Brabant, Belgique
                   </p>
                   <p>Tel : +32 489 33 05 44</p>
                 </div>

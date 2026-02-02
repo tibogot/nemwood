@@ -14,7 +14,7 @@ export default function Footer() {
     className: string,
   ) => {
     const isCurrentPage = pathname === href;
-    
+
     if (isCurrentPage) {
       return (
         <span
@@ -25,7 +25,7 @@ export default function Footer() {
         </span>
       );
     }
-    
+
     return (
       <Link href={href} className={className}>
         {children}
@@ -56,27 +56,27 @@ export default function Footer() {
                 {renderLink(
                   "/",
                   "Home",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/a-propos",
                   "A propos",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services",
                   "Services",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/contact",
                   "Contact",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/blog",
                   "Blog",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
               </div>
             </div>
@@ -90,37 +90,37 @@ export default function Footer() {
                 {renderLink(
                   "/services/escaliers",
                   "Escaliers",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/garde-robes",
                   "Gardes-robes",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/tables",
                   "Tables",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/cuisines",
                   "Cuisines",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/bibliotheques",
                   "Bibliothèques",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/bureaux",
                   "Bureaux",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
                   "/services/salles-de-bain",
                   "Salles de bain",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg"
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function Footer() {
                 Adresse
               </div>
               <div className="font-HelveticaNow text-primary flex flex-col text-lg leading-relaxed">
-                <div>Nering 34, 1620 Beersel</div>
+                <div>Nering 34, 1650 Beersel</div>
                 <div>Vlaams-Brabant Belgique</div>
               </div>
             </div>
@@ -209,25 +209,21 @@ export default function Footer() {
             {renderLink(
               "/mentions-legales",
               "Mentions légales",
-              "transition-opacity hover:opacity-70"
+              "transition-opacity hover:opacity-70",
             )}
             <span className="opacity-70">|</span>
             {renderLink(
               "/politique-confidentialite",
               "Politique de confidentialité",
-              "transition-opacity hover:opacity-70"
+              "transition-opacity hover:opacity-70",
             )}
             <span className="opacity-70">|</span>
-            {renderLink(
-              "/cgv",
-              "CGV",
-              "transition-opacity hover:opacity-70"
-            )}
+            {renderLink("/cgv", "CGV", "transition-opacity hover:opacity-70")}
             <span className="opacity-70">|</span>
             {renderLink(
               "/politique-cookies",
               "Cookies",
-              "transition-opacity hover:opacity-70"
+              "transition-opacity hover:opacity-70",
             )}
           </div>
         </div>
