@@ -110,6 +110,33 @@ const portableTextComponents = {
         </div>
       );
     },
+    // Handle table blocks from Sanity
+    table: ({ value }: any) => {
+      if (!value?.rows) {
+        return null;
+      }
+
+      return (
+        <div className="my-8 overflow-x-auto">
+          <table className="min-w-full border-collapse border border-gray-300">
+            <tbody>
+              {value.rows.map((row: any, rowIndex: number) => (
+                <tr key={rowIndex} className="border-b border-gray-300">
+                  {row.cells?.map((cell: string, cellIndex: number) => (
+                    <td
+                      key={cellIndex}
+                      className="border border-gray-300 px-4 py-2 text-left"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    },
   },
   block: {
     // Handle normal paragraphs with proper spacing
