@@ -65,9 +65,9 @@ const HelveticaNow = localFont({
 // });
 
 export const metadata: Metadata = {
-  title: "Nemwood | Meubles en bois sur mesure en Belgique",
+  title: "Menuiserie sur mesure en Belgique | Nemwood",
   description:
-    "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
+    "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
   authors: [{ name: "Nemwood" }],
   creator: "Nemwood",
   publisher: "Nemwood",
@@ -81,8 +81,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Nemwood - Meubles en bois sur mesure en Belgique",
-    description: "Fabrication artisanale de meubles en bois massif sur mesure.",
+    title: "Menuiserie sur mesure en Belgique | Nemwood",
+    description:
+      "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
     type: "website",
     locale: "fr_BE",
     siteName: "Nemwood",
@@ -98,8 +99,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nemwood - Meubles en bois sur mesure en Belgique",
-    description: "Fabrication artisanale de meubles en bois massif sur mesure.",
+    title: "Menuiserie sur mesure en Belgique | Nemwood",
+    description:
+      "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
     images: ["/images/nem1.png"],
   },
 };
@@ -140,7 +142,7 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               name: "Nemwood",
               description:
-                "Artisan menuisier en Belgique spécialisé dans la fabrication de meubles en bois sur mesure : escaliers, garde-robes, tables, cuisines. Devis gratuit.",
+                "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
               url: "https://www.nemwood.be",
               telephone: "+32 489 33 05 44",
               email: "contact@nemwood.be",

@@ -30,10 +30,11 @@ export default function About() {
             <AnimatedText isHero delay={0.0} stagger={0.3}>
               <h1 className="mb-6 text-5xl md:text-7xl">A propos</h1>
               <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-                Vous cherchez un artisan menuisier en Belgique pour créer des
-                meubles en bois sur mesure ? Nemwood est spécialisé dans la
-                fabrication artisanale de tables, chaises, garde-robes,
-                escaliers et même de décors pour le cinéma.
+                Depuis 2016, Nemwood imagine et fabrique du mobilier en bois
+                sur mesure en Belgique. Artisan menuisier passionné, nous
+                accompagnons chaque client de la conception à l'installation
+                pour créer des pièces uniques qui s'intègrent parfaitement à
+                leur intérieur.
               </p>
             </AnimatedText>
           </div>
@@ -43,7 +44,7 @@ export default function About() {
         <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
           <Image
             src="/images/Apropos-nemwood.webp"
-            alt="Nemwood woodworking craftsmanship"
+            alt="Atelier Nemwood - Artisan menuisier en Belgique"
             fill
             className="object-cover"
             sizes="100vw"
@@ -87,7 +88,7 @@ export default function About() {
             <div className="relative h-[400px] w-full overflow-hidden bg-amber-400 select-none md:h-[600px]">
               <Image
                 src="/images/Table 1.webp"
-                alt="Kitchen design by Nemwood - Cuisine sur mesure en bois"
+                alt="Table en bois sur mesure réalisée par Nemwood"
                 fill
                 className="object-cover transition-transform duration-500 ease-out hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"

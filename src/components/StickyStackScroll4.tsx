@@ -42,7 +42,7 @@ function Card1() {
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
               src="/images/sticky-eco.webp"
-              alt="Cuisine sur mesure"
+              alt="Démarche éco-responsable Nemwood - Bois issu de filières durables"
               fill
               className="object-cover"
               sizes="50vw"
@@ -94,7 +94,7 @@ function Card2() {
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
               src="/images/materiaux-durable.webp"
-              alt="Escaliers sur mesure"
+              alt="Sélection de matériaux durables - Bois certifié et traçable"
               fill
               className="object-cover"
               sizes="50vw"
@@ -144,7 +144,7 @@ function Card3() {
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
               src="/images/fabrication-sur-mesure.webp"
-              alt="Garde-robes sur mesure"
+              alt="Fabrication artisanale sur mesure en atelier Nemwood"
               fill
               className="object-cover"
               sizes="50vw"
@@ -192,7 +192,7 @@ function Card4() {
           <div className="relative hidden h-full w-full overflow-hidden rounded-sm md:flex md:w-1/2">
             <Image
               src="/images/Render 3D - 2 .webp"
-              alt="Tables en bois massif"
+              alt="Modélisation 3D d'un projet de mobilier sur mesure"
               fill
               className="object-cover"
               sizes="50vw"
@@ -533,10 +533,10 @@ export default function HomeCard() {
             Imaginer, concevoir et réaliser vos projets
           </h2>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-            Vous cherchez un artisan menuisier en Belgique pour créer des
-            meubles en bois sur mesure ? Nemwood est spécialisé dans la
-            fabrication artisanale de tables, chaises, garde-robes, escaliers et
-            même de décors pour le cinéma.
+            De la première esquisse à l'installation finale, chaque projet
+            Nemwood suit un processus rigoureux. Nous allions savoir-faire
+            artisanal et outils modernes pour créer un mobilier durable,
+            esthétique et parfaitement adapté à votre intérieur.
           </p>
         </AnimatedText>
       </section>
@@ -565,7 +565,7 @@ export default function HomeCard() {
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
                   src="/images/sticky-eco.webp"
-                  alt="Cuisine sur mesure"
+                  alt="Démarche éco-responsable Nemwood - Bois issu de filières durables"
                   width={1000}
                   height={400}
                   className="h-full w-full object-cover"
@@ -598,7 +598,7 @@ export default function HomeCard() {
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
                   src="/images/materiaux-durable.webp"
-                  alt="Escaliers sur mesure"
+                  alt="Sélection de matériaux durables - Bois certifié et traçable"
                   width={1000}
                   height={400}
                   className="h-full w-full object-cover"
@@ -630,7 +630,7 @@ export default function HomeCard() {
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
                   src="/images/fabrication-sur-mesure.webp"
-                  alt="Garde-robes sur mesure"
+                  alt="Fabrication artisanale sur mesure en atelier Nemwood"
                   width={1000}
                   height={400}
                   className="h-full w-full object-cover"
@@ -660,7 +660,7 @@ export default function HomeCard() {
               <div className="h-[400px] w-full overflow-hidden rounded-sm">
                 <Image
                   src="/images/Render 3D - 2 .webp"
-                  alt="Tables en bois massif"
+                  alt="Modélisation 3D d'un projet de mobilier sur mesure"
                   width={1000}
                   height={400}
                   className="h-full w-full object-cover"
