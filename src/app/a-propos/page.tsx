@@ -9,8 +9,8 @@ import { generateMetadata } from "@/app/metadata";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
-  "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
-  "Découvrez Nemwood, artisan menuisier belge spécialisé dans la fabrication de meubles en bois sur mesure : tables, garde-robes, escaliers et cuisines.",
+  "Artisan menuisier belge sur mesure | Nemwood",
+  "Depuis 2016, Nemwood conçoit et fabrique du mobilier en bois sur mesure en Belgique : tables, garde-robes, escaliers et cuisines. Artisan menuisier passionné.",
   "/images/wardrobe.webp",
   "https://www.nemwood.be/a-propos",
 );
@@ -28,7 +28,7 @@ export default function About() {
         <section className="px-4 py-40 md:px-8 md:py-64">
           <div className="mx-auto max-w-4xl text-center">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
-              <h1 className="mb-6 text-5xl md:text-7xl">A propos</h1>
+              <span className="mb-6 block text-5xl md:text-7xl">A propos</span>
               <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
                 Depuis 2016, Nemwood imagine et fabrique du mobilier en bois
                 sur mesure en Belgique. Artisan menuisier passionné, nous
@@ -61,9 +61,9 @@ export default function About() {
                 {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
               </h4> */}
-                <h2 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                  Le parcours du menuisier
-                </h2>
+                <h1 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
+                  Le parcours d'un artisan menuisier belge
+                </h1>
               </AnimatedText>
               <AnimatedText>
                 <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
