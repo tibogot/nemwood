@@ -28,7 +28,7 @@ export default function About() {
         <section className="px-4 py-40 md:px-8 md:py-64">
           <div className="mx-auto max-w-4xl text-center">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
-              <span className="mb-6 block text-5xl md:text-7xl">A propos</span>
+              <span className="font-ITCGaramondN mb-6 block text-5xl md:text-7xl">A propos</span>
               <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
                 Depuis 2016, Nemwood imagine et fabrique du mobilier en bois
                 sur mesure en Belgique. Artisan menuisier passionné, nous

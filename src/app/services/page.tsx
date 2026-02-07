@@ -60,7 +60,7 @@ export default function ServicesPage() {
         <section className="px-4 py-40 md:px-8 md:py-64">
           <div className="mx-auto max-w-4xl text-center">
             <AnimatedText isHero delay={0.0} stagger={0.3}>
-              <h1 className="mb-6 text-5xl md:text-7xl">Nos Services</h1>
+              <span className="font-ITCGaramondN mb-6 block text-5xl md:text-7xl">Nos Services</span>
               <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
                 Découvrez notre gamme complète de services de menuiserie sur
                 mesure en Belgique. Chaque création est pensée pour s'harmoniser
@@ -86,9 +86,9 @@ export default function ServicesPage() {
         <section className="relative w-full py-16 md:py-20">
           <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
             <AnimatedText>
-              <h2 className="font-ITCGaramondN text-primary mb-4 max-w-2xl text-3xl md:mb-0 md:text-5xl lg:text-7xl">
+              <h1 className="font-ITCGaramondN text-primary mb-4 max-w-2xl text-3xl md:mb-0 md:text-5xl lg:text-7xl">
                 Menuiserie sur mesure en Belgique
-              </h2>
+              </h1>
             </AnimatedText>
 
             <AnimatedText>
