@@ -355,7 +355,7 @@ const FreeLayoutScroll: React.FC = () => {
               end: () => `+=${scrollDistance}`,
               scrub: 1,
               pin: true,
-              anticipatePin: 1,
+              // anticipatePin: 1,
               invalidateOnRefresh: true,
               pinSpacing: true,
               // normalizeScroll removed - conflicts with Lenis smooth scroll
