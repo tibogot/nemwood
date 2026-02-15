@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Garde-robes en bois sur mesure en Belgique | Nemwood",
   "Fabrication de garde-robes et dressings en bois massif sur mesure en Belgique. Solutions de rangement personnalisées.",
-  "/images/wardrobe.webp",
+  "/images/dressing pedro & paloma.png",
   "https://www.nemwood.be/services/garde-robes",
 );
 
@@ -45,7 +45,7 @@ export default function GardeRobesPage() {
         {/* Full Width Image Section with Parallax */}
         <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
           <Image
-            src="/images/wardrobe.webp"
+            src="/images/dressing pedro & paloma.png"
             alt="Garde-robe en bois sur mesure - Artisanat Nemwood"
             fill
             className="object-cover"
@@ -77,7 +77,7 @@ export default function GardeRobesPage() {
                       01
                     </span>
                   </div>
-                  <div className="flex min-w-0 w-full flex-col md:flex-1 md:max-w-xl">
+                  <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                     <AnimatedText>
                       <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                         L'optimisation de l'espace
@@ -126,7 +126,7 @@ export default function GardeRobesPage() {
                     01
                   </span>
                 </div>
-                <div className="flex min-w-0 w-full flex-col md:flex-1 md:max-w-xl">
+                <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                   <AnimatedText>
                     <p className="font-HelveticaNow text-lg">
                       Nous travaillons avec les essences de bois les plus
@@ -177,7 +177,7 @@ export default function GardeRobesPage() {
                       02
                     </span>
                   </div>
-                  <div className="flex min-w-0 w-full flex-col md:flex-1 md:max-w-xl">
+                  <div className="flex w-full min-w-0 flex-col md:max-w-xl md:flex-1">
                     <AnimatedText>
                       <h2 className="font-ITCGaramondN text-4xl leading-none md:text-6xl">
                         Les systèmes de rangement
