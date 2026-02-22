@@ -148,12 +148,12 @@ const portableTextComponents = {
       <h2 className="font-HelveticaNow mt-8 mb-6 text-3xl">{children}</h2>
     ),
     h2: ({ children }: any) => (
-      <h3 className="font-HelveticaNow mt-6 mb-4 text-2xl leading-tight">
+      <h3 className="font-HelveticaNow mt-6 mb-4 text-3xl leading-tight">
         {children}
       </h3>
     ),
     h3: ({ children }: any) => (
-      <h4 className="font-HelveticaNow mt-5 mb-3 text-xl leading-tight">
+      <h4 className="font-HelveticaNow mt-5 mb-3 text-2xl leading-tight">
         {children}
       </h4>
     ),
