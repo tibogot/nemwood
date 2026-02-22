@@ -350,10 +350,10 @@ export default async function BlogPostPage(props: any) {
           </ParallaxImage>
         )}
 
-        <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
-          {/* <h1 className="font-ITCGaramondN mb-6 text-6xl">
+        {/* <section className="text-primary border-primary mx-auto border-y px-4 py-20 text-center md:px-8 md:py-40">
+          <h1 className="font-ITCGaramondN mb-6 text-6xl">
           Creativity to design
-        </h1> */}
+        </h1>
           <AnimatedText>
             <p className="font-HelveticaNow mx-auto text-lg md:max-w-2xl">
               Basés en Belgique, nous valorisons le travail du bois local, la
@@ -362,7 +362,7 @@ export default async function BlogPostPage(props: any) {
               avec nos clients, pour répondre parfaitement à leurs attentes.
             </p>
           </AnimatedText>
-        </section>
+        </section> */}
 
         {/* Content Section with its own padding */}
         <section className="px-4 py-20 md:px-8">
