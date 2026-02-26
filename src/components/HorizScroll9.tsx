@@ -302,17 +302,8 @@ const FreeLayoutScroll: React.FC = () => {
       )
         return;
 
-      const setupScrollAnimation = async () => {
+      const setupScrollAnimation = () => {
         if (!scrollerRef.current || !containerRef.current) return;
-
-        // CRITICAL: Wait for fonts to load before calculating widths
-        // This prevents incorrect width calculations that cause jumping
-        if (document.fonts && document.fonts.ready) {
-          await document.fonts.ready;
-        }
-
-        // Additional delay to ensure SplitText animations have completed
-        await new Promise((resolve) => setTimeout(resolve, 200));
 
         // Clean up existing ScrollTriggers
         if (scrollTweenRef.current) {
@@ -324,77 +315,66 @@ const FreeLayoutScroll: React.FC = () => {
         });
         parallaxTweensRef.current = [];
 
-        requestAnimationFrame(() => {
-          if (!scrollerRef.current || !containerRef.current) return;
+        // Scroller width is fixed at 500vw (totalCanvasWidth). Use measured scrollWidth
+        // when available; fallback to 400vw (4 * viewport) so pin-spacing is correct
+        // from first paint — no delayed setup, no jump on first load.
+        const viewportWidth = window.innerWidth;
+        const scrollWidth = scrollerRef.current.scrollWidth;
+        const scrollDistance =
+          scrollWidth > viewportWidth
+            ? scrollWidth - viewportWidth
+            : viewportWidth * 4;
 
-          // Force a reflow to ensure width is calculated
-          scrollerRef.current.offsetWidth;
+        if (scrollDistance <= 0) return;
 
-          const scrollWidth = scrollerRef.current.scrollWidth;
-          const viewportWidth = window.innerWidth;
-          const scrollDistance = scrollWidth - viewportWidth;
+        // Main horizontal scroll animation
+        scrollTweenRef.current = gsap.to(scrollerRef.current, {
+          x: -scrollDistance,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: () => `+=${scrollDistance}`,
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+            pinSpacing: true,
+            markers: false,
+          },
+        });
 
-          console.log(
-            "HorizScroll9 - scrollWidth:",
-            scrollWidth,
-            "viewportWidth:",
-            viewportWidth,
-            "scrollDistance:",
-            scrollDistance,
+        // Parallax effect for images
+        const parallaxImages = containerRef.current?.querySelectorAll(
+          "[data-parallax-speed]",
+        );
+
+        parallaxImages?.forEach((image) => {
+          const speed = parseFloat(
+            image.getAttribute("data-parallax-speed") || "0",
           );
+          if (speed === 0) return;
 
-          if (scrollDistance <= 0) return;
-
-          // Main horizontal scroll animation
-          scrollTweenRef.current = gsap.to(scrollerRef.current, {
-            x: -scrollDistance,
+          const parallaxTween = gsap.to(image, {
+            x: speed,
             ease: "none",
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top top",
-              end: () => `+=${scrollDistance}`,
+              end: `+=${scrollDistance}`,
               scrub: 1,
-              pin: true,
-              // anticipatePin: 1,
-              invalidateOnRefresh: true,
-              pinSpacing: true,
-              // normalizeScroll removed - conflicts with Lenis smooth scroll
-              markers: false, // Set to true for debugging
             },
           });
-
-          // Parallax effect for images
-          const parallaxImages = containerRef.current?.querySelectorAll(
-            "[data-parallax-speed]",
-          );
-
-          parallaxImages?.forEach((image) => {
-            const speed = parseFloat(
-              image.getAttribute("data-parallax-speed") || "0",
-            );
-            if (speed === 0) return;
-
-            const parallaxTween = gsap.to(image, {
-              x: speed,
-              ease: "none",
-              scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                end: `+=${scrollDistance}`,
-                scrub: 1,
-              },
-            });
-            parallaxTweensRef.current.push(parallaxTween);
-          });
-
-          // Single ScrollTrigger refresh after setup
-          ScrollTrigger.refresh();
+          parallaxTweensRef.current.push(parallaxTween);
         });
+
+        ScrollTrigger.refresh();
       };
 
-      // Increased timeout to ensure fonts and SplitText are fully loaded
-      // This prevents width calculation issues that cause jumping
-      const timeoutId = setTimeout(setupScrollAnimation, 500);
+      // Run as soon as layout is ready (one frame). No 500ms/fonts/200ms delay —
+      // pin-spacing is correct from first load, so no jump when user scrolls.
+      const rafId = requestAnimationFrame(() => {
+        setupScrollAnimation();
+      });
 
       const handleResize = () => {
         ScrollTrigger.refresh();
@@ -404,7 +384,7 @@ const FreeLayoutScroll: React.FC = () => {
       window.addEventListener("resize", handleResize);
 
       return () => {
-        clearTimeout(timeoutId);
+        cancelAnimationFrame(rafId);
         window.removeEventListener("resize", handleResize);
 
         if (scrollTweenRef.current) {
