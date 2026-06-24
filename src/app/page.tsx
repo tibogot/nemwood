@@ -43,7 +43,9 @@ const CardsScroll = dynamic(() => import("@/components/CardsScroll5"), {
 });
 
 const Testimonial = dynamic(() => import("@/components/Testimonial"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+  loading: () => (
+    <div className="h-[100dvh] min-h-[100vh] animate-pulse bg-gray-100" />
+  ),
   ssr: false,
 });
 
@@ -64,6 +66,47 @@ const AnimatedBorderLines = dynamic(
     ssr: false,
   },
 );
+
+function DeferredTestimonial() {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      // Start loading well before the section is visible, but only once the
+      // user has scrolled past the horizontal section area.
+      { rootMargin: "150% 0px 150% 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={sentinelRef}>
+      {shouldLoad ? (
+        <Suspense
+          fallback={
+            <div className="h-[100dvh] min-h-[100vh] animate-pulse bg-gray-100" />
+          }
+        >
+          <Testimonial />
+        </Suspense>
+      ) : (
+        <div aria-hidden className="h-[100dvh] min-h-[100vh]" />
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState<SanityBlogPost[]>([]);
@@ -522,9 +565,7 @@ export default function Home() {
         </Suspense>
       </section>
 
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <Testimonial />
-      </Suspense>
+      <DeferredTestimonial />
 
       {/* FAQ Section */}
       <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>

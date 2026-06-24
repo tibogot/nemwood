@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
+import {
+  gsap,
+  ScrollTrigger,
+  useGSAP,
+  safeScrollTriggerRefresh,
+} from "@/lib/gsapConfig";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -366,8 +371,6 @@ const FreeLayoutScroll: React.FC = () => {
           });
           parallaxTweensRef.current.push(parallaxTween);
         });
-
-        ScrollTrigger.refresh();
       };
 
       // Run as soon as layout is ready (one frame). No 500ms/fonts/200ms delay —
@@ -377,8 +380,8 @@ const FreeLayoutScroll: React.FC = () => {
       });
 
       const handleResize = () => {
-        ScrollTrigger.refresh();
-        setTimeout(setupScrollAnimation, 50);
+        setupScrollAnimation();
+        safeScrollTriggerRefresh();
       };
 
       window.addEventListener("resize", handleResize);

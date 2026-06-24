@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import Image from "next/image";
 import AnimatedText from "./AnimatedText3";
@@ -32,62 +32,40 @@ const staticTestimonial = {
 
 export default function Testimonial() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [pinReady, setPinReady] = useState(false);
 
-  // Update container height dynamically to handle viewport changes
+  // Defer pin ScrollTrigger until the section is near the viewport.
+  // Creating pinned sections far below while the user is in the horizontal
+  // scroll used to trigger a global refresh and jump the page to here.
   useEffect(() => {
-    let refreshTimeout: NodeJS.Timeout | null = null;
+    const el = containerRef.current;
+    if (!el) return;
 
-    const updateHeight = () => {
-      if (containerRef.current) {
-        // Use the actual viewport height
-        const vh = window.innerHeight;
-        containerRef.current.style.height = `${vh}px`;
-
-        // Debounce ScrollTrigger refresh to avoid excessive refreshes during rapid resize
-        if (refreshTimeout) {
-          clearTimeout(refreshTimeout);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setPinReady(true);
+          observer.disconnect();
         }
-        refreshTimeout = setTimeout(() => {
-          ScrollTrigger.refresh();
-          refreshTimeout = null;
-        }, 150);
-      }
-    };
+      },
+      { rootMargin: "100% 0px 100% 0px" },
+    );
 
-    // Set initial height
-    updateHeight();
-
-    // Update on resize and orientation change
-    window.addEventListener("resize", updateHeight, { passive: true });
-    window.addEventListener("orientationchange", updateHeight);
-
-    // Also listen for visual viewport changes (mobile browser UI show/hide)
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", updateHeight);
-    }
-
-    return () => {
-      if (refreshTimeout) {
-        clearTimeout(refreshTimeout);
-      }
-      window.removeEventListener("resize", updateHeight);
-      window.removeEventListener("orientationchange", updateHeight);
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener("resize", updateHeight);
-      }
-    };
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   useGSAP(
     () => {
+      if (!pinReady) return;
+
       const ctx = gsap.context(() => {
         const cards = gsap.utils.toArray(".testimonial-card") as HTMLElement[];
 
         // Set initial state for all cards with varied starting rotations
         cards.forEach((card, i) => {
-          // Start with more extreme rotations that are clearly different from final positions
           const initialRotation =
-            i === 0 ? -25 : i === 1 ? 20 : i === 2 ? -30 : 25; // More varied starting rotations
+            i === 0 ? -25 : i === 1 ? 20 : i === 2 ? -30 : 25;
           gsap.set(card, {
             y: "100vh",
             scale: 0.95,
@@ -95,7 +73,6 @@ export default function Testimonial() {
           });
         });
 
-        // Create the main timeline with ScrollTrigger
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -103,37 +80,31 @@ export default function Testimonial() {
             end: `+=${cards.length * 100}%`,
             scrub: 1,
             pin: true,
-            // anticipatePin: 1,
-            invalidateOnRefresh: true, // Recalculate on viewport changes
+            invalidateOnRefresh: true,
           },
         });
 
-        // Animate each card one by one with alternating rotations for natural stack look
         cards.forEach((card, i) => {
-          // Create alternating rotations: left, right, left, right... (opposite of static card)
-          const rotationDirection = i % 2 === 0 ? -1 : 1; // Start with left rotation to contrast static card
-          // Increase rotation differences for more obvious animations
           const rotationAmount =
-            i === 0 ? -8 : i === 1 ? 10 : i === 2 ? -12 : 18; // -8, 10, -12, 18 degrees
+            i === 0 ? -8 : i === 1 ? 10 : i === 2 ? -12 : 18;
 
           tl.to(
             card,
             {
               y: 0,
-              // opacity: 1,
               scale: 1,
               rotation: rotationAmount,
               duration: 1,
               ease: "power2.out",
             },
-            i * 0.5, // Stagger the animations
+            i * 0.5,
           );
         });
       }, containerRef);
 
       return () => ctx.revert();
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [pinReady] },
   );
 
   return (
@@ -141,7 +112,7 @@ export default function Testimonial() {
       <section
         ref={containerRef}
         className="bg-secondary relative overflow-hidden px-4 pt-4 text-white md:px-8 md:py-30"
-        style={{ height: "100vh" }}
+        style={{ height: "100dvh", minHeight: "100vh" }}
       >
         <Image
           src="/images/radiateur.jpg"
@@ -149,7 +120,6 @@ export default function Testimonial() {
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 80vw"
-          // priority
           loading="lazy"
         />
         <AnimatedText delay={0.0} stagger={0.3}>
@@ -157,15 +127,6 @@ export default function Testimonial() {
             Témoignages
           </h2>
         </AnimatedText>
-        {/* <Image
-          className="relative h-auto w-full"
-          src="/logonew4.svg"
-          alt="Logo"
-          width={1200} // use a large width for SVG
-          height={300} // adjust height proportionally
-          quality={85}
-          // priority
-        /> */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
             {/* Static first card - always visible */}
@@ -176,7 +137,6 @@ export default function Testimonial() {
                 transform: "translate(-50%, -50%) rotate(2deg)",
               }}
             >
-              {/* Main content - blockquote takes up most space */}
               <div className="flex flex-1 items-center justify-center">
                 <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
                   <span className="font-HelveticaNow text-5xl">&ldquo;</span>
@@ -187,28 +147,7 @@ export default function Testimonial() {
                 </blockquote>
               </div>
 
-              {/* Bottom section with profile image and name */}
               <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
-                {/* <div className="relative h-12 w-12 md:h-14 md:w-14">
-                  <Image
-                    src={staticTestimonial.image}
-                    alt={staticTestimonial.name}
-                    fill
-                    className="border-primary/20 rounded-full border-2 object-cover"
-                    sizes="(max-width: 768px) 48px, 56px"
-                    quality={85}
-                    onError={(e) => {
-                      // Fallback to a default avatar if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      const fallback = document.createElement("div");
-                      fallback.className =
-                        "border-primary/20 h-12 w-12 md:h-14 md:w-14 rounded-full border-2 bg-primary/10 flex items-center justify-center";
-                      fallback.innerHTML = `<span class="text-primary text-xs font-bold">${staticTestimonial.name.charAt(0)}</span>`;
-                      target.parentNode?.appendChild(fallback);
-                    }}
-                  />
-                </div> */}
                 <p className="font-HelveticaNow text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                   {staticTestimonial.name}
                 </p>
@@ -222,7 +161,6 @@ export default function Testimonial() {
                 className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[85vw] max-w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 shadow-lg md:h-[450px] md:max-w-[350px]"
                 style={{ zIndex: i + 1 }}
               >
-                {/* Main content - blockquote takes up most space */}
                 <div className="flex flex-1 items-center justify-center">
                   <blockquote className="font-HelveticaNow text-primary text-center text-base leading-relaxed md:text-lg md:leading-tight">
                     <span className="font-HelveticaNow text-5xl">“</span>
@@ -233,28 +171,7 @@ export default function Testimonial() {
                   </blockquote>
                 </div>
 
-                {/* Bottom section with profile image and name */}
                 <div className="mt-4 flex flex-col items-center space-y-3 border-t pt-4">
-                  {/* <div className="relative h-12 w-12 md:h-14 md:w-14">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      fill
-                      className="border-primary/20 rounded-full border-2 object-cover"
-                      sizes="(max-width: 768px) 48px, 56px"
-                      quality={85}
-                      onError={(e) => {
-                        // Fallback to a default avatar if image fails to load
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                        const fallback = document.createElement("div");
-                        fallback.className =
-                          "border-primary/20 h-12 w-12 md:h-14 md:w-14 rounded-full border-2 bg-primary/10 flex items-center justify-center";
-                        fallback.innerHTML = `<span class="text-primary text-xs font-bold">${testimonial.name.charAt(0)}</span>`;
-                        target.parentNode?.appendChild(fallback);
-                      }}
-                    />
-                  </div> */}
                   <p className="font-HelveticaNow text-primary text-center text-xs tracking-wide uppercase md:text-sm">
                     {testimonial.name}
                   </p>

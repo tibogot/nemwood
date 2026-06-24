@@ -1,6 +1,6 @@
 "use client";
 import { useRef, ReactNode, useState, useEffect } from "react";
-import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
+import { gsap, ScrollTrigger, SplitText, useGSAP, safeScrollTriggerRefresh } from "@/lib/gsapConfig";
 
 // Function to fix SplitText clipping issues with descenders
 function fixMask(
@@ -127,7 +127,7 @@ function AnimatedText({
         clearTimeout(refreshTimeout);
       }
       refreshTimeout = setTimeout(() => {
-        ScrollTrigger.refresh();
+        safeScrollTriggerRefresh();
         refreshTimeout = null;
       }, 500); // Increased from 150ms to 500ms to allow layout to settle
     };

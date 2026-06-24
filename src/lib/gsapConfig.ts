@@ -12,6 +12,19 @@ import { useGSAP } from "@gsap/react";
 // This ensures all plugins are available throughout the application
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin);
+
+  // Avoid global refresh on window "load" while the user may already be mid-scroll
+  // (e.g. horizontal pin). Resize is handled manually with safe refresh where needed.
+  ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded",
+  });
+}
+
+/** Refresh ScrollTrigger without jumping the scroll position (safe mode). */
+export function safeScrollTriggerRefresh() {
+  if (typeof window !== "undefined") {
+    ScrollTrigger.refresh(true);
+  }
 }
 
 // Export all GSAP utilities for use throughout the application
