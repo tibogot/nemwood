@@ -7,7 +7,7 @@ import TableOfContents from "./TableOfContents";
 export const metadata: Metadata = generateMetadata(
   "Conditions Générales de Vente | Nemwood",
   "Conditions Générales de Vente de Nemwood - Termes et conditions pour l'achat de nos services et produits.",
-  "/images/nem1.png",
+  "/images/og-default.webp",
   "https://www.nemwood.be/cgv",
 );
 

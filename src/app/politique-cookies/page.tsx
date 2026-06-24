@@ -7,7 +7,7 @@ import TableOfContents from "./TableOfContents";
 export const metadata: Metadata = generateMetadata(
   "Politique des cookies | Nemwood",
   "Politique des cookies de Nemwood - Informations sur l'utilisation des cookies sur notre site web.",
-  "/images/nem1.png",
+  "/images/og-default.webp",
   "https://www.nemwood.be/politique-cookies",
 );
 

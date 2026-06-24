@@ -7,7 +7,7 @@ import TableOfContents from "./TableOfContents";
 export const metadata: Metadata = generateMetadata(
   "Politique de confidentialité | Nemwood",
   "Politique de confidentialité de Nemwood - Comment nous collectons, utilisons et protégeons vos données personnelles.",
-  "/images/nem1.png",
+  "/images/og-default.webp",
   "https://www.nemwood.be/politique-confidentialite",
 );
 

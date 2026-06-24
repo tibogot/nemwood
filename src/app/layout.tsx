@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "@/styles/cookieconsent-custom.css";
@@ -64,47 +63,7 @@ const HelveticaNow = localFont({
 //   display: "swap",
 // });
 
-export const metadata: Metadata = {
-  title: "Menuiserie sur mesure en Belgique | Nemwood",
-  description:
-    "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
-  authors: [{ name: "Nemwood" }],
-  creator: "Nemwood",
-  publisher: "Nemwood",
-  robots: "index, follow",
-  alternates: {
-    canonical: "https://www.nemwood.be",
-    languages: {
-      "fr-BE": "https://www.nemwood.be", // Primary: French (Belgium)
-      fr: "https://www.nemwood.be", // Fallback: French (general)
-      "x-default": "https://www.nemwood.be", // Default fallback
-    },
-  },
-  openGraph: {
-    title: "Menuiserie sur mesure en Belgique | Nemwood",
-    description:
-      "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
-    type: "website",
-    locale: "fr_BE",
-    siteName: "Nemwood",
-    url: "https://www.nemwood.be",
-    images: [
-      {
-        url: "/images/nem1.png",
-        width: 1200,
-        height: 630,
-        alt: "Nemwood - Meubles en bois sur mesure",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Menuiserie sur mesure en Belgique | Nemwood",
-    description:
-      "Menuisier sur mesure près de Bruxelles. Nemwood conçoit vos meubles en bois sur mesure : tables, cuisines, escaliers, garde-robes. Devis gratuit.",
-    images: ["/images/nem1.png"],
-  },
-};
+export { metadata } from "./metadata";
 
 export default function RootLayout({
   children,
@@ -165,7 +124,7 @@ export default function RootLayout({
               },
               // Images du business pour Google Business Profile
               image: [
-                "https://www.nemwood.be/images/nem1.png",
+                "https://www.nemwood.be/images/og-default.webp",
                 "https://www.nemwood.be/images/atelier-1.webp",
                 "https://www.nemwood.be/images/hero-nemwood.webp",
               ],

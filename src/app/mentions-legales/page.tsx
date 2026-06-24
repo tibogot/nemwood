@@ -7,7 +7,7 @@ import TableOfContents from "./TableOfContents";
 export const metadata: Metadata = generateMetadata(
   "Mentions légales | Nemwood",
   "Mentions légales de Nemwood - Informations sur l'entreprise et les données légales.",
-  "/images/nem1.png",
+  "/images/og-default.webp",
   "https://www.nemwood.be/mentions-legales",
 );
 
