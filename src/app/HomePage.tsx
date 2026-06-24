@@ -39,7 +39,7 @@ const HorizScroll = dynamic(() => import("@/components/HorizScroll9"), {
 });
 
 const CardsScroll = dynamic(() => import("@/components/CardsScroll5"), {
-  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+  loading: () => <CardsScrollPlaceholder />,
   ssr: false,
 });
 
@@ -67,6 +67,46 @@ const AnimatedBorderLines = dynamic(
     ssr: false,
   },
 );
+
+function CardsScrollPlaceholder() {
+  return <div aria-hidden className="h-[100vh] md:h-[140vh]" />;
+}
+
+function DeferredCardsScroll() {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      // Load only once the user has scrolled past the horizontal section.
+      { rootMargin: "80% 0px 80% 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={sentinelRef}>
+      {shouldLoad ? (
+        <Suspense fallback={<CardsScrollPlaceholder />}>
+          <CardsScroll />
+        </Suspense>
+      ) : (
+        <CardsScrollPlaceholder />
+      )}
+    </div>
+  );
+}
 
 function DeferredTestimonial() {
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -512,9 +552,7 @@ export default function HomePage() {
         </AnimatedText>
       </section>
 
-      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
-        <CardsScroll />
-      </Suspense>
+      <DeferredCardsScroll />
 
       {/* <section className="text-primary flex w-full flex-col gap-6 px-4 py-10 md:flex-row md:gap-20 md:px-8 md:py-20">
         <div className="left relative h-[400px] md:h-[400px] md:w-1/2">

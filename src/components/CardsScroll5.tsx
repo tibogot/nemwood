@@ -1,24 +1,42 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsapConfig";
-import Logo from "./Logo";
 import { ArrowRight } from "lucide-react";
 
 function CardsScroll() {
   const mainContentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const mainRef = useRef<HTMLElement>(null); // Add ref for main section
+  const mainRef = useRef<HTMLElement>(null);
+  const [animationsReady, setAnimationsReady] = useState(false);
 
   // Store SplitText instances and context for cleanup
   const splitTextInstancesRef = useRef<any[]>([]);
   const contextRef = useRef<gsap.Context | null>(null);
 
+  useEffect(() => {
+    const el = mainRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationsReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "20% 0px 20% 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useGSAP(
     () => {
-      if (!mainRef.current) return;
+      if (!animationsReady || !mainRef.current) return;
 
       // Clean up any existing context
       if (contextRef.current) {
@@ -170,7 +188,7 @@ function CardsScroll() {
         splitTextInstancesRef.current = [];
       };
     },
-    { scope: mainRef },
+    { scope: mainRef, dependencies: [animationsReady] },
   );
 
   const generateRows = () => {
