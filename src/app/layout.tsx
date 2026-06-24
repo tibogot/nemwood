@@ -6,6 +6,7 @@ import ClientLayout from "@/components/ClientLayout";
 import { Analytics } from "@vercel/analytics/next";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import CookieConsent from "@/components/CookieConsent";
+import { siteMetadata } from "@/app/metadata";
 // import ScrollProgress from "@/components/ScrollProgress";
 
 const ITCGaramondStdLtNarrow = localFont({
@@ -88,6 +89,24 @@ export default function RootLayout({
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://cdn.sanity.io" />
+
+        {/* Facebook meta tags require property= (not name=); Next.js other{} renders as name */}
+        <meta
+          property="fb:app_id"
+          content={siteMetadata.facebook.appId}
+        />
+        <meta
+          property="fb:page_id"
+          content={siteMetadata.facebook.pageId}
+        />
+        <meta
+          property="fb:admins"
+          content={siteMetadata.facebook.adminId}
+        />
+        <meta
+          property="og:see_also"
+          content={siteMetadata.facebook.pageUrl}
+        />
 
         {/* Hero image preloading is handled by Next.js Image component with priority prop */}
         {/* Font preloading is handled automatically by Next.js localFont with preload: true */}
