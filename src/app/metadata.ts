@@ -35,12 +35,14 @@ export function generateMetadata(
   image?: string,
   url?: string,
   canonical?: string,
+  imageAlt?: string,
 ): Metadata {
   const canonicalUrl = canonical || url || siteMetadata.url;
   const pageTitle = title || siteMetadata.title;
   const pageDescription = description || siteMetadata.description;
   const pageImage = image || siteMetadata.image;
   const pageUrl = url || siteMetadata.url;
+  const pageImageAlt = imageAlt || "Nemwood - Meubles en bois sur mesure";
 
   return {
     metadataBase: new URL(siteMetadata.url),
@@ -70,7 +72,7 @@ export function generateMetadata(
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: "Nemwood - Meubles en bois sur mesure",
+          alt: pageImageAlt,
           type: getOgImageType(pageImage),
         },
       ],

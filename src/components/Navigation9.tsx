@@ -41,7 +41,7 @@ export default function Navigation9({
 
   // Navigation items and SplitText-related state (mirrors Navigation7)
   const navItems = [
-    { name: "Home", href: "/" },
+    { name: "Accueil", href: "/" },
     { name: "A propos", href: "/a-propos" },
     { name: "Services", href: "/services" },
     { name: "Contact", href: "/contact" },

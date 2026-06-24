@@ -6,12 +6,16 @@ import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { sallesDeBainFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Salles de bain sur mesure en Belgique | Nemwood",
   "Salles de bain en bois sur mesure pour créer un espace de détente unique. Fabrication artisanale en Belgique par Nemwood.",
-  "/images/horiz-cuisine.webp",
+  "/images/og/og-salles-de-bain.webp",
   "https://www.nemwood.be/services/salles-de-bain",
+  undefined,
+  "Salle de bain en bois sur mesure - Nemwood",
 );
 
 export default function SalleDeBainPage() {
@@ -222,32 +226,11 @@ export default function SalleDeBainPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      <FAQSchema faqs={sallesDeBainFaqs} />
       <FAQ
         title="Questions sur les salles de bain"
         description="Découvrez les réponses aux questions les plus courantes sur nos salles de bain en bois sur mesure."
-        faqs={[
-          {
-            question: "Le bois résiste-t-il à l'humidité de la salle de bain ?",
-            answer:
-              "Oui, nous utilisons des essences de bois traitées et des finitions spéciales pour l'humidité. Le teck, l'iroko ou le chêne traité sont parfaits pour les salles de bain et résistent parfaitement à l'humidité.",
-          },
-          {
-            question: "Quels éléments pouvez-vous intégrer ?",
-            answer:
-              "Nous intégrons tous types d'éléments : meubles vasque, rangements, étagères, niches, bancs, ou solutions sur mesure. Chaque élément est conçu pour optimiser votre espace et résister à l'humidité.",
-          },
-          {
-            question: "Peut-on rénover une salle de bain existante ?",
-            answer:
-              "Oui, nous proposons la rénovation complète ou partielle. Nous pouvons remplacer les meubles, ajouter des rangements, ou refaire entièrement l'aménagement en respectant vos contraintes existantes.",
-          },
-          {
-            question: "Quel est le délai de réalisation ?",
-            answer:
-              "Une salle de bain complète prend 4-6 semaines de fabrication et installation. Nous planifions chaque étape pour minimiser les désagréments et respecter vos contraintes d'usage.",
-          },
-        ]}
+        faqs={sallesDeBainFaqs}
       />
       <ServiceNavigation />
     </main>

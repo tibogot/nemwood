@@ -11,8 +11,10 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 export const metadata: Metadata = generateMetadata(
   "Artisan menuisier belge sur mesure | Nemwood",
   "Depuis 2016, Nemwood conçoit et fabrique du mobilier en bois sur mesure en Belgique : tables, garde-robes, escaliers et cuisines. Artisan menuisier passionné.",
-  "/images/wardrobe.webp",
+  "/images/og/og-a-propos.webp",
   "https://www.nemwood.be/a-propos",
+  undefined,
+  "Atelier Nemwood - Artisan menuisier en Belgique",
 );
 
 export default function About() {

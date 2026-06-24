@@ -6,12 +6,16 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { gardeRobesFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Garde-robes en bois sur mesure en Belgique | Nemwood",
   "Fabrication de garde-robes et dressings en bois massif sur mesure en Belgique. Solutions de rangement personnalisées.",
-  "/images/dressing pedro & paloma.png",
+  "/images/og/og-garde-robes.webp",
   "https://www.nemwood.be/services/garde-robes",
+  undefined,
+  "Garde-robe en bois sur mesure - Nemwood",
 );
 
 export default function GardeRobesPage() {
@@ -243,32 +247,11 @@ export default function GardeRobesPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        <FAQSchema faqs={gardeRobesFaqs} />
         <FAQ
           title="Questions sur les garde-robes"
           description="Découvrez les réponses aux questions les plus courantes sur nos garde-robes en bois sur mesure."
-          faqs={[
-            {
-              question: "Quels types de rangements pouvez-vous intégrer ?",
-              answer:
-                "Nous intégrons tous types de rangements : étagères, tiroirs, cintres, chaussures, accessoires. Chaque garde-robe est conçue selon vos besoins spécifiques et l'espace disponible.",
-            },
-            {
-              question: "Peut-on adapter une garde-robe à un espace existant ?",
-              answer:
-                "Absolument ! Nous nous spécialisons dans l'adaptation aux contraintes existantes. Nous prenons les mesures précises et concevons une solution parfaitement adaptée à votre espace.",
-            },
-            {
-              question: "Quel est le délai de fabrication ?",
-              answer:
-                "Une garde-robe sur mesure prend généralement 3-4 semaines de fabrication, plus le temps d'installation. Nous vous fournissons un planning détaillé lors du devis.",
-            },
-            {
-              question: "Proposez-vous des portes coulissantes ?",
-              answer:
-                "Oui, nous proposons tous types d'ouverture : portes battantes, coulissantes, ou même sans portes selon vos préférences et contraintes d'espace.",
-            },
-          ]}
+          faqs={gardeRobesFaqs}
         />
         <ServiceNavigation />
       </main>

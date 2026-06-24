@@ -13,8 +13,10 @@ export const revalidate = 60;
 export const metadata: Metadata = generateMetadata(
   "Blog Nemwood - Actualités et conseils menuiserie | Nemwood",
   "Découvrez nos dernières actualités et conseils pour améliorer votre intérieur. Conseils d'experts en menuiserie sur mesure.",
-  "/images/nemohero.webp",
+  "/images/og/og-blog.webp",
   "https://www.nemwood.be/blog",
+  undefined,
+  "Blog Nemwood - Conseils menuiserie sur mesure",
 );
 
 export default async function BlogPage() {

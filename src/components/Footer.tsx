@@ -55,7 +55,7 @@ export default function Footer() {
               <div className="flex flex-col">
                 {renderLink(
                   "/",
-                  "Home",
+                  "Accueil",
                   "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(

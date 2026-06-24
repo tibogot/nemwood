@@ -6,12 +6,16 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { cuisinesFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Cuisines en bois sur mesure en Belgique | Nemwood",
   "Fabrication de cuisines en bois massif sur mesure en Belgique. Aménagements cuisine personnalisés, meubles de cuisine artisanaux.",
-  "/images/horiz-cuisine.webp",
+  "/images/og/og-cuisines.webp",
   "https://www.nemwood.be/services/cuisines",
+  undefined,
+  "Cuisine en bois sur mesure - Nemwood",
 );
 
 export default function CuisinesPage() {
@@ -274,32 +278,11 @@ export default function CuisinesPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      <FAQSchema faqs={cuisinesFaqs} />
       <FAQ
         title="Questions sur les cuisines"
         description="Découvrez les réponses aux questions les plus courantes sur nos cuisines en bois sur mesure."
-        faqs={[
-          {
-            question: "Peut-on rénover une cuisine existante ?",
-            answer:
-              "Oui, nous proposons la rénovation complète ou partielle de cuisines existantes. Nous pouvons remplacer les façades, ajouter des éléments, ou refaire entièrement l'aménagement selon vos besoins.",
-          },
-          {
-            question: "Quels équipements pouvez-vous intégrer ?",
-            answer:
-              "Nous intégrons tous types d'équipements : électroménager encastré, éclairage LED, tiroirs à fermeture douce, systèmes de rangement innovants. Chaque équipement est choisi pour optimiser votre espace.",
-          },
-          {
-            question: "Combien coûte une cuisine sur mesure ?",
-            answer:
-              "Le prix varie selon la taille, les matériaux et les équipements. Une cuisine complète commence à 8 000€. Nous établissons un devis détaillé gratuit adapté à votre projet et votre budget.",
-          },
-          {
-            question: "Quel est le délai de réalisation ?",
-            answer:
-              "Une cuisine complète prend 6-8 semaines de fabrication et installation. Nous planifions chaque étape avec vous pour minimiser les désagréments et respecter vos contraintes.",
-          },
-        ]}
+        faqs={cuisinesFaqs}
       />
       <ServiceNavigation />
     </main>

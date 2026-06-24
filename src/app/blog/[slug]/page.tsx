@@ -53,8 +53,10 @@ export async function generateMetadata({
   return generatePageMetadata(
     `${post.title} | Blog Nemwood`,
     description,
-    post.mainImage?.asset?.url || "/images/nemohero.webp",
+    post.mainImage?.asset?.url || "/images/og/og-blog.webp",
     `https://www.nemwood.be/blog/${slug}`,
+    undefined,
+    post.title,
   );
 }
 

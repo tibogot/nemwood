@@ -6,12 +6,16 @@ import { generateMetadata } from "@/app/metadata";
 import FAQ from "@/components/FAQ";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { bureauxFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Bureaux sur mesure en Belgique | Nemwood",
   "Bureaux en bois sur mesure pour votre espace de travail. Fabrication artisanale en Belgique par Nemwood.",
-  "/images/horiz-table.webp",
+  "/images/og/og-bureaux.webp",
   "https://www.nemwood.be/services/bureaux",
+  undefined,
+  "Bureau en bois sur mesure - Nemwood",
 );
 
 export default function BureauPage() {
@@ -298,32 +302,11 @@ export default function BureauPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        <FAQSchema faqs={bureauxFaqs} />
         <FAQ
           title="Questions sur les bureaux"
           description="Découvrez les réponses aux questions les plus courantes sur nos bureaux en bois sur mesure."
-          faqs={[
-            {
-              question: "Quels types de bureaux pouvez-vous réaliser ?",
-              answer:
-                "Nous réalisons tous types de bureaux : bureaux d'angle, bureaux droits, bureaux avec rangements intégrés, ou solutions sur mesure. Chaque bureau est conçu selon votre espace de travail et vos besoins professionnels.",
-            },
-            {
-              question: "Peut-on intégrer des passages de câbles ?",
-              answer:
-                "Oui, nous prévoyons des passages de câbles discrets et des prises intégrées pour un espace de travail propre et fonctionnel. Nous adaptons l'électrification selon vos équipements.",
-            },
-            {
-              question: "Quelle est la hauteur recommandée pour un bureau ?",
-              answer:
-                "La hauteur standard est de 75cm, mais nous l'adaptons selon votre taille et vos préférences. Nous proposons aussi des bureaux à hauteur réglable pour un confort optimal.",
-            },
-            {
-              question: "Proposez-vous des rangements intégrés ?",
-              answer:
-                "Oui, nous intégrons tiroirs, étagères, casiers et tous types de rangements selon vos besoins. Chaque rangement est conçu pour optimiser votre espace de travail et votre productivité.",
-            },
-          ]}
+          faqs={bureauxFaqs}
         />
         <ServiceNavigation />
       </main>

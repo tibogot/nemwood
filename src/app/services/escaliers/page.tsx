@@ -6,12 +6,16 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { escaliersFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Escaliers en bois sur mesure en Belgique | Nemwood",
   "Fabrication d'escaliers en bois massif sur mesure en Belgique. Artisanat traditionnel, finitions personnalisées. Devis gratuit.",
-  "/images/stairs.webp",
+  "/images/og/og-escaliers.webp",
   "https://www.nemwood.be/services/escaliers",
+  undefined,
+  "Escalier en bois sur mesure - Nemwood",
 );
 
 export default function EscaliersPage() {
@@ -219,32 +223,11 @@ export default function EscaliersPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      <FAQSchema faqs={escaliersFaqs} />
       <FAQ
         title="Questions sur les escaliers"
         description="Découvrez les réponses aux questions les plus courantes sur nos escaliers en bois sur mesure."
-        faqs={[
-          {
-            question: "Quels types d'escaliers pouvez-vous réaliser ?",
-            answer:
-              "Nous réalisons tous types d'escaliers : droits, tournants, hélicoïdaux, suspendus, avec ou sans contremarches. Chaque escalier est conçu selon vos contraintes d'espace et vos préférences esthétiques.",
-          },
-          {
-            question: "Quel est le prix d'un escalier sur mesure ?",
-            answer:
-              "Le prix varie selon la complexité, les dimensions et les matériaux choisis. Un escalier simple commence à 2 500€, un escalier tournant à 4 000€. Nous établissons un devis gratuit adapté à votre projet.",
-          },
-          {
-            question: "Peut-on installer un escalier dans un bâtiment ancien ?",
-            answer:
-              "Oui, nous nous spécialisons dans l'adaptation aux contraintes des bâtiments anciens. Nous effectuons une étude préalable pour garantir une installation parfaite dans votre espace existant.",
-          },
-          {
-            question: "Quelles finitions proposez-vous ?",
-            answer:
-              "Nous proposons diverses finitions : huiles naturelles, vernis, cires, ou peintures. Chaque finition est choisie pour mettre en valeur le bois et s'adapter à votre style d'intérieur.",
-          },
-        ]}
+        faqs={escaliersFaqs}
       />
       <ServiceNavigation />
     </main>

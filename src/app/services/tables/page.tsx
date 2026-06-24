@@ -6,12 +6,16 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import ServiceNavigation from "@/components/ServiceNavigation";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import FAQSchema from "@/components/FAQSchema";
+import { tablesFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = generateMetadata(
   "Tables en bois sur mesure en Belgique | Nemwood",
   "Fabrication de tables en bois massif sur mesure en Belgique. Tables à manger, tables basses, bureaux uniques et durables.",
-  "/images/horiz-table.webp",
+  "/images/og/og-tables.webp",
   "https://www.nemwood.be/services/tables",
+  undefined,
+  "Table en bois sur mesure - Nemwood",
 );
 
 export default function TablesPage() {
@@ -296,33 +300,11 @@ export default function TablesPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        <FAQSchema faqs={tablesFaqs} />
         <FAQ
           title="Questions sur les tables"
           description="Découvrez les réponses aux questions les plus courantes sur nos tables en bois sur mesure."
-          faqs={[
-            {
-              question: "Quels types de tables pouvez-vous réaliser ?",
-              answer:
-                "Nous réalisons tous types de tables : tables à manger, tables basses, tables de salon, tables de bureau, tables d'appoint. Chaque table est conçue selon vos dimensions et votre style.",
-            },
-            {
-              question:
-                "Quelles essences de bois recommandez-vous pour une table ?",
-              answer:
-                "Pour les tables, nous recommandons le chêne pour sa robustesse, le noyer pour son élégance, ou le frêne pour sa légèreté. Chaque essence a ses caractéristiques que nous vous expliquons lors du devis.",
-            },
-            {
-              question: "Peut-on personnaliser la finition ?",
-              answer:
-                "Oui, nous proposons diverses finitions : huiles naturelles, vernis mat ou brillant, cires, ou même peintures. Chaque finition est choisie pour mettre en valeur le bois et s'adapter à votre intérieur.",
-            },
-            {
-              question: "Quel est le délai de fabrication d'une table ?",
-              answer:
-                "Une table sur mesure prend généralement 2-3 semaines de fabrication, plus le temps de séchage et de finition. Nous vous fournissons un planning précis lors du devis.",
-            },
-          ]}
+          faqs={tablesFaqs}
         />
         <ServiceNavigation />
       </main>
