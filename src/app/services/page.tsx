@@ -10,7 +10,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 export const metadata: Metadata = generateMetadata(
   "Services de menuiserie sur mesure en Belgique | Nemwood",
-  "Découvrez nos services de menuiserie : escaliers, garde-robes, tables et cuisines en bois sur mesure. Artisanat belge de qualité.",
+  "Découvrez nos services de menuiserie : escaliers, garde-robes, tables, cuisines, bibliothèques, bureaux et salles de bain en bois sur mesure. Artisanat belge de qualité.",
   "/images/og/og-services.webp",
   "https://www.nemwood.be/services",
   undefined,

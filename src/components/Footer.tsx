@@ -60,7 +60,7 @@ export default function Footer() {
                 )}
                 {renderLink(
                   "/a-propos",
-                  "A propos",
+                  "À propos",
                   "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
@@ -204,7 +204,7 @@ export default function Footer() {
         </div>
         {/* Legal Links and Copyright on same line */}
         <div className="font-HelveticaNow text-primary mt-6 flex flex-col gap-4 text-sm md:mt-4 md:flex-row md:items-center md:justify-between">
-          <span>© 2025 NEMWOOD - BE 0670.534.175</span>
+          <span>© {new Date().getFullYear()} NEMWOOD - BE 0670.534.175</span>
           <div className="flex flex-row flex-wrap items-center gap-2 md:gap-4">
             {renderLink(
               "/mentions-legales",
