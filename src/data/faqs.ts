@@ -183,3 +183,50 @@ export const sallesDeBainFaqs: FAQItem[] = [
       "Une salle de bain complète prend 4-6 semaines de fabrication et installation. Nous planifions chaque étape pour minimiser les désagréments et respecter vos contraintes d'usage.",
   },
 ];
+
+export const scenographieFaqs: FAQItem[] = [
+  {
+    question: "Quels types de décors pouvez-vous réaliser ?",
+    answer:
+      "Nous réalisons des décors de scène, photocalls, arches, murs végétalisés sur structure bois, stands d'exposition et installations sur mesure pour mariages, lancements de produits, salons et événements d'entreprise.",
+  },
+  {
+    question: "Les décors sont-ils réutilisables ?",
+    answer:
+      "Oui, nous concevons nos structures pour être démontables et transportables. Un même décor peut être remonté pour plusieurs événements, ce qui réduit les coûts et l'impact environnemental.",
+  },
+  {
+    question: "Prenez-vous en charge le montage sur place ?",
+    answer:
+      "Oui, nous assurons la livraison, le montage et le démontage de nos installations sur le lieu de l'événement, partout en Belgique, en respectant les horaires imposés par le lieu.",
+  },
+  {
+    question: "Quel délai faut-il prévoir ?",
+    answer:
+      "Comptez en général 3 à 6 semaines entre la validation du projet et l'événement, selon la taille de l'installation. Contactez-nous le plus tôt possible pour réserver votre date.",
+  },
+];
+
+export const barsComptoirsFaqs: FAQItem[] = [
+  {
+    question: "Vos bars sont-ils mobiles ?",
+    answer:
+      "Oui, nous concevons des bars et comptoirs modulables, montés sur roulettes ou démontables en modules, pour s'installer facilement en intérieur comme en extérieur.",
+  },
+  {
+    question: "Peut-on personnaliser le bar aux couleurs de notre marque ?",
+    answer:
+      "Absolument. Nous intégrons logos gravés ou incrustés, essences et teintes de bois au choix, éclairage LED et façades interchangeables pour adapter le bar à chaque événement.",
+  },
+  {
+    question: "Quels équipements pouvez-vous intégrer ?",
+    answer:
+      "Nous prévoyons les emplacements pour tireuses, bacs à glace, éviers, frigos sous comptoir, passages de câbles et rangements, en concertation avec votre traiteur ou votre équipe.",
+  },
+  {
+    question:
+      "Réalisez-vous aussi des comptoirs fixes pour les établissements ?",
+    answer:
+      "Oui, nous fabriquons également des comptoirs d'accueil, bars de restaurants et comptoirs de boutiques installés de façon permanente, en bois massif robuste et facile d'entretien.",
+  },
+];

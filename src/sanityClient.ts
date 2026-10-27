@@ -1,8 +1,9 @@
 import { createClient } from "@sanity/client";
+import { sanityDataset, sanityProjectId } from "@/sanity/env";
 
 const client = createClient({
-  projectId: "my0lnpp8",
-  dataset: "production", // Change if your dataset is different
+  projectId: sanityProjectId,
+  dataset: sanityDataset,
   apiVersion: "2023-07-01", // Use a recent date
   useCdn: true,
 });

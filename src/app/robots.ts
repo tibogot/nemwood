@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin/", "/_next/"],
+      disallow: ["/api/", "/admin/", "/_next/", "/studio"],
     },
     sitemap: "https://www.nemwood.be/sitemap.xml",
     host: "https://www.nemwood.be",

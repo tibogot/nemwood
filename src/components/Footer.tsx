@@ -1,10 +1,21 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import Logo from "./Logo3";
 import { usePathname } from "next/navigation";
+import type { ServiceSummary } from "@/lib/services";
 
-export default function Footer() {
+const serviceColumns = [
+  { branch: "interieurs", title: "Intérieurs" },
+  { branch: "evenements", title: "Événements" },
+] as const;
+
+interface FooterProps {
+  services: ServiceSummary[];
+}
+
+export default function Footer({ services }: FooterProps) {
   const pathname = usePathname();
 
   // Helper function to render a link or disabled link based on current page
@@ -65,7 +76,12 @@ export default function Footer() {
                 )}
                 {renderLink(
                   "/services",
-                  "Services",
+                  "Intérieurs",
+                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
+                )}
+                {renderLink(
+                  "/evenementiel",
+                  "Événements",
                   "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
                 )}
                 {renderLink(
@@ -81,49 +97,27 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Services Column */}
-            <div className="flex flex-col">
-              <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
-                Services
+            {/* Service Columns (Intérieurs, Événements) */}
+            {serviceColumns.map((column) => (
+              <div key={column.branch} className="flex flex-col">
+                <div className="font-HelveticaNow mb-4 text-lg tracking-wider opacity-70">
+                  {column.title}
+                </div>
+                <div className="flex flex-col">
+                  {services
+                    .filter((service) => service.branch === column.branch)
+                    .map((service) => (
+                      <Fragment key={service.slug}>
+                        {renderLink(
+                          service.href,
+                          service.title,
+                          "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
+                        )}
+                      </Fragment>
+                    ))}
+                </div>
               </div>
-              <div className="flex flex-col">
-                {renderLink(
-                  "/services/escaliers",
-                  "Escaliers",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/garde-robes",
-                  "Gardes-robes",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/tables",
-                  "Tables",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/cuisines",
-                  "Cuisines",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/bibliotheques",
-                  "Bibliothèques",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/bureaux",
-                  "Bureaux",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-                {renderLink(
-                  "/services/salles-de-bain",
-                  "Salles de bain",
-                  "font-HelveticaNow text-primary text-base transition-colors hover:opacity-70 md:text-lg",
-                )}
-              </div>
-            </div>
+            ))}
           </div>
 
           {/* Right Side: Address and Contact/Social */}

@@ -8,12 +8,17 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition4";
 import PageLoader from "@/components/PageLoader2";
+import type { ServiceSummary } from "@/lib/services";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
+  services: ServiceSummary[];
 }
 
-export default function ClientLayout({ children }: ClientLayoutProps) {
+export default function ClientLayout({
+  children,
+  services,
+}: ClientLayoutProps) {
   const [showLoader, setShowLoader] = useState(false); // Start with false
 
   useEffect(() => {
@@ -57,9 +62,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <PageTransition>
         <LenisProvider>
           <ScrollToTop />
-          <Navigation />
+          <Navigation services={services} />
           <main>{children}</main>
-          <Footer />
+          <Footer services={services} />
         </LenisProvider>
       </PageTransition>
     </ThemeProvider>

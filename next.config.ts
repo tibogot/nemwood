@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
   generateEtags: false,
   // Redirects are now handled by middleware.ts for better performance
   // Optimize file watching for better performance
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev }) => {
     if (dev) {
       config.watchOptions = {
         poll: 1000,
@@ -37,37 +37,8 @@ const nextConfig: NextConfig = {
       };
     }
 
-    // Optimize bundle splitting
-    if (!isServer) {
-      config.optimization.splitChunks = {
-        chunks: "all",
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          // GSAP bundle
-          gsap: {
-            name: "gsap",
-            chunks: "all",
-            test: /[\\/]node_modules[\\/](gsap|@gsap)[\\/]/,
-            priority: 40,
-          },
-          // Three.js bundle
-          three: {
-            name: "three",
-            chunks: "all",
-            test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
-            priority: 35,
-          },
-          // Other vendor libraries
-          vendor: {
-            name: "vendor",
-            chunks: "all",
-            test: /[\\/]node_modules[\\/]/,
-            priority: 30,
-          },
-        },
-      };
-    }
+    // Bundle splitting is left to Next's defaults: a single forced "vendor"
+    // chunk would pull the Studio's multi-MB deps into every page of the site.
 
     return config;
   },

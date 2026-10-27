@@ -4,63 +4,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { gsap, Draggable, InertiaPlugin, useGSAP } from "@/lib/gsapConfig";
-
-interface Service {
-  title: string;
-  slug: string;
-  image: string;
-}
+import type { ServiceSummary } from "@/lib/services";
+import { imageProps } from "@/lib/serviceImage";
 
 interface ServicesCarouselProps {
   isVisible: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onLinkClick?: () => void;
+  services: ServiceSummary[];
 }
-
-const services: Service[] = [
-  {
-    title: "Escaliers",
-    slug: "escaliers",
-    image: "/images/horiz-escalier.webp",
-  },
-  {
-    title: "Garde-robes",
-    slug: "garde-robes",
-    image: "/images/horiz-garderobe.webp",
-  },
-  {
-    title: "Tables",
-    slug: "tables",
-    image: "/images/table-a-manger-2.jpg",
-  },
-  {
-    title: "Cuisines",
-    slug: "cuisines",
-    image: "/images/horiz-cuisine.webp",
-  },
-  {
-    title: "Bibliothèques",
-    slug: "bibliotheques",
-    image: "/images/bibliothèque.webp",
-  },
-  {
-    title: "Bureaux",
-    slug: "bureaux",
-    image: "/images/bureau.webp",
-  },
-  {
-    title: "Salles de bain",
-    slug: "salles-de-bain",
-    image: "/images/sdb.webp",
-  },
-];
 
 export default function ServicesCarousel({
   isVisible,
   onMouseEnter,
   onMouseLeave,
   onLinkClick,
+  services,
 }: ServicesCarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -171,7 +131,8 @@ export default function ServicesCarousel({
     const bufferedMaxDragX = maxDragX + 50; // 50px buffer
 
     return {
-      minX: bufferedMaxDragX,
+      // Few cards may fit entirely on screen: never allow dragging right
+      minX: Math.min(bufferedMaxDragX, 0),
       maxX: 0,
       totalSliderWidth,
     };
@@ -302,21 +263,20 @@ export default function ServicesCarousel({
         >
           {services.map((service, index) => (
             <div
-              key={service.slug}
+              key={service.href}
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
               className="flex-shrink-0"
             >
               <Link
-                href={`/services/${service.slug}`}
+                href={service.href}
                 className="group block"
                 onClick={handleLinkClick}
               >
                 <div className="service-card bg-primary/5 relative h-72 w-80 cursor-pointer overflow-hidden rounded-sm">
                   <Image
-                    src={service.image}
-                    alt={service.title}
+                    {...imageProps(service.image)}
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                     sizes="320px"

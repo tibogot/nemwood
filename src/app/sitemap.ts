@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import client from "@/sanityClient";
+import { branchBasePath, defaultServices } from "@/data/services";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URL
@@ -32,46 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/escaliers`,
+      url: `${baseUrl}/evenementiel`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/garde-robes`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/tables`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/cuisines`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/bibliotheques`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/bureaux`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/salles-de-bain`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
@@ -105,6 +70,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Service sub-pages (Intérieurs and Événements)
+  const serviceUrls = defaultServices.map((service) => ({
+    url: `${baseUrl}${branchBasePath[service.branch]}/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   // Fetch blog posts from Sanity (French only)
   let blogPosts: any[] = [];
   try {
@@ -126,5 +99,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...blogUrls];
+  return [...staticPages, ...serviceUrls, ...blogUrls];
 }

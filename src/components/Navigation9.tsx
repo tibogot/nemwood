@@ -8,13 +8,16 @@ import { useLenis } from "lenis/react";
 import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import ServicesCarousel from "./ServicesCarousel";
+import type { ServiceSummary } from "@/lib/services";
 
 interface Navigation9Props {
   variant?: "primary" | "secondary";
+  services: ServiceSummary[];
 }
 
 export default function Navigation9({
   variant = "secondary",
+  services,
 }: Navigation9Props) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,10 +43,16 @@ export default function Navigation9({
     variant === "primary" ? "text-primary" : "text-secondary";
 
   // Navigation items and SplitText-related state (mirrors Navigation7)
-  const navItems = [
+  // Items with a `carousel` show their sub-pages on hover (desktop)
+  const navItems: {
+    name: string;
+    href: string;
+    carousel?: "interieurs" | "evenements";
+  }[] = [
     { name: "Accueil", href: "/" },
     { name: "À propos", href: "/a-propos" },
-    { name: "Services", href: "/services" },
+    { name: "Intérieurs", href: "/services", carousel: "interieurs" },
+    { name: "Événements", href: "/evenementiel", carousel: "evenements" },
     { name: "Contact", href: "/contact" },
     { name: "Blog", href: "/blog" },
   ];
@@ -53,6 +62,10 @@ export default function Navigation9({
   const [splitTextReady, setSplitTextReady] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
+  // Last hovered carousel group, kept after leaving so the exit animation plays
+  const [activeCarousel, setActiveCarousel] = useState<
+    "interieurs" | "evenements"
+  >("interieurs");
   const splitTextInstances = useRef<SplitText[]>([]);
 
   // Master GSAP timeline for burger + overlay + links (open/close)
@@ -645,6 +658,7 @@ export default function Navigation9({
 
   // Extended state for services highlighting (from Navigation6)
   const isOnServiceSubpage = pathname?.startsWith("/services/") || false;
+  const isOnEventSubpage = pathname?.startsWith("/evenementiel/") || false;
 
   // Ref to track current navbar animation for cleanup (persists across renders)
   const navbarAnimationRef = useRef<gsap.core.Tween | null>(null);
@@ -884,6 +898,10 @@ export default function Navigation9({
         {/* Wrap in a click-stopper so arrow clicks don't bubble and close the menu */}
         <div onClick={(e) => e.stopPropagation()}>
           <ServicesCarousel
+            key={activeCarousel}
+            services={services.filter(
+              (service) => service.branch === activeCarousel,
+            )}
             isVisible={isServicesHovered}
             onMouseEnter={() => setIsServicesHovered(true)}
             onMouseLeave={() => setIsServicesHovered(false)}
@@ -897,14 +915,14 @@ export default function Navigation9({
           onClick={(e) => e.stopPropagation()}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          <div className="flex w-full flex-col items-center space-y-2 pb-8 md:flex-row md:items-end md:justify-start md:gap-8 md:space-y-0">
+          <div className="flex w-full flex-col items-center space-y-2 pb-8 md:flex-row md:flex-wrap md:items-end md:justify-start md:space-y-0 md:gap-x-8 md:gap-y-2">
             {navItems.map((item, index) => {
               const isCurrentPage = pathname === item.href;
-              const isServices = item.name === "Services";
+              const isServices = !!item.carousel;
 
-              // Treat carousel visibility as if Services is being hovered
+              // Treat carousel visibility as if its nav item is being hovered
               const servicesIndex = navItems.findIndex(
-                (navItem) => navItem.name === "Services",
+                (navItem) => navItem.carousel === activeCarousel,
               );
               const effectiveHoveredIndex = isServicesHovered
                 ? servicesIndex
@@ -921,7 +939,8 @@ export default function Navigation9({
                   }`}
                   onMouseEnter={() => {
                     setHoveredIndex(index);
-                    if (isServices) {
+                    if (item.carousel) {
+                      setActiveCarousel(item.carousel);
                       setIsServicesHovered(true);
                     } else {
                       // If hovering other links, hide services carousel
@@ -938,7 +957,7 @@ export default function Navigation9({
                     // Disabled link for current page
                     <Link
                       href="#"
-                      className="font-ITCGaramondN text-primary/30 current-page-link pointer-events-none block cursor-default text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)]"
+                      className="font-ITCGaramondN text-primary/30 current-page-link pointer-events-none block cursor-default text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(32px,4.2vw,96px)]"
                       style={{
                         visibility:
                           fontsLoaded && splitTextReady ? "visible" : "hidden",
@@ -953,9 +972,12 @@ export default function Navigation9({
                     // Active link for other pages
                     <Link
                       href={item.href}
-                      className={`font-ITCGaramondN block cursor-pointer text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(40px,6vw,120px)] ${
+                      className={`font-ITCGaramondN block cursor-pointer text-center text-5xl leading-tight transition-all duration-300 sm:text-6xl md:text-left md:text-[clamp(32px,4.2vw,96px)] ${
                         // Current page logic: fade current page (or Services when on service subpage)
-                        isCurrentPage || (isOnServiceSubpage && isServices)
+                        isCurrentPage ||
+                        (isOnServiceSubpage &&
+                          item.carousel === "interieurs") ||
+                        (isOnEventSubpage && item.carousel === "evenements")
                           ? "text-primary/50"
                           : // Hover logic: fade non-hovered items when something is hovered
                             effectiveHoveredIndex !== null &&
@@ -1074,7 +1096,7 @@ export default function Navigation9({
 
         @media (min-width: 768px) {
           .font-ITCGaramondN a {
-            font-size: clamp(40px, 6vw, 120px) !important;
+            font-size: clamp(32px, 4.2vw, 96px) !important;
           }
         }
       `}</style>

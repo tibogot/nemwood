@@ -1,57 +1,16 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-
-interface Service {
-  name: string;
-  href: string;
-  image: string;
-}
-
-const services: Service[] = [
-  {
-    name: "Escaliers",
-    href: "/services/escaliers",
-    image: "/images/horiz-escalier.webp",
-  },
-  {
-    name: "Gardes-robes",
-    href: "/services/garde-robes",
-    image: "/images/horiz-garderobe.webp",
-  },
-  {
-    name: "Tables",
-    href: "/services/tables",
-    image: "/images/table-a-manger-2.jpg",
-  },
-  {
-    name: "Cuisines",
-    href: "/services/cuisines",
-    image: "/images/horiz-cuisine.webp",
-  },
-  {
-    name: "Bibliothèques",
-    href: "/services/bibliotheques",
-    image: "/images/bibliothèque.webp",
-  },
-  {
-    name: "Bureaux",
-    href: "/services/bureaux",
-    image: "/images/bureau.webp",
-  },
-  {
-    name: "Salles de bain",
-    href: "/services/salles-de-bain",
-    image: "/images/sdb.webp",
-  },
-];
+import type { ServiceImage } from "@/data/services";
+import type { ServiceSummary } from "@/lib/services";
+import { imageProps } from "@/lib/serviceImage";
 
 // Individual Service Component
 interface ServiceItemProps {
   index: number;
   name: string;
   href: string;
-  image: string;
+  image: ServiceImage;
 }
 
 function ServiceItem({ index, name, href, image }: ServiceItemProps) {
@@ -130,8 +89,7 @@ function ServiceItem({ index, name, href, image }: ServiceItemProps) {
               <div className="absolute right-full mr-12 h-[60px] w-[80px] overflow-hidden md:h-[80px] md:w-[110px] lg:h-[100px] lg:w-[140px]">
                 <div className="relative h-full w-full overflow-hidden rounded-[1px]">
                   <Image
-                    src={image}
-                    alt={name}
+                    {...imageProps(image)}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 80px, 140px"
@@ -156,22 +114,27 @@ function ServiceItem({ index, name, href, image }: ServiceItemProps) {
 }
 
 // Main Component
-export default function ManyServices() {
+interface ManyServicesProps {
+  services: ServiceSummary[];
+}
+
+export default function ManyServices({ services }: ManyServicesProps) {
   return (
-    <section className="relative min-h-screen w-full py-16 md:py-20">
+    <section
+      className={`relative w-full py-16 md:py-20 ${services.length > 3 ? "min-h-screen" : ""}`}
+    >
       {/* Mobile Card Layout */}
       <div className="block space-y-8 px-4 md:hidden">
         {services.map((service, index) => (
           <div
-            key={`mobile-${service.name}`}
+            key={`mobile-${service.title}`}
             className="group bg-secondary relative cursor-pointer overflow-hidden rounded-sm duration-300"
           >
             <a href={service.href} className="block">
               {/* Image */}
               <div className="relative h-[300px] w-full overflow-hidden rounded-sm md:h-[400px]">
                 <Image
-                  src={service.image}
-                  alt={`${service.name} sur mesure par Nemwood - Menuisier artisan en Belgique`}
+                  {...imageProps(service.image)}
                   fill
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -189,7 +152,7 @@ export default function ManyServices() {
 
                 {/* Title */}
                 <h3 className="font-ITCGaramondN text-primary mb-4 text-4xl leading-tight">
-                  {service.name}
+                  {service.title}
                 </h3>
 
                 {/* CTA */}
@@ -225,9 +188,9 @@ export default function ManyServices() {
       <div className="font-HelveticaNow hidden md:block">
         {services.map((service, index) => (
           <ServiceItem
-            key={service.name}
+            key={service.title}
             index={index}
-            name={service.name}
+            name={service.title}
             href={service.href}
             image={service.image}
           />

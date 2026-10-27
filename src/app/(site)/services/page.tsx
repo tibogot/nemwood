@@ -1,0 +1,208 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import ParallaxImage from "@/components/ParallaxImage";
+import AnimatedText from "@/components/AnimatedText3";
+import { generateMetadata } from "@/app/metadata";
+import ManyServices from "@/components/ManyServices";
+import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
+import { getServices } from "@/lib/services";
+
+export const metadata: Metadata = generateMetadata(
+  "Services de menuiserie sur mesure en Belgique | Nemwood",
+  "Découvrez nos services de menuiserie : escaliers, garde-robes, tables, cuisines, bibliothèques, bureaux et salles de bain en bois sur mesure. Artisanat belge de qualité.",
+  "/images/og/og-services.webp",
+  "https://www.nemwood.be/services",
+  undefined,
+  "Services de menuiserie sur mesure - Nemwood",
+);
+
+export default async function ServicesPage() {
+  const services = [
+    {
+      title: "Escaliers",
+      slug: "escaliers",
+      description:
+        "Escaliers en bois sur mesure alliant robustesse, esthétique et finition artisanale.",
+      image: "/images/stairs.webp",
+    },
+    {
+      title: "Garde-robes",
+      slug: "garde-robes",
+      description:
+        "Garde-robes en bois massif personnalisées selon vos besoins et votre espace.",
+      image: "/images/wardrobe.webp",
+    },
+    {
+      title: "Tables",
+      slug: "tables",
+      description:
+        "Tables en bois sur mesure, pièces centrales uniques et durables.",
+      image: "/images/horiz-table.webp",
+    },
+    {
+      title: "Cuisines",
+      slug: "cuisines",
+      description:
+        "Cuisines en bois massif chaleureuses et entièrement personnalisées.",
+      image: "/images/horiz-cuisine.webp",
+    },
+  ];
+
+  return (
+    <>
+      <BreadcrumbsSchema
+        items={[
+          { name: "Accueil", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
+      />
+      <main className="bg-secondary text-primary">
+        {/* Hero Section */}
+        <section className="px-4 py-40 md:px-8 md:py-64">
+          <div className="mx-auto max-w-4xl text-center">
+            <AnimatedText isHero delay={0.0} stagger={0.3}>
+              <span className="font-ITCGaramondN mb-6 block text-5xl md:text-7xl">
+                Nos Services
+              </span>
+              <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+                Découvrez notre gamme complète de services de menuiserie sur
+                mesure en Belgique. Chaque création est pensée pour s'harmoniser
+                parfaitement avec votre intérieur.
+              </p>
+            </AnimatedText>
+          </div>
+        </section>
+        {/* Full Width Image Section with Parallax */}
+        <ParallaxImage speed={1.5} className="h-[400px] md:h-[100svh]">
+          <Image
+            src="/images/services-hero.webp"
+            alt="Nemwood craftsmanship showcase"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            quality={75}
+            priority
+            fetchPriority="high"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAAIAAgDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAaEAACAgMAAAAAAAAAAAAAAAAAAREhAhIT/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AJerTnBa3NQgAGR//9k="
+          />
+        </ParallaxImage>
+        {/* Title and Description Section */}
+        <section className="relative w-full py-16 md:py-20">
+          <div className="mb-16 flex flex-col px-4 md:flex-row md:items-start md:justify-between md:gap-8 md:px-8">
+            <AnimatedText>
+              <h1 className="font-ITCGaramondN text-primary mb-4 max-w-2xl text-3xl md:mb-0 md:text-5xl lg:text-7xl">
+                Menuiserie sur mesure en Belgique
+              </h1>
+            </AnimatedText>
+
+            <AnimatedText>
+              <p className="font-HelveticaNow text-primary text-base md:max-w-xl md:text-lg">
+                Artisan menuisier basé près de Bruxelles, Nemwood conçoit et
+                fabrique du mobilier en bois sur mesure pour les particuliers et
+                les professionnels. Chaque pièce — table, cuisine, escalier,
+                garde-robe ou bibliothèque — est réalisée à la main dans notre
+                atelier, en bois massif sélectionné pour sa qualité et sa
+                durabilité. Du premier croquis jusqu'à la pose chez vous, nous
+                vous accompagnons pour créer un intérieur qui vous ressemble.
+              </p>
+            </AnimatedText>
+          </div>
+        </section>
+        {/* Services Grid */}
+        {/* <section className="px-4 py-20 md:px-8 md:py-40">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-8 md:grid-cols-2">
+            {services.map((service, index) => (
+              <article
+                key={service.slug}
+                className="group cursor-pointer overflow-hidden rounded-sm"
+              >
+                <Link href={`/services/${service.slug}`}>
+                  <div className="relative h-[400px] overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+                    <div className="absolute right-0 bottom-0 left-0 p-6 text-white">
+                      <h2 className="mb-3 text-3xl md:text-4xl">
+                        {service.title}
+                      </h2>
+                      <p className="font-HelveticaNow mb-4 text-sm opacity-90">
+                        {service.description}
+                      </p>
+
+                      <div className="inline-flex items-center text-sm">
+                        <span>En savoir plus</span>
+                        <ArrowRight size={16} className="ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section> */}
+        {/* CTA Section */}
+        {/* <section className="bg-primary text-secondary px-4 py-20 md:px-8 md:py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-6 text-4xl md:text-5xl">
+            Prêt à commencer votre projet ?
+          </h2>
+          <p className="font-HelveticaNow mx-auto mb-8 max-w-2xl text-lg">
+            Contactez-nous pour discuter de votre projet de menuiserie sur
+            mesure. Devis gratuit et sans engagement.
+          </p>
+
+          <Link href="/contact">
+            <button className="font-HelveticaNow">
+              <div className="border-secondary hover:bg-secondary hover:text-primary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out">
+                <span>Nous contacter</span>
+                <div className="ml-2">
+                  <ArrowRight size={18} strokeWidth={1.5} />
+                </div>
+              </div>
+            </button>
+          </Link>
+        </div>
+      </section> */}
+        <ManyServices services={await getServices("interieurs")} />
+        <section className="text-primary bg-secondary intro border-primary mx-auto border-y border-solid px-4 py-20 text-center md:px-8 md:py-20">
+          <AnimatedText delay={0.0} stagger={0.3}>
+            <h2 className="font-ITCGaramondN mx-auto mb-6 max-w-2xl text-6xl">
+              Un menuisier professionnel à votre écoute
+            </h2>
+            <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
+              Vous avez un projet d'aménagement en bois ? Que ce soit pour une
+              cuisine en bois naturel, un mobilier en bois sur mesure ou un
+              meuble haut de gamme, nous étudions chaque demande avec soin.
+              Notre approche artisanale garantit des finitions irréprochables et
+              un résultat parfaitement adapté à votre espace. Basés à Beersel,
+              nous intervenons dans toute la Belgique.
+            </p>
+          </AnimatedText>
+        </section>
+        <section className="flex w-full flex-col items-center justify-center px-4 py-20 md:px-8 md:py-64">
+          <ParallaxImage speed={0.5} className="h-[400px] w-full md:h-[600px]">
+            <Image
+              src="/images/loft.webp"
+              alt="Aménagement de loft avec meubles en bois sur mesure - Escalier et bibliothèque par Nemwood"
+              fill
+              className="rounded-sm object-cover"
+              sizes="100vw"
+              quality={85}
+            />
+          </ParallaxImage>
+        </section>
+      </main>
+    </>
+  );
+}
