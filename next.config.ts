@@ -26,22 +26,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   generateEtags: false,
-  // Redirects are now handled by middleware.ts for better performance
-  // Optimize file watching for better performance
-  webpack: (config, { dev }) => {
-    if (dev) {
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-        ignored: /node_modules/,
-      };
-    }
-
-    // Bundle splitting is left to Next's defaults: a single forced "vendor"
-    // chunk would pull the Studio's multi-MB deps into every page of the site.
-
-    return config;
-  },
+  // Redirects are handled by src/proxy.ts. Bundling is Turbopack's (default
+  // since Next 16): no custom webpack config, whose forced "vendor" chunk used
+  // to pull the Studio's multi-MB deps into every page of the site.
 };
 
 export default nextConfig;

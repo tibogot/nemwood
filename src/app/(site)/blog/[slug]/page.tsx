@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import AnimatedText from "@/components/AnimatedText3";
 import { generateMetadata as generatePageMetadata } from "@/app/metadata";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import Link from "next/link";
 // import ShareButtons from "@/components/ShareButtons";
 import ParallaxImage from "@/components/ParallaxImage";
@@ -16,7 +16,7 @@ import ArticleSchema from "@/components/ArticleSchema";
 export const revalidate = 60;
 
 // Initialize Sanity image URL builder
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 export async function generateMetadata({
   params,

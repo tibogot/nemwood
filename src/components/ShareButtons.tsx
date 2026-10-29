@@ -1,7 +1,36 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Check, Copy, Facebook, Linkedin } from "lucide-react";
+import { Check, Copy } from "lucide-react";
+
+// Brand icons were removed from lucide-react 1.0: same outline paths, inlined
+const iconProps = {
+  className: "h-5 w-5",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+function FacebookIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
 interface ShareButtonsProps {
   title: string;
@@ -60,7 +89,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             className="bg-primary text-secondary hover:bg-tertiary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Partager sur Facebook"
           >
-            <Facebook className="h-5 w-5" />
+            <FacebookIcon />
           </div>
 
           {/* X (Twitter) Share - Commented out */}
@@ -106,7 +135,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             className="bg-primary text-secondary hover:bg-tertiary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Partager sur LinkedIn"
           >
-            <Linkedin className="h-5 w-5" />
+            <LinkedinIcon />
           </div> */}
 
           {/* Copy Link - Primary */}
