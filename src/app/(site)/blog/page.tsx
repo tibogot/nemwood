@@ -8,7 +8,7 @@ import { generateMetadata } from "@/app/metadata";
 import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 
 // Force revalidation every 60 seconds (optional)
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = generateMetadata(
   "Blog Nemwood - Actualités et conseils menuiserie | Nemwood",
@@ -39,7 +39,7 @@ export default async function BlogPage() {
       }
     }`,
     {},
-    // Use default caching with revalidate: 60 (ISR)
+    // Use default caching with revalidate: 3600 (ISR)
   );
 
   return (

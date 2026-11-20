@@ -13,7 +13,7 @@ import BreadcrumbsSchema from "@/components/BreadcrumbsSchema";
 import ArticleSchema from "@/components/ArticleSchema";
 
 // Force revalidation every 60 seconds to match blog page
-export const revalidate = 60;
+export const revalidate = 3600;
 
 // Initialize Sanity image URL builder
 const builder = imageUrlBuilder(client);
@@ -35,7 +35,7 @@ export async function generateMetadata({
       publishedAt
     }`,
     { slug },
-    // Use default caching with revalidate: 60 (ISR)
+    // Use default caching with revalidate: 3600 (ISR)
   );
 
   if (!post) return generatePageMetadata();
@@ -238,7 +238,7 @@ export default async function BlogPostPage(props: any) {
       _updatedAt
     }`,
     { slug: params.slug },
-    // Use default caching with revalidate: 60 (ISR)
+    // Use default caching with revalidate: 3600 (ISR)
   );
 
   // Check if post exists first
@@ -256,7 +256,7 @@ export default async function BlogPostPage(props: any) {
         publishedAt
       }`,
       { createdAt: post._createdAt },
-      // Use default caching with revalidate: 60 (ISR)
+      // Use default caching with revalidate: 3600 (ISR)
     ),
     client.fetch(
       `*[_type == "post" && _createdAt > $createdAt && language == "fr"]|order(_createdAt asc)[0]{
@@ -268,7 +268,7 @@ export default async function BlogPostPage(props: any) {
         publishedAt
       }`,
       { createdAt: post._createdAt },
-      // Use default caching with revalidate: 60 (ISR)
+      // Use default caching with revalidate: 3600 (ISR)
     ),
     client.fetch(
       `*[_type == "post" && slug.current != $currentSlug && language == "fr"]|order(_createdAt desc)[0...3]{
@@ -282,7 +282,7 @@ export default async function BlogPostPage(props: any) {
         body
       }`,
       { currentSlug: params.slug },
-      // Use default caching with revalidate: 60 (ISR)
+      // Use default caching with revalidate: 3600 (ISR)
     ),
   ]);
 

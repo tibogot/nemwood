@@ -1,47 +1,16 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const hostname = request.headers.get("host") || "";
-
-  // Handle deleted pages with 410 Gone
-  const deletedPages = [
-    "/about",
-    "/blog/het-maatwerk",
-    "/blog/from-the-architects",
-  ];
-  if (deletedPages.includes(pathname)) {
-    return new NextResponse("Gone", { status: 410 });
-  }
-
-  // Force HTTPS and www
-  if (hostname === "nemwood.be" || hostname === "www.nemwood.be") {
-    const url = request.nextUrl.clone();
-
-    // Always redirect to HTTPS www
-    if (
-      hostname === "nemwood.be" ||
-      !request.nextUrl.protocol.startsWith("https")
-    ) {
-      url.protocol = "https:";
-      url.hostname = "www.nemwood.be";
-      return NextResponse.redirect(url, 301);
-    }
-  }
-
-  return NextResponse.next();
+/**
+ * Answers 410 Gone for the pages deleted from the old site.
+ *
+ * The matcher lists those paths only, so the middleware (a Vercel Function
+ * invocation, billed as CPU) runs for nothing else. nemwood.be → www and
+ * http → https are done by Vercel's domain settings before the app is reached.
+ */
+export function middleware() {
+  return new NextResponse("Gone", { status: 410 });
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/about", "/blog/het-maatwerk", "/blog/from-the-architects"],
 };

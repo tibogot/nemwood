@@ -53,7 +53,7 @@ async function fetchSanityServices(): Promise<SanityService[]> {
       servicesQuery,
       {},
       // Same ISR window as the blog
-      { next: { revalidate: 60, tags: ["service"] } },
+      { next: { revalidate: 3600, tags: ["service"] } },
     );
   } catch {
     // Sanity unreachable: the site keeps working with the default images
